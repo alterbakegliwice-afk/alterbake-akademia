@@ -24,7 +24,13 @@ html,body{margin:0;background:var(--tlo);color:var(--tekst);
 body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
 #pasek{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:8px;
   padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:var(--akcent);color:#fff}
-#pasek h1{flex:1;font-size:17px;margin:0;font-weight:600;
+#pasek-tekst{flex:1;min-width:0}
+#pasek h1{font-size:17px;margin:0;font-weight:600;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Bieżący rozdział w pasku. Moduł ma kilkanaście ekranów, a tytuł rozdziału
+   znika po pierwszym przewinięciu — bez tego czytelnik po trzech ekranach
+   nie wie już, w której części jest. */
+#podtytul{font-size:12px;opacity:.82;margin-top:1px;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ikona{background:rgba(255,255,255,.18);color:#fff;border:0;border-radius:10px;
   min-width:40px;min-height:40px;font-size:18px;cursor:pointer}
@@ -39,7 +45,9 @@ ul.punkty{margin:0;padding-left:20px}
 ul.punkty li{margin-bottom:8px}
 .mechanizm{margin-top:12px;padding:12px;background:var(--akcent-jasny);border-radius:10px}
 .mechanizm h4{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--akcent)}
-.mechanizm p{margin:0;font-size:15px}
+.mechanizm p{margin:0 0 12px;font-size:15px;line-height:1.6}
+.mechanizm p:last-child{margin-bottom:0}
+.nauka-wyrozniony p+p{margin-top:10px}
 .zrodlo{margin-top:10px;font-size:12px;color:var(--cichy);word-break:break-word}
 button.glowny{width:100%;min-height:52px;background:var(--akcent);color:#fff;border:0;
   border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;margin-top:8px}
@@ -141,13 +149,69 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
 .powiazanie-chip{min-height:40px;padding:8px 14px;border-radius:20px;border:1.5px solid var(--ramka);
   background:var(--karta);color:var(--akcent);font:inherit;font-size:14px;cursor:pointer}
 
+/* ── ORIENTACJA I RYTM (30.08.2026) ──────────────────────────────────────
+   Piotr otworzył kurs na telefonie: „zlepek tekstu, ciężko skanować wzrokiem".
+   Miał rację — moduł ma ~19 ekranów telefonu, a przez trzy z rzędu nie było
+   ani jednego punktu zaczepienia dla oka. Poniżej wyłącznie warstwa układu;
+   treści nie ruszamy. Trzy rzeczy naraz: WIEM GDZIE JESTEM (pasek rozdziału
+   i spis treści), WIDZĘ STRUKTURĘ (landmarki sekcji, numer rozdziału),
+   ODDYCHAM (rytm akapitu, skrót oddzielony od wykładu). */
+
+/* Meta modułu: ile tego jest, zanim ktoś zacznie czytać na przystanku. */
+.modul-meta{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 0 0;
+  font-size:13px;color:var(--cichy)}
+.modul-meta b{font-weight:600;color:var(--tekst)}
+
+/* Spis treści — jedyny sposób, żeby wrócić do „Parametrów" bez przewijania
+   dziewięciu ekranów. Chipy, bo w tej aplikacji wszystko klikalne jest chipem. */
+.spis-rzedy{margin-top:12px}
+.spis{display:flex;flex-wrap:wrap;gap:8px}
+.spis.rozdzialy{flex-direction:column;align-items:stretch}
+.spis.sekcje{margin-top:10px;padding-top:10px;border-top:1px solid var(--ramka)}
+.spis button{min-height:40px;padding:8px 13px;border-radius:20px;
+  border:1.5px solid var(--ramka);background:var(--tlo);color:var(--tekst);
+  font:inherit;font-size:13px;cursor:pointer;text-align:left}
+.spis button .nr{color:var(--akcent);font-weight:700;margin-right:6px}
+.spis button.sekcja{color:var(--akcent)}
+
+/* Nagłówek rozdziału: numer jako duży znacznik, żeby oko łapało początek
+   rozdziału przy szybkim przewijaniu. */
+.rozdzial-glowa{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.rozdzial-nr{flex:none;font-size:26px;font-weight:700;color:var(--akcent);
+  opacity:.35;line-height:1}
+.rozdzial-glowa h3{margin:0;font-size:18px;line-height:1.3}
+
+/* Rytm wykładu. Pierwszy akapit jest wprowadzeniem — większy i ciemniejszy,
+   daje oku start. Odstęp między akapitami większy niż interlinia, inaczej
+   trzy akapity zlewają się w jeden blok (dokładnie to widać było na zrzucie). */
+.nauka-tresc{margin:0 0 18px;font-size:16px;line-height:1.6}
+.nauka-tresc.lede{font-size:17px;line-height:1.55;margin-bottom:20px}
+.nauka-tresc:last-of-type{margin-bottom:0}
+
+/* Skrót rozdziału. Te punkty POWTARZAJĄ wykład — i dobrze, bo jedni czytają,
+   drudzy skanują. Bez własnej ramki i etykiety wyglądały jak dalszy ciąg
+   wywodu i czytelnik czytał to samo drugi raz, nie wiedząc dlaczego. */
+.skrot{margin-top:18px;padding:14px;border-radius:12px;background:var(--tlo);
+  border:1px solid var(--ramka)}
+.skrot .etykieta{display:block;font-size:11px;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--akcent);font-weight:700;margin-bottom:8px}
+.skrot ul{margin:0;padding-left:18px}
+.skrot li{margin-bottom:9px}
+.skrot li:last-child{margin-bottom:0}
+
+/* Landmark sekcji: pasek nad nagłówkiem widać kątem oka przy przewijaniu. */
+.nauka-sekcja{margin:0 0 12px;font-size:13px;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--akcent);padding-top:2px;
+  border-top:3px solid var(--akcent-jasny);padding-top:10px}
+.karta h3.nauka-sekcja:first-child{margin-top:-2px}
+
 </style>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🥖</text></svg>">
 </head>
 <body>
 <header id="pasek">
   <button id="wstecz" class="ikona" hidden aria-label="Wróć">←</button>
-  <h1 id="tytul">Akademia Alterbake</h1>
+  <div id="pasek-tekst"><h1 id="tytul">Akademia Alterbake</h1><div id="podtytul" hidden></div></div>
   <button id="szukajBtn" class="ikona" aria-label="Szukaj">🔍</button>
 </header>
 <main id="ekran" aria-live="polite">
@@ -159,8 +223,8 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
   <button data-widok="postep">📊 Postęp</button>
 </nav>
 <script id="dane-kursu" type="application/json">{
-  "wersja": "2026-08-29",
-  "zbudowano": "2026-08-29",
+  "wersja": "2026-08-30",
+  "zbudowano": "2026-08-30",
   "sciezki": [
     {
       "id": "piekarz",
@@ -11987,6 +12051,7 @@ const PROG = 0.8;
 
 let DANE = null;
 let widok = { nazwa: 'tomy', tom: null, quiz: null };
+let obserwatorRozdzialu = null;
 
 /* ── magazyn ───────────────────────────────────────────────────────────── */
 const czytaj = (k, gdy) => { try { return JSON.parse(localStorage.getItem(klucz(k))) ?? gdy } catch { return gdy } };
@@ -12036,16 +12101,49 @@ const ZNACZNIK_HALA = '🔎 Z hali:';
 const ZNACZNIK_ZAPAMIETAJ = '🧠 Zapamiętaj:';
 const MAX_LEAD = 44;
 
+/* Wyróżnik wyciągnięty z listy staje się samodzielnym zdaniem w osobnym bloku,
+   a autorzy pisali go jako ciąg dalszy po dwukropku — 115 ze 116 zaczynało się
+   małą literą i wyglądało na urwane. Wielką literę wstawia ekran. */
+function jakZdanie(tekst) {
+  const t = String(tekst || '').trim();
+  return t ? t[0].toUpperCase() + t.slice(1) : t;
+}
+
+/* Długi blok → akapity, po ZDANIACH. Wywód „Jak to działa" ma medianę ~750
+   znaków jednym ciągiem, czyli dwadzieścia linii telefonu bez przerwy. */
+const PROG_LAMANIA = 420;
+
+function naAkapity(tekst, prog = PROG_LAMANIA) {
+  const t = String(tekst || '').trim();
+  if (!t) return [];
+  if (t.length <= prog) return [t];
+  const zdania = t.split(/(?<=[.!?])\s+(?=[A-ZĄĆĘŁŃÓŚŹŻ])/);
+  if (zdania.length < 2) return [t];
+  const docelowa = Math.ceil(t.length / Math.ceil(t.length / prog));
+  const akapity = [];
+  let biezacy = '';
+  for (const z of zdania) {
+    if (biezacy && biezacy.length + z.length > docelowa) { akapity.push(biezacy); biezacy = z }
+    else biezacy = biezacy ? `${biezacy} ${z}` : z;
+  }
+  if (biezacy) akapity.push(biezacy);
+  if (akapity.length > 1 && akapity[akapity.length - 1].length < prog / 3) {
+    const sierota = akapity.pop();
+    akapity[akapity.length - 1] += ` ${sierota}`;
+  }
+  return akapity;
+}
+
 function rozdzielPunkty(punkty) {
   const zwykle = []; let zHali = null, zapamietaj = null;
   for (const x of punkty || []) {
     const t = String(x || '').trim();
     if (t.startsWith(ZNACZNIK_HALA)) {
       const tresc = t.slice(ZNACZNIK_HALA.length).trim();
-      if (zHali === null) zHali = tresc; else zwykle.push(t);
+      if (zHali === null) zHali = jakZdanie(tresc); else zwykle.push(t);
     } else if (t.startsWith(ZNACZNIK_ZAPAMIETAJ)) {
       const tresc = t.slice(ZNACZNIK_ZAPAMIETAJ.length).trim();
-      if (zapamietaj === null) zapamietaj = tresc; else zwykle.push(t);
+      if (zapamietaj === null) zapamietaj = jakZdanie(tresc); else zwykle.push(t);
     } else if (t) zwykle.push(t);
   }
   return { punkty: zwykle, zHali, zapamietaj };
@@ -12111,12 +12209,13 @@ const akapit = (kl, tekst) => wstawTekst(el('p', kl), tekst);
 /* Sekcja po rozdziałach — rysowana TYLKO gdy ma zawartość. Pusta sekcja
    z samym nagłówkiem uczy przewijania, nie rzemiosła; moduł nieprzepisany
    ma wyglądać jak przedtem, a nie jak zepsuty. */
-function sekcja(rodzic, tytul, pozycje, rysuj) {
+function sekcja(rodzic, tytul, pozycje, rysuj, zapisz) {
   if (!pozycje || !pozycje.length) return null;
   const k = el('div', 'karta');
   k.append(el('h3', 'nauka-sekcja', tytul));
   rysuj(k);
   rodzic.append(k);
+  if (zapisz) zapisz(k, tytul);
   return k;
 }
 
@@ -12124,14 +12223,34 @@ function wyrozniony(rodzic, klasa, etykieta, tekst) {
   if (!tekst) return;
   const d = el('div', 'nauka-wyrozniony ' + klasa);
   d.append(el('span', 'etykieta', etykieta));
-  d.append(akapit('', tekst));
+  naAkapity(tekst).forEach((a) => d.append(akapit('', a)));
   rodzic.append(d);
 }
 const norm = (t) => String(t || '').toLowerCase().replace(/[ąćęłńóśźż]/g, (z) => 'acelnoszz'['ąćęłńóśźż'.indexOf(z)]);
 
-function ustawPasek(tytul, zWstecz) {
+function ustawPasek(tytul, zWstecz, podtytul) {
   $('#tytul').textContent = tytul;
   $('#wstecz').hidden = !zWstecz;
+  const p = $('#podtytul');
+  p.textContent = podtytul || '';
+  p.hidden = !podtytul;
+}
+
+/* Czas czytania. Nie po to, żeby był na ekranie licznik, tylko żeby ktoś
+   stojący na przystanku wiedział, czy zaczyna coś na trzy minuty, czy na
+   dwadzieścia. ~200 słów/min to ostrożne tempo dla tekstu technicznego. */
+function minutyCzytania(tom) {
+  const tekst = [tom.intro, ...(tom.cele || []), ...(tom.karty || []).flatMap((k) =>
+    [k.tytul, ...(k.tresc || []), ...(k.punkty || []), k.mechanizm])].join(' ');
+  return Math.max(1, Math.round(bezZnacznikow(tekst).split(/\s+/).length / 200));
+}
+
+/* Przewinięcie do elementu z zapasem na wysokość paska — bez tego docelowy
+   nagłówek chowa się POD paskiem i wygląda, jakby skok nie zadziałał. */
+function przewinDo(element) {
+  const pasek = $('#pasek').getBoundingClientRect().height;
+  const y = element.getBoundingClientRect().top + window.scrollY - pasek - 8;
+  window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
 }
 
 /* ── ekran: lista tomów ───────────────────────────────────────────────── */
@@ -12189,11 +12308,27 @@ function ekranTom() {
   ustawPasek(t.nazwa, true);
   const m = $('#ekran'); m.innerHTML = '';
 
+  /* Spis treści zbieramy PRZY rysowaniu sekcji — dopisanie sekcji nie wymaga
+     wtedy pamiętania o drugiej liście, a spis nie może pokazać czegoś, czego
+     na ekranie nie ma. */
+  const doSpisu = [];
+  const kotwica = (element, etykieta, numer) => { doSpisu.push({ element, etykieta, numer }); return element };
+
   if (t.intro || (t.cele && t.cele.length)) {
     const k = el('div', 'karta');
     k.append(el('span', 'plakietka', 'Materiał do nauki'));
     k.append(el('h2', '', t.nazwa));
-    if (t.intro) k.append(akapit('', t.intro));
+    if (t.intro) k.append(akapit('nauka-tresc lede', t.intro));
+
+    const meta = el('div', 'modul-meta');
+    const liczba = (n, jeden, kilka, wiele) =>
+      n === 1 ? jeden : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? kilka : wiele;
+    const rozdzialow = (t.karty || []).length;
+    if (rozdzialow) meta.append(wstawTekst(el('span'), `**${rozdzialow}** ${liczba(rozdzialow, 'rozdział', 'rozdziały', 'rozdziałów')}`));
+    meta.append(wstawTekst(el('span'), `**${minutyCzytania(t)}** min czytania`));
+    if (t.pytania.length) meta.append(wstawTekst(el('span'), `**${t.pytania.length}** ${liczba(t.pytania.length, 'pytanie', 'pytania', 'pytań')}`));
+    k.append(meta);
+
     if (t.cele && t.cele.length) {
       k.append(el('h3', 'nauka-sekcja', 'Po tym module potrafisz'));
       const ul = el('ul', 'nauka-cele');
@@ -12203,16 +12338,28 @@ function ekranTom() {
     m.append(k);
   }
 
-  (t.karty || []).forEach((karta, i) => {
-    const k = el('div', 'karta');
-    if ((t.karty || []).length > 1) k.append(el('div', 'nauka-numer', `Rozdział ${i + 1} z ${t.karty.length}`));
-    k.append(el('h3', '', karta.tytul));
+  const kartaSpisu = el('div', 'karta');
+  kartaSpisu.append(el('h3', 'nauka-sekcja', 'W tym module'));
+  const spis = el('div', 'spis-rzedy');
+  kartaSpisu.append(spis);
+  m.append(kartaSpisu);
 
-    (karta.tresc || []).forEach((akap) => k.append(akapit('nauka-tresc', akap)));
+  (t.karty || []).forEach((karta, i) => {
+    const k = kotwica(el('div', 'karta'), karta.tytul, String(i + 1));
+    const glowa = el('div', 'rozdzial-glowa');
+    if ((t.karty || []).length > 1) glowa.append(el('div', 'rozdzial-nr', String(i + 1)));
+    glowa.append(el('h3', '', karta.tytul));
+    k.append(glowa);
+
+    /* Pierwszy akapit prowadzi — dostaje większy stopień. Reszta idzie
+       normalnie, z odstępem większym niż interlinia. */
+    (karta.tresc || []).forEach((akap, j) => k.append(akapit(j === 0 ? 'nauka-tresc lede' : 'nauka-tresc', akap)));
 
     const { punkty, zHali, zapamietaj } = rozdzielPunkty(karta.punkty);
     if (punkty.length) {
-      const ul = el('ul', 'punkty');
+      const box = el('div', 'skrot');
+      box.append(el('span', 'etykieta', 'W skrócie'));
+      const ul = el('ul');
       punkty.forEach((x) => {
         const li = el('li');
         const { lead, reszta } = leadPunktu(x);
@@ -12220,7 +12367,8 @@ function ekranTom() {
         else wstawTekst(li, x);
         ul.append(li);
       });
-      k.append(ul);
+      box.append(ul);
+      k.append(box);
     }
 
     wyrozniony(k, 'nauka-zhali', '🔎 Z hali', zHali);
@@ -12228,7 +12376,7 @@ function ekranTom() {
     if (karta.mechanizm) {
       const mech = el('div', 'mechanizm');
       mech.append(el('h4', '', 'Jak to działa'));
-      mech.append(akapit('', karta.mechanizm));
+      naAkapity(karta.mechanizm).forEach((a) => mech.append(akapit('', a)));
       k.append(mech);
     }
 
@@ -12248,7 +12396,7 @@ function ekranTom() {
       if (w.porownanie) d.append(el('p', 'wyczucie-porownanie', w.porownanie));
       k.append(d);
     });
-  });
+  }, (k, tytul) => kotwica(k, 'Zmysły'));
 
   sekcja(m, 'Parametry', t.parametry, (k) => {
     t.parametry.forEach((par) => {
@@ -12262,7 +12410,7 @@ function ekranTom() {
        o kalibracji trzy sekcje niżej przeczyta ktoś, kto już zdążył
        potraktować zakres z tabeli jak wyrok. */
     k.append(el('p', 'nauka-kalibracja', 'Wszystkie wartości są punktem startu do kalibracji na Twoim sprzęcie i surowcu — nie stałymi fizycznymi. Gdy ciasto zachowuje się inaczej, zapisz odchylenie i zgłoś je liderowi zmiany.'));
-  });
+  }, (k, tytul) => kotwica(k, 'Parametry'));
 
   sekcja(m, 'Jak to zrobić', t.procedura, (k) => {
     const ol = el('ol', 'procedura-lista');
@@ -12274,7 +12422,7 @@ function ekranTom() {
       ol.append(li);
     });
     k.append(ol);
-  });
+  }, (k, tytul) => kotwica(k, 'Procedura'));
 
   sekcja(m, 'Gdy coś poszło nie tak', t.bledy, (k) => {
     t.bledy.forEach((b) => {
@@ -12290,10 +12438,10 @@ function ekranTom() {
       d.append(korekta);
       k.append(d);
     });
-  });
+  }, (k, tytul) => kotwica(k, 'Gdy coś nie tak'));
 
   if (t.cwiczenie && t.cwiczenie.kroki && t.cwiczenie.kroki.length) {
-    const k = el('div', 'karta');
+    const k = kotwica(el('div', 'karta'), 'Ćwiczenie');
     k.append(el('h3', 'nauka-sekcja', 'Ćwiczenie'));
     if (t.cwiczenie.tytul) k.append(el('h3', '', t.cwiczenie.tytul));
     const ol = el('ol', 'procedura-lista');
@@ -12312,7 +12460,7 @@ function ekranTom() {
     const ul = el('ul', 'checklista-lista');
     t.checklista.forEach((x) => ul.append(wstawTekst(el('li'), x)));
     k.append(ul);
-  });
+  }, (k, tytul) => kotwica(k, 'Checklista'));
 
   /* Powiązania są PRZYCISKAMI, nie listą nazw. Odesłanie, którego nie da się
      kliknąć, jest w kursie na telefonie odesłaniem donikąd. Moduł spoza tej
@@ -12364,6 +12512,43 @@ function ekranTom() {
   const w = el('button', 'drugi', '← Wróć do listy');
   w.onclick = () => { widok = { nazwa: 'tomy' }; rysuj() };
   m.append(w);
+
+  /* Spis budujemy z tego, co realnie stanęło na ekranie. */
+  /* Dwa rzędy, nie jeden ciąg: rozdziały to droga przez materiał, a sekcje
+     odniesienia to miejsca, do których się WRACA. Zmieszane w jednej chmurze
+     chipów wyglądały jak jedna lista dziesięciu równorzędnych rzeczy. */
+  const rzad = (klasa, pozycje) => {
+    if (!pozycje.length) return;
+    const r = el('div', 'spis ' + klasa);
+    for (const poz of pozycje) {
+      const b = el('button', poz.numer ? '' : 'sekcja');
+      if (poz.numer) b.append(el('span', 'nr', poz.numer));
+      b.append(document.createTextNode(poz.etykieta));
+      b.onclick = () => przewinDo(poz.element);
+      r.append(b);
+    }
+    spis.append(r);
+  };
+  rzad('rozdzialy', doSpisu.filter((x) => x.numer));
+  rzad('sekcje', doSpisu.filter((x) => !x.numer));
+  if (!doSpisu.length) kartaSpisu.remove();
+
+  /* Pasek pokazuje rozdział, który właśnie czytasz. Bez tego po trzecim
+     ekranie wywodu nie wiadomo już, w której części modułu się jest —
+     a rozdziały mają po kilka ekranów. Obserwator, nie nasłuch scrolla:
+     nie liczy nic przy każdym pikselu przewijania. */
+  if (obserwatorRozdzialu) obserwatorRozdzialu.disconnect();
+  const rozdzialy = doSpisu.filter((x) => x.numer);
+  if (rozdzialy.length > 1 && 'IntersectionObserver' in window) {
+    const widoczne = new Set();
+    obserwatorRozdzialu = new IntersectionObserver((wpisy) => {
+      for (const w of wpisy) w.isIntersecting ? widoczne.add(w.target) : widoczne.delete(w.target);
+      const biezacy = rozdzialy.find((x) => widoczne.has(x.element));
+      ustawPasek(t.nazwa, true, biezacy ? `${biezacy.numer}/${rozdzialy.length} · ${biezacy.etykieta}` : '');
+    }, { rootMargin: '-96px 0px -55% 0px' });
+    rozdzialy.forEach((x) => obserwatorRozdzialu.observe(x.element));
+  }
+
   window.scrollTo(0, 0);
 }
 
@@ -12567,6 +12752,9 @@ function ekranSzukaj() {
 /* ── router ───────────────────────────────────────────────────────────── */
 function rysuj() {
   const w = widok.nazwa;
+  /* Obserwator żyje tylko na ekranie modułu — w quizie dopisywałby do paska
+     nazwę rozdziału, którego nikt już nie czyta. */
+  if (w !== 'tom' && obserwatorRozdzialu) { obserwatorRozdzialu.disconnect(); obserwatorRozdzialu = null }
   if (w === 'tomy') ekranTomy();
   else if (w === 'tom') ekranTom();
   else if (w === 'quiz') ekranQuiz();
