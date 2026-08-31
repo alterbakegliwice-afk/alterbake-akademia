@@ -2850,7 +2850,7 @@
     },
     {
       "id": "OS-02",
-      "tom": "Obsługa i sprzedaż",
+      "tom": "Lada: doradzanie i witryna",
       "poziom": "JUNIOR",
       "typ": "jednokrotny",
       "ccp": false,
@@ -2930,7 +2930,7 @@
     },
     {
       "id": "OS-06",
-      "tom": "Obsługa i sprzedaż",
+      "tom": "Lada: doradzanie i witryna",
       "poziom": "MENTOR",
       "typ": "jednokrotny",
       "ccp": false,
@@ -3547,6 +3547,526 @@
       "wzorzec": "Zasada jednej zmiennej: dwie zmiany naraz kasują informację z obu",
       "zrodlo": "szkoly_i_filozofie.md",
       "wyjasnienie": "Wynik próby niesie informację tylko wtedy, gdy wiadomo, co dokładnie go wywołało. Przy dwóch zmianach naraz poprawa może pochodzić z jednej z nich, z drugiej albo z ich złożenia, a pogorszenie może oznaczać, że jedna zmiana pomogła, a druga zaszkodziła mocniej. Zapisać trzeba też temperaturę hali, inaczej warunków nie da się potem odtworzyć."
+    },
+    {
+      "id": "OB-01",
+      "tom": "Obsługa i sprzedaż",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Ile kategorii alergenów podlega obowiązkowej deklaracji?",
+      "opcje": [
+        "Czternaście, wyliczonych w załączniku do rozporządzenia",
+        "Osiem, obejmujących najczęstsze uczulenia pokarmowe",
+        "Tyle, ile zakład sam uzna za istotne dla klientów",
+        "Nie ma zamkniętej listy — decyduje skład wyrobu"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Lista jest zamknięta i wyliczona — bilans musi się domykać: każda kategoria albo występuje, albo nie",
+      "zrodlo": "profil_zakladu.md; instrukcja I-07",
+      "wyjasnienie": "Kategorii jest czternaście i są wyliczone w załączniku II rozporządzenia 1169/2011. Zamknięta lista ma sens praktyczny: pozwala domknąć bilans, czyli stwierdzić o każdej kategorii, że w zakładzie występuje albo nie występuje. Bez tego wykaz byłby zbiorem przykładów, a odpowiedź zależałaby od tego, co komu wydaje się typowym alergenem."
+    },
+    {
+      "id": "OB-02",
+      "tom": "Obsługa i sprzedaż",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": true,
+      "pytanie": "Klient pyta o orzechy. W wyrobie są arachidy. Co jest poprawne?",
+      "opcje": [
+        "Arachidy to osobna kategoria — trzeba o nich powiedzieć wprost",
+        "Arachidy mieszczą się w orzechach, więc odpowiedź brzmi „są”",
+        "Arachidy zgłasza się tylko wtedy, gdy klient zapyta o nie wprost",
+        "Arachidy liczą się jako orzechy dopiero powyżej progu ilości"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Orzeszki arachidowe są w prawie osobną kategorią, nie podtypem orzechów",
+      "zrodlo": "profil_zakladu.md (kategorie do potwierdzenia)",
+      "wyjasnienie": "Orzeszki arachidowe stanowią odrębną kategorię alergenową, a nie podtyp orzechów. Traktowanie ich jako jednego worka daje odpowiedzi fałszywe w obie strony: „orzechów nie ma” o wyrobie z arachidami albo odmowę sprzedaży bezpiecznego wyrobu. Odpowiada się więc kategoriami tak, jak stoją w wykazie."
+    },
+    {
+      "id": "OB-03",
+      "tom": "Obsługa i sprzedaż",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Wyrób z kremem stał dwadzieścia minut poza witryną chłodniczą. Co z tym?",
+      "opcje": [
+        "Czas poza chłodem liczy się sumarycznie i trzeba go zgłosić",
+        "Powrót do witryny cofa skutki, więc sprawa jest zamknięta",
+        "Liczy się wyłącznie termin na etykiecie, nie czas ekspozycji",
+        "Dwadzieścia minut mieści się w normie dla każdego wyrobu"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Czas poza chłodem sumuje się; chłód nie cofa namnożenia, tylko je spowalnia",
+      "zrodlo": "ccp.md (łańcuch chłodniczy); montaz_shelf_life.md",
+      "wyjasnienie": "Bakterie namnażają się szybciej w cieple, a powrót do chłodu tego nie odwraca — komórki, które zdążyły się namnożyć, tylko zwalniają. Dlatego ekspozycja liczy się sumarycznie: cztery razy po dwadzieścia minut to ponad godzina w strefie sprzyjającej wzrostowi. Wyrób wraca do chłodu natychmiast, a czas zgłasza się przełożonemu."
+    },
+    {
+      "id": "OB-04",
+      "tom": "Obsługa i sprzedaż",
+      "poziom": "MENTOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Klient zgłasza ciało obce w wyrobie. Co musisz mieć, zanim wyjdzie?",
+      "opcje": [
+        "Zachowany wyrób, rodzaj oraz datę zakupu i wypieku",
+        "Jego dane kontaktowe i pisemne oświadczenie o zdarzeniu",
+        "Zdjęcie wyrobu oraz zgodę klienta na jego utylizację",
+        "Potwierdzenie od przełożonego, że wada jest realna"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Bez zachowanego wyrobu i daty „cała partia” jest pojęciem, którego nie da się prześledzić",
+      "zrodlo": "formularze.md (F-08 → F-09, F-15 identyfikowalność)",
+      "wyjasnienie": "Wyrób jest przy ciele obcym jedynym dowodem i wskazuje etap procesu, na którym mogło się ono dostać — opis słowny tej informacji nie niesie. Data i rodzaj pozwalają z kolei odnaleźć partię; bez nich sprawdzenie „całej partii” jest niewykonalne, bo nie wiadomo której. Dlatego te trzy rzeczy zbiera się przed wyjściem klienta."
+    },
+    {
+      "id": "LD-01",
+      "tom": "Lada: doradzanie i witryna",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Klient mówi „poproszę coś dobrego”. Od czego zaczynasz?",
+      "opcje": [
+        "Od pytania: na kiedy i do czego ma być ten wyrób",
+        "Od pokazania wyrobu, który sama lubisz najbardziej",
+        "Od wymienienia wszystkich pozycji dostępnych w witrynie",
+        "Od najdroższej pozycji, bo świadczy o jakości piekarni"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Klient kupuje zastosowanie, nie nazwę — najpierw ustala się zastosowanie",
+      "zrodlo": "montaz_shelf_life.md (trwałość grup); praktyka obsługi",
+      "wyjasnienie": "Klient rzadko mówi nazwą wyrobu — mówi zastosowaniem, tylko nie zawsze wprost. Jedno pytanie zawężające zastępuje pokazywanie pięciu pozycji i trafia lepiej niż własny ulubiony wyrób, bo dobiera się do cudzej potrzeby, a nie do swojego gustu."
+    },
+    {
+      "id": "LD-02",
+      "tom": "Lada: doradzanie i witryna",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Wyrobu, po który przyszedł klient, nie ma. Co robisz?",
+      "opcje": [
+        "Podajesz zamiennik, nazywasz różnicę i mówisz, kiedy będzie",
+        "Informujesz o braku i pytasz, czy podać coś innego",
+        "Proponujesz wyrób stojący najbliżej miejsca po tamtym",
+        "Zapisujesz zamówienie i prosisz o przyjście następnego dnia"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Kolejność: czego nie ma → konkretny zamiennik → czym się różni → kiedy będzie",
+      "zrodlo": "praktyka obsługi; trwałość grup → montaz_shelf_life.md",
+      "wyjasnienie": "Samo „nie ma” każe klientowi wymyślić alternatywę samodzielnie, w kolejce i bez wiedzy o asortymencie, więc najczęściej rezygnuje. Zamiennik podany razem z różnicą wykonuje tę pracę za niego i ustawia oczekiwanie, więc inny smak nie zaskoczy go w domu jako pomyłka. Termin zamienia dzisiejszy brak w jutrzejszy zakup."
+    },
+    {
+      "id": "LD-03",
+      "tom": "Lada: doradzanie i witryna",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jaką radę o przechowywaniu dajesz przy chlebie na kilka dni?",
+      "opcje": [
+        "Temperatura pokojowa w papierze; przy większej ilości zamrozić",
+        "Lodówka w szczelnej folii, żeby nie tracił wilgoci",
+        "Chłodne miejsce w reklamówce, najlepiej blisko okna",
+        "Zamrażarka dopiero po trzech dniach, gdy zacznie twardnieć"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Czerstwienie jest najszybsze w zakresie chłodniczym; mrożenie je zatrzymuje",
+      "zrodlo": "nauka_i_zdrowie.md (czerstwienie i przechowywanie)",
+      "wyjasnienie": "Czerstwienie to przebudowa struktury skrobi, nie wysychanie, więc zachodzi także w szczelnym opakowaniu. Jego tempo jest najwyższe tuż powyżej zera, niższe w temperaturze pokojowej, a poniżej punktu zamarzania praktycznie ustaje. Stąd dwie pozornie sprzeczne rady, które są jedną: nie lodówka, za to zamrażarka."
+    },
+    {
+      "id": "LD-04",
+      "tom": "Lada: doradzanie i witryna",
+      "poziom": "MENTOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Pod koniec dnia zostały pojedyncze sztuki na wielu tacach. Co zrobić?",
+      "opcje": [
+        "Złożyć je razem — pustka wokół towaru czyta się jako resztka",
+        "Rozłożyć szerzej, żeby witryna wyglądała na pełniejszą",
+        "Zostawić bez zmian, bo przekładanie skraca trwałość wyrobów",
+        "Przenieść wszystko na zaplecze i wydawać wyłącznie na prośbę"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Obfitość ocenia się porównawczo — zwężenie ekspozycji usuwa fałszywy sygnał, nie towar",
+      "zrodlo": "montaz_shelf_life.md; praktyka ekspozycji",
+      "wyjasnienie": "Człowiek ocenia świeżość porównawczo: pełna półka kojarzy się z początkiem dnia, a przerzedzona z końcem. Pojedyncze sztuki rozłożone szeroko wysyłają więc sygnał resztek, choć towar jest ten sam. Zwężenie ekspozycji nie jest sztuczką — usuwa sygnał nieprawdziwy wobec stanu wyrobu."
+    },
+    {
+      "id": "TK-01",
+      "tom": "Trudny klient i sztuka naprawy",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Klient mówi coraz głośniej. Jak prowadzisz własny głos?",
+      "opcje": [
+        "Wolniej i ciszej niż on — tempo udziela się odruchowo",
+        "Równo z nim, żeby pokazać, że traktujesz sprawę poważnie",
+        "Głośniej, żeby przebić się przez emocje i odzyskać uwagę",
+        "Neutralnie i szybko, żeby skrócić rozmowę do minimum"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Ludzie synchronizują tempo i głośność z rozmówcą — świadome zejście w dół pociąga drugą stronę",
+      "zrodlo": "Wiedza ogólna o deeskalacji; nie ze źródeł zakładu",
+      "wyjasnienie": "Ludzie odruchowo dopasowują tempo, głośność i postawę do rozmówcy. Podniesienie głosu jest więc najpewniejszym sposobem, żeby napięcie wzrosło, a świadome zejście o pół tonu niżej pociąga drugą stronę za sobą skuteczniej niż jakikolwiek argument merytoryczny."
+    },
+    {
+      "id": "TK-02",
+      "tom": "Trudny klient i sztuka naprawy",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Które zdanie przenosi rozmowę na wiarygodność klienta?",
+      "opcje": [
+        "„To niemożliwe, nikt się jeszcze na to nie skarżył”",
+        "„Przykro mi, że pan tak trafił. Zrobimy tak…”",
+        "„To się u nas zdarza rzadko, tym bardziej to sprawdzę”",
+        "„Rozumiem, że kupił pan chleb na śniadanie”"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Zaprzeczenie doświadczeniu zmienia temat z problemu na to, czy klient mówi prawdę",
+      "zrodlo": "Wiedza ogólna o komunikacji w obsłudze; nie ze źródeł zakładu",
+      "wyjasnienie": "Człowiek, którego relacja została podważona, przestaje rozwiązywać sprawę i zaczyna dowodzić, że mówi prawdę — a dowodzenie prawdy jest emocjonalne i nie ma naturalnego końca. Ta sama informacja podana jako „zdarza się rzadko, tym bardziej sprawdzę” prowadzi w przeciwną stronę."
+    },
+    {
+      "id": "TK-03",
+      "tom": "Trudny klient i sztuka naprawy",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego po przeprosinach nie powinno paść słowo „ale”?",
+      "opcje": [
+        "Bo jest spójnikiem przeciwstawnym i unieważnia pierwszą część",
+        "Bo wydłuża zdanie i klient przestaje słuchać w połowie",
+        "Bo sugeruje, że sprawa wymaga zgody przełożonego",
+        "Bo w języku obsługi uchodzi za sformułowanie zbyt potoczne"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "„Przykro mi, ale…” brzmi jak brak żalu — wystarczy zamienić spójnik na kropkę",
+      "zrodlo": "Wiedza ogólna o komunikacji; nie ze źródeł zakładu",
+      "wyjasnienie": "„Ale” jest spójnikiem przeciwstawnym, więc odbiorca odczytuje pierwszą część zdania jako unieważnioną przez drugą — niezależnie od tego, co autor chciał przekazać. „Przykro mi. Zrobimy tak…” niesie tę samą treść i nie kasuje przeprosin."
+    },
+    {
+      "id": "TK-04",
+      "tom": "Trudny klient i sztuka naprawy",
+      "poziom": "MENTOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Kiedy rozmowa z klientem przestaje należeć do obsługi?",
+      "opcje": [
+        "Gdy przestaje dotyczyć sprawy i zaczyna dotyczyć Ciebie",
+        "Gdy trwa dłużej niż kilka minut i tworzy się kolejka",
+        "Gdy klient podnosi głos i przyciąga uwagę innych osób",
+        "Gdy żądanie klienta wykracza poza wartość jego zakupu"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Konflikt o wyrób ma przedmiot i rozwiązanie; atak na osobę nie ma czym zostać zamknięty",
+      "zrodlo": "Granice roli obsługi; SPEC §4d (zgłoszenie zdarzenia sklepu)",
+      "wyjasnienie": "Konflikt o wyrób ma przedmiot, więc ma też rozwiązanie: wymianę, wyjaśnienie, zwrot. Atak na osobę nie ma przedmiotu, którym dałoby się zadysponować, więc żadna odpowiedź obsługi go nie zamyka, a ustępowanie tylko przesuwa granicę. Jedynym skutecznym ruchem jest zakończenie rozmowy i przekazanie sprawy dalej."
+    },
+    {
+      "id": "TK-05",
+      "tom": "Trudny klient i sztuka naprawy",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Reklamacja została naprawiona wymianą. Co jeszcze trzeba zrobić?",
+      "opcje": [
+        "Zapisać ją, żeby druga taka sama miała się z czym porównać",
+        "Nic więcej — klient wyszedł zadowolony i sprawa jest zamknięta",
+        "Poinformować pozostałych klientów o możliwym problemie",
+        "Odłożyć wymieniony wyrób do ponownej sprzedaży po sprawdzeniu"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Wymiana zamyka sprawę wobec klienta, zapis zamyka ją wobec partii",
+      "zrodlo": "formularze.md (F-08); praktyka naprawy usługi",
+      "wyjasnienie": "Wymiana rozwiązuje sprawę jednej osoby, ale nie mówi nic o tym, czy problem dotyczy większej liczby wyrobów. Sygnał powstaje dopiero z drugiego takiego samego zgłoszenia, a druga bez zapisanej pierwszej niczego nie znaczy. Dlatego zapisuje się także reklamacje zakończone pomyślnie."
+    },
+    {
+      "id": "TK-06",
+      "tom": "Trudny klient i sztuka naprawy",
+      "poziom": "MENTOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego dobrze naprawiony błąd buduje lojalność silniej niż bezbłędność?",
+      "opcje": [
+        "Bo pokazuje, jak firma zachowuje się wtedy, gdy nie musi",
+        "Bo klient czuje się winny i rekompensuje to kolejnym zakupem",
+        "Bo wymiana ma zwykle wyższą wartość niż pierwotny zakup",
+        "Bo klienci opowiadają o problemach chętniej niż o zaletach"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Transakcja bezproblemowa nie niesie informacji o firmie poza tym, że wykonała, co obiecała",
+      "zrodlo": "Literatura zarządzania jakością usług; nie ze źródeł zakładu",
+      "wyjasnienie": "Bezproblemowa transakcja nie niesie żadnej informacji o firmie poza tym, że zrobiła to, co obiecała. Sytuacja trudna niesie informację mocniejszą — pokazuje zachowanie wtedy, gdy nic nie zmusza do wysiłku. To nie jest zachęta do popełniania błędów, tylko wskazówka, gdzie leży dźwignia."
+    },
+    {
+      "id": "GO-01",
+      "tom": "Gościnność — czego uczą inne szkoły",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Na czym polega różnica między obsługą a gościnnością?",
+      "opcje": [
+        "Obsługa to co dostarczasz, gościnność to jak zostaje odebrane",
+        "Obsługa dotyczy stałych klientów, gościnność wszystkich pozostałych",
+        "Obsługa jest obowiązkiem, a gościnność dodatkiem dla chętnych",
+        "Obsługa dotyczy towaru, a gościnność wyłącznie wystroju wnętrza"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Można podać bezbłędnie i zostawić chłód; można pomylić się i zostawić poczucie wsparcia",
+      "zrodlo": "Amerykańska szkoła gościnności restauracyjnej; nie ze źródeł zakładu",
+      "wyjasnienie": "Obsługa jest monologiem: robisz to, co należy, i da się to zmierzyć. Gościnność jest dialogiem — reagujesz na to, kim jest ten człowiek. Szczegóły techniczne zacierają się w pamięci szybko, a ślad emocjonalny zostaje i to on wraca później jako ocena miejsca."
+    },
+    {
+      "id": "GO-02",
+      "tom": "Gościnność — czego uczą inne szkoły",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czym uprzedzanie potrzeby różni się od nachalności?",
+      "opcje": [
+        "Wynika z obserwacji tej osoby, a nie z gotowego scenariusza",
+        "Dotyczy wyłącznie stałych klientów, których zna cała zmiana",
+        "Polega na propozycji dodatkowego zakupu przy każdej transakcji",
+        "Jest dopuszczalne tylko wtedy, gdy klient sam zacznie rozmowę"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Omotenashi: przygotowanie i czytanie sytuacji, niewidoczne w wysiłku",
+      "zrodlo": "Japońska tradycja gościnności; nie ze źródeł zakładu",
+      "wyjasnienie": "Uprzedzenie potrzeby oszczędza drugiej osobie kosztu poproszenia, a większość ludzi w codziennej sytuacji nie prosi, tylko rezygnuje. Scenariusz stosowany do każdego jest natomiast widoczny natychmiast i dlatego czyta się jako nachalność — różnicę robi to, czy gest wynika z patrzenia na tę osobę."
+    },
+    {
+      "id": "GO-03",
+      "tom": "Gościnność — czego uczą inne szkoły",
+      "poziom": "MENTOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego kolejność troski zaczyna się od zespołu, a nie od gościa?",
+      "opcje": [
+        "Bo nie da się dawać ciepła, którego samemu się nie dostaje",
+        "Bo zespół jest liczniejszy niż grupa stałych klientów",
+        "Bo gość ocenia miejsce dopiero po kilku kolejnych wizytach",
+        "Bo obowiązki wobec pracowników wynikają wprost z przepisów"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Gościnność jest zachowaniem emocjonalnym — da się polecić czynność, nie da się polecić życzliwości",
+      "zrodlo": "Amerykańska szkoła gościnności restauracyjnej; nie ze źródeł zakładu",
+      "wyjasnienie": "Da się polecić wykonanie czynności, nie da się polecić życzliwości. Zespół traktowany dobrze ma nadwyżkę, którą oddaje dalej; zespół wyczerpany oddaje to, co mu zostało, czyli poprawność. Dlatego kolejność wygląda na odwróconą, a jest po prostu praktyczna."
+    },
+    {
+      "id": "GO-04",
+      "tom": "Gościnność — czego uczą inne szkoły",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czego uczy o gościnności włoska kultura barowa?",
+      "opcje": [
+        "Że szybkość i rozpoznanie bywają formą szacunku dla gościa",
+        "Że rozmowa z klientem powinna trwać możliwie długo",
+        "Że stały klient zasługuje na inne ceny niż przypadkowy",
+        "Że wystrój wnętrza decyduje o powrocie bardziej niż obsługa"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Tempo dobiera się do gościa; rozpoznanie jest najtańszą formą gościnności",
+      "zrodlo": "Włoska kultura barowa; nie ze źródeł zakładu",
+      "wyjasnienie": "Espresso podane w kilkadziesiąt sekund, bez pytania, bo barista pamięta, wyraża szacunek dla cudzego czasu i dla codziennego rytuału. Rozwlekła rozmowa z kimś, kto ma trzy minuty, zabiera coś, czego ta osoba nie ma. Rozpoznanie kosztuje przy tym wyłącznie uwagę."
+    },
+    {
+      "id": "GO-05",
+      "tom": "Gościnność — czego uczą inne szkoły",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Klient patrzy w milczeniu na witrynę. Jak reagujesz?",
+      "opcje": [
+        "Zostawiasz ciszę i pozostajesz dostępna — to jest namysł",
+        "Zadajesz kolejne pytanie, żeby uniknąć niezręcznej przerwy",
+        "Wymieniasz nowości, żeby ułatwić mu podjęcie decyzji",
+        "Odchodzisz do innej pracy, żeby nie wywierać presji"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Szkoła nordycka: nieśpieszność, brak sprzedaży na siłę, cisza, która nie jest niezręczna",
+      "zrodlo": "Szkoła nordycka gościnności; nie ze źródeł zakładu",
+      "wyjasnienie": "Cisza, w której klient patrzy na witrynę, jest namysłem, a nie kłopotem do usunięcia. Wypełniona kolejnym pytaniem zamienia się w presję i skraca wizytę. Prawo do niekupienia jest częścią gościnności — i wraca następnym razem."
+    },
+    {
+      "id": "GO-06",
+      "tom": "Gościnność — czego uczą inne szkoły",
+      "poziom": "MENTOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego jeden nowy nawyk działa lepiej niż pięć postanowień naraz?",
+      "opcje": [
+        "Bo nowa czynność zajmuje uwagę, której przy ladzie jest mało",
+        "Bo pięć zmian wymaga zgody wszystkich osób na zmianie",
+        "Bo zespół szybciej zauważa efekt pojedynczej zmiany w sprzedaży",
+        "Bo nawyki utrwalają się wyłącznie w kolejności od najprostszego"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Jeden nawyk na tydzień, mierzony pytaniem „zrobiłam to dziś?”",
+      "zrodlo": "Praktyka wdrażania nawyków; nie ze źródeł zakładu",
+      "wyjasnienie": "Nowa czynność zajmuje świadomą uwagę, a przy ladzie jest jej bardzo mało: obsługa liczy, pakuje, odpowiada i patrzy na kolejkę jednocześnie. Pięć nowych rzeczy przekracza ten zapas i pierwsza sytuacja pod presją zmiata je wszystkie. Jedna mieści się i po kilkudziesięciu powtórzeniach przestaje kosztować uwagę."
+    },
+    {
+      "id": "RZ-01",
+      "tom": "Rytm zmiany w sklepie",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Na czym polega mise en place przy ladzie?",
+      "opcje": [
+        "Wszystko gotowe i w zasięgu ręki, zanim zacznie się ruch",
+        "Podział zmiany na krótkie odcinki z ustalonymi przerwami",
+        "Ustawienie wyrobów tak, żeby najdroższe stały najbliżej wejścia",
+        "Przygotowanie listy zadań do wykonania po zamknięciu sklepu"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "W szczycie nie ma czasu na przygotowanie — jest tylko czas na korzystanie z tego, co przygotowane",
+      "zrodlo": "Praktyka kuchni i warsztatów; nie ze źródeł zakładu",
+      "wyjasnienie": "Mise en place znaczy dosłownie „ustawienie na miejsce”: wszystko potrzebne jest przygotowane, zanim zacznie się praca właściwa. Rzecz nieprzygotowana wcześniej zostanie zrobiona kosztem klienta stojącego przy ladzie, bo w szczycie nie ma z czego wziąć na nią czasu."
+    },
+    {
+      "id": "RZ-02",
+      "tom": "Rytm zmiany w sklepie",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Odchodzisz od lady po tę samą rzecz kilka razy dziennie. Co to znaczy?",
+      "opcje": [
+        "Że rzecz leży w miejscu, w którym się jej nie używa",
+        "Że warto zaplanować dokładniejszą kolejność wykonywania zadań",
+        "Że przy ladzie brakuje jednej osoby w godzinach szczytu",
+        "Że zapas tej rzeczy jest zbyt mały wobec wielkości sprzedaży"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Zbędny krok powtarzany sto razy dziennie to źle ustawiona półka, nie niedbalstwo",
+      "zrodlo": "Klasyfikacja marnotrawstw (lean); nie ze źródeł zakładu",
+      "wyjasnienie": "Zbędny ruch jest cechą ustawienia stanowiska, a nie starania osoby, która go wykonuje — dlatego nie usuwa się go szybszym chodzeniem, tylko zmianą układu. Pięć sekund powtórzone sto razy dziennie daje wielkość porównywalną z całą zmianą, a przeniesienie rzeczy bliżej zajmuje minutę."
+    },
+    {
+      "id": "RZ-03",
+      "tom": "Rytm zmiany w sklepie",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Które zadania wykonuje się w dolinach ruchu, a nie w szczycie?",
+      "opcje": [
+        "Te, które da się przerwać bez kosztu: uzupełnianie i porządek",
+        "Te, które są najpilniejsze w danym momencie zmiany",
+        "Te, których nikt nie lubi wykonywać na koniec dnia",
+        "Te, które wymagają obecności dwóch osób jednocześnie"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "W dolinie rzeczy przerywalne, w szczycie jedna rzecz do końca",
+      "zrodlo": "Praktyka organizacji pracy; nie ze źródeł zakładu",
+      "wyjasnienie": "Zadania dolinowe składają się z kroków niezależnych, więc przerwanie kosztuje tyle, co przerwa, i nic więcej — a przerwanie jest pewne, bo klient wejdzie w najmniej odpowiednim momencie. Uzupełnianie, etykiety, opakowania i porządek mają właśnie tę własność."
+    },
+    {
+      "id": "RZ-04",
+      "tom": "Rytm zmiany w sklepie",
+      "poziom": "MENTOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego przerwane liczenie reszty jest groźniejsze niż wolniejsze?",
+      "opcje": [
+        "Bo przerwanie nie spowalnia czynności, tylko zmienia jej wynik",
+        "Bo klient odbiera przerwę jako brak zainteresowania obsługi",
+        "Bo powrót do liczenia wymaga rozpoczęcia całej transakcji od nowa",
+        "Bo przy kasie obowiązuje zasada obsługi wyłącznie jednej osoby"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Pamięć robocza gubi elementy przy przełączeniu — przy pieniądzach i alergenach to zmiana wyniku",
+      "zrodlo": "Praktyka organizacji pracy; nie ze źródeł zakładu",
+      "wyjasnienie": "Człowiek utrzymuje jednocześnie tylko kilka elementów i przy przełączeniu na inne zadanie część z nich znika bezpowrotnie. Przy liczeniu pieniędzy albo odczytywaniu składu to właśnie te elementy tworzą błąd, gdy się je pominie. Dlatego zasada „jedna rzecz do końca” chroni przed pomyłką, a nie tylko oszczędza czas."
+    },
+    {
+      "id": "RZ-05",
+      "tom": "Rytm zmiany w sklepie",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": true,
+      "pytanie": "Wyrób wygląda inaczej niż zwykle, a przy ladzie stoi kolejka. Co robisz?",
+      "opcje": [
+        "Wstrzymujesz go i zgłaszasz — wątpliwość wystarczy",
+        "Sprzedajesz i zgłaszasz sprawę po zakończeniu zmiany",
+        "Odkładasz na bok i wracasz do sprawy przy mniejszym ruchu",
+        "Pytasz klienta, czy mimo wszystko chce ten konkretny wyrób"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Każdy ma prawo zatrzymać pracę przy wykryciu problemu; zatrzymanie wymaga wątpliwości, nie pewności",
+      "zrodlo": "Zasada zatrzymania procesu przy wadzie (jidoka); nie ze źródeł zakładu",
+      "wyjasnienie": "Koszt wady rośnie skokowo z każdym etapem, na którym nie została wykryta: wyrób zatrzymany kosztuje ten jeden wyrób, sprzedany kosztuje reklamację, sprawdzenie partii i zaufanie klienta. Dlatego prawo zatrzymania ma osoba stojąca najbliżej problemu — jest ostatnim punktem, w którym koszt jest jeszcze mały."
+    },
+    {
+      "id": "RZ-06",
+      "tom": "Rytm zmiany w sklepie",
+      "poziom": "MENTOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Co znaczy, że domknięcie dnia jest przygotowaniem następnego?",
+      "opcje": [
+        "Zostawiasz stan gotowy do pracy, nie tylko usunięte ślady",
+        "Kończysz zmianę dokładnie o wyznaczonej godzinie zamknięcia",
+        "Przekazujesz ustnie najważniejsze sprawy osobie z rana",
+        "Rozliczasz utarg i zamykasz kasę przed sprzątaniem sklepu"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Uzupełnij, zanim zabraknie · zostaw stan, nie tylko czystość · przekaż to, czego nie widać",
+      "zrodlo": "Praktyka pracy zmianowej; nie ze źródeł zakładu",
+      "wyjasnienie": "Sprzątanie usuwa ślady wczorajszego dnia, przygotowanie ustawia rzeczy tak, jak będą potrzebne rano. Różnica jest widoczna w pierwszej godzinie następnej zmiany: albo zaczyna się ona od sprzedaży, albo od dokładania i szukania. Rzecz postawiona na swoim miejscu przekazuje informację sama, bez udziału pamięci."
     }
   ]
 }
