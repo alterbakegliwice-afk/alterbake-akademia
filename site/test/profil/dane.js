@@ -1,6 +1,6 @@
 /* PROFIL ALTERBAKE — treść testu. PLIK GENEROWANY, nie edytuj ręcznie.
-   Źródło: apps/work-profile/zrodla/tresc-profilu.mjs
-   Generator: tools/generuj-dane-profilu.mjs · świeżości pilnuje npm run validate.
+   Źródło: [wewn.]
+   Generator: [wewn.] · świeżości pilnuje npm run validate.
    Wzorzec UMD jak scoring.js: window.ProfilDane albo module.exports. */
 (function (root) {
   "use strict";
@@ -326,7 +326,8 @@
       "r": false,
       "tekst": "Gdy kończę zadanie, naturalnie sprawdzam szczegóły — nawet gdy termin minął i nikt nie patrzy.",
       "podpowiedz": "Mierzy czy jakość jest dla Ciebie wewnętrznym standardem, a nie tylko reakcją na zewnętrzne wymagania.",
-      "przyklad": "Przed wystawieniem sprawdzasz wypiek jeszcze raz — nawet w pośpiechu i nawet gdy nikt o to nie prosił."
+      "przyklad": "Przed wystawieniem sprawdzasz wypiek jeszcze raz — nawet w pośpiechu i nawet gdy nikt o to nie prosił.",
+      "pomocnicze": "Na dziesięć ostatnich zadań — w ilu sprawdziłeś szczegóły już PO tym, jak formalnie skończyłeś?"
     },
     {
       "id": "t02",
@@ -334,7 +335,8 @@
       "r": false,
       "tekst": "Wyczuwam zmianę nastroju rozmówcy zanim mi o niej wprost powie.",
       "podpowiedz": "Mierzy zdolność do odczytywania stanów emocjonalnych bez bezpośrednich sygnałów słownych.",
-      "przyklad": "Czujesz że kolega jest sfrustrowany zanim cokolwiek powie — i zazwyczaj masz rację."
+      "przyklad": "Czujesz że kolega jest sfrustrowany zanim cokolwiek powie — i zazwyczaj masz rację.",
+      "pomocnicze": "Kiedy ostatnio powiedziałeś komuś „coś się stało?” i miałeś rację, zanim ta osoba cokolwiek powiedziała?"
     },
     {
       "id": "t03",
@@ -342,7 +344,8 @@
       "r": false,
       "tekst": "Działam najlepiej gdy mam ustalony rytm i wiem czego spodziewać się w ciągu dnia.",
       "podpowiedz": "Mierzy czy regularność i przewidywalność podnoszą Twoją efektywność i komfort pracy.",
-      "przyklad": "Masz swój stały porządek dnia i wypadasz lepiej, gdy możesz go utrzymać."
+      "przyklad": "Masz swój stały porządek dnia i wypadasz lepiej, gdy możesz go utrzymać.",
+      "pomocnicze": "Porównaj dzień, który poszedł według planu, z dniem przerywanym co chwilę. O ile mniej zrobiłeś w tym drugim?"
     },
     {
       "id": "t04",
@@ -350,7 +353,8 @@
       "r": false,
       "tekst": "Gdy wchodzę w chaotyczną sytuację, naturalnie zaczynam szukać jak ją ustrukturyzować.",
       "podpowiedz": "Mierzy naturalną tendencję do organizowania i tworzenia porządku gdy sytuacja tego wymaga.",
-      "przyklad": "Wchodząc w nowy projekt tworzysz plan lub listę zadań zanim zaczniesz działać."
+      "przyklad": "Wchodząc w nowy projekt tworzysz plan lub listę zadań zanim zaczniesz działać.",
+      "pomocnicze": "Przypomnij sobie ostatni bałagan w pracy. Zacząłeś od porządkowania, czy po prostu wszedłeś w robotę?"
     },
     {
       "id": "t05",
@@ -358,7 +362,8 @@
       "r": false,
       "tekst": "Działam efektywnie bez regularnego kontaktu z przełożonym — wystarczy mi jasny cel.",
       "podpowiedz": "Mierzy zdolność do efektywnej pracy bez częstych potwierdzeń i nadzoru z zewnątrz.",
-      "przyklad": "Dostajesz cel na tydzień i działasz samodzielnie — bez potrzeby codziennych check-inów."
+      "przyklad": "Dostajesz cel na tydzień i działasz samodzielnie — bez potrzeby codziennych check-inów.",
+      "pomocnicze": "Ile razy w ostatnim tygodniu potrzebowałeś potwierdzenia od przełożonego, żeby ruszyć dalej?"
     },
     {
       "id": "t06",
@@ -366,7 +371,8 @@
       "r": false,
       "tekst": "W napięciu lub konflikcie zachowuję spokój — nie muszę się do tego specjalnie zmuszać.",
       "podpowiedz": "Mierzy naturalną stabilność emocjonalną w trudnych sytuacjach — bez świadomego wysiłku.",
-      "przyklad": "Klient jest agresywny lub szef naciska — Ty nie tracisz spokoju i kontynuujesz rozmowę."
+      "przyklad": "Klient jest agresywny lub szef naciska — Ty nie tracisz spokoju i kontynuujesz rozmowę.",
+      "pomocnicze": "Przypomnij sobie ostatnią ostrą wymianę zdań. Musiałeś się hamować, czy spokój przyszedł sam?"
     },
     {
       "id": "t07",
@@ -374,7 +380,8 @@
       "r": false,
       "tekst": "Angażuję się w pracę dlatego że jest wartościowa — nie dlatego że ktoś obserwuje lub nagradza.",
       "podpowiedz": "Mierzy czy motywacja pochodzi z wewnątrz, niezależnie od zewnętrznych nagród i oceny.",
-      "przyklad": "Robisz coś dobrze nawet gdy nikt nie patrzy i nie ma specjalnej nagrody za wynik."
+      "przyklad": "Robisz coś dobrze nawet gdy nikt nie patrzy i nie ma specjalnej nagrody za wynik.",
+      "pomocnicze": "Czy w ostatnim miesiącu zrobiłeś coś dobrze, choć było pewne, że nikt tego nie zauważy?"
     },
     {
       "id": "t08",
@@ -382,7 +389,8 @@
       "r": false,
       "tekst": "Potrafię zmienić zdanie rozmówcy bez wywierania presji — przez argumenty lub zmianę perspektywy.",
       "podpowiedz": "Mierzy zdolność do przekonywania innych bez użycia autorytetu ani nacisku.",
-      "przyklad": "Przekonujesz kolegę do innego rozwiązania przez argumenty — nie przez pozycję w hierarchii."
+      "przyklad": "Przekonujesz kolegę do innego rozwiązania przez argumenty — nie przez pozycję w hierarchii.",
+      "pomocnicze": "Kiedy ostatnio ktoś zmienił zdanie po rozmowie z Tobą? Co go przekonało — argument czy nacisk?"
     },
     {
       "id": "t09",
@@ -390,7 +398,8 @@
       "r": false,
       "tekst": "Mam własne kryterium \"dobrze\" — i bywa wyższe niż to, czego oczekuje otoczenie.",
       "podpowiedz": "Mierzy czy Twój wewnętrzny standard jakości przewyższa formalne wymagania.",
-      "przyklad": "Zadanie spełnia wymagania, ale wiesz że możesz zrobić to lepiej — i zazwyczaj to robisz."
+      "przyklad": "Zadanie spełnia wymagania, ale wiesz że możesz zrobić to lepiej — i zazwyczaj to robisz.",
+      "pomocnicze": "Czy zdarza Ci się poprawiać coś, co przełożony uznał już za zrobione dobrze?"
     },
     {
       "id": "t10",
@@ -398,7 +407,8 @@
       "r": false,
       "tekst": "Nowi ludzie dość szybko mi ufają — mówię to na podstawie konkretnych obserwacji, nie przypuszczeń.",
       "podpowiedz": "Mierzy naturalną zdolność do budowania zaufania szybciej niż większość osób.",
-      "przyklad": "Nowa osoba w zespole dość szybko zwraca się do Ciebie po pomoc lub radę."
+      "przyklad": "Nowa osoba w zespole dość szybko zwraca się do Ciebie po pomoc lub radę.",
+      "pomocnicze": "Ile osób poznanych w ostatnim półroczu powiedziało Ci coś osobistego już przy drugim, trzecim spotkaniu?"
     },
     {
       "id": "t11",
@@ -406,7 +416,8 @@
       "r": false,
       "tekst": "Gdy coś mnie zaintryguje, zagłębiam się — nawet jeśli nie jest to bezpośrednio potrzebne do zadania.",
       "podpowiedz": "Mierzy skłonność do eksplorowania tematów z własnej ciekawości, poza zakresem zadania.",
-      "przyklad": "Słyszysz o nowej technologii lub metodzie i zaczynasz o tym czytać wieczorem."
+      "przyklad": "Słyszysz o nowej technologii lub metodzie i zaczynasz o tym czytać wieczorem.",
+      "pomocnicze": "Kiedy ostatnio doczytałeś o czymś z pracy po godzinach, choć nikt tego nie wymagał?"
     },
     {
       "id": "t12",
@@ -414,7 +425,8 @@
       "r": false,
       "tekst": "Nieoczekiwane zmiany planu nie wybijają mnie z rytmu na dłużej niż kilka minut.",
       "podpowiedz": "Mierzy szybkość adaptacji po nieoczekiwanych zmianach lub zakłóceniach w planie.",
-      "przyklad": "Zmiana grafiku na ostatnią chwilę — za kilka minut działasz dalej bez problemu."
+      "przyklad": "Zmiana grafiku na ostatnią chwilę — za kilka minut działasz dalej bez problemu.",
+      "pomocnicze": "Przypomnij sobie ostatnią nagłą zmianę planu. Ile czasu zajęło Ci wejście z powrotem w rytm?"
     },
     {
       "id": "t13",
@@ -422,7 +434,8 @@
       "r": false,
       "tekst": "Regularnie zgłaszam pomysły lub ulepszenia — bez proszenia i bez oczekiwania nagrody.",
       "podpowiedz": "Mierzy czy aktywnie działasz poza wyznaczonym zakresem zadań bez zewnętrznej zachęty.",
-      "przyklad": "Widzisz że coś można ulepszyć i zgłaszasz to lub robisz — bez pytania czy masz to zrobić."
+      "przyklad": "Widzisz że coś można ulepszyć i zgłaszasz to lub robisz — bez pytania czy masz to zrobić.",
+      "pomocnicze": "Ile pomysłów zgłosiłeś w ostatnim kwartale? Policz je, zanim odpowiesz."
     },
     {
       "id": "t14",
@@ -430,7 +443,8 @@
       "r": false,
       "tekst": "Po trudnym dniu lub porażce wracam do normalnego funkcjonowania stosunkowo szybko.",
       "podpowiedz": "Mierzy szybkość powrotu do normalnego rytmu po trudnych wydarzeniach lub krytyce.",
-      "przyklad": "Krytyka od szefa lub nieudany projekt — następnego dnia jesteś z powrotem w normalnym rytmie."
+      "przyklad": "Krytyka od szefa lub nieudany projekt — następnego dnia jesteś z powrotem w normalnym rytmie.",
+      "pomocnicze": "Po ostatnim naprawdę złym dniu — wróciłeś do siebie tego samego wieczoru, nazajutrz, czy dopiero po kilku dniach?"
     },
     {
       "id": "t15",
@@ -438,7 +452,8 @@
       "r": false,
       "tekst": "Zanim zacznę coś robić, chcę rozumieć dlaczego to jest ważne — samo polecenie mi nie wystarczy.",
       "podpowiedz": "Mierzy czy rozumienie sensu i celu działania jest dla Ciebie warunkiem zaangażowania.",
-      "przyklad": "Dostajesz nowe zadanie i pytasz \"po co to robimy?\" — nie żeby się wymówić, ale żeby wiedzieć."
+      "przyklad": "Dostajesz nowe zadanie i pytasz \"po co to robimy?\" — nie żeby się wymówić, ale żeby wiedzieć.",
+      "pomocnicze": "Kiedy ostatnio zapytałeś „po co to robimy?”, zanim zabrałeś się do roboty?"
     },
     {
       "id": "t16",
@@ -446,7 +461,8 @@
       "r": false,
       "tekst": "Potrafię wyjaśnić skomplikowaną rzecz prosto — tak żeby osoba bez wiedzy w temacie zrozumiała.",
       "podpowiedz": "Mierzy zdolność do upraszczania i tłumaczenia złożonych treści przystępnym językiem.",
-      "przyklad": "Tłumaczysz nową procedurę nowemu pracownikowi — rozumie za pierwszym razem."
+      "przyklad": "Tłumaczysz nową procedurę nowemu pracownikowi — rozumie za pierwszym razem.",
+      "pomocnicze": "Czy ktoś spoza branży zrozumiał ostatnio, co robisz, po jednym Twoim wyjaśnieniu?"
     },
     {
       "id": "t17",
@@ -454,7 +470,8 @@
       "r": true,
       "tekst": "Zdarza mi się oddać pracę bez szczegółowego sprawdzenia — jeśli ogólnie wygląda dobrze, wystarczy.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy akceptujesz wyniki bez pełnej weryfikacji szczegółów.",
-      "przyklad": "Wysyłasz raport po pobieżnym sprawdzeniu — wyglądał OK, więc wystarczyło."
+      "przyklad": "Wysyłasz raport po pobieżnym sprawdzeniu — wyglądał OK, więc wystarczyło.",
+      "pomocnicze": "Przypomnij sobie ostatnią rzecz oddaną bez sprawdzenia. Był to wyjątek pod presją czasu, czy zwykły tryb?"
     },
     {
       "id": "t18",
@@ -462,7 +479,8 @@
       "r": true,
       "tekst": "Mam trudność z oceną jak ktoś się czuje, jeśli wprost mi tego nie powie lub wyraźnie nie pokaże.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy odczytujesz emocje głównie przez bezpośrednie, werbalne sygnały.",
-      "przyklad": "Kolega jest smutny, ale dowiadujesz się dopiero gdy sam Ci o tym powie."
+      "przyklad": "Kolega jest smutny, ale dowiadujesz się dopiero gdy sam Ci o tym powie.",
+      "pomocnicze": "Ile razy w ostatnim miesiącu zaskoczyło Cię, że ktoś był na coś zły albo czymś zmartwiony?"
     },
     {
       "id": "t19",
@@ -470,7 +488,8 @@
       "r": true,
       "tekst": "Nie potrzebuję ustalonego rytmu — spontaniczność i zmienność w pracy mi odpowiadają.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy zmienność i brak rutyny są dla Ciebie naturalne i komfortowe.",
-      "przyklad": "Każdy dzień wygląda inaczej — i to Ci odpowiada, nie przeszkadza."
+      "przyklad": "Każdy dzień wygląda inaczej — i to Ci odpowiada, nie przeszkadza.",
+      "pomocnicze": "Czy dzień bez ustalonego planu bardziej Cię cieszy, czy męczy?"
     },
     {
       "id": "t20",
@@ -478,7 +497,8 @@
       "r": true,
       "tekst": "W nieuporządkowanych sytuacjach dobrze mi się pracuje — nie odczuwam potrzeby wprowadzania porządku.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy brak struktury nie powoduje u Ciebie napięcia ani potrzeby działania.",
-      "przyklad": "Wchodzisz w chaotyczny projekt i nie czujesz potrzeby tworzenia planu czy listy zadań."
+      "przyklad": "Wchodzisz w chaotyczny projekt i nie czujesz potrzeby tworzenia planu czy listy zadań.",
+      "pomocnicze": "W bałaganie na stanowisku pracujesz dalej, czy najpierw musisz go uprzątnąć?"
     },
     {
       "id": "t21",
@@ -486,7 +506,8 @@
       "r": true,
       "tekst": "Wolę regularny kontakt z przełożonym — potwierdza że idę w dobrym kierunku.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy częste potwierdzenia od przełożonego są dla Ciebie ważne i uspokajające.",
-      "przyklad": "Wolisz wiedzieć co kilka dni czy idziesz w dobrym kierunku — to Cię uspokaja i motywuje."
+      "przyklad": "Wolisz wiedzieć co kilka dni czy idziesz w dobrym kierunku — to Cię uspokaja i motywuje.",
+      "pomocnicze": "Gdyby przełożony zniknął na tydzień, wiedziałbyś dokładnie, co robić przez cały ten czas?"
     },
     {
       "id": "t22",
@@ -494,7 +515,8 @@
       "r": true,
       "tekst": "Trudno mi zachować spokój gdy rozmówca jest bardzo emocjonalny lub agresywny.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy zachowanie spokoju w trudnych sytuacjach wymaga od Ciebie wyraźnego wysiłku.",
-      "przyklad": "Gdy ktoś na Ciebie krzyczy lub jest bardzo napięty — trudno jest Ci nie reagować emocjonalnie."
+      "przyklad": "Gdy ktoś na Ciebie krzyczy lub jest bardzo napięty — trudno jest Ci nie reagować emocjonalnie.",
+      "pomocnicze": "Przypomnij sobie ostatniego rozmówcę, który podniósł głos. Co się z Tobą wtedy działo?"
     },
     {
       "id": "t23",
@@ -502,7 +524,8 @@
       "r": true,
       "tekst": "Moje zaangażowanie rośnie wyraźnie gdy wiem że praca będzie oceniana lub doceniana przez innych.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy zewnętrzne uznanie lub ocena wyraźnie podnoszą Twoje zaangażowanie.",
-      "przyklad": "Projekt bez feedbacku i uznania jest dla Ciebie mniej motywujący niż ten gdzie wiesz że ktoś to doceni."
+      "przyklad": "Projekt bez feedbacku i uznania jest dla Ciebie mniej motywujący niż ten gdzie wiesz że ktoś to doceni.",
+      "pomocnicze": "Czy pracujesz inaczej, gdy wiesz, że wynik będzie oglądany, niż gdy wiesz, że nie będzie?"
     },
     {
       "id": "t24",
@@ -510,7 +533,8 @@
       "r": true,
       "tekst": "Przekonywanie innych do swojego zdania jest dla mnie trudne — wolę dojść do kompromisu.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy zmiana zdania innych jest dla Ciebie kosztowna lub niekomfortowa.",
-      "przyklad": "Wolisz dojść do kompromisu lub wycofać się niż przekonywać kogoś do swojego pomysłu."
+      "przyklad": "Wolisz dojść do kompromisu lub wycofać się niż przekonywać kogoś do swojego pomysłu.",
+      "pomocnicze": "Kiedy ostatnio w sporze obstawałeś przy swoim do końca — i czym się to skończyło?"
     },
     {
       "id": "t25",
@@ -518,7 +542,8 @@
       "r": true,
       "tekst": "Wynik który spełnia formalne wymagania mi wystarczy — nie drążę dalej bez wyraźnego powodu.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy formalne wymagania są dla Ciebie wystarczającym kryterium zamknięcia zadania.",
-      "przyklad": "Projekt spełnia wszystkie wymagania — zamykasz go bez dalszego udoskonalania."
+      "przyklad": "Projekt spełnia wszystkie wymagania — zamykasz go bez dalszego udoskonalania.",
+      "pomocnicze": "Czy w ostatnim miesiącu zrobiłeś coś ponad wymagania, choć nikt o to nie prosił?"
     },
     {
       "id": "t26",
@@ -526,7 +551,8 @@
       "r": true,
       "tekst": "Budowanie bliższych relacji w pracy zajmuje mi więcej czasu niż większości osób w moim otoczeniu.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy budowanie zaufania i bliskich relacji jest dla Ciebie procesem powolnym.",
-      "przyklad": "Dopiero po kilku tygodniach współpracy czujesz się swobodnie z nowym kolegą."
+      "przyklad": "Dopiero po kilku tygodniach współpracy czujesz się swobodnie z nowym kolegą.",
+      "pomocnicze": "Ile miesięcy zajęło Ci poczucie się swobodnie w ostatnim nowym zespole?"
     },
     {
       "id": "t27",
@@ -534,7 +560,8 @@
       "r": true,
       "tekst": "Nowe tematy interesują mnie głównie gdy są potrzebne do zadania — nie eksploruję dla samej ciekawości.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy Twoja ciekawość jest reaktywna — uruchamiana przez potrzebę zadania.",
-      "przyklad": "Uczysz się nowej rzeczy gdy jest wymagana do pracy — nie z własnej inicjatywy wieczorami."
+      "przyklad": "Uczysz się nowej rzeczy gdy jest wymagana do pracy — nie z własnej inicjatywy wieczorami.",
+      "pomocnicze": "Czy w ostatnim półroczu nauczyłeś się czegoś, co nie było potrzebne do żadnego bieżącego zadania?"
     },
     {
       "id": "t28",
@@ -542,7 +569,8 @@
       "r": true,
       "tekst": "Wolę przewidywalne środowisko — duże nieoczekiwane zmiany mnie energetycznie kosztują.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy nieoczekiwane zmiany są dla Ciebie kosztowne i wybijają z rytmu na dłużej.",
-      "przyklad": "Nagła zmiana planu na ostatnią chwilę wybija Cię z rytmu i potrzebujesz czasu żeby się przestawić."
+      "przyklad": "Nagła zmiana planu na ostatnią chwilę wybija Cię z rytmu i potrzebujesz czasu żeby się przestawić.",
+      "pomocnicze": "Po dniu pełnym niespodzianek jesteś bardziej zmęczony niż po dniu równie ciężkim, ale przewidywalnym?"
     },
     {
       "id": "t29",
@@ -550,7 +578,8 @@
       "r": true,
       "tekst": "Wolę działać w wyznaczonym zakresie i nie wychodzić przed szereg bez wyraźnego zaproszenia.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy preferujesz trzymanie się zakresu zadań bez nieproszonych inicjatyw.",
-      "przyklad": "Dostajesz zadanie i robisz dokładnie to co powiedziano — bez dodawania czy sugerowania zmian."
+      "przyklad": "Dostajesz zadanie i robisz dokładnie to co powiedziano — bez dodawania czy sugerowania zmian.",
+      "pomocnicze": "Kiedy ostatnio zrobiłeś coś spoza swojego zakresu, bez pytania nikogo o zgodę?"
     },
     {
       "id": "t30",
@@ -558,7 +587,8 @@
       "r": true,
       "tekst": "Negatywna informacja zwrotna lub krytyka zostaje ze mną przez dłuższy czas.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy trudne informacje lub niepowodzenia wpływają na Ciebie długofalowo.",
-      "przyklad": "Po krytyce od szefa jesteś mniej produktywny/a przez jeden-dwa dni lub dłużej."
+      "przyklad": "Po krytyce od szefa jesteś mniej produktywny/a przez jeden-dwa dni lub dłużej.",
+      "pomocnicze": "Ile dni po ostatniej krytyce wracałeś do niej myślami?"
     },
     {
       "id": "t31",
@@ -566,7 +596,8 @@
       "r": true,
       "tekst": "Dostaję zadanie i działam — rzadko pytam o szerszy kontekst jeśli zakres jest jasny.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy możesz efektywnie działać bez rozumienia szerszego celu.",
-      "przyklad": "Dostajesz nowe zadanie z instrukcją — zaczynasz działać bez pytania o cel ani kontekst."
+      "przyklad": "Dostajesz nowe zadanie z instrukcją — zaczynasz działać bez pytania o cel ani kontekst.",
+      "pomocnicze": "Czy zdarzyło Ci się w ostatnim miesiącu wykonać zadanie bez pytania, po co jest?"
     },
     {
       "id": "t32",
@@ -574,7 +605,8 @@
       "r": true,
       "tekst": "Zdarza mi się że muszę tłumaczyć co miałem/am na myśli — mój przekaz bywa niejasny dla innych.",
       "podpowiedz": "Odwrócone ujęcie: sprawdza czy Twój sposób komunikacji bywa niezrozumiały lub wymaga dodatkowych wyjaśnień.",
-      "przyklad": "Po wyjaśnieniu czegoś okazuje się że rozmówca rozumiał coś innego niż zamierzałeś/aś."
+      "przyklad": "Po wyjaśnieniu czegoś okazuje się że rozmówca rozumiał coś innego niż zamierzałeś/aś.",
+      "pomocnicze": "Ile razy w ostatnim tygodniu musiałeś powtórzyć albo doprecyzować to, co już powiedziałeś?"
     },
     {
       "id": "t49",
@@ -582,7 +614,8 @@
       "r": false,
       "tekst": "Gdy popełnię błąd, mówię o nim od razu — także wtedy, gdy nikt by się nie zorientował.",
       "podpowiedz": "Mierzy poczucie własności za skutki pracy, a nie tylko za jej wykonanie.",
-      "przyklad": "Źle zważona partia: mówisz od razu, zanim pójdzie do pieca — choć nikt nie widział."
+      "przyklad": "Źle zważona partia: mówisz od razu, zanim pójdzie do pieca — choć nikt nie widział.",
+      "pomocnicze": "Przypomnij sobie ostatni własny błąd, o którym nikt nie wiedział. Co z nim zrobiłeś?"
     },
     {
       "id": "t50",
@@ -590,7 +623,8 @@
       "r": true,
       "tekst": "Zdarza mi się obiecać coś na wyrost — a potem po cichu liczyć, że sprawa sama przyschnie.",
       "podpowiedz": "Pozycja odwrócona: sprawdza wagę danej obietnicy.",
-      "przyklad": "„Zrobię to na jutro\" powiedziane, żeby zakończyć rozmowę — bez planu, jak dotrzymać."
+      "przyklad": "„Zrobię to na jutro\" powiedziane, żeby zakończyć rozmowę — bez planu, jak dotrzymać.",
+      "pomocnicze": "Czy w ostatnim kwartale obiecałeś coś, czego potem nie dowiozłeś — i czy sam o tym wróciłeś?"
     },
     {
       "id": "t51",
@@ -598,7 +632,8 @@
       "r": false,
       "tekst": "Zanim zrobię coś, czego nie da się cofnąć, zatrzymuję się i sprawdzam jeszcze raz — nawet w pośpiechu.",
       "podpowiedz": "Mierzy hamulec bezpieczeństwa przed decyzjami nieodwracalnymi.",
-      "przyklad": "Przed wyrzuceniem partii sprawdzasz drugi raz termin i etykietę — dopiero potem decyzja."
+      "przyklad": "Przed wyrzuceniem partii sprawdzasz drugi raz termin i etykietę — dopiero potem decyzja.",
+      "pomocnicze": "Kiedy ostatnio zatrzymałeś się przed czynnością nieodwracalną, żeby sprawdzić drugi raz?"
     },
     {
       "id": "t52",
@@ -606,7 +641,8 @@
       "r": true,
       "tekst": "W pracy działam z marszu — najpierw robię, potem myślę, co z tego wyniknie.",
       "podpowiedz": "Pozycja odwrócona: sprawdza impulsywność działania.",
-      "przyklad": "Zmieniasz ustawienia pieca „na czuja\" w trakcie wypieku, bez sprawdzenia receptury."
+      "przyklad": "Zmieniasz ustawienia pieca „na czuja\" w trakcie wypieku, bez sprawdzenia receptury.",
+      "pomocnicze": "Na dziesięć decyzji w pracy — ile podejmujesz od razu, bez zatrzymania się choć na chwilę?"
     },
     {
       "id": "t53",
@@ -614,7 +650,8 @@
       "r": false,
       "tekst": "Gdy coś nie wychodzi, nie spocznę, dopóki nie zrozumiem przyczyny — samo „spróbuj jeszcze raz\" mi nie wystarcza.",
       "podpowiedz": "Mierzy potrzebę docierania do przyczyn zamiast leczenia objawów.",
-      "przyklad": "Zakalec drugi raz w tygodniu: sprawdzasz temperatury i wagę, zamiast po prostu piec kolejną partię."
+      "przyklad": "Zakalec drugi raz w tygodniu: sprawdzasz temperatury i wagę, zamiast po prostu piec kolejną partię.",
+      "pomocnicze": "Przy ostatniej usterce, która sama zniknęła — szukałeś przyczyny, czy odpuściłeś?"
     },
     {
       "id": "t54",
@@ -622,7 +659,8 @@
       "r": true,
       "tekst": "Gdy problem znika po prostym obejściu, nie drążę, skąd się wziął.",
       "podpowiedz": "Pozycja odwrócona: sprawdza skłonność do zostawiania przyczyn nieznanymi.",
-      "przyklad": "Miesiarka „naprawiona\" kopnięciem — działa, więc temat zamknięty."
+      "przyklad": "Miesiarka „naprawiona\" kopnięciem — działa, więc temat zamknięty.",
+      "pomocnicze": "Czy w ostatnim miesiącu obszedłeś jakiś problem, nie ustalając, skąd się wziął?"
     },
     {
       "id": "t55",
@@ -630,7 +668,8 @@
       "r": false,
       "tekst": "Kończąc pracę, myślę już o tym, co będzie potrzebne następnym razem — i zostawiam to przygotowane.",
       "podpowiedz": "Mierzy myślenie o krok do przodu i przygotowywanie gruntu.",
-      "przyklad": "Widzisz, że mąki zostało na dwa dni — dopisujesz do zamówienia dziś, nie gdy zabraknie."
+      "przyklad": "Widzisz, że mąki zostało na dwa dni — dopisujesz do zamówienia dziś, nie gdy zabraknie.",
+      "pomocnicze": "Co zostawiłeś przygotowane dla siebie albo dla zmiany po sobie w ostatnim tygodniu?"
     },
     {
       "id": "t56",
@@ -638,7 +677,8 @@
       "r": true,
       "tekst": "Rzadko wybiegam myślą poza bieżące zadanie — jutrzejsze problemy rozwiązuję jutro.",
       "podpowiedz": "Pozycja odwrócona: sprawdza horyzont myślenia.",
-      "przyklad": "Święta za tydzień, a plan produkcji powstaje w dniu wypieku."
+      "przyklad": "Święta za tydzień, a plan produkcji powstaje w dniu wypieku.",
+      "pomocnicze": "Kiedy ostatnio pomyślałeś o jutrzejszej pracy, jeszcze kończąc dzisiejszą?"
     },
     {
       "id": "t57",
@@ -646,7 +686,8 @@
       "r": false,
       "tekst": "Gdy się z czymś nie zgadzam, mówię to wprost osobie, której to dotyczy — nie obgaduję i nie milczę.",
       "podpowiedz": "Mierzy zdolność do jawnej niezgody bez agresji i bez wycofania.",
-      "przyklad": "Nowa procedura wydaje Ci się błędna — mówisz to na odprawie, nie w szatni."
+      "przyklad": "Nowa procedura wydaje Ci się błędna — mówisz to na odprawie, nie w szatni.",
+      "pomocnicze": "Kiedy ostatnio powiedziałeś komuś wprost, że się z nim nie zgadzasz — tej osobie, nie o niej?"
     },
     {
       "id": "t58",
@@ -654,7 +695,8 @@
       "r": true,
       "tekst": "Wolę przemilczeć niezgodę, niż ryzykować nieprzyjemną rozmowę.",
       "podpowiedz": "Pozycja odwrócona: sprawdza unikanie konfrontacji.",
-      "przyklad": "Kolega notorycznie zostawia bałagan — sprzątasz po nim w milczeniu."
+      "przyklad": "Kolega notorycznie zostawia bałagan — sprzątasz po nim w milczeniu.",
+      "pomocnicze": "Ile razy w ostatnim miesiącu przemilczałeś niezgodę, żeby uniknąć nieprzyjemnej rozmowy?"
     },
     {
       "id": "t59",
@@ -662,7 +704,8 @@
       "r": false,
       "tekst": "W trudnej sytuacji szybciej widzę możliwe ruchy niż powody, dla których się nie uda.",
       "podpowiedz": "Mierzy nastawienie sprawcze: szukanie ruchu, który jest w naszych rękach.",
-      "przyklad": "Piec pada w środku wypieku: zanim przyjdzie serwis, już przestawiasz produkcję na drugi."
+      "przyklad": "Piec pada w środku wypieku: zanim przyjdzie serwis, już przestawiasz produkcję na drugi.",
+      "pomocnicze": "Przy ostatniej wpadce — co przyszło Ci do głowy najpierw: co zrobić, czy co jeszcze się posypie?"
     },
     {
       "id": "t60",
@@ -670,7 +713,8 @@
       "r": true,
       "tekst": "Gdy coś się sypie, najpierw widzę wszystko, co jeszcze może pójść źle.",
       "podpowiedz": "Pozycja odwrócona: sprawdza skłonność do czarnowidztwa paraliżującego działanie.",
-      "przyklad": "Jedna awaria i w głowie od razu scenariusz, że cały dzień jest stracony."
+      "przyklad": "Jedna awaria i w głowie od razu scenariusz, że cały dzień jest stracony.",
+      "pomocnicze": "Gdy coś idzie źle, ile czasu mija, zanim od wyliczania zagrożeń przejdziesz do szukania wyjścia?"
     },
     {
       "id": "t61",
@@ -678,7 +722,8 @@
       "r": false,
       "tekst": "Sprawia mi frajdę, gdy ktoś, komu coś pokazałem/am, zaczyna radzić sobie sam.",
       "podpowiedz": "Mierzy naturalną satysfakcję z cudzego postępu.",
-      "przyklad": "Nowa osoba pierwszy raz sama zamyka zmianę — i to Ty ją do tego przygotowałeś/aś."
+      "przyklad": "Nowa osoba pierwszy raz sama zamyka zmianę — i to Ty ją do tego przygotowałeś/aś.",
+      "pomocnicze": "Kogo w ostatnim półroczu czegoś nauczyłeś — i czy ta osoba robi to dziś sama?"
     },
     {
       "id": "t62",
@@ -686,7 +731,8 @@
       "r": true,
       "tekst": "Wolę zrobić coś samodzielnie, niż tracić czas na tłumaczenie komuś, jak to zrobić.",
       "podpowiedz": "Pozycja odwrócona: sprawdza skłonność do wyręczania zamiast uczenia.",
-      "przyklad": "Szybciej samemu wyłożyć witrynę, niż pokazać nowemu, jak się to robi — więc robisz sam(a)."
+      "przyklad": "Szybciej samemu wyłożyć witrynę, niż pokazać nowemu, jak się to robi — więc robisz sam(a).",
+      "pomocnicze": "Gdy ktoś nowy pyta, jak coś zrobić — tłumaczysz, czy szybciej robisz to za niego?"
     },
     {
       "id": "t63",
@@ -694,7 +740,8 @@
       "r": false,
       "tekst": "Po wyjściu klienta wracam myślą do tego, czy wyszedł zadowolony — i co mogłem/am zrobić lepiej.",
       "podpowiedz": "Mierzy uważność na doświadczenie klienta, nie tylko na transakcję.",
-      "przyklad": "Pamiętasz, że pani od chleba na zakwasie prosiła w zeszłym tygodniu o krojenie."
+      "przyklad": "Pamiętasz, że pani od chleba na zakwasie prosiła w zeszłym tygodniu o krojenie.",
+      "pomocnicze": "Ile razy w ostatnim tygodniu pomyślałeś po wyjściu klienta, że dało się to zrobić lepiej?"
     },
     {
       "id": "t64",
@@ -702,7 +749,8 @@
       "r": true,
       "tekst": "Obsługa klienta to dla mnie transakcja: wydać, policzyć, następny.",
       "podpowiedz": "Pozycja odwrócona: sprawdza czysto transakcyjne podejście do obsługi.",
-      "przyklad": "Kolejka to lista do przerobienia — twarzy z niej nie zapamiętujesz."
+      "przyklad": "Kolejka to lista do przerobienia — twarzy z niej nie zapamiętujesz.",
+      "pomocnicze": "Czy pamiętasz z ostatniej zmiany kogoś konkretnego — nie zamówienie, tylko osobę?"
     }
   ],
   TIEBREAKERY: [
@@ -949,97 +997,145 @@
       "id": "c01",
       "wymiar": "energia",
       "pol": 1,
-      "tekst": "Po intensywnym dniu pracy z wieloma ludźmi mam więcej energii niż na początku — kontakt z innymi mnie nakręca."
+      "tekst": "Po intensywnym dniu pracy z wieloma ludźmi mam więcej energii niż na początku — kontakt z innymi mnie nakręca.",
+      "podpowiedz": "Mierzy, czy kontakt z ludźmi ładuje Cię energią, czy ją zużywa. Obie odpowiedzi są w porządku — to nie jest pytanie o towarzyskość ani o sympatię do ludzi.",
+      "przyklad": "Po sobocie na ladzie, z kolejką od rana, wychodzisz nakręcony i masz ochotę jeszcze coś zrobić.",
+      "pomocnicze": "Po dniu pełnym rozmów i ludzi wracasz nakręcony czy wyczerpany? Przypomnij sobie ostatni taki dzień."
     },
     {
       "id": "c02",
       "wymiar": "energia",
       "pol": -1,
-      "tekst": "Kilka godzin skupionej pracy w ciszy, bez rozmów i przerw, to dla mnie naturalny i komfortowy tryb."
+      "tekst": "Kilka godzin skupionej pracy w ciszy, bez rozmów i przerw, to dla mnie naturalny i komfortowy tryb.",
+      "podpowiedz": "Ta sama oś od drugiej strony: czy długa, cicha praca w skupieniu jest dla Ciebie naturalnym trybem, czy wysiłkiem.",
+      "przyklad": "Poranek sam przy zarobach, bez rozmów i bez przerw, mija Ci szybko i kończysz go wypoczęty.",
+      "pomocnicze": "Kiedy ostatnio pracowałeś kilka godzin w ciszy, bez przerwy? Był to komfort czy udręka?"
     },
     {
       "id": "c03",
       "wymiar": "konflikt",
       "pol": 1,
-      "tekst": "Gdy mam inne zdanie niż rozmówca, mówię to wprost — nawet jeśli może to być dla kogoś niewygodne."
+      "tekst": "Gdy mam inne zdanie niż rozmówca, mówię to wprost — nawet jeśli może to być dla kogoś niewygodne.",
+      "podpowiedz": "Mierzy styl radzenia sobie z niezgodą: mówienie wprost kontra szukanie łagodniejszej drogi. Nie mierzy tego, czy masz rację.",
+      "przyklad": "Widzisz, że kolega prowadzi ciasto inaczej, niż ustaliliście — mówisz mu to od razu, przy dzieży.",
+      "pomocnicze": "Ile razy w ostatnim miesiącu powiedziałeś wprost „nie zgadzam się” — na głos, przy tej osobie?"
     },
     {
       "id": "c04",
       "wymiar": "konflikt",
       "pol": -1,
-      "tekst": "W sytuacjach spornych wolę szukać kompromisu lub nie drążyć tematu, niż ryzykować napięcie w relacji."
+      "tekst": "W sytuacjach spornych wolę szukać kompromisu lub nie drążyć tematu, niż ryzykować napięcie w relacji.",
+      "podpowiedz": "Ta sama oś od strony dyplomatycznej: czy wolisz odpuścić temat, niż wprowadzić napięcie w relację.",
+      "przyklad": "Zamiast wracać do spornej sprawy, proponujesz rozwiązanie pośrednie i zamykasz temat.",
+      "pomocnicze": "Przy ostatnim sporze — poszedłeś w kompromis, czy postawiłeś na swoim?"
     },
     {
       "id": "c05",
       "wymiar": "ekspresja",
       "pol": 1,
-      "tekst": "Moje emocje są dla innych czytelne — widać na mnie gdy coś mnie irytuje, cieszy lub nudzi."
+      "tekst": "Moje emocje są dla innych czytelne — widać na mnie gdy coś mnie irytuje, cieszy lub nudzi.",
+      "podpowiedz": "Mierzy, na ile Twoje emocje są widoczne z zewnątrz. Nie mierzy ich siły — tylko to, ile z nich dociera do otoczenia.",
+      "przyklad": "Zespół orientuje się, że masz zły dzień, zanim cokolwiek powiesz.",
+      "pomocnicze": "Czy ktoś w ostatnim tygodniu zapytał Cię, co się dzieje, zanim cokolwiek powiedziałeś?"
     },
     {
       "id": "c06",
       "wymiar": "ekspresja",
       "pol": -1,
-      "tekst": "W trudnych sytuacjach zachowuję spokój na zewnątrz — otoczenie rzadko wie co naprawdę czuję."
+      "tekst": "W trudnych sytuacjach zachowuję spokój na zewnątrz — otoczenie rzadko wie co naprawdę czuję.",
+      "podpowiedz": "Ta sama oś od strony powściągliwej: czy w trudnej chwili otoczenie widzi po Tobie, co się dzieje.",
+      "przyklad": "Reklamacja przy ladzie idzie ostro, a klient i tak odchodzi z wrażeniem, że nic Cię nie ruszyło.",
+      "pomocnicze": "Czy ludzie wokół zwykle wiedzą, że jesteś zdenerwowany, czy dowiadują się dopiero, gdy sam powiesz?"
     },
     {
       "id": "c07",
       "wymiar": "tempo",
       "pol": 1,
-      "tekst": "Wolę działać szybko i korygować w ruchu niż długo analizować zanim zacznę."
+      "tekst": "Wolę działać szybko i korygować w ruchu niż długo analizować zanim zacznę.",
+      "podpowiedz": "Mierzy tempo podejmowania decyzji: ruszać i korygować w biegu kontra rozumieć przed startem. Obie strategie mają swoją cenę.",
+      "przyklad": "Widzisz, że ciasto idzie za szybko, i zmieniasz plan na miejscu, bez konsultacji i bez liczenia.",
+      "pomocnicze": "Na dziesięć decyzji w pracy — w ilu ruszasz od razu i korygujesz po drodze?"
     },
     {
       "id": "c08",
       "wymiar": "tempo",
       "pol": -1,
-      "tekst": "Zanim zacznę działać, chcę dobrze zrozumieć sytuację — szybkie decyzje bez analizy mnie kosztują."
+      "tekst": "Zanim zacznę działać, chcę dobrze zrozumieć sytuację — szybkie decyzje bez analizy mnie kosztują.",
+      "podpowiedz": "Ta sama oś od strony analitycznej: czy potrzebujesz zrozumieć sytuację, zanim zaczniesz działać.",
+      "przyklad": "Przed zmianą nastawy pieca sprawdzasz kartę i wczorajsze zapisy, zamiast przekręcić pokrętło od razu.",
+      "pomocnicze": "Kiedy ostatnio szybka decyzja bez analizy kosztowała Cię nerwy albo poprawki?"
     },
     {
       "id": "c09",
       "wymiar": "orientacja",
       "pol": 1,
-      "tekst": "Gdy projekt się opóźnia lub jakość spada, priorytetem jest dla mnie wynik — napięcia relacyjne można rozwiązać potem."
+      "tekst": "Gdy projekt się opóźnia lub jakość spada, priorytetem jest dla mnie wynik — napięcia relacyjne można rozwiązać potem.",
+      "podpowiedz": "Mierzy, co bierze pierwszeństwo pod presją: dowieziony wynik czy relacje w zespole. To nie jest pytanie o to, czy jesteś miły.",
+      "przyklad": "Zostały dwie godziny do otwarcia, brakuje dwóch pozycji — rozdzielasz zadania krótko i wracasz do rozmów po wszystkim.",
+      "pomocnicze": "Przy ostatnim napięciu w zespole — dowiozłeś wynik i wróciłeś do relacji potem, czy najpierw ugasiłeś nastroje?"
     },
     {
       "id": "c10",
       "wymiar": "orientacja",
       "pol": -1,
-      "tekst": "Dobra atmosfera i zaufanie w zespole są dla mnie fundamentem — bez tego efektywność i tak spada długofalowo."
+      "tekst": "Dobra atmosfera i zaufanie w zespole są dla mnie fundamentem — bez tego efektywność i tak spada długofalowo.",
+      "podpowiedz": "Ta sama oś od strony relacyjnej: czy zaufanie w zespole traktujesz jako warunek wyniku, a nie jego miły dodatek.",
+      "przyklad": "Widzisz narastające napięcie między dwiema osobami i zajmujesz się tym, zanim odbije się na pracy.",
+      "pomocnicze": "Czy pamiętasz zespół, w którym atmosfera była zła i wynik mimo to się utrzymał? Jak długo?"
     },
     {
       "id": "c11",
       "wymiar": "ryzyko",
       "pol": 1,
-      "tekst": "Nowe, niesprawdzone rozwiązania bardziej mnie ekscytują niż sprawdzone metody — eksperyment to część pracy."
+      "tekst": "Nowe, niesprawdzone rozwiązania bardziej mnie ekscytują niż sprawdzone metody — eksperyment to część pracy.",
+      "podpowiedz": "Mierzy stosunek do niepewności: czy nowe i niesprawdzone Cię ciągnie, czy raczej niepokoi. Nie mierzy brawury.",
+      "przyklad": "Proponujesz przetestowanie innego prowadzenia ciasta na jednej partii, żeby zobaczyć, co z tego wyjdzie.",
+      "pomocnicze": "Ile nowych, niesprawdzonych rozwiązań spróbowałeś w ostatnim półroczu?"
     },
     {
       "id": "c12",
       "wymiar": "ryzyko",
       "pol": -1,
-      "tekst": "Wolę sprawdzone metody od eksperymentów — ryzyko błędu kosztuje mnie więcej niż potencjalny zysk z nowości."
+      "tekst": "Wolę sprawdzone metody od eksperymentów — ryzyko błędu kosztuje mnie więcej niż potencjalny zysk z nowości.",
+      "podpowiedz": "Ta sama oś od strony ostrożnej: czy koszt ewentualnego błędu waży u Ciebie więcej niż możliwy zysk z nowości.",
+      "przyklad": "Przy dużym zamówieniu sięgasz po recepturę, którą robiłeś już sto razy, a eksperymenty zostawiasz na spokojniejszy dzień.",
+      "pomocnicze": "Gdy masz metodę, która działa, i propozycję nowej — po którą sięgasz w normalnym tygodniu?"
     },
     {
       "id": "c13",
       "wymiar": "uczenie",
       "pol": 1,
-      "tekst": "Najszybciej uczę się przez robienie i eksperymentowanie — teoria bez szybkiej praktyki mnie frustruje."
+      "tekst": "Najszybciej uczę się przez robienie i eksperymentowanie — teoria bez szybkiej praktyki mnie frustruje.",
+      "podpowiedz": "Mierzy, którą drogą wchodzi Ci wiedza: przez ręce czy przez zrozumienie. Obie prowadzą do celu, ale inaczej się je wspiera.",
+      "przyklad": "Nowy sprzęt poznajesz, klikając i próbując, a do instrukcji sięgasz dopiero, gdy coś nie działa.",
+      "pomocnicze": "Ucząc się ostatnio czegoś nowego — zacząłeś od czytania czy od próbowania?"
     },
     {
       "id": "c14",
       "wymiar": "uczenie",
       "pol": -1,
-      "tekst": "Zanim zacznę coś nowego, chcę to dobrze zrozumieć — działanie bez odpowiedniej wiedzy podstawowej mnie kosztuje."
+      "tekst": "Zanim zacznę coś nowego, chcę to dobrze zrozumieć — działanie bez odpowiedniej wiedzy podstawowej mnie kosztuje.",
+      "podpowiedz": "Ta sama oś od strony teoretycznej: czy działanie bez zrozumienia podstaw kosztuje Cię więcej, niż daje.",
+      "przyklad": "Zanim pierwszy raz prowadzisz nowe ciasto, chcesz wiedzieć, dlaczego ma tak wyglądać na każdym etapie.",
+      "pomocnicze": "Czy zdarzyło Ci się zacząć bez przygotowania i tego pożałować? Jak często?"
     },
     {
       "id": "c15",
       "wymiar": "kontekst",
       "pol": 1,
-      "tekst": "Mój sposób bycia wyraźnie zmienia się zależnie od tego z kim mam do czynienia — inaczej wobec przełożonego, inaczej wobec kolegi, klienta czy kogoś bliskiego."
+      "tekst": "Mój sposób bycia wyraźnie zmienia się zależnie od tego z kim mam do czynienia — inaczej wobec przełożonego, inaczej wobec kolegi, klienta czy kogoś bliskiego.",
+      "podpowiedz": "Mierzy wrażliwość na kontekst — nie szczerość. Dopasowanie sposobu bycia do rozmówcy jest umiejętnością, nie wadą.",
+      "przyklad": "Z klientem mówisz inaczej niż z kolegą przy piecu, i robisz to bez zastanowienia.",
+      "pomocnicze": "Czy kolega i przełożony opisaliby Cię tak samo, gdyby ich zapytać osobno?"
     },
     {
       "id": "c16",
       "wymiar": "kontekst",
       "pol": -1,
-      "tekst": "Zachowuję się w zasadzie tak samo niezależnie od tego z kim rozmawiam — przełożony, kolega czy klient dostają tę samą wersję mnie."
+      "tekst": "Zachowuję się w zasadzie tak samo niezależnie od tego z kim rozmawiam — przełożony, kolega czy klient dostają tę samą wersję mnie.",
+      "podpowiedz": "Ta sama oś od strony spójności: czy każdy dostaje tę samą wersję Ciebie, niezależnie od roli i sytuacji.",
+      "przyklad": "Przełożony, kolega i klient słyszą od Ciebie ten sam ton i te same słowa.",
+      "pomocnicze": "Wyobraź sobie, że nagle rozmawiasz z klientem zamiast z kolegą. Co się zmienia w Twoim głosie i słowach?"
     }
   ],
   ARCHETYPY: [
@@ -1206,31 +1302,36 @@
       "v": "sa",
       "b": "agree",
       "ico": "✓✓",
-      "lbl": "Zdecydowanie tak"
+      "lbl": "Zdecydowanie tak",
+      "opis": "tak jest prawie zawsze, także gdy jest ciężko"
     },
     {
       "v": "a",
       "b": "agree",
       "ico": "✓",
-      "lbl": "Raczej tak"
+      "lbl": "Raczej tak",
+      "opis": "tak bywa częściej niż odwrotnie"
     },
     {
       "v": "n",
       "b": "dk",
       "ico": "—",
-      "lbl": "Trudno powiedzieć"
+      "lbl": "Trudno powiedzieć",
+      "opis": "zależy od sytuacji albo brakuje mi przykładów"
     },
     {
       "v": "d",
       "b": "disagree",
       "ico": "✕",
-      "lbl": "Raczej nie"
+      "lbl": "Raczej nie",
+      "opis": "częściej bywa odwrotnie"
     },
     {
       "v": "sd",
       "b": "disagree",
       "ico": "✕✕",
-      "lbl": "Zdecydowanie nie"
+      "lbl": "Zdecydowanie nie",
+      "opis": "to nie o mnie — praktycznie nigdy"
     }
   ],
   OBSZARY: {
@@ -1564,7 +1665,99 @@
       "Opisz problem, który wydawał się nierozwiązywalny. Jak do niego podszedłeś/podeszłaś?",
       "Gdy masz mało czasu i zasobów — jak decydujesz, co jest najważniejsze?"
     ]
-  }
+  },
+  PREFERENCJE_NAUKI: [
+    {
+      "id": "wiodace",
+      "typ": "jeden",
+      "pytanie": "Od czego chcesz zacząć?",
+      "podpowiedz": "To wybór kolejności, nie deklaracja na zawsze. Reszta zostaje dostępna i możesz ją zmienić w każdej chwili.",
+      "opcje": [
+        {
+          "v": "piekarz",
+          "lbl": "Chleb i pieczywo",
+          "opis": "zakwas, fermentacja, piec"
+        },
+        {
+          "v": "cukiernik",
+          "lbl": "Słodkie",
+          "opis": "kremy, ciasta, czekolada"
+        },
+        {
+          "v": "sala",
+          "lbl": "Lada i klient",
+          "opis": "sprzedaż, doradzanie, witryna"
+        }
+      ]
+    },
+    {
+      "id": "dodatkowe",
+      "typ": "wiele",
+      "pytanie": "Co jeszcze Cię ciekawi?",
+      "podpowiedz": "Możesz zaznaczyć kilka albo nic. Te ścieżki pojawią się na drabinie za tą wybraną wyżej.",
+      "opcje": [
+        {
+          "v": "piekarz",
+          "lbl": "Chleb i pieczywo",
+          "opis": "zakwas, fermentacja, piec"
+        },
+        {
+          "v": "cukiernik",
+          "lbl": "Słodkie",
+          "opis": "kremy, ciasta, czekolada"
+        },
+        {
+          "v": "sala",
+          "lbl": "Lada i klient",
+          "opis": "sprzedaż, doradzanie, witryna"
+        }
+      ]
+    },
+    {
+      "id": "wazne",
+      "typ": "wiele",
+      "pytanie": "Co jest dla Ciebie ważne w pracy?",
+      "podpowiedz": "Zaznacz najwyżej dwie albo trzy rzeczy. Poziomy, które ich dotyczą, dostaną pierwszeństwo wśród tego, co masz już otwarte.",
+      "maks": 3,
+      "opcje": [
+        {
+          "v": "precyzja",
+          "lbl": "Precyzja i powtarzalność",
+          "opis": "żeby wychodziło tak samo za każdym razem"
+        },
+        {
+          "v": "higiena",
+          "lbl": "Higiena i bezpieczeństwo",
+          "opis": "żeby nikomu nie stała się krzywda"
+        },
+        {
+          "v": "smak",
+          "lbl": "Smak i jakość wyrobu",
+          "opis": "żeby było naprawdę dobre"
+        },
+        {
+          "v": "tempo",
+          "lbl": "Tempo i rytm pracy",
+          "opis": "żeby zdążyć i nie gonić"
+        },
+        {
+          "v": "porzadek",
+          "lbl": "Porządek i organizacja",
+          "opis": "żeby wiedzieć, co po czym"
+        },
+        {
+          "v": "ludzie",
+          "lbl": "Kontakt z ludźmi",
+          "opis": "żeby dobrze pracowało się z innymi"
+        },
+        {
+          "v": "nauka",
+          "lbl": "Zrozumienie mechanizmów",
+          "opis": "żeby wiedzieć, dlaczego to działa"
+        }
+      ]
+    }
+  ]
   };
   if (typeof module === "object" && module.exports) module.exports = DANE;
   else root.ProfilDane = DANE;

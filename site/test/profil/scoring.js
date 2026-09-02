@@ -3,12 +3,12 @@
    Wydzielona z monolitów HTML dwóch dawnych testów (Mapa Potencjału,
    Profil Pracy), które liczyły wynik w skryptach inline BEZ ANI JEDNEGO
    TESTU — obok w pełni przetestowanego konsumenta w Panelu
-   (redteam M-07, `docs/REDTEAM-MODULY-2026-08-18.md`).
+   (redteam M-07, `[wewn.]`).
 
-   Wzorzec UMD jak `apps/wiedza/korpus-szukaj.js`: działa jako klasyczny
+   Wzorzec UMD jak `[wewn.]`: działa jako klasyczny
    <script> (nadaje window.ProfilScoring) i jako moduł w Node (testy).
 
-   Co ta fuzja bierze z którego testu (decyzja Piotra 18.08.2026, 4A):
+   Co ta fuzja bierze z którego testu (decyzja właściciela 18.08.2026, 4A):
    - z Mapy Potencjału: pozycje odwrócone, wykrywanie sprzeczności
      i tiebreakery, ocena wiarygodności, wymiary charakteru,
    - z Profilu Pracy: scenariusze sytuacyjne (SJT) i pytania otwarte,
@@ -213,10 +213,10 @@
 
   /* ── 6. Rekord wyniku ──────────────────────────────────────────────
      Kształt zgodny z kontraktem `akademia_work_profile_wyniki_v1`
-     (czyta go `apps/panel/src/logic/rozwoj.js` — pola typ/narzedzie/
+     (czyta go `[wewn.]` — pola typ/narzedzie/
      osoba/wyniki/charakter są wymagane i NIE wolno ich przemianować).
 
-     Dwa reżimy danych (decyzja Piotra 18.08.2026):
+     Dwa reżimy danych (decyzja właściciela 18.08.2026):
      - 'zespol'   — pełny rekord: wyniki, charakter, talenty, scenariusze,
                     odpowiedzi surowe. To jest materiał do dalszej ewaluacji
                     pracy, powiedziany wprost przed testem;
@@ -230,6 +230,19 @@
   var TYP_REKORDU = "alterbake-wynik-work-profile";
   var NARZEDZIE = "profil-alterbake";
   var WERSJA = "2026-08-20";
+
+  /* Preferencje w jednym, przewidywalnym kształcie — także gdy przyszły
+     puste albo poobcinane ze starszej wersji testu. Odbiorca (drabina nauki)
+     ma dostać zawsze te same trzy pola, żeby nie musiał zgadywać. */
+  function normalizujPreferencje(p) {
+    var x = p || {};
+    var lista = function (v) { return Array.isArray(v) ? v.filter(function (s) { return typeof s === "string" && s; }) : []; };
+    return {
+      wiodace: typeof x.wiodace === "string" && x.wiodace ? x.wiodace : null,
+      dodatkowe: lista(x.dodatkowe),
+      wazne: lista(x.wazne)
+    };
+  }
 
   function zbudujRekord(dane) {
     var d = dane || {};
@@ -247,10 +260,14 @@
       charakter: d.charakter || {},
       talenty: d.talenty || {},
       scenariusze: d.zeScenariuszy || {},
-      wiarygodnosc: d.wiarygodnosc || null
+      wiarygodnosc: d.wiarygodnosc || null,
+      /* Preferencje nauki (01.09.2026): czego ta osoba CHCE się uczyć i w jakiej
+         kolejności. To nie jest wynik pomiaru — to deklaracja, i tak jest tu
+         trzymana, osobno od talentów. Panel układa z niej drabinę nauki. */
+      preferencje: normalizujPreferencje(d.preferencje)
     };
     if (rezim === "zespol") {
-      /* Materiał do ewaluacji pracy — bo o to Piotr poprosił wprost. */
+      /* Materiał do ewaluacji pracy — bo o to właściciel poprosił wprost. */
       rekord.odpowiedzi = d.odpowiedzi || {};
       if (d.osoba && d.osoba.kontakt) rekord.osoba.kontakt = d.osoba.kontakt;
     } else {
@@ -293,6 +310,7 @@
     policzObszary: policzObszary,
     talentNa100: talentNa100,
     ocenWiarygodnosc: ocenWiarygodnosc,
+    normalizujPreferencje: normalizujPreferencje,
     zbudujRekord: zbudujRekord,
     dopiszWynik: dopiszWynik
   };

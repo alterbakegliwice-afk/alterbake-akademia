@@ -5,10 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥖</text></svg>" />
     <title>Alterbake — Akademia rzemiosła</title>
-    <script type="module" crossorigin src="./assets/index-4hzhPTMe.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DL2xTtyz.css">
+    <!-- Ta strona prowadzi do kursu i nic poza tym nie robi.
+
+         UWAGA: plik jedzie na publiczny adres w całości, z komentarzami,
+         i jako jedyny w publikacji nie ma generatora, który by go po drodze
+         przeczyścił. Nie opisuj tu naszej kuchni i nie podawaj ścieżek do
+         naszych plików — powód tego kształtu i historia zmiany siedzą po
+         prywatnej stronie, przy białej liście DOZWOLONE_W_PUBLIKACJI.
+
+         Przekierowanie, a nie kurs pod tym adresem: `akademia-kurs.html`
+         jest już rozdany zespołowi i ten adres ma dalej działać.
+         Meta refresh, nie JavaScript — ma zadziałać przy wyłączonych
+         skryptach. Link niżej ratuje, gdyby i to nie zadziałało: ślepy
+         zaułek wygląda jak zepsuta Akademia. -->
+    <meta http-equiv="refresh" content="0; url=./akademia-kurs.html" />
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        margin: 0; min-height: 100vh;
+        display: flex; align-items: center; justify-content: center;
+        font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        text-align: center; padding: 24px;
+      }
+      .znak { font-size: 48px; }
+      a { color: inherit; }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <main>
+      <p class="znak" aria-hidden="true">🥖</p>
+      <h1>Akademia rzemiosła</h1>
+      <p>Za chwilę otworzy się kurs.</p>
+      <p><a href="./akademia-kurs.html">Otwórz kurs ręcznie →</a></p>
+    </main>
   </body>
 </html>

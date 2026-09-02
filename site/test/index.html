@@ -6,30 +6,35 @@
 <meta name="robots" content="noindex">
 <title>Profil Alterbake · Akademia</title>
 <!--
-  PROFIL ALTERBAKE — jedno narzędzie zamiast dwóch (decyzja Piotra 18.08.2026,
-  wariant 4A; redteam `docs/REDTEAM-MODULY-2026-08-18.md`, M-06/M-07/M-11).
+  UWAGA: ten plik jest ŹRÓDŁEM publicznego lustra ([wewn.].
+  Komentarze i treść ekranu jadą do niego w całości, więc nie ma tu imion —
+  także naszych. Rola zamiast imienia czyta się tak samo, a nie wynosi
+  danych osobowych na GitHub Pages (DL-009).
+
+  PROFIL ALTERBAKE — jedno narzędzie zamiast dwóch (decyzja właściciela 18.08.2026,
+  wariant 4A; redteam `[wewn.]`, M-06/M-07/M-11).
 
   Zastępuje Mapę Potencjału (index.html) i Profil Pracy (profil-pracy-mvp.html),
   biorąc z każdego to, czego drugi nie miał:
     · z Mapy    — pozycje odwrócone, wykrywanie sprzeczności z tiebreakerami,
                   ocena wiarygodności próbki, wymiary charakteru,
     · z Profilu — scenariusze sytuacyjne.
-  Pytania otwarte usunięte 20.08.2026 (decyzja Piotra; redteam
-  docs/REDTEAM-PROFIL-2026-08-20.md) — materiał do rozmowy niosą pytania
+  Pytania otwarte usunięte 20.08.2026 (decyzja właściciela; redteam
+  [wewn.] — materiał do rozmowy niosą pytania
   pogłębiające w raporcie, zadawane na żywo, nie w formularzu.
 
   Trzy pliki, jedna odpowiedzialność każdy:
-    profil/dane.js    — treść (GENEROWANA ze źródeł: tools/generuj-dane-profilu.mjs),
+    profil/dane.js    — treść (GENEROWANA ze źródeł: [wewn.],
     profil/scoring.js — punktacja (moduł z testami: profil/scoring.test.mjs),
     ten plik          — przebieg i raport.
 
-  Dwa reżimy danych (decyzja Piotra):
+  Dwa reżimy danych (decyzja właściciela):
     · zespol    — pełny wynik trafia do właściciela: to jest warunek używania
                   narzędzia w pracy i mówimy o tym wprost przed startem,
     · publiczny — raport zostaje u osoby badanej; przekazanie danych do
                   ulepszania narzędzia jest DOBROWOLNE, anonimowe i bez
                   odpowiedzi otwartych. Wersja publiczna Akademii jest
-                  generowana z tego pliku (tools/generuj-profil-publiczny.mjs).
+                  generowana z tego pliku ([wewn.].
 -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -91,12 +96,23 @@ textarea{min-height:5.5rem;resize:vertical;line-height:1.5}
 
 .pytanie{font-size:1.05rem;line-height:1.5;margin-bottom:.35rem}
 .podpowiedz{font-size:.78rem;color:var(--tekst-cichy);margin-bottom:1rem;padding-left:.7rem;border-left:2px solid var(--linia)}
+/* Przykład i pytanie pomocnicze. Do 01.09.2026 pozycja pokazywała samą
+   „podpowiedź", a pole `przyklad` leżało w danych nieużywane — czyli jedyna
+   konkretna scena, po której da się rozstrzygnąć „zdecydowanie" od „raczej",
+   nie docierała do ekranu. Stąd te dwa bloki i opisy stopni niżej. */
+.przyklad{font-size:.78rem;color:var(--tekst-cichy);margin-bottom:.6rem;padding-left:.7rem;border-left:2px solid var(--linia)}
+.przyklad b,.pomocnicze b{color:var(--tekst);font-weight:600}
+.pomocnicze{font-size:.82rem;line-height:1.45;margin-bottom:1rem;padding:.6rem .75rem;
+  background:var(--akcent-tlo);border-radius:6px}
 .skala{display:flex;flex-direction:column;gap:.4rem}
 .skala button{background:var(--karta-2);border:1px solid var(--linia);color:var(--tekst);
   padding:.8rem .9rem;text-align:left;display:flex;align-items:center;gap:.7rem;font-size:.9rem}
 .skala button:hover{border-color:var(--akcent)}
 .skala button.wybrany{border-color:var(--akcent);background:var(--akcent-tlo)}
 .skala .ikona{width:2.1rem;color:var(--akcent);font-size:.8rem;flex:none}
+.skala .etykieta{display:flex;flex-direction:column;gap:.1rem}
+.skala .stopien{font-size:.74rem;color:var(--tekst-cichy);line-height:1.3}
+.skala button.wybrany .stopien{color:var(--tekst)}
 
 .opcja{background:var(--karta-2);border:1px solid var(--linia);color:var(--tekst);
   padding:.85rem .9rem;text-align:left;width:100%;margin-bottom:.5rem;font-size:.9rem;line-height:1.45}
@@ -193,6 +209,8 @@ li{margin-bottom:.35rem;font-size:.9rem}
     <div class="karta">
       <div class="pytanie" id="ankieta-tresc"></div>
       <div class="podpowiedz" id="ankieta-podpowiedz"></div>
+      <div class="przyklad" id="ankieta-przyklad"></div>
+      <div class="pomocnicze" id="ankieta-pomocnicze"></div>
       <div class="skala" id="ankieta-skala"></div>
     </div>
     <div class="rzad">
@@ -232,7 +250,30 @@ li{margin-bottom:.35rem;font-size:.9rem}
   </div>
 </section>
 
-<!-- ══════════ 5. RAPORT ══════════ -->
+<!-- ══════════ 5. PREFERENCJE NAUKI ══════════
+     Test potencjału mówi, jaki ktoś jest. Nie mówi, czego chce się uczyć —
+     a układanie ścieżki bez zapytania o to jest zgadywaniem cudzej motywacji. -->
+<section id="ekran-preferencje" class="ekran">
+  <div class="kontener">
+    <div class="licznik" id="pref-licznik"></div>
+    <div class="karta karta-akcent">
+      <h3>Zostało ostatnie: czego chcesz się uczyć</h3>
+      <p class="mini">Te trzy odpowiedzi układają kolejność Twojej ścieżki nauki.
+        Nie wpływają na wynik testu i możesz je później zmienić.</p>
+    </div>
+    <div class="karta">
+      <div class="pytanie" id="pref-tresc"></div>
+      <div class="podpowiedz" id="pref-podpowiedz"></div>
+      <div id="pref-opcje"></div>
+    </div>
+    <div class="rzad">
+      <button class="drugi" id="pref-wstecz">← Poprzednie</button>
+      <button id="pref-dalej">Dalej →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 6. RAPORT ══════════ -->
 <section id="ekran-raport" class="ekran">
   <div class="kontener-szeroki" id="raport-tresc"></div>
 </section>
@@ -248,7 +289,7 @@ li{margin-bottom:.35rem;font-size:.9rem}
   var KLUCZ_ROBOCZY = "akademia_profil_stan_v1";
 
   /* REŻIM: „zespol" w firmowym OS, „publiczny" w wersji dla osób z zewnątrz.
-     Wersję publiczną generuje tools/generuj-profil-publiczny.mjs, podmieniając
+     Wersję publiczną generuje [wewn.], podmieniając
      tę stałą i klucze zapisu — treść i punktacja zostają te same, żeby kopie
      nie mogły się rozjechać (redteam M-06). */
   var REZIM = "publiczny";
@@ -258,6 +299,8 @@ li{margin-bottom:.35rem;font-size:.9rem}
     odpowiedzi: {},        /* stwierdzenia talentów i charakteru */
     tiebreakery: {},       /* talent → agree|dk|disagree */
     scenariusze: {},       /* id scenariusza → id opcji */
+    preferencje: {},       /* id pozycji → wybór (jeden: string, wiele: tablica) */
+    krokPref: 0,
     kolejnosc: [],         /* wylosowana kolejność pozycji ankiety */
     doRozstrzygniecia: [],
     krok: 0, krokTb: 0, krokSc: 0,
@@ -309,7 +352,7 @@ li{margin-bottom:.35rem;font-size:.9rem}
     zespol: {
       naglowek: "Co się dzieje z Twoimi odpowiedziami",
       punkty: [
-        "Pełny wynik — wszystkie odpowiedzi i wynik liczbowy — trafia do <b>Piotra (właściciela Alterbake)</b>.",
+        "Pełny wynik — wszystkie odpowiedzi i wynik liczbowy — trafia do <b>właściciela piekarni</b>.",
         "Służy do rozmowy o Twojej pracy i rozwoju: dobierania zadań, planu szkoleń i tego, jak z Tobą pracować.",
         "Wynik <b>nie jest oceną pracy</b> ani podstawą decyzji kadrowej sam z siebie — jest punktem wyjścia do rozmowy.",
         "Test możesz powtórzyć po kilku tygodniach, żeby zobaczyć zmianę."
@@ -337,7 +380,7 @@ li{margin-bottom:.35rem;font-size:.9rem}
 
      [ZAŁOŻENIE] Okno wznowienia: 24 godziny. Krócej byłoby wrogie (ktoś wraca
      po zmianie), dłużej — nieuczciwe: odpowiedzi sprzed tygodnia to inny
-     nastrój i w praktyce inna osoba. Do rozstrzygnięcia przez Piotra razem
+     nastrój i w praktyce inna osoba. Do rozstrzygnięcia przez właściciela razem
      z pytaniem, czy test ma być robiony ZA JEDNYM RAZEM (PROFIL-WZNOW).
 
      Wyboru NIE podejmujemy za człowieka: pokazujemy, ile ma zrobione i sprzed
@@ -372,7 +415,8 @@ li{margin-bottom:.35rem;font-size:.9rem}
   function ekranStanu(z) {
     if (z.krok < z.kolejnosc.length) return "ankieta";
     if ((z.doRozstrzygniecia || []).length && z.krokTb < z.doRozstrzygniecia.length) return "tiebreak";
-    return "scenariusze";
+    if (z.krokSc < (D.SCENARIUSZE || []).length) return "scenariusze";
+    return "preferencje";
   }
 
   function rysujWznowienie() {
@@ -397,7 +441,8 @@ li{margin-bottom:.35rem;font-size:.9rem}
       var gdzie = ekranStanu(stan);
       if (gdzie === "ankieta") { pokaz("ekran-ankieta"); rysujAnkiete(); }
       else if (gdzie === "tiebreak") { pokaz("ekran-tiebreak"); rysujTiebreak(); }
-      else { pokaz("ekran-scenariusze"); rysujScenariusz(); }
+      else if (gdzie === "scenariusze") { pokaz("ekran-scenariusze"); rysujScenariusz(); }
+      else { przejdzDoPreferencji(); }
     });
     el("btn-od-nowa").addEventListener("click", function () {
       wyczyscRoboczy();
@@ -441,6 +486,13 @@ li{margin-bottom:.35rem;font-size:.9rem}
   }
 
   /* ── 2. ANKIETA ── */
+  function pokazBlok(id, tresc, prefiks) {
+    var e = el(id);
+    e.style.display = tresc ? "" : "none";
+    if (!tresc) return;
+    e.innerHTML = "<b>" + esc(prefiks) + "</b>" + esc(tresc);
+  }
+
   function rysujAnkiete() {
     var poz = stan.kolejnosc[stan.krok];
     if (!poz) return przejdzDoTiebreakerow();
@@ -451,11 +503,19 @@ li{margin-bottom:.35rem;font-size:.9rem}
     var podpowiedz = s.podpowiedz || "";
     el("ankieta-podpowiedz").textContent = podpowiedz;
     el("ankieta-podpowiedz").style.display = podpowiedz ? "" : "none";
+    /* Przykład i pytanie pomocnicze mają jedno zadanie: zamienić zdanie o sobie
+       na wspomnienie konkretnej sytuacji. Deklaracja „raczej tak" bez takiego
+       punktu odniesienia jest zgadywaniem, a wynik testu jest tyle wart, ile
+       odpowiedzi, z których powstał. */
+    pokazBlok("ankieta-przyklad", s.przyklad, "Na przykład: ");
+    pokazBlok("ankieta-pomocnicze", s.pomocnicze, "Zanim zaznaczysz: ");
 
     var wybrane = stan.odpowiedzi[s.id];
     el("ankieta-skala").innerHTML = D.LIKERT.map(function (o) {
+      var opis = o.opis ? '<span class="stopien">' + esc(o.opis) + "</span>" : "";
       return '<button data-v="' + esc(o.v) + '"' + (wybrane === o.v ? ' class="wybrany"' : "") + ">" +
-        '<span class="ikona">' + esc(o.ico) + "</span><span>" + esc(o.lbl) + "</span></button>";
+        '<span class="ikona">' + esc(o.ico) + "</span>" +
+        '<span class="etykieta"><span>' + esc(o.lbl) + "</span>" + opis + "</span></button>";
     }).join("");
 
     Array.prototype.forEach.call(el("ankieta-skala").querySelectorAll("button"), function (b) {
@@ -523,7 +583,7 @@ li{margin-bottom:.35rem;font-size:.9rem}
 
   function rysujScenariusz() {
     var sc = D.SCENARIUSZE[stan.krokSc];
-    if (!sc) return policzIPokaz();
+    if (!sc) return przejdzDoPreferencji();
     el("sc-licznik").textContent = "Sytuacja " + (stan.krokSc + 1) + " z " + D.SCENARIUSZE.length;
     el("sc-postep").style.width = ((stan.krokSc / D.SCENARIUSZE.length) * 100) + "%";
     el("sc-tresc").textContent = sc.tresc;
@@ -542,7 +602,92 @@ li{margin-bottom:.35rem;font-size:.9rem}
     });
   }
 
-  /* ── 5. WYNIK I RAPORT ── */
+  /* ── 5. PREFERENCJE NAUKI ──
+     Trzy pozycje: od czego zaczynasz, co jeszcze Cię ciekawi, co jest dla
+     Ciebie ważne. Wynik ma kształt { wiodace, dodatkowe[], wazne[] } — dokładnie
+     ten, którego oczekuje logika ścieżki w Panelu. Zmiana kształtu tutaj psuje
+     drabinę nauki po drugiej stronie, więc trzyma go test. */
+  function przejdzDoPreferencji() {
+    stan.krokPref = stan.krokPref || 0;
+    zapiszRoboczy();
+    pokaz("ekran-preferencje");
+    rysujPreferencje();
+  }
+
+  function wybranePref(poz) {
+    var w = stan.preferencje[poz.id];
+    if (poz.typ === "wiele") return Array.isArray(w) ? w : [];
+    return w == null ? null : w;
+  }
+
+  function rysujPreferencje() {
+    var lista = D.PREFERENCJE_NAUKI || [];
+    var poz = lista[stan.krokPref];
+    if (!poz) return policzIPokaz();
+    el("pref-licznik").textContent = "Pytanie " + (stan.krokPref + 1) + " z " + lista.length;
+    el("pref-tresc").textContent = poz.pytanie;
+    el("pref-podpowiedz").textContent = poz.podpowiedz || "";
+    var wybrane = wybranePref(poz);
+
+    el("pref-opcje").innerHTML = poz.opcje.map(function (o) {
+      var czy = poz.typ === "wiele" ? wybrane.indexOf(o.v) >= 0 : wybrane === o.v;
+      return '<button class="opcja' + (czy ? " wybrany" : "") + '" data-v="' + esc(o.v) + '">' +
+        "<b>" + esc(o.lbl) + "</b>" +
+        (o.opis ? '<span class="mini"> — ' + esc(o.opis) + "</span>" : "") + "</button>";
+    }).join("");
+
+    Array.prototype.forEach.call(el("pref-opcje").querySelectorAll("button"), function (b) {
+      b.addEventListener("click", function () {
+        var v = b.getAttribute("data-v");
+        if (poz.typ === "wiele") {
+          var lista2 = wybranePref(poz).slice();
+          var i = lista2.indexOf(v);
+          if (i >= 0) lista2.splice(i, 1);
+          /* Limit `maks` pilnuje sensu odpowiedzi: „ważne jest dla mnie wszystko"
+             nie ustawia żadnego pierwszeństwa, więc nie jest odpowiedzią. */
+          else if (!poz.maks || lista2.length < poz.maks) lista2.push(v);
+          stan.preferencje[poz.id] = lista2;
+          zapiszRoboczy();
+          rysujPreferencje();
+        } else {
+          stan.preferencje[poz.id] = v;
+          stan.krokPref++;
+          zapiszRoboczy();
+          rysujPreferencje();
+        }
+      });
+    });
+
+    /* Pozycja wielokrotnego wyboru potrzebuje „Dalej", bo pusta odpowiedź też
+       jest odpowiedzią — nie każdy ma dodatkowe zainteresowania. */
+    el("pref-dalej").style.display = poz.typ === "wiele" ? "" : "none";
+    el("pref-wstecz").style.visibility = stan.krokPref > 0 ? "visible" : "hidden";
+  }
+
+  el("pref-dalej").addEventListener("click", function () {
+    stan.krokPref++;
+    zapiszRoboczy();
+    rysujPreferencje();
+  });
+  el("pref-wstecz").addEventListener("click", function () {
+    if (stan.krokPref > 0) { stan.krokPref--; rysujPreferencje(); }
+  });
+
+  /* Preferencje w kształcie, którego oczekuje logika ścieżki. */
+  function preferencjeNauki() {
+    var p = stan.preferencje || {};
+    var wiodace = typeof p.wiodace === "string" ? p.wiodace : null;
+    var dodatkowe = (Array.isArray(p.dodatkowe) ? p.dodatkowe : []).filter(function (x) {
+      return x !== wiodace;   /* wiodące nie dubluje się w dodatkowych */
+    });
+    return {
+      wiodace: wiodace,
+      dodatkowe: dodatkowe,
+      wazne: Array.isArray(p.wazne) ? p.wazne : []
+    };
+  }
+
+  /* ── 6. WYNIK I RAPORT ── */
   function policz() {
     var idTalentow = Object.keys(D.TALENTY);
     var idObszarow = Object.keys(D.OBSZARY);
@@ -618,6 +763,7 @@ li{margin-bottom:.35rem;font-size:.9rem}
       zeScenariuszy: w.zeScenariuszy,
       wiarygodnosc: w.wiarygodnosc,
       odpowiedzi: stan.odpowiedzi,
+      preferencje: preferencjeNauki(),
       sekundy: stan.start ? Math.round((Date.now() - stan.start) / 1000) : null
     });
 
@@ -724,7 +870,7 @@ li{margin-bottom:.35rem;font-size:.9rem}
       '<p class="cichy mini">To podpowiedź do rozmowy, nie przydział stanowiska.</p></div>';
 
     /* Pytania pogłębiające — materiał do rozmowy, dobierany do najsłabszych
-       obszarów. W reżimie zespołowym to jest część, którą czyta Piotr. */
+       obszarów. W reżimie zespołowym to jest część, którą czyta właściciel. */
     html += '<div class="karta"><h2 style="margin-top:0">O co warto dopytać na rozmowie</h2>' +
       najslabsze.map(function (o) {
         var pytania = D.PYTANIA_POGLEBIAJACE[o] || [];
@@ -738,7 +884,7 @@ li{margin-bottom:.35rem;font-size:.9rem}
       html += zapisano
         ? '<div class="komunikat ok">✓ Wynik zapisany — pojawi się w Aplikacji pracownika (Szkolenia ▸ Rozwój) na tym urządzeniu.</div>'
         : '<div class="komunikat uwaga">Nie udało się zapisać wyniku w przeglądarce. ' +
-          "Pobierz plik niżej i przekaż go Piotrowi — inaczej ten wynik przepadnie.</div>";
+          "Pobierz plik niżej i przekaż go właścicielowi — inaczej ten wynik przepadnie.</div>";
       /* Domknięcie pętli test → kurs → retest: z raportu prosto do modułów
          rozwojowych. Najsłabsze obszary z tego wyniku będą tam oznaczone
          jako PRIORYTET, a po nauce i mikropraktykach aplikacja przypomni
@@ -747,7 +893,7 @@ li{margin-bottom:.35rem;font-size:.9rem}
         "Twoje trzy najsłabsze obszary dostają moduły nauki i mikropraktyki na 2 tygodnie, " +
         "a powtórka testu po ok. 6 tygodniach zmierzy, czy praktyka coś zmieniła.</p>" +
         '<div class="rzad"><a class="drugi" style="text-align:center;text-decoration:none;padding:.7rem 1rem" ' +
-        'href="../panel/dist/index.html?wejscie=kurs">Przejdź do modułów rozwojowych →</a></div>';
+        'href="../akademia-kurs.html">Przejdź do kursu rzemiosła →</a></div>';
       html += '<div class="rzad"><button class="drugi" id="btn-plik">Pobierz wynik jako plik</button>' +
         '<button class="drugi" id="btn-druk">Drukuj profil</button></div>';
     } else {
