@@ -7,6 +7,8 @@ Otwarta nauka rzemiosła piekarskiego i cukierniczego + test rozwoju osobistego
   diagnostyką i ćwiczeniem, plus quiz. Jeden plik, działa offline.
 - **`/`** — starsza aplikacja nauki (panel React).
 - **`/test/`** — test Profil Pracy / Mapa Potencjału.
+- **`/mistrz.html`** — 14 mikro-lekcji Mistrza: decyzje, komunikacja,
+  odpowiedzialność i próby zachowania, opcjonalnie dobierane z Mapy Potencjału.
 
 Postęp zapisuje się **wyłącznie w Twojej przeglądarce**, pod kluczami
 `akademia_*`. Nie jest nigdzie wysyłany i nikt go nie widzi.
