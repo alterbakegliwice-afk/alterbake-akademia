@@ -165,8 +165,41 @@ li{margin-bottom:.35rem;font-size:.9rem}
   .cichy,.mini{color:#444}
 }
 </style>
+<style id="motyw-akademii">
+:root{
+  --tlo:#EDE7DA; --karta:#FBF8F1; --karta-2:#F5EFE3;
+  --tekst:#141413; --tekst-cichy:#6E6A5F; --linia:#E0D7C8;
+  --akcent:#B5532E; --akcent-tlo:#F4E2D6;
+  --ok:#4A7C3A; --uwaga:#B7791F; --alarm:#B03030;
+  --r:14px; --r-s:9px;
+}
+@media (prefers-color-scheme:dark){
+  :root{--tlo:#171310;--karta:#211C17;--karta-2:#2A231D;--tekst:#F1E9DE;--tekst-cichy:#A89A89;
+    --linia:#372F27;--akcent:#D97A4D;--akcent-tlo:#3A2418;--ok:#7FB56B;--uwaga:#CFA53F;--alarm:#E06C6C}
+}
+body{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}
+h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-spacing:.005em}
+.glowny{color:#fff}
+.nadtytul{letter-spacing:.13em}
+.pasek-akademii{position:sticky;top:0;z-index:20;display:flex;align-items:center;
+  padding:calc(.7rem + env(safe-area-inset-top)) 1rem .7rem;
+  background:color-mix(in srgb,var(--karta) 92%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--linia);box-shadow:0 1px 2px rgba(20,20,19,.06)}
+.pasek-akademii-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--tekst)}
+.pasek-akademii .znak{font-size:1.5rem;width:2.4rem;height:2.4rem;display:grid;place-items:center;
+  background:linear-gradient(160deg,#F1E4CB,var(--akcent-tlo));border:1px solid #D3C5AA;border-radius:12px}
+.pasek-akademii .nazwa{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;font-weight:700;font-size:1.12rem;line-height:1.1}
+.pasek-akademii .pod{font-size:.66rem;color:var(--tekst-cichy);text-transform:uppercase;letter-spacing:.13em}
+@media (prefers-color-scheme:dark){.pasek-akademii .znak{background:linear-gradient(160deg,#33291B,var(--akcent-tlo));border-color:#4A3F34}}
+</style>
 </head>
 <body>
+<header class="pasek-akademii">
+  <a class="pasek-akademii-logo" href="../index.html" aria-label="Wejście do Akademii">
+    <span class="znak" aria-hidden="true">🥖</span>
+    <span><span class="nazwa">Alterbake</span><br><span class="pod">Akademia rzemiosła</span></span>
+  </a>
+</header>
 
 <!-- ══════════ 1. START + ZGODA ══════════ -->
 <section id="ekran-start" class="ekran aktywny">

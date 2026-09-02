@@ -1,42 +1,204 @@
 <!doctype html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥖</text></svg>" />
-    <title>Alterbake — Akademia rzemiosła</title>
-    <!-- Ta strona prowadzi do kursu i nic poza tym nie robi.
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#EDE7DA">
+<title>Akademia Alterbake</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🥖</text></svg>">
+<!-- WEJŚCIE DO AKADEMII — jeden panel, jeden język wizualny.
 
-         UWAGA: plik jedzie na publiczny adres w całości, z komentarzami,
-         i jako jedyny w publikacji nie ma generatora, który by go po drodze
-         przeczyścił. Nie opisuj tu naszej kuchni i nie podawaj ścieżek do
-         naszych plików — powód tego kształtu i historia zmiany siedzą po
-         prywatnej stronie, przy białej liście DOZWOLONE_W_PUBLIKACJI.
+     Ten plik jest SZABLONEM: generator wstawia tu tokeny marki (kolory
+     i kroje z jednego źródła) oraz żywe liczby (ile modułów w każdej
+     ścieżce, ile pytań, ile poziomów drabiny). Nie edytuj wyniku ręcznie.
 
-         Przekierowanie, a nie kurs pod tym adresem: `akademia-kurs.html`
-         jest już rozdany zespołowi i ten adres ma dalej działać.
-         Meta refresh, nie JavaScript — ma zadziałać przy wyłączonych
-         skryptach. Link niżej ratuje, gdyby i to nie zadziałało: ślepy
-         zaułek wygląda jak zepsuta Akademia. -->
-    <meta http-equiv="refresh" content="0; url=./akademia-kurs.html" />
-    <style>
-      :root { color-scheme: light dark; }
-      body {
-        margin: 0; min-height: 100vh;
-        display: flex; align-items: center; justify-content: center;
-        font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-        text-align: center; padding: 24px;
-      }
-      .znak { font-size: 48px; }
-      a { color: inherit; }
-    </style>
-  </head>
-  <body>
-    <main>
-      <p class="znak" aria-hidden="true">🥖</p>
-      <h1>Akademia rzemiosła</h1>
-      <p>Za chwilę otworzy się kurs.</p>
-      <p><a href="./akademia-kurs.html">Otwórz kurs ręcznie →</a></p>
-    </main>
-  </body>
+     Jedna zasada: to samo, co w kursie i w Profilu — papier, czerń, terakota
+     jako akcent na ~10% powierzchni, szeryf w tytułach. Wejście, kurs
+     i Profil mają wyglądać jak jedna rzecz, nie jak trzy aplikacje. -->
+<style>
+:root{
+  --ab-czern:#141413;
+  --ab-papier:#EDE7DA;
+  --ab-dab:#C2A06B;
+  --ab-taupe:#6E6A5F;
+  --ab-terakota:#B5532E;
+  --ab-oliwka:#5E5F3C;
+  --ab-sukces:#4A7C3A;
+  --ab-uwaga:#B7791F;
+  --ab-blad:#B03030;
+  --ab-font-display:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --ab-font-body:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ab-font-mono:"IBM Plex Mono", ui-monospace, monospace;
+  --ab-r:14px; --ab-r-sm:9px;
+  --tlo:var(--ab-papier); --karta:#FBF8F1; --karta-wgleb:#F5EFE3;
+  --tekst:var(--ab-czern); --cichy:var(--ab-taupe); --linia:#E0D7C8; --linia-mocna:#D3C5AA;
+  --akcent:var(--ab-terakota); --akcent-tlo:#F4E2D6; --dab-tlo:#F1E4CB;
+  --ok:var(--ab-sukces);
+  --cien:0 1px 2px rgba(20,20,19,.05),0 6px 18px rgba(20,20,19,.07);
+  --cien-sm:0 1px 2px rgba(20,20,19,.06);
+  --r:var(--ab-r); --r-sm:var(--ab-r-sm);
+  --serif:var(--ab-font-display); --sans:var(--ab-font-body);
+}
+@media (prefers-color-scheme:dark){
+  :root{--tlo:#171310;--karta:#211C17;--karta-wgleb:#2A231D;--tekst:#F1E9DE;--cichy:#A89A89;
+    --linia:#372F27;--linia-mocna:#4A3F34;--akcent:#D97A4D;--akcent-tlo:#3A2418;--dab-tlo:#33291B;
+    --ok:#7FB56B;--cien:0 1px 3px rgba(0,0,0,.4);--cien-sm:0 1px 2px rgba(0,0,0,.4)}
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font:16px/1.55 var(--sans);color:var(--tekst);
+  background:radial-gradient(1200px 600px at 100% -10%,color-mix(in srgb,var(--karta) 60%,transparent),transparent 60%),var(--tlo);
+  -webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+h1,h2,h3{font-family:var(--serif);font-weight:700;letter-spacing:.005em;margin:0}
+h1{font-size:clamp(1.6rem,4.5vw,2.1rem);line-height:1.2}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--akcent) 55%,white);outline-offset:2px;border-radius:4px}
+
+/* Nagłówek: jasny, z kaflem logo — nie pełny pasek koloru. Terakota ma być
+   akcentem, a pasek na całą szerokość robi z niej tło. */
+.naglowek{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:.8rem;
+  padding:calc(.7rem + env(safe-area-inset-top)) 1rem .7rem;
+  background:color-mix(in srgb,var(--karta) 92%,transparent);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--linia);box-shadow:var(--cien-sm)}
+.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.logo-znak{font-size:1.5rem;width:2.4rem;height:2.4rem;display:grid;place-items:center;
+  background:linear-gradient(160deg,var(--dab-tlo),var(--akcent-tlo));
+  border:1px solid var(--linia-mocna);border-radius:12px;box-shadow:var(--cien-sm)}
+.logo-nazwa{font-family:var(--serif);font-weight:700;font-size:1.12rem;line-height:1.1}
+.logo-pod{font-size:.66rem;color:var(--cichy);text-transform:uppercase;letter-spacing:.13em}
+
+main{flex:1;width:100%;max-width:1080px;margin:0 auto;padding:1.3rem 1rem 3rem}
+.wstep p{margin-top:.4rem;color:var(--cichy);font-size:1.02rem;max-width:62ch}
+
+/* Wezwanie: jeden wyróżniony kafel dla kogoś, kto nie wie, od czego zacząć.
+   Krawędź z dębu, nie z terakoty — terakota zostaje dla przycisków. */
+.wezwanie{display:flex;align-items:center;gap:.9rem;margin-top:1.2rem;padding:1rem 1.2rem;
+  text-decoration:none;border:1px solid var(--linia-mocna);border-left:5px solid var(--ab-dab);
+  border-radius:var(--r);background:linear-gradient(180deg,var(--karta),var(--dab-tlo));box-shadow:var(--cien-sm);
+  transition:transform .12s,box-shadow .12s}
+.wezwanie:hover{transform:translateY(-1px);box-shadow:var(--cien)}
+.wezwanie-ikona{font-size:1.9rem;line-height:1;flex:none}
+.wezwanie b{font-family:var(--serif);font-size:1.05rem}
+.wezwanie span{display:block;color:var(--cichy);font-size:.9rem;line-height:1.4}
+
+.sekcja{margin-top:1.6rem}
+.sekcja-tytul{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .7rem;margin-bottom:.8rem}
+.sekcja-tytul h2{font-size:1.25rem}
+.sekcja-tytul .cichy{font-size:.85rem}
+.cichy{color:var(--cichy)}
+
+.siatka{display:grid;grid-template-columns:repeat(auto-fill,minmax(244px,1fr));gap:1rem}
+.kafel{display:flex;flex-direction:column;gap:.4rem;text-align:left;background:var(--karta);
+  border:1px solid var(--linia);border-radius:var(--r);padding:1.2rem 1.25rem;box-shadow:var(--cien);
+  color:inherit;text-decoration:none;transition:transform .12s,box-shadow .12s,border-color .12s}
+.kafel:hover{transform:translateY(-2px);border-color:var(--linia-mocna)}
+.kafel-ikona{font-size:2rem;line-height:1}
+.kafel-nazwa{font-family:var(--serif);font-weight:700;font-size:1.16rem}
+.kafel-opis{color:var(--cichy);font-size:.9rem;line-height:1.45;flex:1}
+.kafel-meta{margin-top:.35rem;font-size:.8rem;font-weight:700;color:var(--akcent)}
+.kafel-postep{height:5px;background:var(--linia);border-radius:3px;overflow:hidden;margin-top:.5rem}
+.kafel-postep i{display:block;height:100%;width:0;background:var(--ok);border-radius:3px}
+
+/* Wiersz „u Ciebie": liczby z tej przeglądarki. Bez logowania — postęp żyje
+   wyłącznie na tym urządzeniu i wejście tylko go pokazuje. */
+.stan{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin-top:.9rem;font-size:.88rem;color:var(--cichy)}
+.stan b{color:var(--tekst);font-family:var(--serif);font-size:1.05rem}
+
+.stopka{text-align:center;color:var(--cichy);font-size:.74rem;letter-spacing:.02em;
+  padding:1.1rem 1rem calc(1.1rem + env(safe-area-inset-bottom));border-top:1px solid var(--linia)}
+@media (max-width:640px){main{padding:1rem .9rem 2.5rem}.siatka{grid-template-columns:1fr;gap:.8rem}
+  .sekcja-tytul .cichy{flex-basis:100%}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="naglowek">
+  <a class="logo" href="./index.html" aria-label="Akademia Alterbake — strona główna">
+    <span class="logo-znak" aria-hidden="true">🥖</span>
+    <span><span class="logo-nazwa">Alterbake</span><br><span class="logo-pod">Akademia rzemiosła</span></span>
+  </a>
+</header>
+<main>
+  <section class="wstep">
+    <h1>Czego chcesz się nauczyć?</h1>
+    <p>Wybierz temat i ucz się we własnym tempie. Postępy zapisują się w tej przeglądarce — bez logowania, dobrowolnie.</p>
+    <a class="wezwanie" href="./test/index.html">
+      <span class="wezwanie-ikona" aria-hidden="true">🧭</span>
+      <span><b>Nie wiesz od czego zacząć?</b><span>Zrób Profil Alterbake — zobaczysz swoje mocne strony i preferencje nauki, a kurs ułoży ścieżkę pod nie.</span></span>
+    </a>
+    <div class="stan" id="stan" hidden></div>
+  </section>
+
+  <section class="sekcja">
+    <div class="sekcja-tytul"><h2>Kurs rzemiosła</h2><span class="cichy" id="kurs-meta"></span></div>
+    <div class="siatka" id="sciezki"></div>
+  </section>
+
+  <section class="sekcja">
+    <div class="sekcja-tytul"><h2>Twoja droga</h2></div>
+    <div class="siatka">
+      <a class="kafel" href="./akademia-kurs.html#widok=sciezka">
+        <span class="kafel-ikona" aria-hidden="true">🪜</span>
+        <span class="kafel-nazwa">Ścieżka rzemiosła</span>
+        <span class="kafel-opis">Poziomy jak w grze: kolejny otwiera się po zaliczeniu poprzedniego. Widzisz, ile brakuje Ci do zakresu czeladnika, a potem mistrza.</span>
+        <span class="kafel-meta" id="drabina-meta">Otwórz ścieżkę →</span>
+      </a>
+      <a class="kafel" href="./test/index.html">
+        <span class="kafel-ikona" aria-hidden="true">🧠</span>
+        <span class="kafel-nazwa">Profil Alterbake</span>
+        <span class="kafel-opis">Mocne strony, styl pracy i preferencje nauki. Około 15 minut. Wynik zostaje u Ciebie i ustawia kolejność kursu.</span>
+        <span class="kafel-meta">Zrób test →</span>
+      </a>
+      <a class="kafel" href="./akademia-kurs.html#widok=powtorka">
+        <span class="kafel-ikona" aria-hidden="true">🔁</span>
+        <span class="kafel-nazwa">Powtórka</span>
+        <span class="kafel-opis">Pytania, które ostatnio nie poszły. Krótka rundka na przystanku zamiast całego modułu.</span>
+        <span class="kafel-meta">Powtórz →</span>
+      </a>
+    </div>
+  </section>
+</main>
+<footer class="stopka">Akademia rzemiosła · nauka piekarstwa i cukiernictwa · dobrowolnie, we własnym tempie</footer>
+
+<script type="application/json" id="dane-wejscia">{"zbudowano":"2026-09-02","modulow":37,"pytan":245,"poziomow":0,"sciezki":[{"id":"piekarz","nazwa":"Piekarnia","modulow":23,"pytania":["Z-02","Z-03","Z-04","Z-05","Z-06","W-01","W-02","W-03","W-04","D-01","D-02","D-03","D-04","D-05","MS-01","MS-02","MS-03","MS-04","MS-05","MS-06","MS-07","MS-08","MT-01","MT-02","MT-03","MT-04","MT-05","MT-06","MT-07","MT-08","FF-01","FF-02","FF-03","FF-04","FF-05","FF-06","FF-07","FF-08","FF-09","FF-10","FO-01","FO-02","FO-03","FO-04","FO-05","FO-06","FO-07","PW-05","PW-06","PW-07","PW-08","PW-09","SS-01","SS-02","SS-03","SS-04","SS-05","DP-01","DP-02","DP-03","DP-04","DP-05","DP-06","PZ-01","PZ-02","PZ-03","PZ-04","PZ-05","PZ-06","BG-01","BG-02","BG-03","BG-04","BG-05","BG-06","CH-01","CH-02","CH-03","CH-04","CH-05","CH-06","PF-01","PF-02","PF-03","PF-04","PF-05","PF-06","HO-01","HO-02","HO-03","HO-04","HO-05","HO-06","PL-01","PL-02","PL-03","PL-04","PL-05","PL-06","SF-01","SF-02","SF-03","SF-04","SF-05","SF-06","CC-01","CC-02","CC-03","CC-04","CC-05","CC-06","BF-01","BF-02","BF-03","BF-04","BF-05","BF-06","FW-01","FW-02","FW-03","FW-04","FW-05","FW-06","HB-01","HB-02","HB-03","HB-04","HB-05","HB-06","KM-01","KM-02","KM-03","KM-04","KM-05","KM-06","GR-01","GR-02","GR-03","GR-04","GR-05","GR-06"]},{"id":"cukiernik","nazwa":"Cukiernia","modulow":13,"pytania":["LV-01","LV-02","LV-03","LV-04","LV-05","LV-06","LV-07","LV-08","LV-09","SF-01","SF-02","SF-03","SF-04","SF-05","SF-06","KE-01","KE-02","KE-03","KE-04","KE-05","KE-06","KE-07","KE-08","KE-09","CM-01","CM-02","CM-03","CM-04","CM-05","CM-06","CM-07","CM-08","CM-09","CM-10","BC-01","BC-02","BC-03","BC-04","BC-05","BC-06","BC-07","BC-08","BC-09","BC-10","BC-11","ZM-01","ZM-02","ZM-03","ZM-04","ZM-05","ZM-06","ZM-07","ZM-08","ZM-09","PR-01","PR-02","PR-03","PR-04","PR-05","PR-06","TW-01","TW-02","TW-03","TW-04","TW-05","TW-06","BT-01","BT-02","BT-03","BT-04","BT-05","BT-06","KZ-01","KZ-02","KZ-03","KZ-04","KZ-05","KZ-06","HB-01","HB-02","HB-03","HB-04","HB-05","HB-06","KM-01","KM-02","KM-03","KM-04","KM-05","KM-06","GR-01","GR-02","GR-03","GR-04","GR-05","GR-06"]},{"id":"sala","nazwa":"Sala i sprzedaż","modulow":8,"pytania":["HB-01","HB-02","HB-03","HB-04","HB-05","HB-06","OS-01","OS-03","OS-04","OS-05","OB-01","OB-02","OB-03","OB-04","OS-02","OS-06","LD-01","LD-02","LD-03","LD-04","TK-01","TK-02","TK-03","TK-04","TK-05","TK-06","GO-01","GO-02","GO-03","GO-04","GO-05","GO-06","RZ-01","RZ-02","RZ-03","RZ-04","RZ-05","RZ-06","KM-01","KM-02","KM-03","KM-04","KM-05","KM-06","GR-01","GR-02","GR-03","GR-04","GR-05","GR-06"]},{"id":"wszyscy","nazwa":"Dla wszystkich","modulow":0,"pytania":[]}]}</script>
+<script>
+(function () {
+  var DANE; try { DANE = JSON.parse(document.getElementById('dane-wejscia').textContent) } catch (e) { return }
+  var IKONY = { piekarz: '🥖', cukiernik: '🍰', sala: '🛎️', wszyscy: '🌾' };
+  var OPISY = {
+    piekarz: 'Mąka, zakwas, fermentacja, wypiek — fizyka i chemia chleba, którą widać w miękiszu.',
+    cukiernik: 'Kremy, bezy, ciasta i czekolada — emulsje, piany i temperatura, które decydują o wyniku.',
+    sala: 'Doradzanie przy ladzie, alergeny, trudny klient i rytm zmiany w sklepie.',
+    wszyscy: 'Rzeczy wspólne dla całej piekarni.'
+  };
+  /* Postęp z TEJ przeglądarki — czytamy wyłącznie klucze akademia_*. */
+  var postep = {}; try { postep = JSON.parse(localStorage.getItem('akademia_postep_v1')) || {} } catch (e) {}
+  var opanowane = 0; for (var k in postep) if (postep[k] === true) opanowane++;
+
+  var s = document.getElementById('sciezki'), html = '';
+  DANE.sciezki.forEach(function (sc) {
+    if (!sc.modulow) return;
+    var ok = 0; sc.pytania.forEach(function (id) { if (postep[id] === true) ok++ });
+    var proc = sc.pytania.length ? Math.round(100 * ok / sc.pytania.length) : 0;
+    html += '<a class="kafel" href="./akademia-kurs.html#sciezka=' + sc.id + '">' +
+      '<span class="kafel-ikona" aria-hidden="true">' + (IKONY[sc.id] || '📘') + '</span>' +
+      '<span class="kafel-nazwa">' + sc.nazwa + '</span>' +
+      '<span class="kafel-opis">' + (OPISY[sc.id] || '') + '</span>' +
+      '<span class="kafel-meta">' + sc.modulow + ' ' + (sc.modulow === 1 ? 'moduł' : sc.modulow < 5 ? 'moduły' : 'modułów') + ' · ' + sc.pytania.length + ' pytań →</span>' +
+      (ok ? '<span class="kafel-postep"><i style="width:' + proc + '%"></i></span>' : '') + '</a>';
+  });
+  s.innerHTML = html;
+  document.getElementById('kurs-meta').textContent = DANE.modulow + ' modułów · ' + DANE.pytan + ' pytań · działa offline';
+  if (DANE.poziomow) document.getElementById('drabina-meta').textContent = DANE.poziomow + ' poziomów →';
+  if (opanowane) {
+    var st = document.getElementById('stan');
+    st.innerHTML = '<span><b>' + opanowane + '</b> ' + (opanowane === 1 ? 'pytanie opanowane' : opanowane < 5 ? 'pytania opanowane' : 'pytań opanowanych') + '</span>' +
+      '<span>Postęp jest tylko na tym urządzeniu.</span>';
+    st.hidden = false;
+  }
+})();
+</script>
+</body>
 </html>

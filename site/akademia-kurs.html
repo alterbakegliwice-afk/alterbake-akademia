@@ -3,36 +3,64 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#8a4b2a">
+<meta name="theme-color" content="#EDE7DA">
 <title>Akademia Alterbake</title>
 
 <style>
+/* JEDEN JĘZYK WIZUALNY (02.09.2026). Do tego dnia kurs miał własną paletę
+   (brąz #8a4b2a na pełnym pasku), wejście do Akademii inną, a Profil trzecią
+   — ciemną i monospace. Na jednej stronie stały trzy aplikacje. Od dziś
+   kolory i kroje wstawia generator z jednego źródła tokenów marki:
+   papier, czerń, terakota jako AKCENT (nie tło paska), szeryf w tytułach. */
 :root{
-  --tlo:#faf7f4; --karta:#fff; --tekst:#231c17; --cichy:#6b5f56;
-  --akcent:#8a4b2a; --akcent-jasny:#f3e6dd; --ok:#2f7a4d; --zle:#b3352b;
-  --ramka:#e6dcd3; --cien:0 1px 3px rgba(35,28,23,.08);
-  --r:14px;
+  --ab-czern:#141413;
+  --ab-papier:#EDE7DA;
+  --ab-dab:#C2A06B;
+  --ab-taupe:#6E6A5F;
+  --ab-terakota:#B5532E;
+  --ab-oliwka:#5E5F3C;
+  --ab-sukces:#4A7C3A;
+  --ab-uwaga:#B7791F;
+  --ab-blad:#B03030;
+  --ab-font-display:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --ab-font-body:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ab-font-mono:"IBM Plex Mono", ui-monospace, monospace;
+  --ab-r:14px; --ab-r-sm:9px;
+  --tlo:var(--ab-papier); --karta:#FBF8F1; --tekst:var(--ab-czern); --cichy:var(--ab-taupe);
+  --akcent:var(--ab-terakota); --akcent-jasny:#F4E2D6; --dab-tlo:#F1E4CB;
+  --ok:var(--ab-sukces); --zle:var(--ab-blad);
+  --ramka:#E0D7C8; --ramka-mocna:#D3C5AA; --linia:var(--ramka);
+  --cien:0 1px 2px rgba(20,20,19,.05),0 4px 14px rgba(20,20,19,.06);
+  --r:var(--ab-r); --serif:var(--ab-font-display); --sans:var(--ab-font-body);
 }
 @media (prefers-color-scheme:dark){
-  :root{--tlo:#1a1512;--karta:#241d18;--tekst:#f0e8e2;--cichy:#b3a396;
-        --akcent:#e0a077;--akcent-jasny:#3a2a20;--ramka:#3a2f27;--cien:none}
+  :root{--tlo:#171310;--karta:#211C17;--tekst:#F1E9DE;--cichy:#A89A89;
+        --akcent:#D97A4D;--akcent-jasny:#3A2418;--dab-tlo:#33291B;--ok:#7FB56B;--zle:#E06C6C;
+        --ramka:#372F27;--ramka-mocna:#4A3F34;--cien:0 1px 3px rgba(0,0,0,.4)}
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--tlo);color:var(--tekst);
-  font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  -webkit-text-size-adjust:100%}
+  font:16px/1.55 var(--sans);
+  -webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.tom .naglowek,.logo-nazwa{font-family:var(--serif);letter-spacing:.005em}
 body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
-#pasek{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:8px;
-  padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:var(--akcent);color:#fff}
+#pasek{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:10px;
+  padding:calc(8px + env(safe-area-inset-top)) 12px 8px;
+  background:color-mix(in srgb,var(--karta) 92%,transparent);color:var(--tekst);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--ramka);box-shadow:0 1px 2px rgba(20,20,19,.06)}
+.logo{display:grid;place-items:center;width:40px;height:40px;flex:none;font-size:22px;text-decoration:none;
+  background:linear-gradient(160deg,var(--dab-tlo),var(--akcent-jasny));
+  border:1px solid var(--ramka-mocna);border-radius:12px}
 #pasek-tekst{flex:1;min-width:0}
-#pasek h1{font-size:17px;margin:0;font-weight:600;
+#pasek h1{font-size:17px;margin:0;font-weight:700;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* Bieżący rozdział w pasku. Moduł ma kilkanaście ekranów, a tytuł rozdziału
    znika po pierwszym przewinięciu — bez tego czytelnik po trzech ekranach
    nie wie już, w której części jest. */
-#podtytul{font-size:12px;opacity:.82;margin-top:1px;
+#podtytul{font-size:12px;color:var(--cichy);margin-top:1px;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ikona{background:rgba(255,255,255,.18);color:#fff;border:0;border-radius:10px;
+.ikona{background:var(--akcent-jasny);color:var(--akcent);border:1px solid var(--ramka);border-radius:10px;
   min-width:40px;min-height:40px;font-size:18px;cursor:pointer}
 main{padding:14px;max-width:760px;margin:0 auto}
 .karta{background:var(--karta);border:1px solid var(--ramka);border-radius:var(--r);
@@ -59,7 +87,9 @@ button.drugi{width:100%;min-height:48px;background:transparent;color:var(--akcen
 .lista-tomow{display:grid;gap:10px}
 .tom{display:block;width:100%;text-align:left;background:var(--karta);border:1px solid var(--ramka);
   border-radius:var(--r);padding:14px;cursor:pointer;color:inherit;font:inherit}
-.tom .naglowek{display:flex;align-items:center;gap:8px;font-weight:600}
+.tom .naglowek{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+.tom-znak{flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;
+  font-size:14px;font-family:var(--sans);color:var(--akcent);background:var(--akcent-jasny)}
 .tom .naglowek span.stan{margin-left:auto;font-size:13px;color:var(--cichy);white-space:nowrap}
 .karta-akcent{border-color:var(--akcent)}
 .poziom{padding:.7rem 0;border-top:1px solid var(--linia)}
@@ -229,6 +259,7 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
 <body>
 <header id="pasek">
   <button id="wstecz" class="ikona" hidden aria-label="Wróć">←</button>
+  <a id="dom" class="logo" href="./index.html" aria-label="Wejście do Akademii">🥖</a>
   <div id="pasek-tekst"><h1 id="tytul">Akademia Alterbake</h1><div id="podtytul" hidden></div></div>
   <button id="szukajBtn" class="ikona" aria-label="Szukaj">🔍</button>
 </header>
@@ -242,8 +273,8 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
   <button data-widok="postep">📊 Postęp</button>
 </nav>
 <script id="dane-kursu" type="application/json">{
-  "wersja": "2026-09-01",
-  "zbudowano": "2026-09-01",
+  "wersja": "2026-09-02",
+  "zbudowano": "2026-09-02",
   "sciezki": [
     {
       "id": "piekarz",
@@ -16461,7 +16492,8 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
               "Granice i bezpieczna komunikacja"
             ]
           }
-        ]
+        ],
+        "rodzaj": "rzemioslo"
       },
       "cukiernik": {
         "nazwa": "Cukiernik",
@@ -16544,7 +16576,8 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
               "Granice i bezpieczna komunikacja"
             ]
           }
-        ]
+        ],
+        "rodzaj": "rzemioslo"
       },
       "sala": {
         "nazwa": "Sala i sprzedaż",
@@ -16611,7 +16644,10 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
               "Rytm zmiany w sklepie"
             ]
           }
-        ]
+        ],
+        "rodzaj": "zawod",
+        "kod": "522301",
+        "uwaga": "Sprzedawca NIE jest zawodem rzemieślniczym — handel jest wyłączony z rzemiosła, więc nie ma tu tytułu czeladnika ani mistrza. Formalna droga prowadzi przez kwalifikację HAN.01 i egzamin zawodowy przed okręgową komisją egzaminacyjną, nie przez izbę rzemieślniczą."
       }
     },
     "mostki": {
@@ -16826,11 +16862,6 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
               2,
               3,
               4
-            ],
-            "sala": [
-              1,
-              2,
-              3
             ]
           },
           "wymaga_opis": "Poziomy drabiny, których pokrycie traktujemy jako zakres wiedzy dla tego tytułu. To NIE jest warunek dopuszczenia do egzaminu — te określa izba."
@@ -16863,16 +16894,109 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
               5,
               6,
               7
-            ],
-            "sala": [
-              1,
-              2,
-              3,
-              4,
-              5
             ]
           },
           "wymaga_opis": "Poziomy drabiny, których pokrycie traktujemy jako zakres wiedzy dla tego tytułu. To NIE jest warunek dopuszczenia do egzaminu — te określa izba."
+        }
+      ],
+      "dotyczy": [
+        "piekarz",
+        "cukiernik"
+      ],
+      "opis": "Egzamin czeladniczy i mistrzowski w RZEMIOŚLE (izba rzemieślnicza). Dotyczy piekarza i cukiernika. Sprzedaż ma osobną drogę — patrz `kwalifikacje`."
+    },
+    "kwalifikacje": {
+      "opis": "Droga formalna dla ścieżek, które NIE są rzemiosłem. Ten sam kształt co `egzamin`: etapy, obszary, mapa pokrycia — tylko inny system i inna instytucja.",
+      "zrodlo": "Klasyfikacja zawodów szkolnictwa branżowego: sprzedawca 522301, kwalifikacja HAN.01 „Prowadzenie sprzedaży”. Jednostki efektów kształcenia i warunki egzaminu określa podstawa programowa i informator o egzaminie zawodowym; aktualne brzmienie potwierdza okręgowa komisja egzaminacyjna albo szkoła prowadząca kwalifikacyjny kurs zawodowy.",
+      "zastrzezenie": "Akademia pokrywa ZAKRES WIEDZY, nie zastępuje egzaminu ani nauki zawodu. O warunkach przystąpienia, terminach i opłatach rozstrzyga okręgowa komisja egzaminacyjna albo szkoła — nie ten kurs.",
+      "pozycje": [
+        {
+          "id": "han01",
+          "nazwa": "HAN.01 — Prowadzenie sprzedaży",
+          "zawod": "Sprzedawca",
+          "kod": "522301",
+          "rzemioslo": "sala",
+          "co_to": "Kwalifikacja zawodowa potwierdzana certyfikatem okręgowej komisji egzaminacyjnej. To odpowiednik czeladnika dla sprzedaży — ale w systemie szkolnictwa branżowego, nie w rzemiośle.",
+          "dlaczego_nie_czeladnik": "Handel jest wyłączony z działalności rzemieślniczej, więc dla sprzedawcy nie ma tytułu czeladnika ani mistrza. Kto chce tytułu rzemieślniczego, idzie ścieżką piekarza albo cukiernika — i wtedy praca przy ladzie liczy się jako temat pokrewny, nie jako droga do tytułu.",
+          "dopuszczenie": {
+            "status": "DO POTWIERDZENIA W OKE",
+            "co_wiadomo": "Do egzaminu zawodowego przystępuje się jako uczeń szkoły branżowej, absolwent, uczestnik kwalifikacyjnego kursu zawodowego albo w trybie eksternistycznym. Warunki dla konkretnej osoby rozstrzyga komisja — nie ten kurs."
+          },
+          "etapy": [
+            {
+              "id": "praktyczny",
+              "nazwa": "Część praktyczna",
+              "opis": "Wykonanie zadania egzaminacyjnego w warunkach stanowiska sprzedaży, przy ocenie komisji. Akademia go NIE zastępuje — to praca rękami i rozmowa z klientem."
+            },
+            {
+              "id": "pisemny",
+              "nazwa": "Część pisemna",
+              "opis": "Test jednokrotnego wyboru z zakresu całej kwalifikacji, w tym bezpieczeństwa i higieny pracy, języka obcego zawodowego oraz kompetencji personalnych i społecznych."
+            }
+          ],
+          "obszary": [
+            {
+              "id": "bhp",
+              "nazwa": "Bezpieczeństwo i higiena pracy",
+              "pokrycie": "czesciowe"
+            },
+            {
+              "id": "podstawy_handlu",
+              "nazwa": "Podstawy handlu",
+              "pokrycie": "czesciowe"
+            },
+            {
+              "id": "organizacja",
+              "nazwa": "Organizowanie sprzedaży",
+              "pokrycie": "pelne"
+            },
+            {
+              "id": "sprzedaz",
+              "nazwa": "Sprzedaż towarów",
+              "pokrycie": "pelne"
+            },
+            {
+              "id": "jezyk",
+              "nazwa": "Język obcy zawodowy",
+              "pokrycie": "brak"
+            },
+            {
+              "id": "kompetencje",
+              "nazwa": "Kompetencje personalne i społeczne",
+              "pokrycie": "pelne"
+            }
+          ],
+          "pokrycie": {
+            "bhp": [
+              "Higiena i bezpieczeństwo (CCP)"
+            ],
+            "podstawy_handlu": [
+              "Obsługa i sprzedaż",
+              "Lada: doradzanie i witryna"
+            ],
+            "organizacja": [
+              "Rytm zmiany w sklepie"
+            ],
+            "sprzedaz": [
+              "Obsługa i sprzedaż",
+              "Lada: doradzanie i witryna",
+              "Trudny klient i sztuka naprawy",
+              "Gościnność — czego uczą inne szkoły"
+            ],
+            "kompetencje": [
+              "Komunikacja w zespole",
+              "Granice i bezpieczna komunikacja",
+              "Trudny klient i sztuka naprawy"
+            ]
+          },
+          "wymaga": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "wymaga_opis": "Poziomy drabiny, których pokrycie traktujemy jako zakres wiedzy dla tej kwalifikacji. To NIE jest warunek przystąpienia do egzaminu — te określa komisja."
         }
       ]
     }
@@ -17019,6 +17143,51 @@ function nastepnyKrokZDanych(dane, preferencje = {}, postep = []) {
     }
   });
   return najlepszy;
+}
+
+/* PORT: kwalifikacjaZDanych + kwalifikacjeZDanych z Panelu.
+   Handel jest wyłączony z rzemiosła — sprzedawca nie ma czeladnika ani
+   mistrza. Sprzedaż idzie przez kwalifikację i egzamin zawodowy przed
+   okręgową komisją, więc liczy się ją osobno od tytułów rzemieślniczych. */
+function kwalifikacjaZDanych(dane, idKwalifikacji, postep = []) {
+  const pozycje = (dane.kwalifikacje && dane.kwalifikacje.pozycje) || [];
+  const k = pozycje.filter((x) => x.id === idKwalifikacji)[0];
+  if (!k) return null;
+  const rz = dane.rzemiosla[k.rzemioslo];
+  if (!rz) return null;
+  const numery = k.wymaga || [];
+  const poziomy = rz.poziomy.filter((p) => numery.indexOf(p.nr) >= 0);
+  const mapa = wgTomu(postep);
+  const tomy = [];
+  poziomy.forEach((p) => p.tomy.forEach((x) => { if (tomy.indexOf(x) < 0) tomy.push(x) }));
+  const stany = tomy.map((tom) => ({ tom, procent: proc(mapa.get(tom)) }));
+  const suma = stany.reduce((s, x) => s + x.procent, 0);
+  const obszary = (k.obszary || []).map((o) => {
+    const lista = ((k.pokrycie || {})[o.id] || []).map((tom) => ({ tom, procent: proc(mapa.get(tom)) }));
+    const sumaO = lista.reduce((s, x) => s + x.procent, 0);
+    return { ...o, tomy: lista, procent: lista.length ? Math.round(sumaO / lista.length) : 0, uczymy: lista.length > 0 };
+  });
+  return {
+    id: k.id,
+    nazwa: k.nazwa,
+    zawod: k.zawod,
+    rzemioslo: k.rzemioslo,
+    co_to: k.co_to,
+    dlaczegoNieCzeladnik: k.dlaczego_nie_czeladnik,
+    procent: stany.length ? Math.round(suma / stany.length) : 0,
+    tomow: stany.length,
+    zrobionych: stany.filter((x) => x.procent >= PROG_POZIOMU).length,
+    brakuje: stany.filter((x) => x.procent < PROG_POZIOMU).map((x) => x.tom),
+    obszary,
+    pozaKursem: obszary.filter((o) => !o.uczymy),
+    etapy: k.etapy || [],
+    dopuszczenie: k.dopuszczenie,
+    zastrzezenie: dane.kwalifikacje.zastrzezenie
+  };
+}
+
+function kwalifikacjeZDanych(dane, idRzemiosla) {
+  return ((dane.kwalifikacje && dane.kwalifikacje.pozycje) || []).filter((k) => k.rzemioslo === idRzemiosla);
 }
 
 function tytulZDanych(dane, idRzemiosla, idTytulu, postep = []) {
@@ -17218,6 +17387,7 @@ const norm = (t) => String(t || '').toLowerCase().replace(/[ąćęłńóśźż]/
 function ustawPasek(tytul, zWstecz, podtytul) {
   $('#tytul').textContent = tytul;
   $('#wstecz').hidden = !zWstecz;
+  $('#dom').hidden = zWstecz;
   const p = $('#podtytul');
   p.textContent = podtytul || '';
   p.hidden = !podtytul;
@@ -17265,7 +17435,7 @@ function ekranTomy() {
     const s = policzTom(t, p);
     const b = el('button', 'tom');
     const nag = el('div', 'naglowek');
-    nag.append(el('span', '', s.stan === 'ok' ? '✅' : s.stan === 'toku' ? '🔸' : '📘'));
+    nag.append(el('span', 'tom-znak', s.stan === 'ok' ? '✓' : s.stan === 'toku' ? '◐' : '○'));
     nag.append(el('span', '', t.nazwa));
     nag.append(el('span', 'stan', `${s.ok}/${s.zwykle}`));
     b.append(nag);
@@ -17846,32 +18016,77 @@ function ekranSciezka() {
       kt.append(el('p', 'cichy mini', t.co_to));
       m.append(kt);
     });
+
+    /* Droga formalna dla ścieżek spoza rzemiosła (sprzedaż). Osobna karta,
+       bo to inny system: inna instytucja, inny dokument, inne warunki. */
+    kwalifikacjeZDanych(D2, idRz).forEach((k) => {
+      const w = kwalifikacjaZDanych(D2, k.id, post);
+      if (!w || !w.tomow) return;
+      const kk2 = el('div', 'karta');
+      kk2.append(el('h3', '', `Do zakresu: ${w.nazwa}`));
+      kk2.append(el('div', 'postep-liczba', w.procent + '%'));
+      const pasek = el('div', 'pasek'); const i = el('i'); i.style.width = w.procent + '%'; pasek.append(i);
+      kk2.append(pasek);
+      kk2.append(el('p', 'cichy mini', `${w.zrobionych} z ${w.tomow} modułów zaliczonych.`));
+      if (w.brakuje.length) kk2.append(el('p', 'mini', 'Brakuje: ' + w.brakuje.join(' · ')));
+      kk2.append(el('p', 'cichy mini', w.co_to));
+
+      const lista = el('div', 'poziom-tomy');
+      w.obszary.forEach((o) => {
+        const wiersz = el('div', 'mostek');
+        const g = el('div', 'poziom-glowa');
+        g.append(el('b', '', o.nazwa));
+        g.append(el('span', 'cichy mini', o.uczymy ? o.procent + '%' : 'poza kursem'));
+        wiersz.append(g);
+        lista.append(wiersz);
+      });
+      kk2.append(lista);
+
+      /* Dlaczego nie czeladnik — to jest sedno tej karty, nie przypis.
+         Bez tego zdania ktoś pójdzie do izby po tytuł, którego tam nie ma. */
+      kk2.append(el('p', 'mini', w.dlaczegoNieCzeladnik));
+      if (w.dopuszczenie) {
+        kk2.append(el('p', 'cichy mini', `Warunki przystąpienia: ${w.dopuszczenie.co_wiadomo}`));
+      }
+      kk2.append(el('p', 'cichy mini', w.zastrzezenie));
+      m.append(kk2);
+    });
   }
 
   /* Uczciwość na końcu, nie drobnym drukiem pod paskiem: co ten kurs pokrywa,
      a czego nie ma w nim wcale. Bez tej karty paski wyżej obiecywałyby
      gotowość do egzaminu, której żaden kurs nie daje. */
-  const kz = el('div', 'karta');
-  kz.append(el('h3', '', 'Czego ten kurs NIE zastępuje'));
-  kz.append(el('p', '', D2.egzamin.zastrzezenie));
-  const etapy = el('ul', 'lista-mini');
-  D2.egzamin.etapy.forEach((e) => {
-    const li = el('li', '', '');
-    li.append(el('b', '', e.nazwa + ': '));
-    li.append(document.createTextNode(e.opis));
-    etapy.append(li);
-  });
-  kz.append(etapy);
-  const poza = D2.egzamin.tematy.filter((x) => x.pokrycie === 'brak');
-  if (poza.length) {
-    kz.append(el('p', 'mini', 'Tematów części pisemnej, których ten kurs nie uczy w ogóle: ' +
-      poza.map((x) => x.nazwa).join(' · ') + '.'));
+  /* Ta karta mówi o egzaminie RZEMIEŚLNICZYM (izba, czeladnik, mistrz).
+     02.09.2026: pokazywała się także komuś, kto stoi na ścieżce sprzedaży —
+     a tam nie ma ani izby, ani czeladnika. Człowiek dostawał na jednym ekranie
+     poprawną kartę HAN.01 i pod nią warunki dopuszczenia do egzaminu
+     czeladniczego, czyli dokładnie to nieporozumienie, które ta zmiana usuwa.
+     Rysujemy ją tylko, gdy na ekranie stoi choć jedno RZEMIOSŁO. */
+  const rzemieslnicze = kolejnoscZDanych(D2, pref)
+    .filter((id) => (D2.rzemiosla[id] || {}).rodzaj !== 'zawod');
+  if (rzemieslnicze.length) {
+    const kz = el('div', 'karta');
+    kz.append(el('h3', '', 'Czego ten kurs NIE zastępuje'));
+    kz.append(el('p', '', D2.egzamin.zastrzezenie));
+    const etapy = el('ul', 'lista-mini');
+    D2.egzamin.etapy.forEach((e) => {
+      const li = el('li', '', '');
+      li.append(el('b', '', e.nazwa + ': '));
+      li.append(document.createTextNode(e.opis));
+      etapy.append(li);
+    });
+    kz.append(etapy);
+    const poza = D2.egzamin.tematy.filter((x) => x.pokrycie === 'brak');
+    if (poza.length) {
+      kz.append(el('p', 'mini', 'Tematów części pisemnej, których ten kurs nie uczy w ogóle: ' +
+        poza.map((x) => x.nazwa).join(' · ') + '.'));
   }
   D2.egzamin.tytuly.forEach((t) => {
     if (!t.dopuszczenie) return;
     kz.append(el('p', 'cichy mini', `${t.nazwa} — warunki dopuszczenia: ${t.dopuszczenie.co_wiadomo}`));
   });
   m.append(kz);
+  }
 
   /* Zmiana wyboru — preferencje z Profilu można nadpisać tutaj, bo ktoś może
      wypełnić test raz, a zmienić zdanie po miesiącu pracy. */
@@ -17924,6 +18139,14 @@ async function start() {
   }
   $('#nawigacja').hidden = false;
   podepnij();
+  /* Wejście do Akademii linkuje wprost do ścieżki albo widoku
+     (`#sciezka=piekarz`, `#widok=sciezka`). Bez tego każdy kafel wejścia
+     lądował na tym samym ekranie i dopiero tam trzeba było klikać drugi raz. */
+  const adres = new URLSearchParams(location.hash.replace(/^#/, ''));
+  const sciezkaZAdresu = adres.get('sciezka');
+  if (sciezkaZAdresu && DANE.sciezki.some((x) => x.id === sciezkaZAdresu)) zapisz(KLUCZ_SCIEZKA, sciezkaZAdresu);
+  const widokZAdresu = adres.get('widok');
+  if (['tomy', 'powtorka', 'sciezka', 'postep'].includes(widokZAdresu)) widok = { nazwa: widokZAdresu };
   rysuj();
   }
 
