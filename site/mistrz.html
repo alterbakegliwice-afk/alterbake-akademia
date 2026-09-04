@@ -3,86 +3,131 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#17130f">
-<title>Lekcje Mistrza · Akademia Alterbake</title>
+<meta name="theme-color" content="#EDE7DA">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🥖</text></svg>">
+<title>Rzemiosło człowieka · Akademia Alterbake</title>
 <style>
 :root{
-  --tlo:#0d0b09;--tlo2:#15110e;--karta:#1d1814;--karta2:#28211b;--papier:#eadcc5;
-  --tekst:#f4eee5;--cichy:#b8aa9d;--linia:#493b30;--akcent:#c67937;--akcent2:#edb06f;
-  --miedz:#8f4c26;--turkus:#4d7b78;--ok:#78bd8d;--uwaga:#dfaa55;--blad:#db776a;
-  --r:18px;--cien:0 22px 55px rgba(0,0,0,.28)
+  --ab-czern:#141413;
+  --ab-papier:#EDE7DA;
+  --ab-dab:#C2A06B;
+  --ab-taupe:#6E6A5F;
+  --ab-terakota:#B5532E;
+  --ab-oliwka:#5E5F3C;
+  --ab-sukces:#4A7C3A;
+  --ab-uwaga:#B7791F;
+  --ab-blad:#B03030;
+  --ab-font-display:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --ab-font-body:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ab-font-mono:"IBM Plex Mono", ui-monospace, monospace;
+  --ab-r:14px; --ab-r-sm:9px;
+  --tlo:var(--ab-papier);--tlo2:#F5EFE3;--karta:#FBF8F1;--karta2:#F3EBDD;--papier:#FFFDF8;
+  /* --cichy: taupe z kanonu ściemniony do progu WCAG AA. Sam #6E6A5F na
+     papierze daje 4,38:1 przy 15 px, czyli PONIŻEJ 4,5:1 — a to jest kolor
+     całego tekstu drugiego planu (wyjaśnienia pętli, granice narzędzia).
+     Mieszamy z czernią marki zamiast wpisywać nowy HEX: token zostaje
+     źródłem, zmienia się tylko domieszka. Domieszkę wstawia `@supports` niżej,
+     a nie druga deklaracja obok: własność niestandardowa przyjmuje przy
+     parsowaniu DOWOLNY ciąg tokenów, więc podwójna deklaracja nie jest tu
+     żadnym zabezpieczeniem — wygrywa późniejsza, a awaria przychodzi dopiero
+     przy podstawieniu `var()` i wtedy kolor się DZIEDZICZY. */
+  --tekst:var(--ab-czern);--cichy:var(--ab-taupe);
+  --linia:#DED3C2;--akcent:var(--ab-terakota);--akcent2:#8E3E22;
+  --miedz:var(--ab-terakota);--turkus:#426D69;--ok:var(--ab-sukces);--uwaga:var(--ab-uwaga);--blad:var(--ab-blad);
+  /* --alarm: kolor KOMUNIKATU o błędzie (nie ramki). Do 02.09.2026 stał tu
+     jasny łosoś #ef9e94 — resztka po ciemnym czytniku. Na papierze dawał
+     1,98:1, więc jedyne zdanie pilnujące progu dowodu wyglądało jak tekst
+     wyszarzony. Ciemny wariant dostaje własną wartość niżej. */
+  --alarm:var(--ab-blad);
+  /* Kafle progów LEŻĄ NA CIEMNYM PRZYCIEMNIENIU zdjęcia, więc mają własną,
+     stałą paletę — niezależną od motywu strony. */
+  --na-zdjeciu:#F7F1E8;--na-zdjeciu-cichy:#D7CBC0;--na-zdjeciu-numer:#EDB07A;
+  --r:var(--ab-r);--cien:0 1px 2px rgba(20,20,19,.05),0 8px 24px rgba(20,20,19,.07);
+  --serif:var(--ab-font-display);--sans:var(--ab-font-body);--mono:var(--ab-font-mono)
 }
+@supports (color:color-mix(in srgb,red 50%,blue)){:root{--cichy:color-mix(in srgb,var(--ab-taupe) 86%,var(--ab-czern))}}
 *{box-sizing:border-box}
 html{background:var(--tlo);scroll-behavior:smooth}
-body{min-height:100vh;min-height:100dvh;margin:0;padding-bottom:calc(82px + env(safe-area-inset-bottom));color:var(--tekst);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;background:
-  radial-gradient(circle at 15% -10%,rgba(198,121,55,.18),transparent 34rem),
-  radial-gradient(circle at 90% 28%,rgba(77,123,120,.08),transparent 28rem),
-  repeating-linear-gradient(94deg,rgba(255,255,255,.012) 0 1px,transparent 1px 7px),var(--tlo)}
+body{min-height:100vh;min-height:100dvh;margin:0;padding-bottom:calc(82px + env(safe-area-inset-bottom));color:var(--tekst);font:17px/1.62 var(--sans);-webkit-text-size-adjust:100%;background:radial-gradient(900px 420px at 100% -10%,rgba(194,160,107,.18),transparent 65%),var(--tlo)}
 button,a,textarea{font:inherit}
 button,a{touch-action:manipulation}
 button{color:inherit}
-button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--akcent2);outline-offset:3px}
-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:11px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:rgba(13,11,9,.92);border-bottom:1px solid rgba(237,176,111,.18);backdrop-filter:blur(15px)}
-header a{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--linia);border-radius:50%;color:var(--papier);text-decoration:none;background:linear-gradient(145deg,#241d18,#15110e);box-shadow:inset 0 0 0 1px rgba(255,255,255,.025)}
+/* Kolejność: najpierw zdejmij domyślny pierścień z tytułu (fokus dostaje
+   programowo przy zmianie ekranu), dopiero potem oddaj go klawiaturze.
+   Odwrotna kolejność — a taka tu stała — kasowała pierścień ZAWSZE. */
+#naglowek:focus{outline:none}
+button:focus-visible,a:focus-visible,textarea:focus-visible,#naglowek:focus-visible{outline:3px solid var(--akcent2);outline-offset:3px}
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:11px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:var(--karta);background:color-mix(in srgb,var(--karta) 92%,transparent);border-bottom:1px solid var(--linia);backdrop-filter:blur(12px);box-shadow:0 1px 2px rgba(20,20,19,.05)}
+header a{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--linia);border-radius:12px;color:var(--tekst);text-decoration:none;background:linear-gradient(145deg,#F1E4CB,#F4E2D6)}
 header div{min-width:0;flex:1}
-header h1{margin:0;overflow:hidden;font:700 18px/1.15 ui-serif,Georgia,serif;letter-spacing:.01em;text-overflow:ellipsis;white-space:nowrap}
-header p,.nadtytul,.etykieta{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+header h1{margin:0;overflow:hidden;font:700 18px/1.15 var(--serif);letter-spacing:.01em;text-overflow:ellipsis;white-space:nowrap}
+header p,.nadtytul,.etykieta{font-family:var(--mono)}
 header p{margin:3px 0 0;color:var(--cichy);font-size:10px;letter-spacing:.13em;text-transform:uppercase}
-main{max-width:820px;margin:0 auto;padding:16px}
-.karta{position:relative;overflow:hidden;margin-bottom:14px;padding:19px;background:linear-gradient(155deg,rgba(37,30,24,.98),rgba(25,21,17,.98));border:1px solid var(--linia);border-radius:var(--r);box-shadow:var(--cien)}
-.karta:before{position:absolute;inset:0;pointer-events:none;content:"";background:linear-gradient(115deg,rgba(255,255,255,.025),transparent 28%)}
-.hero{padding:24px 20px;background:linear-gradient(145deg,rgba(143,76,38,.32),rgba(29,24,20,.97) 58%)}
-.hero-start{min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;background-position:center;background-size:cover}
-.hero-start:after{position:absolute;inset:0;content:"";background:linear-gradient(180deg,rgba(10,8,7,.14) 0,rgba(10,8,7,.62) 48%,rgba(10,8,7,.96) 100%)}
-.hero-start>*{position:relative;z-index:1}
+main{max-width:860px;margin:0 auto;padding:16px}
+.karta{position:relative;overflow:hidden;margin-bottom:14px;padding:20px;background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);box-shadow:var(--cien)}
+.hero{padding:25px 21px;background:linear-gradient(145deg,#F6EBDD,var(--karta) 64%);border-left:5px solid var(--ab-dab)}
+/* Do 02.09.2026 stało tu `background:none!important` — tarcza przed inline'owym
+   `style.backgroundImage`, który zszedł z `ekranSciezka` w tej samej zmianie.
+   Została sama tarcza i robiła pierwszą kartę modułu przezroczystą. */
+.hero-start{min-height:auto;display:block}
 .nadtytul{margin-bottom:9px;color:var(--akcent2);font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
-h2{margin:0 0 13px;font:750 clamp(29px,8vw,47px)/1.02 ui-serif,Georgia,serif;letter-spacing:-.035em;text-wrap:balance}
-h3{margin:0 0 8px;font:700 20px/1.25 ui-serif,Georgia,serif}
+h2{margin:0 0 13px;font:750 clamp(28px,8vw,46px)/1.08 var(--serif);letter-spacing:-.025em;text-wrap:balance}
+h3{margin:0 0 8px;font:700 21px/1.25 var(--serif)}
 p{margin:0 0 12px}
 p:last-child{margin-bottom:0}
 .cichy{color:var(--cichy);font-size:14px}
 .mini{font-size:12px}
-.ostra{max-width:680px;margin:16px 0;padding-left:14px;border-left:3px solid var(--akcent);color:var(--papier);font:600 19px/1.48 ui-serif,Georgia,serif}
-.plakietka{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid rgba(237,176,111,.14);border-radius:999px;background:rgba(198,121,55,.13);color:var(--akcent2);font:700 10px/1.2 ui-monospace,"SFMono-Regular",Menlo,monospace;letter-spacing:.04em;text-transform:uppercase}
+.ostra{max-width:680px;margin:16px 0;padding-left:14px;border-left:3px solid var(--akcent);color:var(--tekst);font:600 19px/1.48 var(--serif)}
+.plakietka{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid var(--linia);border-radius:999px;background:#F4E2D6;color:var(--akcent2);font:700 10px/1.2 var(--mono);letter-spacing:.04em;text-transform:uppercase}
 .plakietka.ok{background:rgba(120,189,141,.13);color:var(--ok)}
-.plakietka.uwaga{background:rgba(223,170,85,.13);color:var(--uwaga)}
+.plakietka.uwaga{background:rgba(223,170,85,.13);color:var(--uwaga);color:color-mix(in srgb,var(--uwaga) 72%,var(--ab-czern))}
 .meta{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 0}
-.przycisk{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;margin-top:11px;padding:12px 15px;border:1px solid var(--akcent);border-radius:13px;background:linear-gradient(135deg,var(--akcent2),var(--akcent));color:#1a1009;text-decoration:none;font-weight:850;cursor:pointer;box-shadow:0 9px 24px rgba(143,76,38,.23)}
+.przycisk{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;margin-top:11px;padding:12px 15px;border:1px solid var(--akcent);border-radius:13px;background:var(--akcent);color:#fff;text-decoration:none;font-weight:850;cursor:pointer;box-shadow:0 6px 18px rgba(181,83,46,.18)}
 .przycisk:hover{filter:brightness(1.08)}
 .przycisk.drugi{border-color:var(--linia);background:transparent;color:var(--tekst);box-shadow:none}
 .przycisk.maly{width:auto;min-height:42px;margin:0;padding:9px 13px;font-size:13px}
-.przycisk.niebezpieczny{border-color:rgba(219,119,106,.38);background:transparent;color:#e8a39a;box-shadow:none}
+.przycisk.niebezpieczny{border-color:var(--alarm);border-color:color-mix(in srgb,var(--alarm) 45%,transparent);background:transparent;color:var(--alarm);box-shadow:none}
 .siatka{display:grid;gap:11px}
-.lekcja,.prog{position:relative;width:100%;overflow:hidden;text-align:left;background:linear-gradient(150deg,var(--karta),#16120f);color:var(--tekst);border:1px solid var(--linia);border-radius:15px;cursor:pointer;transition:transform .18s ease,border-color .18s ease}
+.lekcja,.prog{position:relative;width:100%;overflow:hidden;text-align:left;background:var(--karta);color:var(--tekst);border:1px solid var(--linia);border-radius:15px;cursor:pointer;box-shadow:var(--cien);transition:transform .18s ease,border-color .18s ease}
 .lekcja{padding:16px}
-.prog{min-height:205px;display:flex;align-items:flex-end;padding:0;background-position:center;background-size:cover}
-.prog:before{position:absolute;inset:0;content:"";background:linear-gradient(180deg,rgba(9,8,7,.12),rgba(9,8,7,.92))}
-.prog-tresc{position:relative;z-index:1;width:100%;padding:16px}
+.prog{min-height:205px;display:flex;align-items:flex-end;padding:0;background-color:#2A231D;background-position:center;background-size:cover}
+.prog:before{position:absolute;inset:0;content:"";background:linear-gradient(180deg,rgba(9,8,7,.05),rgba(9,8,7,.86))}
+/* Nazwa progu MUSI mieć własny, jasny kolor. Dziedziczyła `--tekst`, czyli
+   w jasnym motywie czerń marki — a leży na przyciemnionym zdjęciu. Efekt:
+   po wczytaniu grafik siedem głównych kafli pierwszego ekranu traciło tytuły
+   (02.09.2026, QA na 390 px). Widać było numer i opis, nie było nazwy. */
+.prog-tresc{position:relative;z-index:1;width:100%;padding:16px;color:var(--na-zdjeciu)}
+.prog-tresc .numer{color:var(--na-zdjeciu-numer);border-color:rgba(237,176,111,.5)}
 .lekcja:hover,.prog:hover{transform:translateY(-2px);border-color:var(--akcent)}
 .lekcja .glowa,.prog .glowa{display:flex;gap:10px;align-items:flex-start}
 .numer{flex:none;display:grid;place-items:center;min-width:31px;height:31px;border:1px solid rgba(237,176,111,.34);border-radius:50%;color:var(--akcent2);font:800 11px/1 ui-monospace,monospace}
 .lekcja b,.prog b{display:block;font:700 17px/1.3 ui-serif,Georgia,serif}
 .lekcja p,.prog p{margin:7px 0 0;color:var(--cichy);font-size:13px;line-height:1.48}
-.prog p{color:#d7cbc0}
+.prog p{color:var(--na-zdjeciu-cichy)}
 .powod{margin-top:11px;padding-top:11px;border-top:1px solid var(--linia);color:var(--akcent2);font-size:12px}
 .sekcja{position:relative;padding-top:20px}
 .sekcja .etykieta{margin-bottom:7px;color:var(--akcent2);font-size:10px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
 .sekcja+.sekcja{margin-top:19px;border-top:1px solid var(--linia)}
 .sekcja p{font-size:16px;line-height:1.68}
-.ruch{background:linear-gradient(145deg,rgba(125,65,31,.42),rgba(34,27,21,.98));border-color:rgba(237,176,111,.48)}
-.ruch .duzy{color:var(--papier);font:700 22px/1.42 ui-serif,Georgia,serif}
+.ruch{background:linear-gradient(145deg,#F4E2D6,var(--karta));border-color:#D8B195}
+.ruch .duzy{color:var(--tekst);font:700 22px/1.42 var(--serif)}
 .progi{display:grid;grid-template-columns:1fr;gap:11px}
 .tryb{display:flex;align-items:flex-start;gap:11px;margin-top:14px;padding-top:14px;border-top:1px solid var(--linia)}
 .tryb .znak{color:var(--akcent2);font-size:24px;line-height:1}
-.obraz-lekcji{margin:0 0 14px;overflow:hidden;background:#100d0b;border:1px solid var(--linia);border-radius:var(--r);box-shadow:var(--cien)}
+.obraz-lekcji{margin:0 0 14px;overflow:hidden;background:var(--karta2);border:1px solid var(--linia);border-radius:var(--r);box-shadow:var(--cien)}
 .obraz-lekcji img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
-.obraz-lekcji figcaption{padding:13px 15px;color:var(--papier);font:600 15px/1.5 ui-serif,Georgia,serif;background:linear-gradient(135deg,rgba(77,123,120,.13),rgba(198,121,55,.1))}
+.obraz-lekcji figcaption{padding:13px 15px;color:var(--tekst);font:600 15px/1.5 var(--serif);background:linear-gradient(135deg,#E5EEEA,#F4E2D6)}
 .obraz-lekcji figcaption:before{content:"KOTWICA  ";color:var(--akcent2);font:800 9px/1 ui-monospace,monospace;letter-spacing:.15em}
-.pamiec{border-color:rgba(77,123,120,.55);background:linear-gradient(145deg,rgba(44,70,67,.24),rgba(27,23,19,.98))}
-.pamiec .odpowiedz{margin-top:14px;padding:14px;border-left:3px solid var(--turkus);background:rgba(77,123,120,.1);color:var(--papier)}
-.blad{min-height:20px;margin-top:8px;color:#ef9e94;font-size:13px}
+/* Karta „odtwórz z pamięci" była CIEMNA także w jasnym motywie — resztka po
+   czytniku sprzed 02.09.2026. Pytanie (czerń marki) i podpowiedź (taupe)
+   lądowały na prawie czarnym tle: pytanie ledwo widoczne, podpowiedź znikała
+   w połowie zdania. Karta jest odtąd papierowa jak reszta modułu, a turkus
+   zostaje akcentem odsłoniętej odpowiedzi. */
+.pamiec{border-color:rgba(66,109,105,.45);background:linear-gradient(145deg,#E7F0EC,var(--karta) 62%)}
+.pamiec .odpowiedz{margin-top:14px;padding:14px;border-left:3px solid var(--turkus);background:rgba(66,109,105,.1);color:var(--tekst)}
+.blad{min-height:20px;margin-top:8px;color:var(--alarm);font-size:13px;font-weight:600}
 .formularz label{display:block;margin-bottom:7px;color:var(--cichy);font-size:12px}
-textarea{width:100%;min-height:104px;resize:vertical;padding:13px;background:var(--karta2);color:var(--tekst);border:1px solid var(--linia);border-radius:12px;font-size:15px;line-height:1.5}
+textarea{width:100%;min-height:120px;resize:vertical;padding:14px;background:#FFFDF8;color:var(--tekst);border:1px solid var(--linia);border-radius:12px;font-size:17px;line-height:1.55}
 .proba{border-left:4px solid var(--linia)}
 .proba.plan{border-left-color:var(--uwaga)}
 .proba.dziala,.proba.czesc{border-left-color:var(--ok)}
@@ -90,26 +135,54 @@ textarea{width:100%;min-height:104px;resize:vertical;padding:13px;background:var
 .akcje button{flex:1 1 128px;min-height:44px;padding:9px;border:1px solid var(--linia);border-radius:10px;background:var(--karta2);color:var(--tekst);cursor:pointer}
 .akcje button:hover{border-color:var(--akcent)}
 .pusty{text-align:center;padding:34px 19px;color:var(--cichy)}
-nav{position:fixed;z-index:25;left:0;right:0;bottom:0;display:flex;background:rgba(20,16,13,.96);border-top:1px solid rgba(237,176,111,.18);padding-bottom:env(safe-area-inset-bottom);backdrop-filter:blur(14px)}
-nav button{flex:1;min-height:68px;border:0;background:none;color:var(--cichy);font:700 11px/1.2 ui-monospace,monospace;letter-spacing:.04em;cursor:pointer}
-nav button span{display:block;margin-bottom:5px;color:inherit;font:600 19px/1 ui-serif,serif}
+nav{position:fixed;z-index:25;left:0;right:0;bottom:0;display:flex;background:var(--karta);background:color-mix(in srgb,var(--karta) 96%,transparent);border-top:1px solid var(--linia);padding-bottom:env(safe-area-inset-bottom);backdrop-filter:blur(14px)}
+nav button,nav a{flex:1;min-height:68px;border:0;background:none;color:var(--cichy);font:700 11px/1.2 var(--mono);letter-spacing:.02em;cursor:pointer;text-decoration:none;display:block;text-align:center}
+nav button span,nav a span{display:block;margin-bottom:5px;color:inherit;font:600 19px/1 var(--serif)}
 nav button.aktywny{color:var(--akcent2)}
 .ukryty{display:none!important}
-@media(min-width:650px){main{padding:24px}.progi{grid-template-columns:1fr 1fr}.siatka.rekomendacje{grid-template-columns:repeat(3,1fr)}.lekcja{height:100%}.hero-start{min-height:470px}}
+.petla{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:17px 0 4px}
+.petla span{padding:9px 6px;border:1px solid var(--linia);border-radius:10px;background:var(--tlo2);font:700 11px/1.25 var(--mono);text-align:center}
+.profil-mapa{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:15px}
+.profil-mapa div{padding:12px;border:1px solid var(--linia);border-radius:12px;background:var(--tlo2)}
+.profil-mapa small{display:block;margin-bottom:5px;color:var(--cichy);font:700 10px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.profil-mapa b{font:700 15px/1.35 var(--serif)}
+details.rozwin{margin-top:14px;border-top:1px solid var(--linia);padding-top:12px}
+details.rozwin summary{min-height:44px;display:flex;align-items:center;color:var(--akcent2);font-weight:750;cursor:pointer}
+.krok-glowny{border-left:5px solid var(--akcent)}
+@media(min-width:650px){main{padding:24px}.progi{grid-template-columns:1fr 1fr}.siatka.rekomendacje{grid-template-columns:repeat(3,1fr)}.lekcja{height:100%}}
+@media(max-width:480px){main{padding:13px}.karta{padding:17px}.profil-mapa{grid-template-columns:1fr}.petla{grid-template-columns:1fr 1fr}.hero-start{min-height:auto}h2{font-size:30px}.cichy{font-size:15px}}
+@media(prefers-color-scheme:dark){:root{--tlo:#171310;--tlo2:#2A231D;--karta:#211C17;--karta2:#2A231D;--papier:#F1E9DE;--tekst:#F1E9DE;--cichy:#A89A89;--linia:#45392E;/* Sygnały w ciemnym motywie mają WŁASNE wartości: zieleń i żółć kanonu są
+   dobrane pod papier i na karcie #211C17 schodzą do 3,4:1 przy 10 px. */
+--akcent:#D97A4D;--akcent2:#F0A47E;--alarm:#F09B90;--turkus:#7FB3AD;--ok:#7CC46A;--uwaga:#E0A63C;--cien:0 1px 3px rgba(0,0,0,.4)}
+/* Biały tekst na jaśniejszej terakocie ciemnego motywu to 3,07:1 — a to jest
+   GŁÓWNY przycisk modułu. Ciemny tekst na tym samym tle daje 5,8:1.
+   Warianty `.drugi` i `.niebezpieczny` mają wyższą specyficzność i własny
+   kolor wyżej, więc ta reguła ich nie tyka. */
+.przycisk{color:#1B1512}
+header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:linear-gradient(145deg,#3A2418,var(--karta) 64%)}.ruch{background:linear-gradient(145deg,#3A2418,var(--karta))}.plakietka{background:#3A2418}.profil-mapa div,.petla span{background:var(--tlo2)}textarea{background:var(--tlo2)}.pamiec{background:linear-gradient(145deg,rgba(44,70,67,.42),var(--karta) 62%)}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
-@media(prefers-contrast:more){:root{--cichy:#d0c6bd;--linia:#796555}.karta,.lekcja,.prog{border-width:2px}}
+/* Tryb wysokiego kontrastu miał JASNY taupe i jasną linię — poprawne, dopóki
+   moduł był ciemnym czytnikiem. Po przejściu na papier ta sama reguła stała
+   ostatnia w pliku, więc wygrywała też w motywie jasnym i schodziła z 5,97:1
+   do 1,36:1: człowiek, który świadomie włączył „Zwiększ kontrast", tracił cały
+   drugi plan i etykiety dolnego paska. Odtąd każdy motyw ma własne wartości. */
+@media(prefers-contrast:more){:root{--cichy:#3D3A33;--linia:#8C7B66}.karta,.lekcja,.prog{border-width:2px}}
+@media(prefers-contrast:more) and (prefers-color-scheme:dark){:root{--cichy:#D8CEC4;--linia:#7E6B58}}
 </style>
 </head>
 <body>
 <header>
-  <a href="./akademia-kurs.html" aria-label="Wróć do Akademii">←</a>
-  <div><h1 id="naglowek">Lekcje Mistrza</h1><p>Akademia Alterbake · Kuźnia decyzji</p></div>
+  <a href="./index.html" aria-label="Wróć do Akademii">🥖</a>
+  <div><h1 id="naglowek" tabindex="-1">Rzemiosło człowieka</h1><p>Akademia Alterbake · Lekcje Mistrza</p></div>
 </header>
 <main id="ekran"></main>
 <nav id="nav">
-  <button data-widok="sciezka" class="aktywny"><span>◇</span>Ścieżka</button>
-  <button data-widok="praktyka"><span>◉</span>Praktyka</button>
-  <button data-widok="wszystkie"><span>▦</span>Biblioteka</button>
+  <button data-widok="sciezka" class="aktywny"><span>◇</span>Warsztat</button>
+  <button data-widok="praktyka"><span>◉</span>Próby</button>
+  <button data-widok="wszystkie"><span>▦</span>Lekcje</button>
+  <!-- Nie przełącza widoku — wychodzi z modułu do Kursu rzemiosła.
+       03.09.2026, Piotr: oba moduły osiągalne z każdego miejsca. -->
+  <a href="./"><span>📚</span>Kurs</a>
 </nav>
 
 <script>(function (root, factory) {
@@ -354,7 +427,7 @@ nav button.aktywny{color:var(--akcent2)}
     analitycznosc: 'Analityczność', planowanie: 'Przewidywanie', asertywnosc: 'Asertywność',
     optymizm: 'Optymizm sprawczy', rozwijanie_innych: 'Rozwijanie innych', goscinnosc: 'Gościnność'
   };
-  var MIN_DOWOD = 12;
+  var MIN_DOWOD = 24;
 
   function liczba(x) { return typeof x === 'number' && isFinite(x); }
   function obiekt(x) { return x && typeof x === 'object' && !Array.isArray(x); }
@@ -448,6 +521,19 @@ nav button.aktywny{color:var(--akcent2)}
     return { spersonalizowane: true, tryb: trybUczenia(profil), pozycje: wynik.slice(0, 3) };
   }
 
+  function warsztatProfilu(profil) {
+    if (!profil || !wiarygodnoscPozwala(profil)) return null;
+    var obszary = pozycjeNumeryczne(profil.wyniki).sort(function (a, b) { return b.wynik - a.wynik || a.id.localeCompare(b.id); });
+    var talenty = pozycjeNumeryczne(profil.talenty).sort(function (a, b) { return b.wynik - a.wynik || a.id.localeCompare(b.id); });
+    if (!obszary.length) return null;
+    return {
+      zasob: OBSZARY[obszary[0].id] || obszary[0].id,
+      talent: talenty.length ? (TALENTY[talenty[0].id] || talenty[0].id) : null,
+      trening: OBSZARY[obszary[obszary.length - 1].id] || obszary[obszary.length - 1].id,
+      tryb: trybUczenia(profil).nazwa
+    };
+  }
+
   function pustyStan() { return { wersja: 1, proby: [] }; }
 
   function stanZ(surowe) {
@@ -517,6 +603,7 @@ nav button.aktywny{color:var(--akcent2)}
     ostatniProfil: ostatniProfil,
     wiarygodnoscPozwala: wiarygodnoscPozwala,
     trybUczenia: trybUczenia,
+    warsztatProfilu: warsztatProfilu,
     rekomenduj: rekomenduj,
     MIN_DOWOD: MIN_DOWOD,
     stanZ: stanZ,
@@ -536,6 +623,7 @@ nav button.aktywny{color:var(--akcent2)}
   var KLUCZ_STANU = 'akademia_mistrz_v1';
   var widok = { nazwa: 'sciezka' };
   var ekran = document.getElementById('ekran');
+  var naglowek = document.getElementById('naglowek');
 
   function el(tag, klasa, tekst) {
     var e = document.createElement(tag);
@@ -550,7 +638,7 @@ nav button.aktywny{color:var(--akcent2)}
   function lekcjaPoId(id) { return D.lekcje.find(function(x){ return x.id === id; }); }
   function progPoId(id) { return D.progi.find(function(x){ return x.id === id; }); }
   function wyczysc() { ekran.innerHTML = ''; window.scrollTo(0,0); }
-  function ustawTytul(t) { document.getElementById('naglowek').textContent = t || 'Lekcje Mistrza'; }
+  function ustawTytul(t) { document.getElementById('naglowek').textContent = t || 'Rzemiosło człowieka'; }
   function karta(klasa) { return el('section', 'karta' + (klasa ? ' ' + klasa : '')); }
   function przycisk(tekst, akcja, drugi) { var b=el('button','przycisk'+(drugi?' drugi':''),tekst); b.type='button'; b.onclick=akcja; return b; }
   function sekcja(rodzic, etykieta, tekst) { var s=el('div','sekcja'); s.append(el('div','etykieta',etykieta),el('p','',tekst)); rodzic.append(s); }
@@ -560,7 +648,13 @@ nav button.aktywny{color:var(--akcent2)}
     if(zamien) history.replaceState(null,'',location.pathname+location.search+hash);
     else if(location.hash!==hash) history.pushState(null,'',location.pathname+location.search+hash);
     widok={nazwa:nazwa,id:id};rysuj();
+    przeniesFokus();
   }
+  /* Ekran wymienia się w miejscu, więc czytnik ekranu zostawał na zniknięym
+     przycisku i wracał na początek dokumentu. Przenosimy fokus na tytuł nowego
+     ekranu — bez przewijania, bo o to dba `wyczysc`. To samo musi się dziać
+     przy WSTECZ: tam `h1` po cichu zmieniał tekst i nikt tego nie ogłaszał. */
+  function przeniesFokus(){ naglowek.focus({preventScroll:true}); }
   function widokZAdresu() {
     var m=location.hash.match(/^#(prog|lekcja|plan)=([^&]+)$/);
     if(m)return {nazwa:m[1],id:decodeURIComponent(m[2])};
@@ -568,8 +662,22 @@ nav button.aktywny{color:var(--akcent2)}
     if(location.hash==='#wszystkie')return {nazwa:'wszystkie'};
     return {nazwa:'sciezka'};
   }
+  /* Siedem ilustracji progów to JEDYNE pliki poza tym HTML-em (razem ~1,9 MB).
+     Moduł ma działać bez nich w całości, więc figura, której obraz nie doszedł,
+     ZNIKA zamiast zostawiać ikonę zepsutego zdjęcia — inaczej „grafiki są
+     dodatkiem" byłoby obietnicą, a nie zachowaniem. */
+  /* Siedem ilustracji progów to JEDYNE pliki poza tym HTML-em (razem ~1,9 MB).
+     Moduł ma działać bez nich w całości, więc obraz, który nie doszedł, ZNIKA
+     zamiast zostawiać ikonę zepsutego zdjęcia.
+
+     Znika WYŁĄCZNIE obraz. Pierwsza wersja tej naprawy kasowała całą figurę
+     razem z podpisem — a podpisem na ekranie lekcji jest `kotwica`, czyli
+     jedno z czternastu zdań niosących treść, którego nie ma nigdzie indziej.
+     „Grafiki są dodatkiem" zamieniało się wtedy w „bez sieci dostajesz krótszą
+     lekcję". Pusta figura (ekran progu, gdzie podpisu nie ma) usuwa się cała. */
   function figura(p,opis) {
     var f=el('figure','obraz-lekcji'),img=el('img');img.src=urlGrafiki(p);img.alt=p.alt;img.loading='lazy';img.decoding='async';
+    img.onerror=function(){img.remove();if(!f.querySelector('figcaption'))f.remove()};
     f.append(img);if(opis)f.append(el('figcaption','',opis));return f;
   }
 
@@ -592,31 +700,36 @@ nav button.aktywny{color:var(--akcent2)}
   }
 
   function ekranSciezka(){
-    wyczysc(); ustawTytul('Lekcje Mistrza');
-    var h=karta('hero hero-start');h.style.backgroundImage='url("'+urlGrafiki(progPoId('mgla'))+'")';h.append(el('div','nadtytul','Ścieżka Natchnionego · 7 progów'));
-    h.append(el('h2','','Mniej opowieści. Więcej trafnych ruchów.'));
-    h.append(el('p','ostra','Jedna sytuacja. Jedna decyzja. Jeden ruch do sprawdzenia na zmianie. Reszta to mgła.'));
-    h.append(el('p','cichy','To nie kurs „jak być lepszym człowiekiem” ani ocena pracownika. Lekcja daje język do rozmowy i mały eksperyment. Wynik Profilu Alterbake podpowiada punkt startu — nie przydziela roli.'));
-    ekran.append(h);
+    wyczysc(); ustawTytul('Rzemiosło człowieka');
+    var h=karta('hero hero-start');h.append(el('div','nadtytul','Praca nad sobą · bez diagnoz i rang'));
+    h.append(el('h2','','Zobacz. Wybierz. Sprawdź.'));
+    h.append(el('p','ostra','Rozwój zaczyna się wtedy, gdy nowa myśl zmienia zachowanie w prawdziwej sytuacji.'));
+    h.append(el('p','cichy','Profil podpowiada punkt startu. Lekcja daje ruch. Próba zbiera dowód. Wynik jest hipotezą do rozmowy, nie oceną człowieka.'));
+    var petla=el('div','petla');['1 · PROFIL','2 · RUCH','3 · PRÓBA','4 · DOWÓD'].forEach(function(x){petla.append(el('span','',x))});h.append(petla);ekran.append(h);
 
     var aktywna=L.aktywnaProba(stan());
     if(aktywna){var al=lekcjaPoId(aktywna.lekcjaId),ak=karta('ruch');ak.append(el('div','nadtytul','Jedna aktywna próba'));ak.append(el('h3','',al?al.tytul:'Próba w toku'));ak.append(el('p','cichy','Najpierw domknij obserwację. Nowa próba poczeka — rozproszenie nie jest programem rozwojowym.'));ak.append(przycisk('Wróć do aktywnej próby →',function(){nawiguj('praktyka')}));ekran.append(ak)}
 
-    var pr=profil(), rec=L.rekomenduj(pr,D.lekcje), pk=karta();
-    pk.append(el('div','nadtytul',pr?'Profil wykryty':'Bez profilu'));
-    pk.append(el('h3','',pr?(rec.spersonalizowane?'Trzy ruchy dobrane do Twojego profilu':'Zaczynamy od obserwacji'):'Możesz zacząć bez testu'));
+    var pr=profil(), rec=L.rekomenduj(pr,D.lekcje), mapa=L.warsztatProfilu(pr), pk=karta();
+    pk.append(el('div','nadtytul',pr?'Twój warsztat':'Mapa wyposażenia'));
+    pk.append(el('h3','',mapa?'Profil daje punkt startu':'Najpierw poznaj wyposażenie'));
     pk.append(el('p','cichy',pr
-      ? (rec.spersonalizowane?'Jeden ruch opiera się na zasobie, drugi pilnuje cienia mocnej strony, trzeci sprawdza obszar tarcia.':'Wiarygodność tej próbki jest niska. Nie udajemy precyzji — najpierw zbieramy zachowania.')
-      : 'Test zwiększa trafność startu, ale nie jest bramką. Brak kwestionariusza nie zwalnia z patrzenia na rzeczywistość.'));
+      ? (mapa?'To trzy soczewki do obserwacji, nie etykiety. Zachowanie może je potwierdzić, skorygować albo obalić.':'Ta próbka ma niską wiarygodność. Nie udajemy precyzji — zaczynamy od zachowania.')
+      : 'Profil Alterbake sprawdza predyspozycje, mocne strony i preferencje nauki. Około 15 minut; wynik zostaje na tym urządzeniu.'));
+    if(mapa){var pm=el('div','profil-mapa');[['Zasób',mapa.zasob],['Talent i jego cień',mapa.talent||'Do obserwacji'],['Obszar treningu',mapa.trening]].forEach(function(x){var d=el('div');d.append(el('small','',x[0]),el('b','',x[1]));pm.append(d)});pk.append(pm)}
     var tr=el('div','tryb'); tr.append(el('div','znak','↳'),el('div','',rec.tryb.nazwa+' · '+rec.tryb.opis)); pk.append(tr);
-    if(!pr){var a=el('a','przycisk drugi','Zrób Profil Alterbake →');a.href='./test/';pk.append(a)}
-    ekran.append(pk);
+    var a=el('a','przycisk '+(pr?'drugi':''),pr?'Zobacz lub powtórz Profil →':'Zrób Profil Alterbake →');a.href='./test/';pk.append(a);ekran.append(pk);
 
-    var t=el('div','nadtytul','Rekomendowany start'); ekran.append(t);
-    var s=el('div','siatka rekomendacje'); rec.pozycje.forEach(function(x){s.append(guzikLekcji(x.lekcja,x.typ.toUpperCase()+' · '+x.powod))}); ekran.append(s);
+    var glowna=rec.pozycje[0], krok=karta('krok-glowny');krok.append(el('div','nadtytul','Jeden następny ruch · '+glowna.typ));krok.append(el('h3','',glowna.lekcja.tytul));krok.append(el('p','ostra',glowna.lekcja.ostrze));krok.append(el('p','cichy',glowna.powod));krok.append(przycisk('Otwórz lekcję i zaplanuj próbę →',function(){nawiguj('lekcja',glowna.lekcja.id)}));
+    if(rec.pozycje.length>1){var det=el('details','rozwin'),sum=el('summary','','Pokaż dwa inne kierunki');det.append(sum);var s=el('div','siatka');rec.pozycje.slice(1).forEach(function(x){s.append(guzikLekcji(x.lekcja,x.typ.toUpperCase()+' · '+x.powod))});det.append(s);krok.append(det)}ekran.append(krok);
 
-    var nag=karta(); nag.append(el('div','nadtytul','Pełna ścieżka')); nag.append(el('h3','','Siedem progów, nie siedem poziomów człowieka'));
-    nag.append(el('p','cichy','Nie przechodzisz ich raz na zawsze. Wracasz do właściwego progu, kiedy sytuacja tego wymaga. Rozwój lubi pętle; tylko prezentacje lubią schody.'));
+    var nag=karta(); nag.append(el('div','nadtytul','Lekcje Mistrza · pełna mapa')); nag.append(el('h3','','Siedem progów, nie siedem poziomów człowieka'));
+    nag.append(el('p','cichy','Wracasz do właściwego progu, kiedy sytuacja tego wymaga. To biblioteka narzędzi do uwagi, regulacji, relacji, decyzji i sensu — nie drabina wartości ludzi.'));
+    /* Na wejściu do Akademii kafel „Ścieżka rzemiosła" mówi o zakresie
+       czeladnika i MISTRZA — tytule, który wydaje izba rzemieślnicza. Kafel
+       obok mówi „Lekcja Mistrza". Dwa znaczenia jednego słowa, jedno nad
+       drugim, i nic ich nie rozdzielało. To zdanie jest tym rozdzieleniem. */
+    nag.append(el('p','cichy mini','„Mistrz" jest tu głosem redakcyjnym, nie tytułem zawodowym. Tytuł czeladnika i mistrza rzemiosła prowadzi Ścieżka rzemiosła w Akademii, a wydaje go izba rzemieślnicza — ten moduł nie ma z tym nic wspólnego.'));
     ekran.append(nag);
     var progi=el('div','progi'); D.progi.forEach(function(p){
       var b=el('button','prog'),t=el('div','prog-tresc'),g=el('div','glowa');b.type='button';b.style.backgroundImage='url("'+urlGrafiki(p)+'")';g.append(el('span','numer',p.nr),el('b','',p.nazwa));t.append(g,el('p','',p.opis));b.append(t);
@@ -626,15 +739,18 @@ nav button.aktywny{color:var(--akcent2)}
 
   function ekranProgu(id){
     wyczysc();var p=progPoId(id);if(!p){nawiguj('sciezka',null,true);return}ustawTytul(p.nazwa);
-    var h=karta('hero');h.append(el('div','nadtytul','Próg '+p.nr+' · '+p.symbol));h.append(el('h2','',p.nazwa));h.append(el('p','ostra',p.opis));ekran.append(h,figura(p,'Obraz progu: '+p.opis));
+    var h=karta('hero');h.append(el('div','nadtytul','Próg '+p.nr+' · '+p.symbol));h.append(el('h2','',p.nazwa));h.append(el('p','ostra',p.opis));/* Bez podpisu: `p.opis` stoi zdanie wyżej w tym samym hero, a „Obraz progu:"
+   powtarzało je drugi raz. Dzięki temu figura bez obrazu usuwa się w całości
+   i ekran progu nie zostaje z pustą ramką. */
+    ekran.append(h,figura(p));
     var s=el('div','siatka');D.lekcje.filter(function(l){return l.prog===id}).forEach(function(l){s.append(guzikLekcji(l))});ekran.append(s);
     ekran.append(przycisk('← Wróć do ścieżki',function(){nawiguj('sciezka')},true));
   }
 
-  function kartaMapy(l){var k=karta();sekcja(k,'POLE',l.pole);sekcja(k,'WRÓG',l.wrog);sekcja(k,'CENA',l.cena);sekcja(k,'PRZYKŁAD',l.przyklad);return k}
+  function kartaMapy(l){var k=karta();k.append(el('div','nadtytul','ZOBACZ MECHANIZM'));sekcja(k,'SYGNAŁ',l.pole);var d=el('details','rozwin'),s=el('summary','','Rozłóż sytuację na części');d.append(s);sekcja(d,'PUŁAPKA',l.wrog);sekcja(d,'CENA',l.cena);sekcja(d,'PRZYKŁAD',l.przyklad);k.append(d);return k}
 
   function kartaRuchu(l,id){
-    var r=karta('ruch'),aktywna=L.aktywnaProba(stan());r.append(el('div','nadtytul','RUCH'));r.append(el('p','duzy',l.ruch));sekcja(r,'INTEGRACJA',l.integracja);sekcja(r,'RESZTA TO MGŁA',l.reszta);
+    var r=karta('ruch'),aktywna=L.aktywnaProba(stan());r.append(el('div','nadtytul','ZRÓB JEDEN RUCH'));r.append(el('p','duzy',l.ruch));var d=el('details','rozwin'),s=el('summary','','Po czym poznasz, że ruch jest trafny?');d.append(s);sekcja(d,'INTEGRACJA',l.integracja);sekcja(d,'ODPUŚĆ',l.reszta);r.append(d);
     if(aktywna&&aktywna.lekcjaId!==id)r.append(przycisk('Najpierw domknij aktywną próbę →',function(){nawiguj('praktyka')}));
     else if(aktywna)r.append(przycisk('Ta próba jest już w toku →',function(){nawiguj('praktyka')}));
     else r.append(przycisk('Zabierz ten ruch na zmianę →',function(){nawiguj('plan',id)}));
@@ -643,7 +759,8 @@ nav button.aktywny{color:var(--akcent2)}
 
   function kartaPamieci(l){
     var k=karta('pamiec');k.append(el('div','nadtytul','ODTWÓRZ Z PAMIĘCI'));k.append(el('h3','',l.sprawdz.pytanie));k.append(el('p','cichy','Najpierw odpowiedz własnymi słowami. Dopiero potem odsłoń podpowiedź.'));
-    var odp=el('p','odpowiedz ukryty',l.sprawdz.odpowiedz),b=przycisk('Pokaż odpowiedź',function(){var ukryta=odp.classList.toggle('ukryty');b.textContent=ukryta?'Pokaż odpowiedź':'Ukryj odpowiedź'},true);k.append(b,odp);return k;
+    var odp=el('p','odpowiedz ukryty',l.sprawdz.odpowiedz),b=przycisk('Pokaż odpowiedź',function(){var ukryta=odp.classList.toggle('ukryty');b.textContent=ukryta?'Pokaż odpowiedź':'Ukryj odpowiedź';b.setAttribute('aria-expanded',ukryta?'false':'true')},true);
+    b.setAttribute('aria-expanded','false');k.append(b,odp);return k;
   }
 
   function ekranLekcji(id){
@@ -672,7 +789,7 @@ nav button.aktywny{color:var(--akcent2)}
     var k=karta('proba '+kl);k.append(el('div','nadtytul',p.status==='plan'?'Próba w toku':'Zapis próby'));k.append(el('h3','',l.tytul));
     if(p.kontekst)k.append(el('p','',p.kontekst));k.append(el('p','cichy mini',new Date(p.utworzono).toLocaleDateString('pl-PL')));
     if(p.status==='plan'){
-      var lab=el('label','cichy mini','Co faktycznie się stało?');var ta=el('textarea');ta.placeholder='Jeden obserwowalny fakt i skutek. Minimum '+L.MIN_DOWOD+' znaków.';ta.value=p.dowod||'';var blad=el('p','blad');blad.setAttribute('aria-live','polite');k.append(lab,ta,blad);
+      var lab=el('label','cichy mini','Dowód: zachowanie → reakcja → skutek');var ta=el('textarea');ta.placeholder='Co dokładnie zrobiłeś? Co dało się zobaczyć lub usłyszeć? Jaki był skutek? Minimum '+L.MIN_DOWOD+' znaki.';ta.value=p.dowod||'';var blad=el('p','blad');blad.setAttribute('aria-live','polite');k.append(lab,ta,blad);
       var a=el('div','akcje');[['działało','dziala'],['częściowo','czesciowo'],['nie zadziałało','nie']].forEach(function(x){
         var b=el('button','',x[0]);b.type='button';b.onclick=function(){if(ta.value.trim().length<L.MIN_DOWOD){blad.textContent='Najpierw zapisz konkretny dowód. Sama ocena wyniku nie kończy próby.';ta.focus();return}var s=L.aktualizujProbe(stan(),p.id,{status:x[1],dowod:ta.value});zapiszStan(s);rysuj()};a.append(b)
       });k.append(a);
@@ -685,7 +802,7 @@ nav button.aktywny{color:var(--akcent2)}
 
   function ekranPraktyki(){
     wyczysc();ustawTytul('Praktyka');var s=stan(),proby=s.proby.slice().reverse();
-    var h=karta('hero');h.append(el('div','nadtytul','Dowody zamiast odznak'));h.append(el('h2','','Co przeszło próbę pracy?'));h.append(el('p','ostra','Trzy próby mówią więcej niż jedno „rozumiem”. Nadal nie czynią z nikogo mistrza. Spokojnie, korona poczeka.'));h.append(el('p','cichy','Status „przetestowane” oznacza wyłącznie: co najmniej trzy zakończone próby, z czego dwie dały użyteczny wynik. Nie zmienia automatycznie Profilu Alterbake.'));ekran.append(h);
+    var h=karta('hero');h.append(el('div','nadtytul','Dowody zamiast odznak'));h.append(el('h2','','Co zmieniło zachowanie?'));h.append(el('p','ostra','Jedna próba daje historię. Trzy próby zaczynają dawać wzorzec.'));h.append(el('p','cichy','„Przetestowane” oznacza tylko: co najmniej trzy zakończone próby, z czego dwie były użyteczne. Nie zmienia wyniku Profilu i nie ocenia człowieka.'));ekran.append(h);
     if(!proby.length){var p=el('div','karta pusty','Nie ma jeszcze prób. Otwórz lekcję i zabierz jeden ruch na zmianę.');ekran.append(p);return}
     proby.forEach(function(p){var k=kartaProby(p);if(k)ekran.append(k)});
   }
@@ -697,7 +814,11 @@ nav button.aktywny{color:var(--akcent2)}
 
   function aktywujNav(){
     var n=widok.nazwa==='praktyka'?'praktyka':widok.nazwa==='wszystkie'?'wszystkie':'sciezka';
-    document.querySelectorAll('#nav button').forEach(function(b){b.classList.toggle('aktywny',b.dataset.widok===n)});
+    /* aria-current, nie sama klasa: kolor mówi, gdzie jesteś, tylko oczom. */
+    document.querySelectorAll('#nav button').forEach(function(b){
+      var tu=b.dataset.widok===n;b.classList.toggle('aktywny',tu);
+      if(tu)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
+    });
   }
   function rysuj(){
     aktywujNav();
@@ -709,7 +830,7 @@ nav button.aktywny{color:var(--akcent2)}
     else if(widok.nazwa==='wszystkie')ekranWszystkich();
   }
   document.querySelectorAll('#nav button').forEach(function(b){b.type='button';b.onclick=function(){nawiguj(b.dataset.widok)}});
-  window.addEventListener('popstate',function(){widok=widokZAdresu();rysuj()});
+  window.addEventListener('popstate',function(){widok=widokZAdresu();rysuj();przeniesFokus()});
   widok=widokZAdresu();rysuj();
 })();
 </script>

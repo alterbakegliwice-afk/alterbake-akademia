@@ -13,9 +13,19 @@
      i tiebreakery, ocena wiarygodności, wymiary charakteru,
    - z Profilu Pracy: scenariusze sytuacyjne (SJT) i pytania otwarte,
      oraz raportowanie w 8 obszarach w skali 0–100,
-   - naprawione (M-10): „Uczciwość" i „Rozwiązywanie problemów" nie są
-     już naciągane z talentów, które mierzą co innego — te dwa obszary
-     zasilają WYŁĄCZNIE scenariusze, bo pytają o zachowanie w dylemacie.  */
+   - M-10 miało odciąć „Uczciwość" i „Rozwiązywanie problemów" od talentów,
+     które mierzą co innego, i liczyć je WYŁĄCZNIE ze scenariuszy. Redteam
+     03.09.2026 znalazł, że intencja nigdy nie doszła do `MAPOWANIE_OBSZAROW`
+     w `[wewn.]`: oba obszary miały
+     niepuste listy `talenty` (odpowiedzialnosc/rozwaga; structure/
+     analitycznosc/planowanie), więc `policzObszary()` niżej mieszała je
+     ze scenariuszami jak każdy inny obszar — 03.09.2026 przez ~7 dni.
+     Piotr rozstrzygnął tego samego dnia (wariant A): wrócić do czystych
+     scenariuszy. Naprawione w `tresc-profilu.mjs` (`talenty: []` dla obu),
+     nie tutaj — ta funkcja już miała właściwą gałąź (`!lista.length`),
+     czekała tylko na puste dane. Talenty odpowiedzialnosc/rozwaga/
+     structure/analitycznosc/planowanie nadal liczą się i pokazują osobno
+     w sekcji talentów — zmiana odcina je wyłącznie od tych dwóch obszarów. */
 (function (root) {
   "use strict";
 
@@ -158,9 +168,13 @@
   }
 
   /* ── 4. Obszary (raport wspólny, 0–100) ────────────────────────────
-     mapowanie: { obszar: { talenty: [...], waga? } } — obszar bez talentów
-     (Uczciwość, Rozwiązywanie problemów) liczy się wyłącznie ze
-     scenariuszy; obszar z talentami miesza jedno i drugie.               */
+     mapowanie: { obszar: { talenty: [...], waga? } } — obszar, którego
+     lista `talenty` jest pusta, liczy się wyłącznie ze scenariuszy; obszar
+     z niepustą listą miesza jedno i drugie. Od decyzji Piotra 03.09.2026
+     (patrz nagłówek pliku) „Uczciwość" i „Rozwiązywanie problemów" mają
+     w `MAPOWANIE_OBSZAROW` pustą listę `talenty` — to świadomy wyjątek,
+     nie przeoczenie: te dwa obszary liczą się wyłącznie ze scenariuszy,
+     pozostałe sześć nadal miesza. */
   function talentNa100(v) {
     return przytnij(Math.round(((v - MIN_TALENT) / (MAX_TALENT - MIN_TALENT)) * 100), 0, 100);
   }

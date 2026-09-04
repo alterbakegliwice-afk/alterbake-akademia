@@ -26,13 +26,21 @@
   --ab-font-body:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --ab-font-mono:"IBM Plex Mono", ui-monospace, monospace;
   --ab-r:14px; --ab-r-sm:9px;
-  --tlo:var(--ab-papier); --karta:#FBF8F1; --tekst:var(--ab-czern); --cichy:var(--ab-taupe);
+  --tlo:var(--ab-papier); --karta:#FBF8F1; --tekst:var(--ab-czern);
+  /* --cichy: taupe kanonu na papierze daje 4,38:1, tuż poniżej WCAG AA —
+     dociemniamy domieszką w `@supports` niżej (nie drugą deklaracją: własność
+     niestandardowa przyjmuje dowolny ciąg tokenów, więc druga deklaracja nie
+     zabezpiecza niczego — wygrywa późniejsza). Ta sama domieszka na
+     wszystkich powierzchniach Akademii, żeby jeden język wizualny nie
+     rozjechał się na drugim planie. */
+  --cichy:var(--ab-taupe);
   --akcent:var(--ab-terakota); --akcent-jasny:#F4E2D6; --dab-tlo:#F1E4CB;
   --ok:var(--ab-sukces); --zle:var(--ab-blad);
   --ramka:#E0D7C8; --ramka-mocna:#D3C5AA; --linia:var(--ramka);
   --cien:0 1px 2px rgba(20,20,19,.05),0 4px 14px rgba(20,20,19,.06);
   --r:var(--ab-r); --serif:var(--ab-font-display); --sans:var(--ab-font-body);
 }
+@supports (color:color-mix(in srgb,red 50%,blue)){:root{--cichy:color-mix(in srgb,var(--ab-taupe) 86%,var(--ab-czern))}}
 @media (prefers-color-scheme:dark){
   :root{--tlo:#171310;--karta:#211C17;--tekst:#F1E9DE;--cichy:#A89A89;
         --akcent:#D97A4D;--akcent-jasny:#3A2418;--dab-tlo:#33291B;--ok:#7FB56B;--zle:#E06C6C;
@@ -46,10 +54,11 @@ h1,h2,h3,.tom .naglowek,.logo-nazwa{font-family:var(--serif);letter-spacing:.005
 body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
 #pasek{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:10px;
   padding:calc(8px + env(safe-area-inset-top)) 12px 8px;
+  background:var(--karta);
   background:color-mix(in srgb,var(--karta) 92%,transparent);color:var(--tekst);
   -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
   border-bottom:1px solid var(--ramka);box-shadow:0 1px 2px rgba(20,20,19,.06)}
-.logo{display:grid;place-items:center;width:40px;height:40px;flex:none;font-size:22px;cursor:pointer;
+.logo{display:grid;place-items:center;width:44px;height:44px;flex:none;font-size:22px;text-decoration:none;cursor:pointer;
   background:linear-gradient(160deg,var(--dab-tlo),var(--akcent-jasny));
   border:1px solid var(--ramka-mocna);border-radius:12px}
 #pasek-tekst{flex:1;min-width:0}
@@ -60,13 +69,23 @@ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
    nie wie już, w której części jest. */
 #podtytul{font-size:12px;color:var(--cichy);margin-top:1px;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* 44px, nie 40 — próg celu dotykowego ustalony przy QA Rzemiosła Człowieka
+   03.09.2026, tu wyrównany, żeby wstecz/logo/szukaj w tym samym pasku nie
+   były jedynym miejscem Akademii poniżej progu. */
+/* display:inline-flex + min-height, nie line-height: tekst w linku bywa
+   dwuwierszowy (CTA w ekranSciezka na 360 px), a line-height:44px złamałby
+   drugi wiersz na siebie. Zmierzone 03.09.2026: bez tego cel dotykowy miał
+   38 px zamiast 44. */
+a.cichy{display:inline-flex;align-items:center;min-height:44px;color:var(--akcent);font-weight:700;text-decoration:none}
 .ikona{background:var(--akcent-jasny);color:var(--akcent);border:1px solid var(--ramka);border-radius:10px;
-  min-width:40px;min-height:40px;font-size:18px;cursor:pointer}
+  min-width:44px;min-height:44px;font-size:18px;cursor:pointer}
 main{padding:14px;max-width:760px;margin:0 auto}
 .karta{background:var(--karta);border:1px solid var(--ramka);border-radius:var(--r);
   padding:16px;margin-bottom:12px;box-shadow:var(--cien)}
 .karta h2{margin:0 0 6px;font-size:18px}
 .karta h3{margin:0 0 10px;font-size:16px;color:var(--akcent)}
+.karta-mistrz{border-left:4px solid var(--akcent)}
+.karta-mistrz a{display:inline-block;margin-top:8px;min-height:44px;line-height:44px}
 .cichy{color:var(--cichy);font-size:14px}
 .mini{font-size:13px}
 ul.punkty{margin:0;padding-left:20px}
@@ -125,8 +144,9 @@ button.drugi{width:100%;min-height:48px;background:transparent;color:var(--akcen
 .wyjasnienie p{margin:0 0 8px;font-size:15px}
 #nawigacja{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--karta);
   border-top:1px solid var(--ramka);padding-bottom:env(safe-area-inset-bottom);z-index:10}
-#nawigacja button{flex:1;min-height:60px;background:none;border:0;color:var(--cichy);
-  font-size:12px;cursor:pointer;display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center}
+#nawigacja button,#nawigacja a{flex:1;min-height:60px;background:none;border:0;color:var(--cichy);
+  font-size:12px;cursor:pointer;display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;
+  text-decoration:none;font-family:inherit}
 #nawigacja button.akt{color:var(--akcent);font-weight:600}
 details.slownik{margin-top:12px}
 details.slownik summary{cursor:pointer;font-weight:600;padding:12px;background:var(--karta);
@@ -299,10 +319,15 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
   <button data-widok="powtorka">🔁 Powtórka</button>
   <button data-widok="sciezka">🧭 Ścieżka</button>
   <button data-widok="postep">📊 Postęp</button>
+  <!-- Piąta pozycja nie przełącza widoku (data-widok) — wychodzi z kursu do
+       drugiego modułu Akademii. Świadomie w tym samym pasku co reszta:
+       03.09.2026, Piotr — oba moduły mają być osiągalne z każdego miejsca,
+       a to jedyny pasek widoczny na wszystkich ekranach kursu. -->
+  <a href="./mistrz.html">🧰 Człowiek</a>
 </nav>
 <script id="dane-kursu" type="application/json">{
-  "wersja": "2026-09-02",
-  "zbudowano": "2026-09-02",
+  "wersja": "2026-09-04",
+  "zbudowano": "2026-09-04",
   "sciezki": [
     {
       "id": "piekarz",
@@ -621,6 +646,10 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
           "Zapisz wniosek: o ile godzin różni się czas dojścia i w którą stronę przesunął się profil smaku."
         ],
         "kryterium": "Potrafisz podać czas dojścia swojej kultury dla dwóch różnych temperatur i wskazać, w którą stronę przesuwa się profil smaku, opierając się na własnej obserwacji, a nie na tabeli."
+      },
+      "polaczenieMistrza": {
+        "lekcjaId": "przewaga-ma-cien",
+        "tekst": "To ten sam wzorzec co w Lekcji Mistrza „Przewaga ma cień”, tylko w procesie: kwaśność zakwasu to jego zaleta, a ta sama cecha w nadmiarze daje zakwas słaby — dawka decyduje, nie kierunek."
       },
       "pojecia": [
         {
@@ -1410,6 +1439,10 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
           "Przyjmij wartość powtarzalną i wpisz ją do karty razem z biegiem, czasem i napełnieniem, przy których obowiązuje."
         ],
         "kryterium": "Masz zapisany współczynnik tarcia dla swojej mieszarki wraz z warunkami, przy których go wyznaczono, a wyliczona z niego temperatura wody daje ciasto w granicach ±1°C od celu."
+      },
+      "polaczenieMistrza": {
+        "lekcjaId": "naucz-zeby-sprawdzic",
+        "tekst": "Dokładnie to opisuje Lekcja Mistrza „Naucz, żeby sprawdzić”: dopóki proces zależy od kogoś, kto „czuje, ile dolać wody”, nie jest jeszcze wiedzą, którą można przekazać — DDT zamienia przeczucie w liczbę."
       },
       "pojecia": [
         {
@@ -2782,6 +2815,10 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
           "Powtórz do trzech razy, aż przekrój będzie taki, jak chcesz. Zapisz znalezioną parę liczb przy recepturze."
         ],
         "kryterium": "Potrafisz podać z pamięci docelową temperaturę ciasta i docelowy procent wzrostu dla tej jednej receptury, a osoba, która nigdy jej nie piekła, doprowadza ciasto do tego samego stanu wyłącznie na podstawie twojego zapisu."
+      },
+      "polaczenieMistrza": {
+        "lekcjaId": "sygnal-przed-progiem",
+        "tekst": "Ten sam odruch co w Lekcji Mistrza „Sygnał przed progiem”, tylko dla ciasta: liczysz temperaturę i procent wzrostu, żeby złapać moment tuż przed przefermentowaniem — nie zegar i nie ocenę po fakcie."
       },
       "pojecia": [
         {
@@ -8062,6 +8099,10 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
           "Zapisz wybraną wartość przy recepturze razem z uzasadnieniem i datą próby."
         ],
         "kryterium": "Masz trzy zdjęcia przekroju z podpisaną wartością badanego parametru, wybraną wartość zapisaną przy recepturze i potrafisz powiedzieć jednym zdaniem, co ta zmiana daje, a co odbiera."
+      },
+      "polaczenieMistrza": {
+        "lekcjaId": "eksperyment-zamiast-rewolucji",
+        "tekst": "To narzędzie z Lekcji Mistrza „Eksperyment zamiast rewolucji”: zamiast wierzyć w cały pomysł naraz, zmień jedną zmienną i sprawdź wynik, zanim zmienisz cały proces."
       },
       "pojecia": [
         {
@@ -13709,6 +13750,10 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
         ],
         "kryterium": "Potrafisz wskazać w dowolnej partii wyrób właściwy do pomiaru i podać z pamięci limit dla tego etapu oraz to, co robisz, gdy nie zostanie osiągnięty."
       },
+      "polaczenieMistrza": {
+        "lekcjaId": "prawo-zatrzymania",
+        "tekst": "To ten sam odruch, o którym mówi Lekcja Mistrza „Prawo zatrzymania” — tylko przeniesiony na produkcję: punkt krytyczny zatrzymuje proces, gdy limit jest przekroczony, niezależnie od tego, czy w danej chwili rozumiesz przyczynę."
+      },
       "pojecia": [
         {
           "id": "ccp",
@@ -14975,6 +15020,10 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
         ],
         "kryterium": "Masz trzy przepisane pierwsze zdania bez „ale”, bez „musi pan” i bez zaprzeczania doświadczeniu, przećwiczone na głos — oraz jedno wspólne zdanie graniczne, które zna cała zmiana."
       },
+      "polaczenieMistrza": {
+        "lekcjaId": "pauza-przed-odpowiedzia",
+        "tekst": "To sytuacja z Lekcji Mistrza „Pauza przed odpowiedzią”: szybka riposta bywa droższa niż sam problem — zanim odpowiesz, sprawdź, czy klient jest zdenerwowany sytuacją, czy atakuje ciebie."
+      },
       "pojecia": [],
       "pytania": [
         {
@@ -15697,6 +15746,10 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
         ],
         "kryterium": "Masz dwa pomiary z tej samej godziny w odstępie tygodnia, trzy rzeczy przeniesione w zasięg ręki i widoczną różnicę w liczbie kresek — albo wiesz, dlaczego różnicy nie ma."
       },
+      "polaczenieMistrza": {
+        "lekcjaId": "zamknij-zanim-otworzysz",
+        "tekst": "Ten sam mechanizm co w Lekcji Mistrza „Zamknij, zanim otworzysz”: wartość jest w domknięciu dnia, nie w otwieraniu kolejnych rzeczy — zaniedbane zamknięcie kosztuje jutrzejszą zmianę."
+      },
       "pojecia": [
         {
           "id": "alergen",
@@ -16046,6 +16099,10 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
           "Przeczytaj obie wersje na głos i zapisz, czym się różni to, jak brzmią."
         ],
         "kryterium": "Umiesz to, gdy potrafisz w trakcie rozmowy usłyszeć własne zdanie zaczynające się od oceny i przerobić je na fakt, zanim je dokończysz."
+      },
+      "polaczenieMistrza": {
+        "lekcjaId": "powiedziane-nie-znaczy-zrozumiane",
+        "tekst": "Ten sam mechanizm co w Lekcji Mistrza „Powiedziane nie znaczy zrozumiane”: przekaz jest bezpieczny dopiero, gdy wraca w słowach drugiej osoby — sprawdzaj to przy każdej zmianie, którą przekazujesz dalej."
       },
       "pojecia": [
         {
@@ -16398,6 +16455,10 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
           "Zapisz, co powstrzymuje cię przed powiedzeniem go tej właściwej osobie. To zwykle jest sedno sprawy."
         ],
         "kryterium": "Umiesz to, gdy potrafisz zamienić „to jest nie do przyjęcia” na zdanie, po którym druga osoba wie, co konkretnie ma zrobić inaczej."
+      },
+      "polaczenieMistrza": {
+        "lekcjaId": "granica-bez-wykladu",
+        "tekst": "Ten sam ruch co w Lekcji Mistrza „Granica bez wykładu”: granica ma być zrozumiała, nie uzasadniona — jedno zdanie, które da się powiedzieć na głos, wystarczy."
       },
       "pojecia": [],
       "pytania": [
@@ -18315,6 +18376,22 @@ function ekranTom() {
     }
   }
 
+  /* Połączenie z Rzemiosłem Człowieka (03.09.2026) — kurowane, jeden tom
+     ↔ jedna lekcja, patrz [wewn.]. To jest
+     odesłanie do INNEGO dokumentu (mistrz.html), nie widok w tym module,
+     więc prawdziwy <a>, nie przycisk zmieniający `widok`. Karta ma własną
+     klasę (nie "karta" wprost), żeby wizualnie odróżnić „stąd dalej w tym
+     kursie" od „ten sam mechanizm gdzie indziej w Akademii". */
+  if (t.polaczenieMistrza) {
+    const k = el('div', 'karta karta-mistrz');
+    k.append(el('h3', 'nauka-sekcja', 'Z Rzemiosła Człowieka'));
+    k.append(el('p', '', t.polaczenieMistrza.tekst));
+    const a = el('a', 'cichy', 'Otwórz lekcję →');
+    a.href = './mistrz.html#lekcja=' + encodeURIComponent(t.polaczenieMistrza.lekcjaId);
+    k.append(a);
+    m.append(k);
+  }
+
   if (t.pojecia && t.pojecia.length) {
     const d = el('details', 'slownik');
     d.append(el('summary', '', `📖 Słownik — ${t.pojecia.length} pojęć z tego materiału`));
@@ -18606,6 +18683,16 @@ function ekranSciezka() {
       paski.append(b);
     }
     k.append(paski);
+    /* Redteam 03.09.2026: kurs nie miał ŻADNEGO wewnętrznego odniesienia
+       do Profilu Alterbake — jedyne drogi do niego szły przez wejście albo
+       przez Mistrza. To jest dokładnie ekran, na którym Profil realnie
+       pomaga (dobiera kolejność ścieżek), więc dostaje link tutaj, obok
+       ręcznego wyboru — nie zamiast niego. */
+    const pTest = el('p', 'mini');
+    const aTest = el('a', 'cichy', 'Nie wiesz od czego zacząć? Zrób Profil Alterbake →');
+    aTest.href = './test/index.html';
+    pTest.append(aTest);
+    k.append(pTest);
     m.append(k);
     return;
   }

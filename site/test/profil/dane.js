@@ -1382,10 +1382,7 @@
       ]
     },
     "integrity": {
-      "talenty": [
-        "odpowiedzialnosc",
-        "rozwaga"
-      ]
+      "talenty": []
     },
     "communication": {
       "talenty": [
@@ -1395,11 +1392,7 @@
       ]
     },
     "problemSolving": {
-      "talenty": [
-        "structure",
-        "analitycznosc",
-        "planowanie"
-      ]
+      "talenty": []
     }
   },
   SCENARIUSZE: [
