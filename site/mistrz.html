@@ -87,6 +87,11 @@ p:last-child{margin-bottom:0}
 .przycisk.drugi{border-color:var(--linia);background:transparent;color:var(--tekst);box-shadow:none}
 .przycisk.maly{width:auto;min-height:42px;margin:0;padding:9px 13px;font-size:13px}
 .przycisk.niebezpieczny{border-color:var(--alarm);border-color:color-mix(in srgb,var(--alarm) 45%,transparent);background:transparent;color:var(--alarm);box-shadow:none}
+/* Etykieta „Wgraj profil z pliku" jest przyciskiem nad wizualnie ukrytym
+   `input[type=file]` — domyślny pierścień fokusu (linia 47) trafiał więc na
+   niewidoczny element, nie na to, co widać (redteam 05.09.2026, F5). Klasa
+   dokładana/zdejmowana z inputa przy focus/blur. */
+.przycisk.fokus{outline:3px solid var(--akcent2);outline-offset:3px}
 .siatka{display:grid;gap:11px}
 .lekcja,.prog{position:relative;width:100%;overflow:hidden;text-align:left;background:var(--karta);color:var(--tekst);border:1px solid var(--linia);border-radius:15px;cursor:pointer;box-shadow:var(--cien);transition:transform .18s ease,border-color .18s ease}
 .lekcja{padding:16px}
@@ -207,7 +212,7 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
       id: 'fakt-przed-opowiescia', prog: 'mgla', tytul: 'Fakt przed opowieścią', czas: 4,
       ostrze: 'Nie rozwiązuj opowieści. Najpierw znajdź fakt.',
       pole: 'Na zmianie pada zdanie: „nikt nigdy nie przekazuje informacji”. Brzmi jak diagnoza, ale jest tylko dymem. Faktem może być jedno nieprzekazane zadanie, brak potwierdzenia albo ustalenie, którego nikt nie zapisał. Każde wymaga innego ruchu.',
-      wrog: 'Pewność zbudowana z tonu głosu. Człowiek mówi głośno, mózg dopisuje dowody. Stary numer; ludzkość ćwiczy go od ogniska i nadal nie zaliczyła egzaminu.',
+      wrog: 'Pewność zbudowana z tonu głosu. Człowiek mówi głośno, mózg dopisuje dowody. To bardzo stary chwyt — działa nawet dziś, więc łatwo się na niego nabrać.',
       cena: 'Naprawiasz charakter człowieka, choć zepsuło się przekazanie. Rośnie napięcie, a problem wraca w nowym ubraniu.',
       ruch: 'Przed reakcją zapisz trzy linie: CO WIEM — CO DOPOWIADAM — CO SPRAWDZĘ. Wykonaj tylko trzecią linię.',
       integracja: 'Przy najbliższym mocnym osądzie zatrzymaj się na 60 sekund. Nazwij jeden obserwowalny fakt i jedno pytanie, które rozstrzyga sytuację.',
@@ -233,12 +238,12 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
     },
     {
       id: 'przewaga-ma-cien', prog: 'ostrze', tytul: 'Przewaga ma cień', czas: 4,
-      ostrze: 'Talent użyty bez miary staje się wadą z dobrym PR-em.',
+      ostrze: 'Talent bez umiaru zamienia się w wadę, która ładnie wygląda z zewnątrz.',
       pole: 'Dokładność może chronić jakość albo zatrzymać tempo. Empatia może budować zaufanie albo odkładać trudną rozmowę. Inicjatywa może ulepszać pracę albo urządzać innym życie bez zaproszenia. To samo ostrze; różni się chwyt.',
       wrog: 'Wiara, że skoro coś jest mocną stroną, to większa dawka zawsze pomoże. Nawet sól zna lepsze proporcje.',
       cena: 'Bronisz zachowania nazwą talentu i przestajesz zauważać jego koszt dla wyniku albo ludzi.',
       ruch: 'Dokończ zdanie: „Moja przewaga pomaga, gdy…; zaczyna szkodzić, gdy…; sygnałem granicy jest…”. Wybierz jeden sygnał widoczny dla innych.',
-      integracja: 'Poproś jedną osobę o konkretny przykład, kiedy Twoja mocna strona pomogła i kiedy przesadziła. Bez obrony. Obrona jest bezpłatna, dlatego ludzie nadużywają jej jak folii spożywczej.',
+      integracja: 'Poproś jedną osobę o konkretny przykład, kiedy Twoja mocna strona pomogła i kiedy przesadziła. Bez obrony. Nie broń się od razu — to najłatwiejsza reakcja, dlatego sięga się po nią za często.',
       reszta: 'Etykieta „taki mam charakter” używana jak przepustka służbowa.',
       przyklad: '„Moja dokładność pomaga przy kontroli. Szkodzi, gdy poprawiam detal po czasie decyzji.”',
       kotwica: 'To samo ostrze ma błysk i cień. Dawkę poznajesz po skutku, nie po nazwie talentu.',
@@ -262,8 +267,8 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
     {
       id: 'jedno-tak-jeden-koszt', prog: 'cena', tytul: 'Jedno „tak”, jeden koszt', czas: 3,
       ostrze: 'Nowe zadanie nie wchodzi do pustego dnia. Wypycha coś, tylko zwykle po cichu.',
-      pole: 'Pojawia się dobry pomysł, pilna prośba albo drobna poprawka. Każda osobno wygląda niewinnie. Razem zjadają margines, a potem wszyscy są zaskoczeni, że doba nie została powiadomiona o zmianie planu.',
-      wrog: 'Bezkosztowe „tak”. Brzmi uprzejmie, księguje się brutalnie.',
+      pole: 'Pojawia się dobry pomysł, pilna prośba albo drobna poprawka. Każda osobno wygląda niewinnie. Razem zjadają margines, a potem wszyscy się dziwią, że w ciągu dnia zabrakło na to czasu.',
+      wrog: 'Bezkosztowe „tak”. Brzmi uprzejmie, ale kosztuje więcej, niż się wydaje.',
       cena: 'Niedomknięte zadania, chaotyczne przekazania i obietnice, których nikt świadomie nie wycofał.',
       ruch: 'Przyjmując nowe zadanie, nazwij od razu: CO SCHODZI, KTO DECYDUJE, KIEDY WRACAMY. Jeśli nic nie schodzi, to nie decyzja — to życzenie.',
       integracja: 'Przez jedną zmianę nie przyjmuj żadnego nowego „na chwilę” bez wskazania kosztu.',
@@ -281,7 +286,7 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
       cena: 'Otwarte pętle zjadają uwagę, utrudniają przekazanie i sprawiają, że nikt nie wie, co naprawdę jest gotowe.',
       ruch: 'Przed otwarciem nowego zadania domknij jedno stare do stanu: GOTOWE / PRZEKAZANE / ŚWIADOMIE ZAMKNIĘTE.',
       integracja: 'Wybierz dziś jedną pętlę młodszą niż tydzień i doprowadź ją do jednego z trzech stanów. Bez „prawie”.',
-      reszta: 'Kosmetyczne 80%, które przez miesiąc udaje projekt.',
+      reszta: 'Zadanie zrobione w 80%, które miesiącami udaje gotowe.',
       przyklad: '„To nie jest gotowe, dopóki odbiorca nie potwierdzi, że może z tego skorzystać.”',
       kotwica: 'Sześć otwartych pochew nie zastąpi jednego domkniętego ostrza.',
       sprawdz: { pytanie: 'Jakie trzy stany naprawdę zamykają pętlę?', odpowiedz: 'GOTOWE — PRZEKAZANE — ŚWIADOMIE ZAMKNIĘTE.' },
@@ -322,7 +327,7 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
       wrog: 'Przytaknięcie uznane za potwierdzenie. Ludzie przytakują także wtedy, gdy chcą, żeby rozmowa wreszcie umarła spokojnie.',
       cena: 'Błąd wraca, a korekta zmienia się w spór o to, co „przecież było mówione”.',
       ruch: 'Po ważnym przekazaniu poproś: „Powiedz własnymi słowami, co teraz robisz i kiedy wracasz z informacją.” Bez tonu egzaminatora.',
-      integracja: 'Zastosuj teach-back przy jednym zadaniu z terminem albo ryzykiem. Sprawdź, czy różnica wyszła przed działaniem.',
+      integracja: 'Zastosuj tę metodę („powtórz własnymi słowami”) przy jednym zadaniu z terminem albo ryzykiem. Sprawdź, czy różnica wyszła przed działaniem.',
       reszta: 'Głośniejsze powtarzanie tego samego zdania.',
       przyklad: '„Żebym sprawdził, czy powiedziałem to jasno: jak rozumiesz następny krok?”',
       kotwica: 'Przekazana nić jest bezpieczna dopiero wtedy, gdy wraca do Ciebie w słowach odbiorcy.',
@@ -346,7 +351,7 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
     {
       id: 'wlasciciel-wyniku', prog: 'praca', tytul: 'Właściciel wyniku', czas: 4,
       ostrze: 'Wykonanie własnego ruchu nie kończy odpowiedzialności, jeśli wynik nadal leży na ziemi.',
-      pole: 'Zadanie zostało zrobione, wiadomość wysłana, rzecz odłożona. Odbiorca jej nie zauważył, nie potwierdził albo nie wiedział, co dalej. Nadawca mówi: „ja swoje zrobiłem”. Formalnie prawda. Operacyjnie — ozdobna półprawda.',
+      pole: 'Zadanie zostało zrobione, wiadomość wysłana, rzecz odłożona. Odbiorca jej nie zauważył, nie potwierdził albo nie wiedział, co dalej. Nadawca mówi: „ja swoje zrobiłem”. Technicznie racja. W praktyce robota nadal nie jest zrobiona.',
       wrog: 'Odpowiedzialność ograniczona do ruchu własnych rąk, bez sprawdzenia skutku i przekazania.',
       cena: 'Praca wpada między role. Każdy ma czyste sumienie, a wynik nadal nie istnieje.',
       ruch: 'Domykaj zadanie trzema punktami: WYNIK — ODBIORCA — POTWIERDZENIE. Jeśli któregoś nie ma, nazwij stan „w toku”, nie „gotowe”.',
@@ -598,9 +603,54 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
     };
   }
 
+  /* Import Profilu z pliku (05.09.2026, audyt prywatności 05.09.2026).
+     Profil Alterbake ma dwa reżimy: publiczny (bez danych osobowych) i
+     „zespół" — używany wewnątrz prywatnego OS, eksportujący imię, rolę
+     i surowe odpowiedzi z testu. Ktoś, kto pomyli pliki i wgra tu ten
+     drugi, nie ma prawa przenieść przy okazji nazwiska do publicznej
+     Akademii (CLAUDE.md dla tego modułu: „Brak... nazwisk"). Dlatego
+     BUDUJEMY nowy rekord z białej listy pól (nigdy nie kopiujemy
+     `osoba`/`odpowiedzi`/`scenariusze`/`sekundy`) — i biała lista działa
+     na DWÓCH poziomach, nie jednym: pole musi być znane (poziom rekordu)
+     ORAZ klucz wewnątrz `wyniki`/`talenty` musi należeć do zamkniętego
+     słownika modułu (OBSZARY/TALENTY), nie tylko mieć liczbową wartość.
+     Bez drugiego poziomu spreparowany (nie prawdziwy) plik mógłby wsadzić
+     dowolny tekst jako KLUCZ, licząc na to, że `rekomenduj`/`warsztatProfilu`
+     wyrenderują nieznany klucz wprost jako tekst na ekranie. */
+  function tylkoZnaneKlucze(obj, znaneKlucze) {
+    var zrodlo = obiekt(obj) ? obj : {}, wynik = {};
+    znaneKlucze.forEach(function (k) { if (liczba(zrodlo[k])) wynik[k] = zrodlo[k]; });
+    return wynik;
+  }
+  function oczyszczonyProfil(rekord) {
+    var r = obiekt(rekord) ? rekord : {};
+    return {
+      typ: 'alterbake-wynik-work-profile', wersja: String(r.wersja || ''),
+      narzedzie: 'profil-alterbake', rezim: 'publiczny', data: r.data || null,
+      wyniki: tylkoZnaneKlucze(r.wyniki, Object.keys(OBSZARY)),
+      talenty: tylkoZnaneKlucze(r.talenty, Object.keys(TALENTY)),
+      charakter: tylkoZnaneKlucze(r.charakter, ['uczenie']),
+      wiarygodnosc: (obiekt(r.wiarygodnosc) && typeof r.wiarygodnosc.poziom === 'string') ? { poziom: r.wiarygodnosc.poziom } : null
+    };
+  }
+  /* Ten sam log czyta i pisze publiczny Profil (`./test/`) — dedup po treści
+     wyników, tak jak `S.dopiszWynik` w tamtym narzędziu, żeby powtórne
+     wgranie tego samego pliku (brak fizycznego potwierdzenia poza UI) nie
+     dopisywało duplikatu i przy limicie 50 nie wypychało starszych,
+     prawdziwych wpisów. */
+  function dopiszProfil(log, rekord) {
+    var lista = Array.isArray(log) ? log.slice() : [];
+    var duplikat = lista.some(function (w) { return w && JSON.stringify(w.wyniki || {}) === JSON.stringify(rekord.wyniki || {}); });
+    if (duplikat) return { lista: lista, duplikat: true };
+    lista.push(rekord);
+    return { lista: lista.slice(-50), duplikat: false };
+  }
+
   return {
     OBSZARY: OBSZARY, TALENTY: TALENTY,
     ostatniProfil: ostatniProfil,
+    oczyszczonyProfil: oczyszczonyProfil,
+    dopiszProfil: dopiszProfil,
     wiarygodnoscPozwala: wiarygodnoscPozwala,
     trybUczenia: trybUczenia,
     warsztatProfilu: warsztatProfilu,
@@ -635,6 +685,54 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
   function zapiszStan(stan) { try { localStorage.setItem(KLUCZ_STANU, JSON.stringify(stan)); } catch (_) {} }
   function stan() { return L.stanZ(czytaj(KLUCZ_STANU, null)); }
   function profil() { return L.ostatniProfil(czytaj(KLUCZ_PROFILU, null)); }
+  /* Import ręczny (05.09.2026). Profil liczy się na urządzeniu, na którym
+     ktoś go otworzy — a to bywa inny telefon albo inna przeglądarka niż ta,
+     na której czyta się Rzemiosło Człowieka. Bez tego jedyną drogą było
+     zrobić test drugi raz: ekran w kółko odsyłał do `./test/`, nawet gdy
+     osoba miała już wynik w kieszeni jako plik. Oczyszczanie wgranego
+     rekordu (biała lista pól I kluczy — dwa reżimy Profilu, „publiczny"
+     i „zespół" z danymi osobowymi) oraz dedup mieszkają w `logika.js`
+     (`L.oczyszczonyProfil`, `L.dopiszProfil`) — jako czyste funkcje, testowalne
+     osobno od DOM-u i localStorage (audyt prywatności 05.09.2026). Tu zostaje
+     wyłącznie odczyt pliku i zapis do przeglądarki. */
+  function odczytajProfilSurowy() {
+    var s = czytaj(KLUCZ_PROFILU, null);
+    if (s === null) return null;
+    try { return JSON.parse(s); } catch (_) { return null; }
+  }
+  var komunikatProfilu = null;
+  function wgrajProfilZPliku(plik) {
+    var czytnik = new FileReader();
+    czytnik.onload = function () {
+      var rekord;
+      try {
+        var dane = JSON.parse(String(czytnik.result));
+        rekord = Array.isArray(dane) ? dane[dane.length - 1] : dane;
+      } catch (_) { rekord = null; }
+      if (!rekord || typeof rekord !== 'object' || !rekord.wyniki || typeof rekord.wyniki !== 'object') {
+        komunikatProfilu = { ok: false, tekst: 'To nie wygląda na plik z Profilu Alterbake. Wgraj plik pobrany tam przyciskiem „Pobierz wynik jako plik" albo „Zapisz raport jako plik".' };
+        rysuj();
+        return;
+      }
+      var wynik = L.dopiszProfil(odczytajProfilSurowy(), L.oczyszczonyProfil(rekord));
+      try { localStorage.setItem(KLUCZ_PROFILU, JSON.stringify(wynik.lista)); } catch (_) {}
+      komunikatProfilu = wynik.duplikat
+        ? { ok: true, tekst: 'Ten wynik już tu był — nic nie dodano drugi raz.' }
+        : { ok: true, tekst: '✓ Profil wgrany na to urządzenie.' };
+      rysuj();
+    };
+    czytnik.onerror = function () {
+      komunikatProfilu = { ok: false, tekst: 'Nie udało się odczytać pliku. Spróbuj wybrać go jeszcze raz.' };
+      rysuj();
+    };
+    czytnik.readAsText(plik);
+  }
+  function usunProfil() {
+    if (!window.confirm('Usunąć wgrany profil z tej przeglądarki? Test zostaje bez zmian — to kasuje tylko jego kopię tutaj.')) return;
+    try { localStorage.removeItem(KLUCZ_PROFILU); } catch (_) {}
+    komunikatProfilu = null;
+    rysuj();
+  }
   function lekcjaPoId(id) { return D.lekcje.find(function(x){ return x.id === id; }); }
   function progPoId(id) { return D.progi.find(function(x){ return x.id === id; }); }
   function wyczysc() { ekran.innerHTML = ''; window.scrollTo(0,0); }
@@ -711,14 +809,30 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
     if(aktywna){var al=lekcjaPoId(aktywna.lekcjaId),ak=karta('ruch');ak.append(el('div','nadtytul','Jedna aktywna próba'));ak.append(el('h3','',al?al.tytul:'Próba w toku'));ak.append(el('p','cichy','Najpierw domknij obserwację. Nowa próba poczeka — rozproszenie nie jest programem rozwojowym.'));ak.append(przycisk('Wróć do aktywnej próby →',function(){nawiguj('praktyka')}));ekran.append(ak)}
 
     var pr=profil(), rec=L.rekomenduj(pr,D.lekcje), mapa=L.warsztatProfilu(pr), pk=karta();
+    var komunikat=komunikatProfilu; komunikatProfilu=null;
+    if(komunikat) pk.append(el('p','plakietka '+(komunikat.ok?'ok':'uwaga'),komunikat.tekst));
     pk.append(el('div','nadtytul',pr?'Twój warsztat':'Mapa wyposażenia'));
     pk.append(el('h3','',mapa?'Profil daje punkt startu':'Najpierw poznaj wyposażenie'));
     pk.append(el('p','cichy',pr
-      ? (mapa?'To trzy soczewki do obserwacji, nie etykiety. Zachowanie może je potwierdzić, skorygować albo obalić.':'Ta próbka ma niską wiarygodność. Nie udajemy precyzji — zaczynamy od zachowania.')
+      ? (mapa?'To trzy rzeczy do obserwacji, nie etykietki. Zachowanie może je potwierdzić, poprawić albo pokazać, że się myliliśmy.':'Ten wynik jest mało pewny. Nie udajemy precyzji — zaczynamy od zachowania.')
       : 'Profil Alterbake sprawdza predyspozycje, mocne strony i preferencje nauki. Około 15 minut; wynik zostaje na tym urządzeniu.'));
     if(mapa){var pm=el('div','profil-mapa');[['Zasób',mapa.zasob],['Talent i jego cień',mapa.talent||'Do obserwacji'],['Obszar treningu',mapa.trening]].forEach(function(x){var d=el('div');d.append(el('small','',x[0]),el('b','',x[1]));pm.append(d)});pk.append(pm)}
     var tr=el('div','tryb'); tr.append(el('div','znak','↳'),el('div','',rec.tryb.nazwa+' · '+rec.tryb.opis)); pk.append(tr);
-    var a=el('a','przycisk '+(pr?'drugi':''),pr?'Zobacz lub powtórz Profil →':'Zrób Profil Alterbake →');a.href='./test/';pk.append(a);ekran.append(pk);
+    var a=el('a','przycisk '+(pr?'drugi':''),pr?'Zobacz lub powtórz Profil →':'Zrób Profil Alterbake →');a.href='./test/';pk.append(a);
+    var etykietaWgraj=el('label','przycisk drugi maly','Wgraj profil z pliku'),wejscieWgraj=document.createElement('input');
+    wejscieWgraj.type='file';wejscieWgraj.accept='.json,application/json';wejscieWgraj.id='wejscie-profil';wejscieWgraj.style.cssText='position:absolute;width:1px;height:1px;opacity:0;overflow:hidden';
+    etykietaWgraj.htmlFor=wejscieWgraj.id;etykietaWgraj.style.marginTop='8px';
+    /* Wejście jest wizualnie ukryte pod etykietą-przyciskiem (wzorzec
+       „widoczny tylko klawiaturowo") — bez tego pierścień fokusu z linii 47
+       lądowałby na niewidocznym 1×1 px, a nie na przycisku, który człowiek
+       faktycznie widzi (redteam 05.09.2026, F5). */
+    wejscieWgraj.addEventListener('focus',function(){etykietaWgraj.classList.add('fokus')});
+    wejscieWgraj.addEventListener('blur',function(){etykietaWgraj.classList.remove('fokus')});
+    wejscieWgraj.addEventListener('change',function(){if(this.files&&this.files[0])wgrajProfilZPliku(this.files[0]);this.value=''});
+    pk.append(etykietaWgraj,wejscieWgraj);
+    pk.append(el('p','cichy mini','Zrobiłeś/aś Profil na innym telefonie albo w innej przeglądarce? Wgraj tu plik, który stamtąd pobrałeś/aś (przycisk „Pobierz wynik jako plik" albo „Zapisz raport jako plik") — bez tego ten ekran nie ma jak się o nim dowiedzieć.'));
+    if(pr){var usunProfilBtn=przycisk('Usuń wgrany profil z tej przeglądarki',usunProfil,true);usunProfilBtn.classList.add('niebezpieczny','maly');pk.append(usunProfilBtn)}
+    ekran.append(pk);
 
     var glowna=rec.pozycje[0], krok=karta('krok-glowny');krok.append(el('div','nadtytul','Jeden następny ruch · '+glowna.typ));krok.append(el('h3','',glowna.lekcja.tytul));krok.append(el('p','ostra',glowna.lekcja.ostrze));krok.append(el('p','cichy',glowna.powod));krok.append(przycisk('Otwórz lekcję i zaplanuj próbę →',function(){nawiguj('lekcja',glowna.lekcja.id)}));
     if(rec.pozycje.length>1){var det=el('details','rozwin'),sum=el('summary','','Pokaż dwa inne kierunki');det.append(sum);var s=el('div','siatka');rec.pozycje.slice(1).forEach(function(x){s.append(guzikLekcji(x.lekcja,x.typ.toUpperCase()+' · '+x.powod))});det.append(s);krok.append(det)}ekran.append(krok);

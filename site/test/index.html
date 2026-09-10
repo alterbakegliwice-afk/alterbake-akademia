@@ -831,6 +831,150 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
     setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
 
+  /* WYSŁANIE PLIKU Z TELEFONU (09.09.2026, zgłoszenie Piotra).
+     ------------------------------------------------------------------
+     Pobranie pliku przez `a.download` na blobie działa na komputerze
+     i zawodzi na telefonie: Piotr zapisał wynik na Macu bez problemu,
+     a na Androidzie nie dało się. Przeglądarki mobilne traktują ten
+     ruch po swojemu — plik ląduje w miejscu, którego nikt nie szuka,
+     albo nie dzieje się nic i człowiek zostaje z raportem, którego nie
+     ma jak stąd wynieść.
+
+     Właściwa droga na telefonie to systemowy arkusz udostępniania: ten
+     sam gest, którym wysyła się zdjęcie. Człowiek sam wybiera Gmaila,
+     Dysk albo komunikator, a plik idzie jako ZAŁĄCZNIK — czego `mailto:`
+     nie umie w ogóle.
+
+     `canShare({files})` jest jedynym wiarygodnym sprawdzeniem: samo
+     istnienie `navigator.share` nie mówi, czy przeglądarka uniesie pliki.
+     Na komputerze wracamy do pobrania, bo tam ono działa i jest szybsze
+     niż arkusz. Odmowa udostępnienia (użytkownik zamknął arkusz) NIE
+     jest awarią i nie wolno po niej pobierać pliku w tle — to znaczy
+     „rozmyśliłem się". */
+  function udostepnijLubPobierz(nazwa, tresc) {
+    /* Arkusz udostępniania TYLKO na dotyku. Chrome na komputerze też umie
+       `canShare({files})`, więc bez tego warunku zabralibyśmy Piotrowi
+       zachowanie, które u niego DZIAŁA („zapisał się na kompie") i podmienili
+       je na okno wyboru aplikacji. Naprawa jednego urządzenia kosztem
+       drugiego to nie naprawa. `pointer: coarse` rozdziela to po sposobie
+       obsługi, a nie po zgadywanym systemie z UserAgenta. */
+    var dotyk = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+    var plik = null;
+    try {
+      plik = new File([tresc], nazwa, { type: "application/json" });
+    } catch (e) { plik = null; }
+    if (dotyk && plik && navigator.canShare && navigator.canShare({ files: [plik] })) {
+      navigator.share({ files: [plik], title: "Profil Alterbake" })
+        .catch(function (err) {
+          if (err && err.name === "AbortError") return;
+          pobierzJako(nazwa, tresc);
+        });
+      return;
+    }
+    pobierzJako(nazwa, tresc);
+  }
+
+  /* SKRZYNKA ALTERBAKE — składana z kawałków, nie wpisana wprost.
+     Publiczna wersja Profilu stoi na otwartej stronie, gdzie adres podany
+     dosłownie zbierają roboty spamowe. Adres jest ZBIOROWY (decyzja Piotra
+     09.09.2026): łatwiej go przekierować i nie boli, gdy trafi na listy. */
+  /* `profile`, nie `profil` — tak brzmi alias, który Piotr faktycznie założył
+     10.09.2026. Adres w kodzie musi być przepisany z panelu poczty, nie
+     z ustaleń w rozmowie: różnica jednej litery daje odbicie maila, którego
+     nikt nie zobaczy — ani nadawca (mail wyszedł), ani my (nigdy nie dotarł). */
+  var SKRZYNKA = ["profile", "alterbake.pl"].join("@");
+
+  /* Treść maila „wyślij wynik" — CZYTELNE STRESZCZENIE, nie plik.
+     `mailto:` nie umie załącznika w żadnej przeglądarce, a wklejenie tam
+     całego rekordu (blisko 3 kB) urywa się w połowie w części klientów
+     poczty — dostalibyśmy uszkodzony JSON i złudzenie, że wynik doszedł.
+     Dlatego mailem idzie to, co człowiek i tak przeczyta oczami, a pełny
+     plik ma własny przycisk i własną drogę (arkusz udostępniania). */
+  function trescMaila(w) {
+    var arch = archetyp(w.talenty);
+    var talenty = Object.keys(w.talenty)
+      .sort(function (a, b) { return w.talenty[b] - w.talenty[a]; }).slice(0, 5)
+      .map(function (t) { return (D.TALENTY[t] || {}).name || t; });
+    var linie = [
+      "Wynik Profilu Alterbake" + (stan.imie ? " — " + stan.imie : ""),
+      "Data: " + new Date().toLocaleDateString("pl-PL"),
+      "Wiarygodność: " + w.wiarygodnosc.poziom,
+      ""
+    ];
+    if (arch) linie.push("Najbliższy typ: " + arch.a.name, "");
+    linie.push("Osiem obszarów (0-100):");
+    Object.keys(w.obszary).sort(function (a, b) { return w.obszary[b] - w.obszary[a]; })
+      .forEach(function (o) { linie.push("  " + D.OBSZARY[o] + ": " + w.obszary[o]); });
+    linie.push("", "Mocne strony: " + talenty.join(", "), "",
+      "To streszczenie. Pełny wynik jest w pliku — mogę go dosłać osobno.");
+    return linie.join("\n");
+  }
+
+  function kartaCoDalej(zapisano) {
+    var html = '<div class="karta bez-druku"><h2 style="margin-top:0">Co dalej</h2>';
+    if (REZIM === "zespol") {
+      html += zapisano
+        ? '<div class="komunikat ok">✓ Wynik zapisany — pojawi się w Aplikacji pracownika (Szkolenia ▸ Rozwój) na tym urządzeniu.</div>'
+        : '<div class="komunikat uwaga">Nie udało się zapisać wyniku w przeglądarce. ' +
+          "Zapisz plik i przekaż go właścicielowi — inaczej ten wynik przepadnie.</div>";
+      /* Domknięcie pętli test → kurs → retest: z raportu prosto do modułów
+         rozwojowych. Najsłabsze obszary z tego wyniku będą tam oznaczone
+         jako PRIORYTET, a po nauce i mikropraktykach aplikacja przypomni
+         o poteście (ewaluacja po 6+ tygodniach). */
+      html += '<p class="mini" style="margin-top:.75rem">Co z tym wynikiem robi się dalej: w module Rozwój ' +
+        "Twoje trzy najsłabsze obszary dostają moduły nauki i mikropraktyki na 2 tygodnie, " +
+        "a powtórka testu po ok. 6 tygodniach zmierzy, czy praktyka coś zmieniła.</p>" +
+        '<div class="rzad"><a class="drugi" style="text-align:center;text-decoration:none;padding:.7rem 1rem" ' +
+        'href="../index.html">Przejdź do kursu rzemiosła →</a></div>';
+      html += '<div class="rzad"><button class="drugi" id="btn-plik">Zapisz wynik jako plik</button>' +
+        '<button class="drugi" id="btn-druk">Drukuj profil</button></div>';
+    } else {
+      html += "<p class=\"mini\">Twój raport policzył się na tym urządzeniu i nigdzie nie wyszedł. " +
+        "Jeśli chcesz go zachować albo komuś pokazać, zrób to teraz — zamknięcie karty kasuje wynik.</p>" +
+        '<div class="rzad"><button class="drugi" id="btn-plik">Zapisz wynik jako plik</button>' +
+        '<button class="drugi" id="btn-druk">Drukuj profil</button></div>';
+      /* WYJŚCIE DO KURSU W WERSJI PUBLICZNEJ (09.09.2026) — do tego dnia
+         publiczny raport nie miał ŻADNEJ drogi dalej. Link „Przejdź do
+         kursu" istniał, ale w gałęzi `zespol`, która publicznie nigdy się
+         nie wykonuje; generator starannie podmieniał w nim adres, czyli
+         poprawiał kod, którego ta wersja nie uruchamia. Zgłoszenie Piotra
+         brzmiało dokładnie: „nie ma przycisku zacznij korzystać z profilu".
+         Adres `../index.html` jest poprawny dla publikacji (`site/test/`
+         → strona główna Akademii); w wersji firmowej ta gałąź nie działa. */
+      /* DWA WYJŚCIA, W TEJ KOLEJNOŚCI. Piotr napisał „nie ma przycisku
+         zacznij korzystać z profilu" — i tym miejscem jest Rzemiosło
+         człowieka, jedyny moduł, który ten wynik CZYTA i dobiera do niego
+         lekcje. Leży na tym samym adresie, więc wynik policzony przed chwilą
+         zastaje tam sam z siebie, bez wgrywania pliku. Kurs jest drugi, bo
+         uczy rzemiosła niezależnie od tego, co wyszło w Profilu. */
+      html += '<div class="rzad">' +
+        '<a class="drugi" style="text-align:center;text-decoration:none;padding:.7rem 1rem" ' +
+        'href="../mistrz.html">Zobacz, co z tym zrobić →</a>' +
+        '<a class="drugi" style="text-align:center;text-decoration:none;padding:.7rem 1rem" ' +
+        'href="../index.html">Kurs rzemiosła →</a></div>';
+      /* WYSYŁKA DO PIEKARNI (09.09.2026, polecenie Piotra). Publiczny Profil
+         wypełniają dwie grupy: kandydaci i nasi ludzie na własnym telefonie.
+         Obie po skończeniu testu nie miały jak przekazać wyniku dalej.
+         Przycisk otwiera WŁASNEGO klienta poczty tej osoby — nic nie wychodzi
+         w tle, adresatem jest firma, a treść widać przed wysłaniem. Zdanie
+         obok mówi wprost, co idzie i do kogo: to nie jest formalność, bo
+         wynik Profilu jest daną o człowieku i decyzję o jego wysłaniu
+         podejmuje wyłącznie on. */
+      html += '<div class="zgoda" style="margin-top:1rem"><h3>Chcesz pokazać wynik piekarni?</h3>' +
+        '<p class="mini">Przycisk otworzy Twój program pocztowy z gotową wiadomością do Alterbake: ' +
+        "typ, osiem obszarów, mocne strony i data. <b>Nic nie wysyła się samo</b> — zobaczysz treść " +
+        "i sam decydujesz, czy nacisnąć wyślij. Pełny plik możesz dołączyć osobno przyciskiem wyżej.</p>" +
+        '<div class="rzad"><button class="drugi" id="btn-mail">Wyślij wynik do Alterbake</button></div></div>';
+      html += '<div class="zgoda" style="margin-top:1rem"><h3>Możesz pomóc ulepszyć to narzędzie</h3>' +
+        "<p class=\"mini\">Jeśli chcesz, zapisz anonimową paczkę danych i wyślij ją twórcom narzędzia. " +
+        "Zawiera <b>wyłącznie</b> Twoje odpowiedzi na pytania skalowe i czas wypełniania — " +
+        "<b>bez imienia, bez kontaktu, bez odpowiedzi otwartych</b>. Służy do sprawdzenia, " +
+        "które pytania działają, a które są niejasne.</p>" +
+        '<div class="rzad"><button class="drugi" id="btn-dar">Zapisz anonimową paczkę danych</button></div></div>';
+    }
+    return html + "</div>";
+  }
+
   function rysujRaport(w, rekord, zapisano) {
     var talentyPosortowane = Object.keys(w.talenty).sort(function (a, b) { return w.talenty[b] - w.talenty[a]; });
     var mocne = talentyPosortowane.slice(0, 5);
@@ -857,6 +1001,16 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
         ? '<ul class="mini">' + w.wiarygodnosc.uwagi.map(function (u) { return "<li>" + esc(u) + "</li>"; }).join("") + "</ul>"
         : '<p class="mini">Test wypełniony spokojnie i w komplecie — wynik można traktować poważnie.</p>') +
       "</div>";
+
+    /* ── zapis i przekazanie danych ──
+       KARTA STOI NA GÓRZE, nie na końcu (09.09.2026, zgłoszenie Piotra:
+       „nie ma tutaj przycisku zapisz"). Do tego dnia była ostatnia — po
+       ośmiu obszarach, osiach charakteru, talentach, dopasowaniu ról
+       i pytaniach na rozmowę. Na telefonie to kilka ekranów przewijania,
+       więc jedyne wyjście z raportu było niewidoczne dla kogoś, kto
+       właśnie skończył test i chce z wynikiem COKOLWIEK zrobić.
+       Raport czyta się dalej — ale najpierw widać, że da się go zabrać. */
+    html += kartaCoDalej(zapisano);
 
     if (arch) {
       html += '<div class="karta karta-akcent"><div class="nadtytul">Najbliższy typ</div>' +
@@ -911,37 +1065,6 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
           pytania.map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("") + "</ul>";
       }).join("") + "</div>";
 
-    /* ── zapis i przekazanie danych ── */
-    html += '<div class="karta bez-druku"><h2 style="margin-top:0">Co dalej</h2>';
-    if (REZIM === "zespol") {
-      html += zapisano
-        ? '<div class="komunikat ok">✓ Wynik zapisany — pojawi się w Aplikacji pracownika (Szkolenia ▸ Rozwój) na tym urządzeniu.</div>'
-        : '<div class="komunikat uwaga">Nie udało się zapisać wyniku w przeglądarce. ' +
-          "Pobierz plik niżej i przekaż go właścicielowi — inaczej ten wynik przepadnie.</div>";
-      /* Domknięcie pętli test → kurs → retest: z raportu prosto do modułów
-         rozwojowych. Najsłabsze obszary z tego wyniku będą tam oznaczone
-         jako PRIORYTET, a po nauce i mikropraktykach aplikacja przypomni
-         o poteście (ewaluacja po 6+ tygodniach). */
-      html += '<p class="mini" style="margin-top:.75rem">Co z tym wynikiem robi się dalej: w module Rozwój ' +
-        "Twoje trzy najsłabsze obszary dostają moduły nauki i mikropraktyki na 2 tygodnie, " +
-        "a powtórka testu po ok. 6 tygodniach zmierzy, czy praktyka coś zmieniła.</p>" +
-        '<div class="rzad"><a class="drugi" style="text-align:center;text-decoration:none;padding:.7rem 1rem" ' +
-        'href="../index.html">Przejdź do kursu rzemiosła →</a></div>';
-      html += '<div class="rzad"><button class="drugi" id="btn-plik">Pobierz wynik jako plik</button>' +
-        '<button class="drugi" id="btn-druk">Drukuj profil</button></div>';
-    } else {
-      html += "<p class=\"mini\">Twój raport policzył się na tym urządzeniu i nigdzie nie wyszedł.</p>" +
-        '<div class="rzad"><button class="drugi" id="btn-plik">Zapisz raport jako plik</button>' +
-        '<button class="drugi" id="btn-druk">Drukuj profil</button></div>' +
-        '<div class="zgoda" style="margin-top:1rem"><h3>Możesz pomóc ulepszyć to narzędzie</h3>' +
-        "<p class=\"mini\">Jeśli chcesz, pobierz anonimową paczkę danych i wyślij ją twórcom narzędzia. " +
-        "Zawiera <b>wyłącznie</b> Twoje odpowiedzi na pytania skalowe i czas wypełniania — " +
-        "<b>bez imienia, bez kontaktu, bez odpowiedzi otwartych</b>. Służy do sprawdzenia, " +
-        "które pytania działają, a które są niejasne.</p>" +
-        '<div class="rzad"><button class="drugi" id="btn-dar">Pobierz anonimową paczkę danych</button></div></div>';
-    }
-    html += "</div>";
-
     html += '<p class="stopka-info bez-druku">Profil Alterbake · wynik z ' +
       Object.keys(stan.odpowiedzi).length + " odpowiedzi, " +
       Object.keys(stan.scenariusze).length + " sytuacji" +
@@ -955,9 +1078,17 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
       new Date().toISOString().slice(0, 10) + ".json";
 
     if (el("btn-plik")) el("btn-plik").addEventListener("click", function () {
-      pobierzJako(nazwaPliku, JSON.stringify(rekord, null, 2));
+      udostepnijLubPobierz(nazwaPliku, JSON.stringify(rekord, null, 2));
     });
     if (el("btn-druk")) el("btn-druk").addEventListener("click", function () { window.print(); });
+    if (el("btn-mail")) el("btn-mail").addEventListener("click", function () {
+      /* `location.href`, nie `window.open`: otwarcie nowej karty pod adresem
+         `mailto:` zostawia na telefonie pustą kartę, gdy system przełączy się
+         do poczty, i wygląda to jak awaria strony. */
+      location.href = "mailto:" + SKRZYNKA +
+        "?subject=" + encodeURIComponent("Profil Alterbake" + (stan.imie ? " — " + stan.imie : "")) +
+        "&body=" + encodeURIComponent(trescMaila(w));
+    });
     if (el("btn-dar")) el("btn-dar").addEventListener("click", function () {
       /* Paczka anonimowa: budowana OSOBNO w reżimie publicznym, więc nie ma
          możliwości, żeby wyciekło do niej imię albo odpowiedź otwarta. */
@@ -971,7 +1102,7 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
         odpowiedzi: stan.odpowiedzi,
         sekundy: stan.start ? Math.round((Date.now() - stan.start) / 1000) : null
       });
-      pobierzJako("profil-alterbake-anonim-" + new Date().toISOString().slice(0, 10) + ".json",
+      udostepnijLubPobierz("profil-alterbake-anonim-" + new Date().toISOString().slice(0, 10) + ".json",
         JSON.stringify(anonim, null, 2));
     });
   }
