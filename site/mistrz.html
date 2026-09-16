@@ -8,19 +8,25 @@
 <title>Rzemiosło człowieka · Akademia Alterbake</title>
 <style>
 :root{
-  --ab-czern:#141413;
-  --ab-papier:#EDE7DA;
-  --ab-dab:#C2A06B;
-  --ab-taupe:#6E6A5F;
-  --ab-terakota:#B5532E;
-  --ab-oliwka:#5E5F3C;
-  --ab-sukces:#4A7C3A;
-  --ab-uwaga:#B7791F;
-  --ab-blad:#B03030;
-  --ab-font-display:"Source Serif 4", Georgia, "Times New Roman", serif;
-  --ab-font-body:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --ab-font-mono:"IBM Plex Mono", ui-monospace, monospace;
-  --ab-r:14px; --ab-r-sm:9px;
+  --ab-ink:#30252B;
+  --ab-paper:#F4F1E9;
+  --ab-surface:#FCFBF7;
+  --ab-context:#C6D0C5;
+  --ab-rule:#CEC8BF;
+  --ab-muted:#72666B;
+  --ab-czern:#30252B;
+  --ab-papier:#F4F1E9;
+  --ab-dab:#CEC8BF;
+  --ab-taupe:#72666B;
+  --ab-terakota:#30252B;
+  --ab-oliwka:#3F6B4A;
+  --ab-sukces:#3F6B4A;
+  --ab-uwaga:#8A5A12;
+  --ab-blad:#9B3B33;
+  --ab-font-display:"Newsreader", Georgia, "Times New Roman", serif;
+  --ab-font-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ab-font-mono:"IBM Plex Sans", system-ui, sans-serif;
+  --ab-r:4px; --ab-r-sm:4px;
   --tlo:var(--ab-papier);--tlo2:#F5EFE3;--karta:#FBF8F1;--karta2:#F3EBDD;--papier:#FFFDF8;
   /* --cichy: taupe z kanonu ściemniony do progu WCAG AA. Sam #6E6A5F na
      papierze daje 4,38:1 przy 15 px, czyli PONIŻEJ 4,5:1 — a to jest kolor
@@ -130,6 +136,7 @@ p:last-child{margin-bottom:0}
    zostaje akcentem odsłoniętej odpowiedzi. */
 .pamiec{border-color:rgba(66,109,105,.45);background:linear-gradient(145deg,#E7F0EC,var(--karta) 62%)}
 .pamiec .odpowiedz{margin-top:14px;padding:14px;border-left:3px solid var(--turkus);background:rgba(66,109,105,.1);color:var(--tekst)}
+.alterbake{border-color:rgba(181,83,46,.4);background:linear-gradient(145deg,#F4E9E1,var(--karta) 62%)}
 .blad{min-height:20px;margin-top:8px;color:var(--alarm);font-size:13px;font-weight:600}
 .formularz label{display:block;margin-bottom:7px;color:var(--cichy);font-size:12px}
 textarea{width:100%;min-height:120px;resize:vertical;padding:14px;background:#FFFDF8;color:var(--tekst);border:1px solid var(--linia);border-radius:12px;font-size:17px;line-height:1.55}
@@ -164,7 +171,7 @@ details.rozwin summary{min-height:44px;display:flex;align-items:center;color:var
    Warianty `.drugi` i `.niebezpieczny` mają wyższą specyficzność i własny
    kolor wyżej, więc ta reguła ich nie tyka. */
 .przycisk{color:#1B1512}
-header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:linear-gradient(145deg,#3A2418,var(--karta) 64%)}.ruch{background:linear-gradient(145deg,#3A2418,var(--karta))}.plakietka{background:#3A2418}.profil-mapa div,.petla span{background:var(--tlo2)}textarea{background:var(--tlo2)}.pamiec{background:linear-gradient(145deg,rgba(44,70,67,.42),var(--karta) 62%)}}
+header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:linear-gradient(145deg,#3A2418,var(--karta) 64%)}.ruch{background:linear-gradient(145deg,#3A2418,var(--karta))}.plakietka{background:#3A2418}.profil-mapa div,.petla span{background:var(--tlo2)}textarea{background:var(--tlo2)}.pamiec{background:linear-gradient(145deg,rgba(44,70,67,.42),var(--karta) 62%)}.alterbake{background:linear-gradient(145deg,rgba(90,44,26,.42),var(--karta) 62%)}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 /* Tryb wysokiego kontrastu miał JASNY taupe i jasną linię — poprawne, dopóki
    moduł był ciemnym czytnikiem. Po przejściu na papier ta sama reguła stała
@@ -190,7 +197,40 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
   <a href="./"><span>📚</span>Kurs</a>
 </nav>
 
-<script>(function (root, factory) {
+<script>/* ALTERBAKE · RZEMIOSŁO CZŁOWIEKA — DANE LEKCJI
+   ------------------------------------------------------------------
+   Siedem progów, czternaście lekcji. Trzy reguły tej treści zapadły
+   decyzją Piotra 16.09.2026 i nie wolno ich odwrócić bez jego słowa:
+
+   1. JĘZYK DOSŁOWNY. Żart, który nie niesie treści, wypada. Wcześniej
+      tekst miał wtręty w rodzaju „nawet sól zna lepsze proporcje" albo
+      „próg macha z politowaniem" — brzmiały dobrze i nie mówiły nic,
+      a stały w miejscu, z którego czytelnik bierze wniosek. Metafora
+      zostaje wyłącznie w polu `kotwica`, bo tam opisuje obrazek.
+
+   2. ŻADNE DWIE ODPOWIEDZI TEGO SAMEGO KSZTAŁTU. Do 16.09 dziesięć
+      z czternastu odpowiedzi było listą trzech elementów po półpauzie,
+      a pięć pytań zaczynało się od „Jakie trzy…". Każda lekcja z osobna
+      przechodziła test odtworzenia; komplet się zlewał — po pięciu
+      lekcjach człowiek odtwarzał JAKĄŚ triadę, nie tę pasującą do
+      sytuacji. Dlatego pytania mają dziś różne formy: sytuacja,
+      rozpoznanie błędu, rozróżnienie pary, dokończenie zdania.
+      Dwie lekcje mówiące o domykaniu (`zamknij-zanim-otworzysz`
+      i `wlasciciel-wyniku`) pytają WPROST o różnicę między sobą —
+      bo to właśnie ta para się myliła.
+
+   3. SEKCJA `alterbake` NIE JEDZIE DO PUBLICZNEJ AKADEMII. Lekcja uczy
+      sytuacji ogólnej; przełożenie na piekarnię jest osobnym polem
+      i zostaje po naszej stronie. Publiczny generator je zdejmuje
+      i przerywa budowę, gdy cokolwiek z zakładu przecieknie —
+      pilnuje tego generator modułu. UWAGA: ten komentarz jedzie do
+      publicznego pliku razem z danymi, więc nie wolno tu wpisywać
+      ścieżek w repo ani nazw naszych dokumentów (16.09.2026 strażnik
+      publikacji zatrzymał budowę właśnie za taką ścieżkę). W polu
+      opisujemy WYŁĄCZNIE sytuacje: zero temperatur, godzin, cen,
+      modeli sprzętu i imion. Wymyślony parametr w materiale
+      szkoleniowym to realna szkoda, a tych liczb nie ma w źródłach. */
+(function (root, factory) {
   var dane = factory();
   if (typeof module === 'object' && module.exports) module.exports = dane;
   root.AlterbakeMistrzDane = dane;
@@ -202,7 +242,7 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
     { id: 'ostrze', nr: 'II', nazwa: 'Własne ostrze', opis: 'Używaj przewagi świadomie i pilnuj cienia, który idzie za nią.', grafika: 'prog-ostrze.jpg', alt: 'Wykute ostrze leży na stole, a jego długi cień pada na jasne płótno.', symbol: '◇' },
     { id: 'cena', nr: 'III', nazwa: 'Cena', opis: 'Każde „tak” zjada czas, uwagę albo zaufanie. Licz koszt przed ruchem.', grafika: 'prog-cena.jpg', alt: 'Waga pokazuje koszt wyboru: ciężarek przeważa chleb, klepsydrę i narzędzie.', symbol: '⚖' },
     { id: 'cialo', nr: 'IV', nazwa: 'Ciało', opis: 'Rozpoznaj próg przeciążenia, zanim ciało podejmie decyzję za Ciebie.', grafika: 'prog-cialo.jpg', alt: 'Dłoń odsuwa rozgrzewający się metal tuż przed wejściem w czerwoną strefę.', symbol: '◒' },
-    { id: 'relacje', nr: 'V', nazwa: 'Relacje', opis: 'Mów jasno, sprawdzaj zrozumienie i stawiaj granice bez przedstawienia teatralnego.', grafika: 'prog-relacje.jpg', alt: 'Dwie osoby przekazują sobie świetlistą nić i potwierdzają odbiór komunikatu.', symbol: '↔' },
+    { id: 'relacje', nr: 'V', nazwa: 'Relacje', opis: 'Mów jasno, sprawdzaj zrozumienie i stawiaj granice bez długich wyjaśnień.', grafika: 'prog-relacje.jpg', alt: 'Dwie osoby przekazują sobie świetlistą nić i potwierdzają odbiór komunikatu.', symbol: '↔' },
     { id: 'praca', nr: 'VI', nazwa: 'Praca i dzieło', opis: 'Domykaj wynik, przekazanie i odpowiedzialność — nie tylko własny ruch.', grafika: 'prog-praca.jpg', alt: 'Dwie pary dłoni wspólnie trzymają przekazywany, zapieczętowany bochenek.', symbol: '✓' },
     { id: 'natchnienie', nr: 'VII', nazwa: 'Natchnienie', opis: 'Zamieniaj pomysł w mały dowód. Entuzjazm jest zapłonem, nie kierownicą.', grafika: 'prog-natchnienie.jpg', alt: 'Pojedyncza iskra zostaje bezpiecznie schwytana pod szklanym kloszem obok prototypu.', symbol: '✦' }
   ];
@@ -211,202 +251,244 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
     {
       id: 'fakt-przed-opowiescia', prog: 'mgla', tytul: 'Fakt przed opowieścią', czas: 4,
       ostrze: 'Nie rozwiązuj opowieści. Najpierw znajdź fakt.',
-      pole: 'Na zmianie pada zdanie: „nikt nigdy nie przekazuje informacji”. Brzmi jak diagnoza, ale jest tylko dymem. Faktem może być jedno nieprzekazane zadanie, brak potwierdzenia albo ustalenie, którego nikt nie zapisał. Każde wymaga innego ruchu.',
-      wrog: 'Pewność zbudowana z tonu głosu. Człowiek mówi głośno, mózg dopisuje dowody. To bardzo stary chwyt — działa nawet dziś, więc łatwo się na niego nabrać.',
-      cena: 'Naprawiasz charakter człowieka, choć zepsuło się przekazanie. Rośnie napięcie, a problem wraca w nowym ubraniu.',
+      pole: 'Pada zdanie: „nikt nigdy nie przekazuje informacji”. Brzmi jak diagnoza, ale nie da się go sprawdzić ani naprawić. Faktem może być jedno nieprzekazane zadanie, brak potwierdzenia albo ustalenie, którego nikt nie zapisał. Każde z nich wymaga innego ruchu.',
+      wrog: 'Pewność zbudowana z tonu głosu. Gdy ktoś mówi stanowczo, łatwo przyjąć jego wersję bez sprawdzenia.',
+      cena: 'Naprawiasz charakter człowieka, choć zepsuło się przekazanie. Napięcie rośnie, a problem wraca.',
       ruch: 'Przed reakcją zapisz trzy linie: CO WIEM — CO DOPOWIADAM — CO SPRAWDZĘ. Wykonaj tylko trzecią linię.',
       integracja: 'Przy najbliższym mocnym osądzie zatrzymaj się na 60 sekund. Nazwij jeden obserwowalny fakt i jedno pytanie, które rozstrzyga sytuację.',
-      reszta: 'Intencje, „zawsze”, „nigdy” i sąd nad całym człowiekiem po jednym zdarzeniu.',
-      przyklad: '„Nie dostałem potwierdzenia przekazania o 9:10. Czy zadanie zostało przyjęte, czy utknęło między nami?”',
+      reszta: 'Intencje, „zawsze”, „nigdy” i ocena całego człowieka po jednym zdarzeniu.',
+      przyklad: '„Nie dostałem potwierdzenia przekazania. Czy zadanie zostało przyjęte, czy utknęło między nami?”',
       kotwica: 'Ostrze rozcina mgłę. Po jasnej stronie zostaje tylko to, co da się zobaczyć albo sprawdzić.',
-      sprawdz: { pytanie: 'Jakie trzy linie zapisujesz przed reakcją?', odpowiedz: 'CO WIEM — CO DOPOWIADAM — CO SPRAWDZĘ.' },
+      sprawdz: {
+        pytanie: 'Które z tych dwóch zdań jest faktem: „nikt nigdy nie przekazuje informacji” czy „nie dostałem potwierdzenia przekazania”?',
+        odpowiedz: 'Drugie. Pierwszego nie da się sprawdzić ani naprawić — to opowieść. Drugie wskazuje jedno konkretne zdarzenie i jeden możliwy ruch.'
+      },
       rozwoj: { trenuje: ['problemSolving', 'communication', 'integrity'], wzmacnia: ['problemSolving'], rownowazy: ['influence', 'empathy', 'purpose'] }
     },
     {
       id: 'zdarzenie-to-nie-wzorzec', prog: 'mgla', tytul: 'Zdarzenie to nie wzorzec', czas: 3,
       ostrze: 'Jedna wpadka wymaga korekty. Wzorzec wymaga zmiany systemu. Nie myl tych rachunków.',
-      pole: 'Błąd pojawia się pierwszy raz, ale jest kosztowny. Pokusa każe od razu tworzyć procedurę, szkolenie i zakaz. Druga pokusa każe machnąć ręką, bo „każdemu się zdarza”. Obie są leniwe — jedna produkuje papier, druga powtórki.',
+      pole: 'Błąd pojawia się pierwszy raz, ale jest kosztowny. Pierwsza pokusa każe od razu tworzyć procedurę, szkolenie i zakaz. Druga każe machnąć ręką, bo „każdemu się zdarza”. Pierwsza produkuje papier, którego nikt nie czyta. Druga zostawia sygnał bez odpowiedzi.',
       wrog: 'Pamięć, która liczy emocje zamiast przypadków. Trzy ciche sukcesy przegrywają z jednym głośnym błędem.',
-      cena: 'Albo obciążasz wszystkich kontrolą po jednym incydencie, albo ignorujesz sygnał, który właśnie zaczął się powtarzać.',
-      ruch: 'Oznacz zdarzenie jako PIERWSZE / POWTÓRKA / WZORZEC. Przy pierwszym — korekta i zapis. Przy powtórce — szukanie wspólnej przyczyny. Przy wzorcu — właściciel zmiany i termin sprawdzenia.',
-      integracja: 'Przez tydzień zbierz trzy przykłady, zanim nazwiesz coś „zawsze”. Jeśli trzeciego nie ma, język też ma nie udawać, że jest.',
-      reszta: 'Diagnozy typu „taki już jest” i procesy pisane w odwecie.',
-      przyklad: '„To drugi podobny przypadek w pięć dni. Sprawdźmy wspólny moment, nie polujmy na winnego.”',
+      cena: 'Albo obciążasz wszystkich kontrolą po jednym incydencie, albo przegapiasz sygnał, który właśnie zaczął się powtarzać.',
+      ruch: 'Oznacz zdarzenie jako PIERWSZE, POWTÓRKĘ albo WZORZEC. Przy pierwszym — korekta i zapis. Przy powtórce — szukanie wspólnej przyczyny. Przy wzorcu — osoba odpowiedzialna za zmianę i termin sprawdzenia.',
+      integracja: 'Przez tydzień zbierz trzy przykłady, zanim nazwiesz coś „zawsze”. Jeśli trzeciego nie ma, nie używaj tego słowa.',
+      reszta: 'Oceny typu „taki już jest” i procedury pisane pod wpływem złości.',
+      przyklad: '„To drugi podobny przypadek w tym tygodniu. Sprawdźmy wspólny moment, nie szukajmy winnego.”',
       kotwica: 'Jeden ślad to zdarzenie. Trzy podobne ślady zaczynają rysować wzorzec.',
-      sprawdz: { pytanie: 'Co robisz przy pierwszym zdarzeniu, a co przy wzorcu?', odpowiedz: 'Pierwsze: korekta i zapis. Wzorzec: właściciel zmiany i termin sprawdzenia.' },
+      sprawdz: {
+        pytanie: 'Kosztowny błąd zdarzył się pierwszy raz. Czego NIE robisz?',
+        odpowiedz: 'Nie piszesz procedury. Pierwsze zdarzenie to korekta i zapis — procedura jest odpowiedzią na wzorzec, nie na pojedynczy przypadek.'
+      },
       rozwoj: { trenuje: ['problemSolving', 'reliability'], wzmacnia: ['integrity', 'problemSolving'], rownowazy: ['precision', 'standards', 'optymizm'] }
     },
     {
       id: 'przewaga-ma-cien', prog: 'ostrze', tytul: 'Przewaga ma cień', czas: 4,
-      ostrze: 'Talent bez umiaru zamienia się w wadę, która ładnie wygląda z zewnątrz.',
-      pole: 'Dokładność może chronić jakość albo zatrzymać tempo. Empatia może budować zaufanie albo odkładać trudną rozmowę. Inicjatywa może ulepszać pracę albo urządzać innym życie bez zaproszenia. To samo ostrze; różni się chwyt.',
-      wrog: 'Wiara, że skoro coś jest mocną stroną, to większa dawka zawsze pomoże. Nawet sól zna lepsze proporcje.',
-      cena: 'Bronisz zachowania nazwą talentu i przestajesz zauważać jego koszt dla wyniku albo ludzi.',
-      ruch: 'Dokończ zdanie: „Moja przewaga pomaga, gdy…; zaczyna szkodzić, gdy…; sygnałem granicy jest…”. Wybierz jeden sygnał widoczny dla innych.',
-      integracja: 'Poproś jedną osobę o konkretny przykład, kiedy Twoja mocna strona pomogła i kiedy przesadziła. Bez obrony. Nie broń się od razu — to najłatwiejsza reakcja, dlatego sięga się po nią za często.',
-      reszta: 'Etykieta „taki mam charakter” używana jak przepustka służbowa.',
-      przyklad: '„Moja dokładność pomaga przy kontroli. Szkodzi, gdy poprawiam detal po czasie decyzji.”',
+      ostrze: 'Talent bez umiaru zamienia się w wadę, która z zewnątrz wygląda dobrze.',
+      pole: 'Dokładność może chronić jakość albo zatrzymać tempo. Empatia może budować zaufanie albo odsuwać trudną rozmowę. Inicjatywa może ulepszać pracę albo zmieniać ją komuś bez pytania. To ta sama cecha; różni się dawka.',
+      wrog: 'Przekonanie, że skoro coś jest mocną stroną, to większa dawka zawsze pomoże.',
+      cena: 'Tłumaczysz zachowanie nazwą talentu i przestajesz widzieć jego koszt — dla wyniku albo dla ludzi.',
+      ruch: 'Dokończ zdanie: „Moja przewaga pomaga, gdy…; zaczyna szkodzić, gdy…; sygnałem granicy jest…”. Wybierz jeden sygnał widoczny dla innych, nie tylko dla Ciebie.',
+      integracja: 'Poproś jedną osobę o konkretny przykład: kiedy Twoja mocna strona pomogła i kiedy jej było za dużo. Wysłuchaj bez tłumaczenia się — obrona jest najłatwiejszą reakcją i dlatego przychodzi pierwsza.',
+      reszta: 'Zdanie „taki już mam charakter” używane zamiast odpowiedzi.',
+      przyklad: '„Moja dokładność pomaga przy kontroli. Szkodzi, gdy poprawiam szczegół po czasie, w którym decyzja miała już zapaść.”',
       kotwica: 'To samo ostrze ma błysk i cień. Dawkę poznajesz po skutku, nie po nazwie talentu.',
-      sprawdz: { pytanie: 'Jak brzmi zdanie do kalibracji mocnej strony?', odpowiedz: 'Pomaga, gdy…; szkodzi, gdy…; sygnałem granicy jest…' },
+      sprawdz: {
+        pytanie: 'Dokończ zdanie kalibrujące mocną stronę: „Moja przewaga pomaga, gdy…”',
+        odpowiedz: '„…zaczyna szkodzić, gdy…; sygnałem granicy jest…”. Trzeci człon musi być widoczny dla innych — inaczej nikt nie da znać, że przekroczyłeś granicę.'
+      },
       rozwoj: { trenuje: ['learning', 'collaboration'], wzmacnia: ['learning'], rownowazy: ['precision', 'standards', 'empathy', 'initiative', 'communication', 'regulation'] }
     },
     {
       id: 'pomoc-przed-sciana', prog: 'ostrze', tytul: 'Pomoc przed ścianą', czas: 3,
       ostrze: 'Samodzielność kończy się tam, gdzie milczenie zaczyna kosztować zespół.',
-      pole: 'Ktoś próbuje dowieźć zadanie sam, bo zwykle potrafi. Sygnały ostrzegawcze pojawiają się wcześniej, lecz prośba o pomoc przychodzi dopiero wtedy, gdy zostały dwie złe opcje. To nie autonomia. To samotna produkcja niespodzianki.',
-      wrog: 'Wstyd przed pytaniem i nadzieja, że jeszcze jeden wysiłek naprawi brak czasu, danych albo decyzji.',
-      cena: 'Zespół traci możliwość pomocy wtedy, gdy pomoc była tania. Dostaje problem dopiero w wersji premium.',
-      ruch: 'Ustal próg alarmu przed startem: czas, brak danych albo druga nieudana próba. Po przekroczeniu progu zgłoś: stan, ryzyko, czego potrzebujesz.',
-      integracja: 'W jednym zadaniu zastosuj format 3×1: jedno zdanie stanu, jedno ryzyka, jedna konkretna prośba.',
-      reszta: 'Heroizm, który istnieje głównie dlatego, że informacja przyszła za późno.',
-      przyklad: '„Jestem w połowie. Brakuje decyzji X; bez niej termin jest zagrożony. Potrzebuję odpowiedzi do 12:00.”',
+      pole: 'Ktoś próbuje dowieźć zadanie sam, bo zwykle daje radę. Sygnały ostrzegawcze pojawiają się wcześniej, ale prośba o pomoc przychodzi dopiero wtedy, gdy zostały już tylko złe wyjścia. To nie jest samodzielność — to zaskoczenie przygotowane dla reszty zespołu.',
+      wrog: 'Wstyd przed pytaniem i nadzieja, że jeszcze jeden wysiłek nadrobi brak czasu, danych albo decyzji.',
+      cena: 'Zespół traci możliwość pomocy wtedy, kiedy była tania. Dostaje problem dopiero wtedy, gdy naprawa kosztuje wielokrotnie więcej.',
+      ruch: 'Ustal próg alarmu PRZED startem: konkretna godzina, brak danych albo druga nieudana próba. Po jego przekroczeniu zgłoś stan, ryzyko i to, czego potrzebujesz.',
+      integracja: 'W jednym zadaniu zgłoś się w trzech zdaniach: jedno o stanie, jedno o ryzyku, jedno z konkretną prośbą.',
+      reszta: 'Ratowanie sytuacji w ostatniej chwili, które było potrzebne tylko dlatego, że informacja przyszła za późno.',
+      przyklad: '„Jestem w połowie. Brakuje mi jednej decyzji; bez niej termin jest zagrożony. Potrzebuję odpowiedzi w ciągu godziny.”',
       kotwica: 'Alarm uruchamia się przed ścianą, nie po zderzeniu.',
-      sprawdz: { pytanie: 'Jakie są trzy elementy zgłoszenia pomocy?', odpowiedz: 'Stan — ryzyko — konkretna potrzeba.' },
+      sprawdz: {
+        pytanie: 'Utknąłeś w połowie zadania. Kiedy zgłaszasz, że potrzebujesz pomocy?',
+        odpowiedz: 'Po przekroczeniu progu ustalonego PRZED startem — nie wtedy, gdy zostały już tylko złe wyjścia. Próg ustala się na spokojnie, bo pod presją zawsze wydaje się, że jeszcze chwila wystarczy.'
+      },
       rozwoj: { trenuje: ['communication', 'collaboration', 'reliability'], wzmacnia: ['initiative'], rownowazy: ['independence', 'resilience', 'standards'] }
     },
     {
       id: 'jedno-tak-jeden-koszt', prog: 'cena', tytul: 'Jedno „tak”, jeden koszt', czas: 3,
-      ostrze: 'Nowe zadanie nie wchodzi do pustego dnia. Wypycha coś, tylko zwykle po cichu.',
-      pole: 'Pojawia się dobry pomysł, pilna prośba albo drobna poprawka. Każda osobno wygląda niewinnie. Razem zjadają margines, a potem wszyscy się dziwią, że w ciągu dnia zabrakło na to czasu.',
-      wrog: 'Bezkosztowe „tak”. Brzmi uprzejmie, ale kosztuje więcej, niż się wydaje.',
-      cena: 'Niedomknięte zadania, chaotyczne przekazania i obietnice, których nikt świadomie nie wycofał.',
-      ruch: 'Przyjmując nowe zadanie, nazwij od razu: CO SCHODZI, KTO DECYDUJE, KIEDY WRACAMY. Jeśli nic nie schodzi, to nie decyzja — to życzenie.',
-      integracja: 'Przez jedną zmianę nie przyjmuj żadnego nowego „na chwilę” bez wskazania kosztu.',
-      reszta: 'Lista rzeczy „też ważnych”, hodowana jak kolekcja rachunków bez terminu płatności.',
-      przyklad: '„Mogę to wziąć dziś. Wtedy kontrola X przechodzi na jutro — potwierdzamy taki koszt?”',
+      ostrze: 'Nowe zadanie nie wchodzi do pustego dnia. Wypycha coś innego, tylko zwykle po cichu.',
+      pole: 'Pojawia się dobry pomysł, pilna prośba albo drobna poprawka. Każda z osobna wygląda niewinnie. Razem zjadają zapas czasu, a pod koniec dnia okazuje się, że zabrakło go na rzeczy zaplanowane.',
+      wrog: '„Tak” wypowiedziane tak, jakby nic nie kosztowało. Brzmi uprzejmie, a kosztuje więcej, niż się w tej chwili wydaje.',
+      cena: 'Niedomknięte zadania, pospieszne przekazania i obietnice, których nikt świadomie nie odwołał.',
+      ruch: 'Przyjmując nowe zadanie, powiedz od razu, co w zamian schodzi z dzisiaj. Jeśli nic nie schodzi, to nie jest decyzja — to życzenie.',
+      integracja: 'Przez jedną zmianę nie przyjmuj niczego „na chwilę” bez nazwania kosztu na głos.',
+      reszta: 'Lista rzeczy „też ważnych”, która rośnie i nie ma przy nich żadnych terminów.',
+      przyklad: '„Mogę to wziąć dziś. Wtedy druga rzecz przechodzi na jutro — potwierdzamy taki koszt?”',
       kotwica: 'Każdy nowy ciężarek podnosi coś po drugiej stronie wagi.',
-      sprawdz: { pytanie: 'Co trzeba nazwać przyjmując nowe zadanie?', odpowiedz: 'Co schodzi — kto decyduje — kiedy wracamy.' },
+      sprawdz: {
+        pytanie: 'Ktoś prosi o drobną rzecz „na chwilę”. Jakie jedno pytanie zadajesz, zanim się zgodzisz?',
+        odpowiedz: 'Co w zamian schodzi z dzisiaj. Zgoda bez tej odpowiedzi nie jest decyzją, bo nie wiadomo, kto i czym za nią płaci.'
+      },
       rozwoj: { trenuje: ['reliability', 'initiative', 'problemSolving'], wzmacnia: ['integrity'], rownowazy: ['initiative', 'drive', 'goscinnosc', 'purpose'] }
     },
     {
       id: 'zamknij-zanim-otworzysz', prog: 'cena', tytul: 'Zamknij, zanim otworzysz', czas: 3,
-      ostrze: 'Rozpoczęcie daje dopaminę. Domknięcie daje wynik. Firma płaci za to drugie.',
-      pole: 'Nowe zadanie jest świeże i wyraźne; stare ma już kurz, zależności i nudny ostatni krok. Mózg wybiera świeże. Po tygodniu mamy sześć początków i ani jednego miejsca, na którym można stanąć.',
-      wrog: 'Mylenie ruchu z postępem. Dużo aktywności wygląda pracowicie, jak człowiek biegający z pustą tacą.',
-      cena: 'Otwarte pętle zjadają uwagę, utrudniają przekazanie i sprawiają, że nikt nie wie, co naprawdę jest gotowe.',
-      ruch: 'Przed otwarciem nowego zadania domknij jedno stare do stanu: GOTOWE / PRZEKAZANE / ŚWIADOMIE ZAMKNIĘTE.',
-      integracja: 'Wybierz dziś jedną pętlę młodszą niż tydzień i doprowadź ją do jednego z trzech stanów. Bez „prawie”.',
-      reszta: 'Zadanie zrobione w 80%, które miesiącami udaje gotowe.',
+      ostrze: 'Rozpoczęcie daje satysfakcję od razu. Domknięcie daje wynik. Firma płaci za to drugie.',
+      pole: 'Nowe zadanie jest świeże i wyraźne; stare ma już zależności i nudny ostatni krok. Uwaga sama wybiera świeże. Po tygodniu jest sześć rzeczy zaczętych i ani jednej skończonej.',
+      wrog: 'Mylenie ruchu z postępem. Dużo krzątaniny wygląda na pracowitość, a nie zostawia po sobie wyniku.',
+      cena: 'Rzeczy zaczęte i nieskończone zajmują uwagę, utrudniają przekazanie i sprawiają, że nikt nie wie, co naprawdę jest gotowe.',
+      ruch: 'Zanim otworzysz nowe zadanie, doprowadź jedno stare do jednego z trzech stanów: gotowe, przekazane albo świadomie zamknięte. „Prawie” nie jest stanem.',
+      integracja: 'Wybierz dziś jedną rzecz zaczętą w tym tygodniu i doprowadź ją do jednego z tych trzech stanów.',
+      reszta: 'Zadanie zrobione w 80%, które od miesięcy figuruje jako gotowe.',
       przyklad: '„To nie jest gotowe, dopóki odbiorca nie potwierdzi, że może z tego skorzystać.”',
-      kotwica: 'Sześć otwartych pochew nie zastąpi jednego domkniętego ostrza.',
-      sprawdz: { pytanie: 'Jakie trzy stany naprawdę zamykają pętlę?', odpowiedz: 'GOTOWE — PRZEKAZANE — ŚWIADOMIE ZAMKNIĘTE.' },
+      kotwica: 'Sześć rzeczy zaczętych nie zastąpi jednej skończonej.',
+      sprawdz: {
+        pytanie: 'Zadanie jest zrobione w 80%. Jaki ma status?',
+        odpowiedz: 'Żaden z trzech — pętla jest nadal otwarta. „Prawie gotowe” nie jest stanem; zamykają ją wyłącznie: gotowe, przekazane albo świadomie zamknięte.'
+      },
       rozwoj: { trenuje: ['reliability', 'initiative'], wzmacnia: ['reliability'], rownowazy: ['curiosity', 'initiative', 'flexibility', 'drive'] }
     },
     {
       id: 'sygnal-przed-progiem', prog: 'cialo', tytul: 'Sygnał przed progiem', czas: 4,
       ostrze: 'Nie ucz się rozpoznawać wybuchu. Ucz się rozpoznawać pięć minut przed nim.',
-      pole: 'Przeciążenie rzadko zaczyna się od krzyku. Wcześniej ciało przyspiesza, oddech robi się płytki, zdania krótsze, dłonie zaciskają się albo znika zdolność słuchania. To są dane operacyjne o Tobie, nie wada moralna.',
-      wrog: 'Czekanie na pewność. Gdy jesteś pewien, że przekroczyłeś próg, próg jest już za plecami i macha z politowaniem.',
-      cena: 'Decyzję podejmuje stan pobudzenia, a rozum przychodzi później napisać uzasadnienie.',
-      ruch: 'Wybierz jeden wczesny sygnał i jedną reakcję ochronną: woda, 90 sekund ciszy, zmiana osoby, kartka zamiast rozmowy. Reakcja ma być krótka i możliwa w pracy.',
-      integracja: 'Przez trzy dni zanotuj: sytuacja — pierwszy sygnał — reakcja — skutek. Bez diagnozowania siebie.',
-      reszta: 'Wielkie obietnice, że „następnym razem będę spokojny”. To nie plan, tylko literatura.',
+      pole: 'Przeciążenie rzadko zaczyna się od podniesionego głosu. Wcześniej ciało przyspiesza, oddech robi się płytki, zdania krótsze, dłonie zaciskają się albo znika zdolność słuchania. To są informacje o Twoim stanie, nie wada charakteru.',
+      wrog: 'Czekanie na pewność. Kiedy masz już pewność, że przekroczyłeś próg, jest on dawno za Tobą.',
+      cena: 'Decyzję podejmuje stan pobudzenia, a uzasadnienie dopisujesz do niej później.',
+      ruch: 'Wybierz jeden wczesny sygnał i jedną krótką reakcję: woda, 90 sekund ciszy, zmiana osoby przy zadaniu, kartka zamiast rozmowy. Reakcja ma być możliwa do wykonania w pracy.',
+      integracja: 'Przez trzy dni zanotuj przy każdym takim momencie: co się działo, jaki był pierwszy sygnał, co zrobiłeś i co z tego wyszło. Bez oceniania siebie.',
+      reszta: 'Postanowienia, że „następnym razem będę spokojny”. To nie jest plan, bo nie mówi, co konkretnie zrobisz.',
       przyklad: '„Mówię coraz szybciej — to mój sygnał. Robię dwie minuty przerwy i wracam z jednym pytaniem.”',
       kotwica: 'Metal zmienia kolor przed przegrzaniem. Ciało też wysyła sygnał przed progiem.',
-      sprawdz: { pytanie: 'Jakie cztery rzeczy zapisujesz przez trzy dni?', odpowiedz: 'Sytuacja — pierwszy sygnał — reakcja — skutek.' },
+      sprawdz: {
+        pytanie: 'Po czym poznasz, że zbliżasz się do własnego progu?',
+        odpowiedz: 'Po jednym wczesnym sygnale, który wybrałeś wcześniej i umiesz nazwać — na przykład że mówisz szybciej. Nie po tym, że już podniosłeś głos; wtedy próg jest za Tobą.'
+      },
       rozwoj: { trenuje: ['pressure', 'communication'], wzmacnia: ['pressure'], rownowazy: ['regulation', 'resilience', 'drive', 'asertywnosc'] }
     },
     {
       id: 'pauza-przed-odpowiedzia', prog: 'cialo', tytul: 'Pauza przed odpowiedzią', czas: 2,
       ostrze: 'Szybka odpowiedź jest cenna tylko wtedy, gdy nie trzeba jej potem odkręcać.',
-      pole: 'Krytyka, błąd albo trudny klient uruchamiają gotową odpowiedź. Jest błyskotliwa, celna i zwykle droższa niż problem. Pauza nie oznacza ucieczki; oznacza, że wybierasz odpowiedź zamiast odruchu.',
-      wrog: 'Przymus wygrania pierwszych dziesięciu sekund rozmowy.',
-      cena: 'Tracisz treść sprawy, bo wszyscy zaczynają bronić tonu, godności i dawnych krzywd.',
-      ruch: 'Użyj zdania pomostowego: „Słyszę. Daj mi minutę, chcę odpowiedzieć precyzyjnie.” Potem wróć do jednego faktu i jednego następnego kroku.',
-      integracja: 'Zastosuj pauzę raz w sytuacji o niskiej stawce, zanim będzie potrzebna przy wysokiej.',
-      reszta: 'Riposty, które wygrywają rozmowę i przegrywają współpracę.',
-      przyklad: '„Nie odpowiem z rozpędu. Wrócę za dwie minuty z konkretem.”',
-      kotwica: 'Pauza jest pochwą dla odpowiedzi, której nie trzeba później odkręcać.',
-      sprawdz: { pytanie: 'Jak brzmi zdanie pomostowe?', odpowiedz: 'Słyszę. Daj mi minutę, chcę odpowiedzieć precyzyjnie.' },
+      pole: 'Krytyka, błąd albo trudny klient uruchamiają odpowiedź, która przychodzi sama. Bywa celna i zwykle kosztuje więcej niż sam problem. Pauza nie jest ucieczką; jest wyborem odpowiedzi zamiast odruchu.',
+      wrog: 'Poczucie, że trzeba wygrać pierwsze dziesięć sekund rozmowy.',
+      cena: 'Sprawa schodzi na dalszy plan, bo obie strony zaczynają bronić tonu i dawnych zaszłości.',
+      ruch: 'Użyj zdania, które kupuje czas: „Słyszę. Daj mi minutę, chcę odpowiedzieć precyzyjnie.” Potem wróć do jednego faktu i jednego następnego kroku.',
+      integracja: 'Zastosuj pauzę raz w sytuacji o małej stawce, zanim będzie potrzebna przy dużej. Zdanie ma być gotowe, zanim zrobi się gorąco.',
+      reszta: 'Odpowiedzi, które wygrywają rozmowę i psują współpracę na kolejne dni.',
+      przyklad: '„Nie odpowiem od razu. Wrócę za dwie minuty z konkretem.”',
+      kotwica: 'Pauza jest osłoną dla odpowiedzi, której nie trzeba później odkręcać.',
+      sprawdz: {
+        pytanie: 'Jak brzmi zdanie, którym kupujesz sobie minutę?',
+        odpowiedz: '„Słyszę. Daj mi minutę, chcę odpowiedzieć precyzyjnie.” Pierwsze słowo jest najważniejsze — bez niego pauza brzmi jak odmowa rozmowy.'
+      },
       rozwoj: { trenuje: ['pressure', 'communication', 'collaboration'], wzmacnia: ['pressure'], rownowazy: ['asertywnosc', 'influence', 'optymizm'] }
     },
     {
       id: 'powiedziane-nie-znaczy-zrozumiane', prog: 'relacje', tytul: 'Powiedziane ≠ zrozumiane', czas: 3,
       ostrze: 'Przekaz kończy się w głowie odbiorcy, nie w ustach nadawcy.',
-      pole: 'Instrukcja została wypowiedziana jasno. Odbiorca przytaknął. Później zrobił coś innego. Najłatwiej uznać, że nie słuchał. Czasem tak. Częściej każde z was wyszło z rozmowy z inną wersją tego samego zdania.',
-      wrog: 'Przytaknięcie uznane za potwierdzenie. Ludzie przytakują także wtedy, gdy chcą, żeby rozmowa wreszcie umarła spokojnie.',
+      pole: 'Instrukcja została wypowiedziana jasno. Odbiorca przytaknął. Później zrobił co innego. Najprościej uznać, że nie słuchał. Czasem tak było. Częściej każde z was wyszło z rozmowy z inną wersją tego samego zdania.',
+      wrog: 'Przytaknięcie uznane za potwierdzenie. Ludzie przytakują także wtedy, gdy chcą zakończyć rozmowę.',
       cena: 'Błąd wraca, a korekta zmienia się w spór o to, co „przecież było mówione”.',
-      ruch: 'Po ważnym przekazaniu poproś: „Powiedz własnymi słowami, co teraz robisz i kiedy wracasz z informacją.” Bez tonu egzaminatora.',
-      integracja: 'Zastosuj tę metodę („powtórz własnymi słowami”) przy jednym zadaniu z terminem albo ryzykiem. Sprawdź, czy różnica wyszła przed działaniem.',
-      reszta: 'Głośniejsze powtarzanie tego samego zdania.',
+      ruch: 'Po ważnym przekazaniu poproś: „Powiedz własnymi słowami, co teraz robisz i kiedy wracasz z informacją.” Bez tonu sprawdzania.',
+      integracja: 'Zastosuj to przy jednym zadaniu z terminem albo ryzykiem. Sprawdź, czy różnica wyszła przed działaniem, a nie po nim.',
+      reszta: 'Powtarzanie tego samego zdania głośniej.',
       przyklad: '„Żebym sprawdził, czy powiedziałem to jasno: jak rozumiesz następny krok?”',
       kotwica: 'Przekazana nić jest bezpieczna dopiero wtedy, gdy wraca do Ciebie w słowach odbiorcy.',
-      sprawdz: { pytanie: 'Jak sprawdzasz przekazanie bez tonu egzaminatora?', odpowiedz: 'Prosisz odbiorcę, by własnymi słowami powiedział następny krok i termin powrotu.' },
+      sprawdz: {
+        pytanie: 'Odbiorca przytaknął. Czy przekaz dotarł?',
+        odpowiedz: 'Nie wiadomo. Wiesz dopiero wtedy, gdy powtórzy własnymi słowami następny krok i termin. Przytaknięcie mówi o rozmowie, nie o zrozumieniu.'
+      },
       rozwoj: { trenuje: ['communication', 'reliability', 'collaboration'], wzmacnia: ['communication'], rownowazy: ['communication', 'influence', 'structure', 'standards'] }
     },
     {
       id: 'granica-bez-wykladu', prog: 'relacje', tytul: 'Granica bez wykładu', czas: 3,
-      ostrze: 'Granica ma być zrozumiała. Nie musi wygrać konkursu na najdłuższe uzasadnienie.',
-      pole: 'Ktoś przerywa, zrzuca zadanie za późno albo wraca z tym samym zachowaniem. Narasta frustracja. Zamiast krótkiej granicy pojawia się wykład obejmujący historię ludzkości od ostatniego wtorku.',
-      wrog: 'Nadzieja, że wystarczająco długie uzasadnienie sprawi, iż druga osoba nie poczuje dyskomfortu.',
-      cena: 'Sedno ginie, odbiorca broni się przed całym aktem oskarżenia, a granica pozostaje niewypowiedziana.',
-      ruch: 'Użyj trzech elementów: FAKT — WPŁYW — OCZEKIWANIE. Jedno zdanie na element. Potem cisza.',
-      integracja: 'Przepisz jedną zaległą rozmowę do maksymalnie 45 słów. Jeśli potrzebujesz przypisów, nadal piszesz akt oskarżenia.',
-      reszta: 'Czytanie cudzych intencji i argumenty na zapas przeciw odpowiedziom, które jeszcze nie padły.',
-      przyklad: '„Informacja przyszła po ustalonym czasie. Nie mogłem przeplanować pracy. Następnym razem zgłoś ryzyko przed terminem.”',
-      kotwica: 'Granica jest trzema czystymi cięciami. Wykład tylko tępi ostrze.',
-      sprawdz: { pytanie: 'Jakie trzy elementy ma krótka granica?', odpowiedz: 'FAKT — WPŁYW — OCZEKIWANIE.' },
+      ostrze: 'Granica ma być zrozumiała. Nie musi być długa.',
+      pole: 'Ktoś przerywa, przekazuje zadanie za późno albo wraca z tym samym zachowaniem. Frustracja narasta. Zamiast krótkiej granicy pojawia się długie wyliczanie wszystkich poprzednich razów.',
+      wrog: 'Nadzieja, że wystarczająco długie uzasadnienie sprawi, że druga osoba nie poczuje dyskomfortu.',
+      cena: 'Sedno ginie, odbiorca broni się przed całą listą zarzutów, a granica pozostaje niewypowiedziana.',
+      ruch: 'Powiedz trzy rzeczy, po jednym zdaniu: co się stało, jaki to miało wpływ na Twoją pracę, czego oczekujesz następnym razem. Potem zamilcz.',
+      integracja: 'Przepisz jedną zaległą rozmowę do maksymalnie 45 słów. Jeśli nie mieści się w tej długości, wracasz do wyliczania.',
+      reszta: 'Domyślanie się cudzych intencji i przygotowywanie argumentów na odpowiedzi, które jeszcze nie padły.',
+      przyklad: '„Informacja przyszła po ustalonym czasie. Nie mogłem przez to przeplanować pracy. Następnym razem zgłoś ryzyko przed terminem.”',
+      kotwica: 'Granica jest trzema czystymi cięciami. Długi wywód tylko tępi ostrze.',
+      sprawdz: {
+        pytanie: 'Ile zdań ma krótka granica i co jest w każdym z nich?',
+        odpowiedz: 'Trzy zdania: co się stało, jaki to miało wpływ na Twoją pracę, czego oczekujesz. Czwartym elementem jest cisza — bez niej wracasz do wyliczania.'
+      },
       rozwoj: { trenuje: ['communication', 'collaboration', 'integrity'], wzmacnia: ['communication'], rownowazy: ['empathy', 'relations', 'goscinnosc', 'influence'] }
     },
     {
       id: 'wlasciciel-wyniku', prog: 'praca', tytul: 'Właściciel wyniku', czas: 4,
-      ostrze: 'Wykonanie własnego ruchu nie kończy odpowiedzialności, jeśli wynik nadal leży na ziemi.',
-      pole: 'Zadanie zostało zrobione, wiadomość wysłana, rzecz odłożona. Odbiorca jej nie zauważył, nie potwierdził albo nie wiedział, co dalej. Nadawca mówi: „ja swoje zrobiłem”. Technicznie racja. W praktyce robota nadal nie jest zrobiona.',
-      wrog: 'Odpowiedzialność ograniczona do ruchu własnych rąk, bez sprawdzenia skutku i przekazania.',
-      cena: 'Praca wpada między role. Każdy ma czyste sumienie, a wynik nadal nie istnieje.',
-      ruch: 'Domykaj zadanie trzema punktami: WYNIK — ODBIORCA — POTWIERDZENIE. Jeśli któregoś nie ma, nazwij stan „w toku”, nie „gotowe”.',
-      integracja: 'Wybierz jedno zadanie między dwiema osobami i dopisz kryterium potwierdzenia odbioru.',
-      reszta: '„Wysłałem”, „położyłem”, „mówiłem” traktowane jak synonimy słowa „działa”.',
+      ostrze: 'Wykonanie własnego ruchu nie kończy odpowiedzialności, jeśli wynik nadal nie dotarł.',
+      pole: 'Zadanie zostało zrobione, wiadomość wysłana, rzecz odłożona na miejsce. Odbiorca jej nie zauważył, nie potwierdził albo nie wiedział, co dalej. Nadawca mówi: „ja swoje zrobiłem”. Formalnie ma rację. W praktyce robota nadal nie jest zrobiona.',
+      wrog: 'Odpowiedzialność rozumiana jako ruch własnych rąk, bez sprawdzenia, czy wynik dotarł.',
+      cena: 'Praca wpada między role. Każdy ma czyste sumienie, a wyniku nadal nie ma.',
+      ruch: 'Zanim nazwiesz zadanie gotowym, sprawdź, czy odbiorca potwierdził, że ma wynik i wie, co z nim zrobić. Jeśli nie — to nadal jest „w toku”.',
+      integracja: 'Wybierz jedno zadanie przechodzące między dwiema osobami i ustal, po czym poznacie, że zostało odebrane.',
+      reszta: '„Wysłałem”, „położyłem”, „mówiłem” traktowane jako dowód, że rzecz działa.',
       przyklad: '„Gotowe będzie wtedy, gdy odbiorca potwierdzi, że ma wynik i zna następny krok.”',
       kotwica: 'Przez chwilę obie pary dłoni trzymają wynik. Dopiero wtedy przekazanie naprawdę istnieje.',
-      sprawdz: { pytanie: 'Jakie trzy punkty domykają zadanie?', odpowiedz: 'Wynik — odbiorca — potwierdzenie.' },
+      sprawdz: {
+        pytanie: 'Czym „przekazane” różni się od „wysłane”?',
+        odpowiedz: 'Wysłane opisuje tylko Twój ruch. Przekazane znaczy, że odbiorca potwierdził, że ma wynik i wie, co z nim zrobić — dopiero to widać po drugiej stronie.'
+      },
       rozwoj: { trenuje: ['reliability', 'integrity', 'collaboration'], wzmacnia: ['reliability', 'integrity'], rownowazy: ['independence', 'initiative', 'drive'] }
     },
     {
       id: 'prawo-zatrzymania', prog: 'praca', tytul: 'Prawo zatrzymania', czas: 3,
       ostrze: 'Lojalność wobec zespołu nie polega na cichym przepuszczeniu ryzyka.',
-      pole: 'Widzisz błąd, brak informacji albo warunek, którego nie rozumiesz. Produkcja lub obsługa już biegnie. Zatrzymanie jest niewygodne, więc pojawia się myśl: „ktoś wyżej na pewno wie”. Czasem wie. Czasem wszyscy myślą dokładnie to samo.',
-      wrog: 'Rozproszenie odpowiedzialności. Im więcej ludzi obok, tym łatwiej każdemu uznać, że straż trzyma ktoś inny.',
-      cena: 'Mały sygnał rośnie do kosztownego problemu, a później wszyscy zgodnie wspominają, że coś im nie pasowało.',
-      ruch: 'Zatrzymaj własny krok i zgłoś w formacie: CO WIDZĘ — CZEGO NIE WIEM — KTO DECYDUJE O WZNOWIENIU. Nie zgaduj decyzji merytorycznej.',
-      integracja: 'Przećwicz zdanie zatrzymujące na neutralnym przykładzie, żeby język był gotowy pod presją.',
-      reszta: 'Ciche bohaterstwo polegające na liczeniu, że akurat tym razem problem minie bokiem.',
-      przyklad: '„Zatrzymuję swój krok. Widzę rozbieżność i nie mam danych, by ją ocenić. Potrzebuję decyzji osoby odpowiedzialnej.”',
+      pole: 'Widzisz błąd, brak informacji albo warunek, którego nie rozumiesz. Praca już trwa. Zatrzymanie jest niewygodne, więc pojawia się myśl: „ktoś bardziej doświadczony na pewno wie”. Czasem wie. Czasem wszyscy obecni myślą dokładnie to samo.',
+      wrog: 'Rozproszenie odpowiedzialności. Im więcej osób obok, tym łatwiej każdej uznać, że pilnuje ktoś inny.',
+      cena: 'Mały sygnał rośnie do kosztownego problemu, a po fakcie okazuje się, że kilku osobom coś nie pasowało.',
+      ruch: 'Zatrzymaj własny krok i powiedz trzy rzeczy: co widzisz, czego nie wiesz, kto ma zdecydować o wznowieniu. Nie zgaduj decyzji, która nie należy do Ciebie.',
+      integracja: 'Wypowiedz zdanie zatrzymujące na neutralnym przykładzie, żeby było gotowe, zanim będzie potrzebne pod presją.',
+      reszta: 'Ciche liczenie na to, że akurat tym razem problem minie bokiem.',
+      przyklad: '„Zatrzymuję swój krok. Widzę rozbieżność i nie mam danych, żeby ją ocenić. Potrzebuję decyzji osoby odpowiedzialnej.”',
       kotwica: 'Strażnik nie musi znać rozwiązania. Musi zauważyć dym i zatrzymać własny krok.',
-      sprawdz: { pytanie: 'Jaki jest format zatrzymania ryzyka?', odpowiedz: 'Co widzę — czego nie wiem — kto decyduje o wznowieniu.' },
+      sprawdz: {
+        pytanie: 'Widzisz ryzyko, ale nie znasz rozwiązania. Wolno Ci zatrzymać pracę?',
+        odpowiedz: 'Tak. Zatrzymujesz własny krok i mówisz, co widzisz i czego nie wiesz. Znajomość rozwiązania nie jest warunkiem zatrzymania — decyzję o wznowieniu podejmuje osoba odpowiedzialna.'
+      },
       rozwoj: { trenuje: ['integrity', 'communication', 'problemSolving'], wzmacnia: ['integrity'], rownowazy: ['goscinnosc', 'relations', 'resilience', 'independence'] }
     },
     {
       id: 'eksperyment-zamiast-rewolucji', prog: 'natchnienie', tytul: 'Eksperyment zamiast rewolucji', czas: 4,
-      ostrze: 'Dobry pomysł nie potrzebuje wiary. Potrzebuje małego testu, który może go zawstydzić.',
-      pole: 'Widzisz lepszy sposób i chcesz wdrożyć go wszędzie. Pomysł może być świetny. Problem w tym, że dopiero kontakt z pracą pokaże koszt, wyjątki i ludzi, którzy mieli czelność nie przeczytać Twoich myśli.',
-      wrog: 'Zakochanie w rozwiązaniu. Im więcej energii w pomyśle, tym trudniej zauważyć dane przeciw niemu.',
-      cena: 'Zmęczenie zmianą, opór zespołu i kolejny system porzucony po tygodniu.',
-      ruch: 'Zaprojektuj test 1–1–1: jedna sytuacja, jeden tydzień, jeden mierzalny sygnał. Przed startem zapisz warunek STOP i warunek ZOSTAJE.',
-      integracja: 'Przerób jeden aktualny pomysł na test odwracalny bez zmiany całego procesu.',
-      reszta: 'Prezentacje o przyszłości, która jeszcze nie przeżyła wtorkowego poranka.',
-      przyklad: '„Testujemy przez pięć zmian w jednym miejscu. Zostaje, jeśli skraca przekazanie bez wzrostu błędów.”',
+      ostrze: 'Dobry pomysł nie potrzebuje wiary. Potrzebuje małego testu, który może go obalić.',
+      pole: 'Widzisz lepszy sposób i chcesz wprowadzić go wszędzie. Pomysł może być dobry. Dopiero kontakt z pracą pokaże jego koszt, wyjątki i to, czego nie dało się przewidzieć zza biurka.',
+      wrog: 'Przywiązanie do własnego rozwiązania. Im więcej energii włożonej w pomysł, tym trudniej zauważyć dane, które mu przeczą.',
+      cena: 'Zmęczenie kolejną zmianą, opór zespołu i następny system porzucony po tygodniu.',
+      ruch: 'Zanim uruchomisz test, zapisz dwie rzeczy: warunek, przy którym pomysł zostaje, i warunek, przy którym go wycofujesz. Potem sprawdź go w jednym miejscu, przez ograniczony czas.',
+      integracja: 'Przerób jeden aktualny pomysł na próbę odwracalną — taką, którą da się wycofać bez zmiany całego sposobu pracy.',
+      reszta: 'Plany na przyszłość, których nikt jeszcze nie sprawdził w zwykły roboczy dzień.',
+      przyklad: '„Testujemy przez pięć zmian w jednym miejscu. Zostaje, jeśli skraca przekazanie i nie zwiększa liczby błędów.”',
       kotwica: 'Jedna iskra pod kloszem daje więcej wiedzy niż pożar całej kuźni.',
-      sprawdz: { pytanie: 'Co oznacza test 1–1–1?', odpowiedz: 'Jedna sytuacja — jeden tydzień — jeden mierzalny sygnał.' },
+      sprawdz: {
+        pytanie: 'Co ustalasz PRZED uruchomieniem testu?',
+        odpowiedz: 'Warunek, przy którym pomysł zostaje, i warunek, przy którym go wycofujesz. Bez nich test zawsze „wychodzi”, bo kryterium dopisuje się do wyniku.'
+      },
       rozwoj: { trenuje: ['initiative', 'learning', 'problemSolving'], wzmacnia: ['initiative', 'learning'], rownowazy: ['initiative', 'curiosity', 'flexibility', 'optymizm', 'influence'] }
     },
     {
       id: 'naucz-zeby-sprawdzic', prog: 'natchnienie', tytul: 'Naucz, żeby sprawdzić', czas: 4,
-      ostrze: 'Jeśli wiedzy nie da się przekazać, być może jest jeszcze przeczuciem przebranym za instrukcję.',
-      pole: 'Doświadczona osoba robi coś dobrze i „po prostu widzi”. To cenna intuicja, lecz firma nie może jej skopiować, urlopować ani przekazać nowej osobie. Dopiero próba nauczenia odsłania kryteria, które ekspert stosował bez słów.',
-      wrog: 'Klątwa wiedzy: skoro dla mnie coś jest oczywiste, innym brakuje uwagi albo talentu. Czasem brakuje im tylko instrukcji zawierającej cokolwiek poza słowem „uważaj”.',
-      cena: 'Wiedza zostaje w jednej głowie, a rozwój zespołu zależy od obecności tej osoby.',
-      ruch: 'Pokaż jeden ruch, nazwij kryterium, oddaj wykonanie, poproś ucznia o wyjaśnienie własnymi słowami. Obserwuj bez przejmowania zadania po pierwszej niedoskonałości.',
-      integracja: 'Naucz jedną osobę jednego małego elementu. Zapisz pytanie ucznia, na które nie miałeś dobrej odpowiedzi — to luka w wiedzy, nie wstyd.',
-      reszta: 'Demonstracje tak szybkie, że uczeń może głównie podziwiać nadgarstek eksperta.',
+      ostrze: 'Jeśli wiedzy nie da się przekazać, jest jeszcze przeczuciem, a nie instrukcją.',
+      pole: 'Doświadczona osoba robi coś dobrze i „po prostu widzi”, że jest dobrze. To cenna umiejętność, ale firma nie może jej powielić ani przekazać komuś nowemu. Dopiero próba nauczenia odsłania kryteria, których ekspert używał bez nazywania ich.',
+      wrog: 'Przekonanie, że skoro dla mnie coś jest oczywiste, to innym brakuje uwagi. Zwykle brakuje im tylko opisu, który mówi coś więcej niż „uważaj”.',
+      cena: 'Wiedza zostaje w jednej głowie, a praca zespołu zależy od obecności tej jednej osoby.',
+      ruch: 'Pokaż jeden ruch, nazwij kryterium, oddaj wykonanie i poproś ucznia, żeby wyjaśnił je własnymi słowami. Nie przejmuj zadania po pierwszej niedoskonałości.',
+      integracja: 'Naucz jedną osobę jednego małego elementu. Zapisz pytanie, na które nie miałeś dobrej odpowiedzi — to luka w opisie, nie powód do wstydu.',
+      reszta: 'Pokazy wykonane tak szybko, że uczeń widzi efekt, a nie kolejne kroki.',
       przyklad: '„Najpierw pokażę. Potem Ty robisz i mówisz, po czym poznajesz, że jest dobrze.”',
       kotwica: 'Wiedza przechodzi z dłoni do dłoni dopiero wtedy, gdy uczeń potrafi nazwać kryterium.',
-      sprawdz: { pytanie: 'Jakie cztery kroki odsłaniają, czy naprawdę umiesz nauczyć?', odpowiedz: 'Pokaż — nazwij kryterium — oddaj wykonanie — poproś o wyjaśnienie.' },
+      sprawdz: {
+        pytanie: 'Pokazałeś, uczeń powtórzył poprawnie. Czy nauczyłeś?',
+        odpowiedz: 'Jeszcze nie wiadomo. Poprawne powtórzenie może być naśladowaniem. Wiesz dopiero wtedy, gdy uczeń sam nazwie kryterium, po którym poznaje, że jest dobrze.'
+      },
       rozwoj: { trenuje: ['learning', 'communication', 'collaboration'], wzmacnia: ['collaboration', 'learning'], rownowazy: ['precision', 'independence', 'communication', 'rozwijanie_innych'] }
     }
   ];
 
-  return { wersja: '2026-09-01', progi: PROGI, lekcje: LEKCJE };
+  return { wersja: '2026-09-16', progi: PROGI, lekcje: LEKCJE };
 });</script>
 <script>(function (root, factory) {
   var api = factory();
@@ -622,9 +704,36 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
     znaneKlucze.forEach(function (k) { if (liczba(zrodlo[k])) wynik[k] = zrodlo[k]; });
     return wynik;
   }
+  /* Preferencje nauki to ZNACZNIKI z zamknietej listy Profilu (`piekarz`,
+     `cukiernik`, `sala`, `precyzja`, `higiena`...), nigdy wolny tekst. Dlatego
+     przepuszczamy je wzorcem, a nie na wiare: imie, telefon ani zdanie
+     opisowe nie przejda przez `^[a-z-]{2,24}$`. Lista wartosci zyje
+     w `sciezka_rzemiosla.json` i w danych Profilu — modul Rzemiosla ich nie
+     zna i nie ma zakladac czwartej kopii, wiec sprawdzamy KSZTALT. */
+  var WZORZEC_PREFERENCJI = /^[a-z-]{2,24}$/;
+  function znacznik(v) { return typeof v === 'string' && WZORZEC_PREFERENCJI.test(v) ? v : null; }
+  function znaczniki(v, ile) {
+    return (Array.isArray(v) ? v : []).map(znacznik).filter(Boolean).slice(0, ile);
+  }
+
+  /* Do 16.09.2026 pole `preferencje` odpadalo tu po cichu i to bylo zerwanie
+     lancucha: po wgraniu profilu z pliku kurs uznawal, ze Profil JEST zrobiony
+     (chowal zachete „Zrob Profil"), ale drabiny pod preferencje nie ukladal —
+     i nikt nie mial jak sie dowiedziec dlaczego. To deklaracje nauki
+     czlowieka o sobie, nie dane osobowe; jedyne, czego pilnujemy, to zeby
+     tym kanalem nie przeszlo nic innego. */
+  function oczyszczonePreferencje(p) {
+    if (!obiekt(p)) return null;
+    var wiodace = znacznik(p.wiodace);
+    var dodatkowe = znaczniki(p.dodatkowe, 4).filter(function (x) { return x !== wiodace; });
+    var wazne = znaczniki(p.wazne, 3);
+    if (!wiodace && !dodatkowe.length && !wazne.length) return null;
+    return { wiodace: wiodace, dodatkowe: dodatkowe, wazne: wazne };
+  }
+
   function oczyszczonyProfil(rekord) {
     var r = obiekt(rekord) ? rekord : {};
-    return {
+    var czysty = {
       typ: 'alterbake-wynik-work-profile', wersja: String(r.wersja || ''),
       narzedzie: 'profil-alterbake', rezim: 'publiczny', data: r.data || null,
       wyniki: tylkoZnaneKlucze(r.wyniki, Object.keys(OBSZARY)),
@@ -632,6 +741,9 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
       charakter: tylkoZnaneKlucze(r.charakter, ['uczenie']),
       wiarygodnosc: (obiekt(r.wiarygodnosc) && typeof r.wiarygodnosc.poziom === 'string') ? { poziom: r.wiarygodnosc.poziom } : null
     };
+    var pref = oczyszczonePreferencje(r.preferencje);
+    if (pref) czysty.preferencje = pref;
+    return czysty;
   }
   /* Ten sam log czyta i pisze publiczny Profil (`./test/`) — dedup po treści
      wyników, tak jak `S.dopiszWynik` w tamtym narzędziu, żeby powtórne
@@ -877,12 +989,27 @@ header a{background:linear-gradient(145deg,#33291B,#3A2418)}.hero{background:lin
     b.setAttribute('aria-expanded','false');k.append(b,odp);return k;
   }
 
+  /* SEKCJA „Z ŻYCIA ALTERBAKE" — wariant wewnętrzny (decyzja Piotra 16.09.2026).
+     Lekcja uczy sytuacji OGÓLNEJ; przełożenie na naszą piekarnię stoi osobno,
+     na końcu, i nie wyjeżdża do publicznej Akademii. Renderujemy wyłącznie
+     wtedy, gdy pole jest w danych — w wariancie publicznym generator je wycina,
+     więc ta karta po prostu nie powstaje. Nie ma tu żadnego przełącznika
+     ani ukrywania: czego nie ma w danych, tego nie ma na ekranie. */
+  function kartaAlterbake(l){
+    if(!l.alterbake) return null;
+    var k=karta('alterbake');k.append(el('div','nadtytul','Z ŻYCIA ALTERBAKE'));
+    k.append(el('h3','','Jak to wygląda u nas'));
+    k.append(el('p','',l.alterbake));
+    return k;
+  }
+
   function ekranLekcji(id){
     wyczysc();var l=lekcjaPoId(id);if(!l){nawiguj('sciezka',null,true);return}var p=progPoId(l.prog),tryb=L.trybUczenia(profil());ustawTytul(l.tytul);
     var h=karta('hero');h.append(el('div','nadtytul','Próg '+p.nr+' · '+p.nazwa+' · '+p.symbol));h.append(el('h2','',l.tytul));h.append(el('p','ostra',l.ostrze));
     var meta=el('div','meta');meta.append(el('span','plakietka',l.czas+' min'),el('span','plakietka','1 ruch'),el('span','plakietka',tryb.nazwa));var st=statusLekcji(id);if(st)meta.append(el('span','plakietka '+st.klasa,st.tekst));h.append(meta);ekran.append(h,figura(p,l.kotwica));
     if(tryb.id==='dzialanie')ekran.append(kartaRuchu(l,id),kartaMapy(l));else ekran.append(kartaMapy(l),kartaRuchu(l,id));
     ekran.append(kartaPamieci(l));
+    var ka=kartaAlterbake(l);if(ka)ekran.append(ka);
     ekran.append(przycisk('← Wróć do progu',function(){nawiguj('prog',l.prog)},true));
   }
 

@@ -13,19 +13,25 @@
    kolory i kroje wstawia generator z jednego źródła tokenów marki:
    papier, czerń, terakota jako AKCENT (nie tło paska), szeryf w tytułach. */
 :root{
-  --ab-czern:#141413;
-  --ab-papier:#EDE7DA;
-  --ab-dab:#C2A06B;
-  --ab-taupe:#6E6A5F;
-  --ab-terakota:#B5532E;
-  --ab-oliwka:#5E5F3C;
-  --ab-sukces:#4A7C3A;
-  --ab-uwaga:#B7791F;
-  --ab-blad:#B03030;
-  --ab-font-display:"Source Serif 4", Georgia, "Times New Roman", serif;
-  --ab-font-body:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --ab-font-mono:"IBM Plex Mono", ui-monospace, monospace;
-  --ab-r:14px; --ab-r-sm:9px;
+  --ab-ink:#30252B;
+  --ab-paper:#F4F1E9;
+  --ab-surface:#FCFBF7;
+  --ab-context:#C6D0C5;
+  --ab-rule:#CEC8BF;
+  --ab-muted:#72666B;
+  --ab-czern:#30252B;
+  --ab-papier:#F4F1E9;
+  --ab-dab:#CEC8BF;
+  --ab-taupe:#72666B;
+  --ab-terakota:#30252B;
+  --ab-oliwka:#3F6B4A;
+  --ab-sukces:#3F6B4A;
+  --ab-uwaga:#8A5A12;
+  --ab-blad:#9B3B33;
+  --ab-font-display:"Newsreader", Georgia, "Times New Roman", serif;
+  --ab-font-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ab-font-mono:"IBM Plex Sans", system-ui, sans-serif;
+  --ab-r:4px; --ab-r-sm:4px;
   --tlo:var(--ab-papier); --karta:#FBF8F1; --tekst:var(--ab-czern);
   /* --cichy: taupe kanonu na papierze daje 4,38:1, tuż poniżej WCAG AA —
      dociemniamy domieszką w `@supports` niżej (nie drugą deklaracją: własność
@@ -125,6 +131,21 @@ button.drugi{width:100%;min-height:48px;background:transparent;color:var(--akcen
 .lista-mini li{margin-bottom:.35rem}
 .pasek{height:6px;background:var(--ramka);border-radius:3px;margin-top:10px;overflow:hidden}
 .pasek i{display:block;height:100%;background:var(--ok);border-radius:3px}
+/* Nagłówek grupy kategorii (16.09.2026) — oddziela wiedzę zawodową od
+   umiejętności miękkich na ekranie startowym. */
+.grupa-naglowek{margin:22px 0 10px}
+.grupa-naglowek:first-of-type{margin-top:10px}
+.grupa-naglowek h3{margin:0 0 2px;font-size:17px}
+.grupa-naglowek p{margin:0}
+/* Zakładka „Mój profil" (16.09.2026). Nadtytuł i wiersz z paskiem to jedyne
+   dwie rzeczy, których ten ekran potrzebował poza istniejącymi stylami —
+   reszta korzysta z kart, .cichy i .mini jak cały kurs. */
+.nadtytul{margin-bottom:6px;color:var(--akcent);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.profil-wiersz{display:grid;grid-template-columns:1fr 96px;align-items:center;gap:12px;padding:7px 0;font-size:15px}
+.profil-wiersz .pasek{margin-top:0}
+a.przycisk-link{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;
+  margin-top:10px;border:1.5px solid var(--akcent);border-radius:12px;background:transparent;
+  color:var(--akcent);text-decoration:none;font-weight:600}
 .plakietka{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;
   background:var(--akcent-jasny);color:var(--akcent);font-weight:600}
 .plakietka.ccp{background:#fdeceb;color:var(--zle)}
@@ -144,9 +165,15 @@ button.drugi{width:100%;min-height:48px;background:transparent;color:var(--akcen
 .wyjasnienie p{margin:0 0 8px;font-size:15px}
 #nawigacja{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--karta);
   border-top:1px solid var(--ramka);padding-bottom:env(safe-area-inset-bottom);z-index:10}
-#nawigacja button,#nawigacja a{flex:1;min-height:60px;background:none;border:0;color:var(--cichy);
+#nawigacja button,#nawigacja a{flex:1 1 0;min-width:0;min-height:60px;background:none;border:0;color:var(--cichy);
   font-size:12px;cursor:pointer;display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;
   text-decoration:none;font-family:inherit}
+/* Od szóstej zakładki („Mój profil", 16.09.2026) pasek przestał się mieścić
+   na 320 px — ostatnia pozycja wychodziła o 6 px poza ekran. `flex:1` bez
+   `min-width:0` nie pozwala pozycji zwęzić się poniżej własnej treści, więc
+   sam podział na sześć nie wystarcza. Na wąskich telefonach schodzimy
+   z krojem; iPhone SE nadal jest telefonem, na którym ktoś to otworzy. */
+@media (max-width:359px){#nawigacja button,#nawigacja a{font-size:10px;letter-spacing:-.01em}}
 #nawigacja button.akt{color:var(--akcent);font-weight:600}
 details.slownik{margin-top:12px}
 details.slownik summary{cursor:pointer;font-weight:600;padding:12px;background:var(--karta);
@@ -319,6 +346,7 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
   <button data-widok="powtorka">🔁 Powtórka</button>
   <button data-widok="sciezka">🧭 Ścieżka</button>
   <button data-widok="postep">📊 Postęp</button>
+  <button data-widok="profil">🧩 Profil</button>
   <!-- Piąta pozycja nie przełącza widoku (data-widok) — wychodzi z kursu do
        drugiego modułu Akademii. Świadomie w tym samym pasku co reszta:
        03.09.2026, Piotr — oba moduły mają być osiągalne z każdego miejsca,
@@ -326,8 +354,8 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
   <a href="./mistrz.html">🧰 Człowiek</a>
 </nav>
 <script id="dane-kursu" type="application/json">{
-  "wersja": "2026-09-08",
-  "zbudowano": "2026-09-08",
+  "wersja": "2026-09-16",
+  "zbudowano": "2026-09-16",
   "sciezki": [
     {
       "id": "piekarz",
@@ -349,36 +377,42 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
   "dzialy": [
     {
       "id": "piekarnia",
+      "grupa": "zawodowe",
       "ikona": "🥖",
       "etykieta": "Piekarnia",
       "opis": "chleb, bułki, fermentacja, wypiek"
     },
     {
       "id": "cukiernia",
+      "grupa": "zawodowe",
       "ikona": "🍰",
       "etykieta": "Cukiernia",
       "opis": "ciasta, kremy, laminowanie, montaż"
     },
     {
       "id": "obsluga",
+      "grupa": "zawodowe",
       "ikona": "🛎️",
       "etykieta": "Obsługa i sprzedaż",
       "opis": "lada, klient, witryna"
     },
     {
       "id": "nauka",
+      "grupa": "zawodowe",
       "ikona": "🔬",
       "etykieta": "Nauka rzemiosła",
       "opis": "chemia, biochemia i fizyka tego, co robimy rękami"
     },
     {
       "id": "sprzatanie",
+      "grupa": "zawodowe",
       "ikona": "🧼",
       "etykieta": "Sprzątanie i higiena",
       "opis": "mycie, dezynfekcja, punkty krytyczne"
     },
     {
       "id": "miekkie",
+      "grupa": "miekkie",
       "ikona": "🤝",
       "etykieta": "Umiejętności miękkie",
       "opis": "komunikacja, granice, praca zespołowa"
@@ -18210,6 +18244,172 @@ mark{background:var(--akcent-jasny);color:inherit;padding:0 2px;border-radius:3p
       ]
     }
   ],
+  "profil": {
+    "archetypy": [
+      {
+        "id": "craftsman",
+        "nazwa": "Rzemieślnik",
+        "ikona": "◈",
+        "rdzen": [
+          "precision",
+          "standards",
+          "consistency"
+        ],
+        "opis": "Praca dobrze zrobiona to Twój wewnętrzny standard — niezależnie od tego kto patrzy i czy ktokolwiek to doceni. Błędy i niedoróbki są dla Ciebie widoczne automatycznie.",
+        "pasuje": "Środowiska gdzie jakość ma znaczenie: produkcja, finalizowanie projektów, kontrola standardów, dane.",
+        "wyzwanie": "Momenty gdy \"wystarczająco dobrze\" jest strategicznie lepsze niż \"doskonale\"."
+      },
+      {
+        "id": "connector",
+        "nazwa": "Łącznik",
+        "ikona": "◉",
+        "rdzen": [
+          "empathy",
+          "relations",
+          "communication",
+          "goscinnosc"
+        ],
+        "opis": "Ludzie otwierają się przy Tobie szybciej niż przy innych — wyczuwasz ich stany emocjonalne i tłumaczysz złożone rzeczy w sposób zrozumiały.",
+        "pasuje": "Obsługa klienta, mediacja, role wymagające budowania zaufania i współpracy.",
+        "wyzwanie": "Gdy własne granice emocjonalne schodzą na dalszy plan wobec potrzeb innych."
+      },
+      {
+        "id": "guardian",
+        "nazwa": "Strażnik",
+        "ikona": "◑",
+        "rdzen": [
+          "regulation",
+          "resilience",
+          "independence",
+          "rozwaga"
+        ],
+        "opis": "Spokój pod presją i szybki powrót do formy po trudnościach. Działasz bez nadzoru i naturalnie stabilizujesz środowisko wokół siebie.",
+        "pasuje": "Zarządzanie kryzysowe, praca pod presją, role wymagające stoicyzmu i autonomii działania.",
+        "wyzwanie": "Zbyt długie ignorowanie własnych sygnałów przeciążenia."
+      },
+      {
+        "id": "builder",
+        "nazwa": "Budowniczy",
+        "ikona": "◒",
+        "rdzen": [
+          "initiative",
+          "structure",
+          "drive",
+          "planowanie"
+        ],
+        "opis": "Widzisz co można ulepszyć i zaczynasz działać zanim ktoś poprosi. Budowanie systemów i tworzenie porządku z chaosu daje Ci energię.",
+        "pasuje": "Projekty ulepszeniowe, nowe inicjatywy, środowiska otwarte na zmiany i realny wpływ.",
+        "wyzwanie": "Inicjatywa bez sojuszników i bez poparcia może irytować zamiast wprowadzać zmianę."
+      },
+      {
+        "id": "explorer",
+        "nazwa": "Odkrywca",
+        "ikona": "◌",
+        "rdzen": [
+          "curiosity",
+          "flexibility",
+          "purpose",
+          "analitycznosc"
+        ],
+        "opis": "Uczysz się sam z siebie, adaptujesz się szybko w nowych kontekstach i potrzebujesz rozumieć \"po co\" zanim zaczniesz.",
+        "pasuje": "Dynamiczne środowiska, nowe wdrożenia, role wymagające samodzielnego uczenia się i adaptacji.",
+        "wyzwanie": "Szerokość zainteresowań bez kotwicy w kluczowej kompetencji bywa kosztowna długofalowo."
+      },
+      {
+        "id": "influencer",
+        "nazwa": "Lider wpływu",
+        "ikona": "◖",
+        "rdzen": [
+          "influence",
+          "initiative",
+          "relations",
+          "asertywnosc",
+          "rozwijanie_innych"
+        ],
+        "opis": "Zmieniasz zdanie innych bez presji — przez argumenty, perspektywę i zaufanie które budujesz naturalnie. Uruchamiasz działania zanim ktoś Cię o to poprosi.",
+        "pasuje": "Koordynacja zespołu, zarządzanie zmianą, role liderskie i sprzedaż wewnętrzna.",
+        "wyzwanie": "Nadmierne inwestowanie w przekonywanie tam gdzie szybsza byłaby decyzja."
+      }
+    ],
+    "obszary": {
+      "reliability": "Niezawodność",
+      "pressure": "Stabilność pod presją",
+      "collaboration": "Współpraca",
+      "learning": "Uczenie się",
+      "initiative": "Inicjatywa",
+      "integrity": "Uczciwość i odpowiedzialność",
+      "communication": "Komunikacja",
+      "problemSolving": "Praktyczne rozwiązywanie problemów"
+    },
+    "talenty": {
+      "precision": "Precyzja",
+      "standards": "Standardy wewnętrzne",
+      "empathy": "Empatia",
+      "relations": "Relacyjność",
+      "consistency": "Konsekwencja",
+      "structure": "Strukturyzacja",
+      "curiosity": "Ciekawość poznawcza",
+      "flexibility": "Elastyczność",
+      "independence": "Niezależność",
+      "initiative": "Inicjatywa",
+      "regulation": "Regulacja emocjonalna",
+      "resilience": "Odporność",
+      "drive": "Motywacja wewnętrzna",
+      "purpose": "Potrzeba sensu",
+      "influence": "Wpływ i perswazja",
+      "communication": "Komunikacja",
+      "odpowiedzialnosc": "Odpowiedzialność",
+      "rozwaga": "Rozwaga",
+      "analitycznosc": "Analityczność",
+      "planowanie": "Przewidywanie",
+      "asertywnosc": "Asertywność",
+      "optymizm": "Optymizm sprawczy",
+      "rozwijanie_innych": "Rozwijanie innych",
+      "goscinnosc": "Gościnność"
+    },
+    "preferencje": {
+      "wiodace": {
+        "pytanie": "Od czego chcesz zacząć?",
+        "opcje": {
+          "piekarz": "Chleb i pieczywo",
+          "cukiernik": "Słodkie",
+          "sala": "Lada i klient"
+        }
+      },
+      "dodatkowe": {
+        "pytanie": "Co jeszcze Cię ciekawi?",
+        "opcje": {
+          "piekarz": "Chleb i pieczywo",
+          "cukiernik": "Słodkie",
+          "sala": "Lada i klient"
+        }
+      },
+      "wazne": {
+        "pytanie": "Co jest dla Ciebie ważne w pracy?",
+        "opcje": {
+          "precyzja": "Precyzja i powtarzalność",
+          "higiena": "Higiena i bezpieczeństwo",
+          "smak": "Smak i jakość wyrobu",
+          "tempo": "Tempo i rytm pracy",
+          "porzadek": "Porządek i organizacja",
+          "ludzie": "Kontakt z ludźmi",
+          "nauka": "Zrozumienie mechanizmów"
+        }
+      }
+    }
+  },
+  "grupy": [
+    {
+      "id": "zawodowe",
+      "etykieta": "Wiedza zawodowa",
+      "opis": "rzemiosło, które wykonujesz w pracy"
+    },
+    {
+      "id": "miekkie",
+      "etykieta": "Umiejętności miękkie",
+      "opis": "jak pracujesz z ludźmi i ze sobą"
+    }
+  ],
   "drabina": {
     "wartosci": {
       "precyzja": "Precyzja i powtarzalność",
@@ -18897,6 +19097,10 @@ const KLUCZ_POSTEP = 'akademia_postep_v1';
 const KLUCZ_SCIEZKA = 'akademia_sciezka_v1';
 /* Wynik Profilu czytamy TYLKO — pisze go test potencjału, nie kurs. */
 const KLUCZ_PROFIL = 'akademia_work_profile_wyniki_v1';
+/* Ile modułów trzeba opanować, zanim ewaluacja ma sens. Patrz komentarz przy
+   przycisku w „Mój profil": chodzi o odstęp od pierwszego pomiaru wypełniony
+   NAUKĄ, nie o wysoką poprzeczkę. */
+const PROG_EWALUACJI = 3;
 const PROG = 0.8;
 
 let DANE = null;
@@ -19376,6 +19580,30 @@ function ekranTomy() {
 
   if (!dzialy.length) { m.append(el('p', 'cichy', 'Brak materiałów w tej ścieżce.')); return }
 
+  /* DWIE GRUPY, NIE JEDNA SIATKA (polecenie Piotra 16.09.2026). Sześć kategorii
+     jednym ciągiem nie mówi, że część z nich uczy RZEMIOSŁA, a część tego,
+     jak pracujesz z ludźmi i ze sobą. Grupa jest polem przy dziale
+     (`GRUPY_DZIALOW` w rejestrze), nie trzecim rejestrem obok — druga lista
+     „co z czym" rozjechałaby się przy pierwszym nowym module.
+     Nagłówek pojawia się TYLKO nad grupą, w której coś stoi: pusty nagłówek
+     nad zerem kafli jest gorszy od jego braku. */
+  const grupy = (DANE.grupy || []).length ? DANE.grupy : [{ id: null, etykieta: null }];
+  for (const grupa of grupy) {
+    const wGrupie = grupa.id ? dzialy.filter((x) => (x.d.grupa || 'zawodowe') === grupa.id) : dzialy;
+    if (!wGrupie.length) continue;
+    if (grupa.etykieta && grupy.length > 1) {
+      const g = el('div', 'grupa-naglowek');
+      g.append(el('h3', '', grupa.etykieta));
+      if (grupa.opis) g.append(el('p', 'cichy mini', grupa.opis));
+      m.append(g);
+    }
+    m.append(siatkaKategorii(wGrupie, p));
+  }
+}
+
+/* Kafle jednej grupy. Wydzielone z ekranu startowego przy podziale na grupy —
+   jedna implementacja kafla, dwa miejsca wywołania. */
+function siatkaKategorii(dzialy, p) {
   const siatka = el('div', 'kategorie');
   for (const { d, tomy } of dzialy) {
     const stany = tomy.map((t) => policzTom(t, p));
@@ -19397,7 +19625,7 @@ function ekranTomy() {
     b.onclick = () => { widok = { nazwa: 'tomy', dzial: d.id }; rysuj() };
     siatka.append(b);
   }
-  m.append(siatka);
+  return siatka;
 }
 
 /* Lista modułów — jedna implementacja dla kategorii i dla wyników szukania. */
@@ -19851,6 +20079,257 @@ function ekranPostep() {
   m.append(info);
 }
 
+/* ── ekran: MÓJ PROFIL ─────────────────────────────────────────────────────
+   Zakładka zlecona przez Piotra 16.09.2026. Do tego dnia wynik Profilu nie
+   miał w kursie ŻADNEGO miejsca: człowiek kończył test na 88 pytań i widział
+   raport raz, na ekranie narzędzia obok.
+
+   Ten ekran WYŁĄCZNIE OPISUJE wynik policzony gdzie indziej — nie liczy go
+   drugi raz. Etykiety obszarów, talentów i definicje archetypów wstrzykuje
+   generator z `dane.js` Profilu; czwarta ręczna kopia tych kluczy rozjechałaby
+   się tak samo jak trzy poprzednie (pilnuje tego osobny test).
+
+   Reguła, której nie wolno odwrócić: NISKA WIARYGODNOŚĆ PRÓBKI CHOWA
+   ARCHETYP. Nazwa typu brzmi jak diagnoza i tak jest czytana — a przy
+   sprzecznych odpowiedziach byłaby precyzyjnie wyglądającą bzdurą. To ta sama
+   zasada, która w Rzemiośle człowieka wyłącza personalizację. */
+
+/* Port z Profilu (`archetyp()` w `site/test/index.html`): najwyższa średnia
+   z talentów rdzeniowych wygrywa. Bliźniaczy test liczy obiema drogami na
+   tych samych danych — dwie implementacje jednej reguły rozjeżdżają się
+   zawsze, tylko nie wiadomo kiedy. */
+function archetypZTalentow(talenty, archetypy) {
+  let najlepszy = null;
+  for (const a of archetypy || []) {
+    const rdzen = (a.rdzen || []).filter((k) => typeof (talenty || {})[k] === 'number');
+    if (!rdzen.length) continue;
+    const srednia = rdzen.reduce((s, k) => s + talenty[k], 0) / rdzen.length;
+    if (!najlepszy || srednia > najlepszy.srednia) najlepszy = { archetyp: a, srednia };
+  }
+  return najlepszy;
+}
+
+/* Wiarygodność przychodzi z Profilu jako słowo, nie liczba. Nieznana wartość
+   traktujemy jak niską: lepiej nie pokazać archetypu, niż pokazać zmyślony. */
+function wiarygodnoscPozwala(rekord) {
+  const p = rekord && rekord.wiarygodnosc && rekord.wiarygodnosc.poziom;
+  return p === 'wysoka' || p === 'srednia' || p === 'średnia';
+}
+
+function ostatniWynikProfilu() {
+  const log = czytaj(KLUCZ_PROFIL, null);
+  if (!Array.isArray(log) || !log.length) return null;
+  return log[log.length - 1];
+}
+
+function ekranMojProfil() {
+  ustawPasek('Mój profil', false);
+  const m = $('#ekran'); m.innerHTML = '';
+  const dane = DANE.profil || { archetypy: [], obszary: {}, talenty: {} };
+  const rekord = ostatniWynikProfilu();
+
+  if (!rekord) {
+    const k = el('div', 'karta');
+    k.append(el('h2', '', 'Nie masz jeszcze profilu'));
+    k.append(el('p', '', 'Profil Alterbake sprawdza predyspozycje, mocne strony i preferencje nauki. Około 15 minut; wynik zostaje w tej przeglądarce i możesz go skasować jednym przyciskiem.'));
+    const a = el('a', 'przycisk-link'); a.href = './test/'; a.textContent = 'Zrób Profil Alterbake →';
+    k.append(a);
+    m.append(k);
+    return;
+  }
+
+  const naglowek = el('div', 'karta');
+  const arche = wiarygodnoscPozwala(rekord) ? archetypZTalentow(rekord.talenty, dane.archetypy) : null;
+  if (arche) {
+    naglowek.append(el('div', 'nadtytul', 'Twój archetyp'));
+    naglowek.append(el('h2', '', `${arche.archetyp.ikona || ''} ${arche.archetyp.nazwa}`));
+    naglowek.append(el('p', '', arche.archetyp.opis));
+    if (arche.archetyp.pasuje) {
+      const p = el('p', 'mini'); p.append(el('b', '', 'Gdzie się sprawdza: ')); p.append(document.createTextNode(arche.archetyp.pasuje)); naglowek.append(p);
+    }
+    if (arche.archetyp.wyzwanie) {
+      const p = el('p', 'mini'); p.append(el('b', '', 'Na co uważać: ')); p.append(document.createTextNode(arche.archetyp.wyzwanie)); naglowek.append(p);
+    }
+    naglowek.append(el('p', 'cichy mini', 'Archetyp to skrót do rozmowy o tym, jak pracujesz — nie diagnoza i nie ocena. Opisuje najmocniejszą grupę talentów, nie całego człowieka.'));
+  } else {
+    naglowek.append(el('div', 'nadtytul', 'Twój profil'));
+    naglowek.append(el('h2', '', 'Za mało spójnych odpowiedzi na archetyp'));
+    naglowek.append(el('p', '', 'Twoje odpowiedzi w kilku miejscach wskazywały w dwie strony naraz. Wynik poniżej zostaje, ale nazwy typu nie pokazujemy — przy takiej próbce byłaby zgadywaniem, a nazwa typu czyta się jak diagnoza.'));
+  }
+  m.append(naglowek);
+
+  const wiersze = (tytul, zrodlo, etykiety, maks) => {
+    const pary = Object.entries(zrodlo || {}).filter(([k, v]) => typeof v === 'number' && etykiety[k]);
+    if (!pary.length) return;
+    pary.sort((a, b) => b[1] - a[1]);
+    const k = el('div', 'karta');
+    k.append(el('h3', '', tytul));
+    for (const [klucz, wartosc] of pary) {
+      const r = el('div', 'profil-wiersz');
+      r.append(el('span', '', etykiety[klucz]));
+      const pasek = el('div', 'pasek'); const i = el('i');
+      i.style.width = Math.max(2, Math.round((wartosc / maks) * 100)) + '%';
+      pasek.append(i); r.append(pasek);
+      k.append(r);
+    }
+    m.append(k);
+  };
+  wiersze('Obszary', rekord.wyniki, dane.obszary, 100);
+  wiersze('Talenty', rekord.talenty, dane.talenty, 4);
+
+  /* CO Z WYNIKU NAPRAWDĘ STERUJE NAUKĄ (16.09.2026). Uczciwa odpowiedź na
+     pytanie „czy profil wpływa na dobór treści": wpływają PREFERENCJE, nie
+     zmierzone obszary. Osiem obszarów Profilu opisuje zachowania
+     (Niezawodność, Stabilność pod presją, Współpraca), a moduły kursu uczą
+     rzemiosła (Zakwas, Wypiek, Laminowanie) — mapowanie „niska stabilność
+     pod presją → moduł o fermentacji" nie istnieje i zbudowanie go byłoby
+     precyzyjnie wyglądającą bzdurą. Praca nad zachowaniami ma własne miejsce
+     i jest nim Rzemiosło człowieka, które mapuje talenty na konkretne ruchy.
+     Ten ekran mówi to wprost, zamiast udawać personalizację, której nie ma. */
+  const pref = rekord.preferencje;
+  const opisyPref = (dane.preferencje || {});
+  if (pref && (pref.wiodace || (pref.wazne || []).length)) {
+    const k = el('div', 'karta');
+    k.append(el('h3', '', 'Co ustawia Twoją kolejność nauki'));
+    const nazwa = (grupa, v) => ((opisyPref[grupa] || {}).opcje || {})[v] || v;
+    if (pref.wiodace) {
+      const p = el('p', '');
+      p.append(el('b', '', 'Zaczynasz od: '));
+      p.append(document.createTextNode(nazwa('wiodace', pref.wiodace)));
+      k.append(p);
+    }
+    if ((pref.wazne || []).length) {
+      const p = el('p', '');
+      p.append(el('b', '', 'Pierwszeństwo mają poziomy o: '));
+      p.append(document.createTextNode(pref.wazne.map((v) => nazwa('wazne', v)).join(', ')));
+      k.append(p);
+    }
+    k.append(el('p', 'cichy mini', 'To Twoje odpowiedzi z Profilu, nie wynik punktowy. Zmierzone obszary opisują zachowania, a nie rzemiosło — pracę nad nimi prowadzi Rzemiosło człowieka, nie kolejność modułów.'));
+    m.append(k);
+  }
+
+  /* Wyjście do nauki: profil bez następnego kroku jest ciekawostką. */
+  const dalej = el('div', 'karta');
+  dalej.append(el('h3', '', 'Co z tym zrobić'));
+  dalej.append(el('p', 'cichy', 'Profil mówi, od czego zacząć — nie przesądza, co umiesz. Drabina układa się pod Twoje preferencje nauki, a Rzemiosło człowieka dobiera do wyniku jeden ruch do sprawdzenia w pracy.'));
+  const bs = el('button', 'drugi', '🧭 Zobacz swoją ścieżkę');
+  bs.onclick = () => { widok = { nazwa: 'sciezka' }; rysuj() };
+  dalej.append(bs);
+  const am = el('a', 'przycisk-link'); am.href = './mistrz.html'; am.textContent = '🧰 Rzemiosło człowieka →';
+  dalej.append(am);
+  if (rekord.data) dalej.append(el('p', 'cichy mini', 'Wynik z dnia ' + String(rekord.data).slice(0, 10).split('-').reverse().join('.') + '. Zapisany wyłącznie w tej przeglądarce.'));
+  m.append(dalej);
+
+  /* EWALUACJA PO NAUCE (16.09.2026). Przycisk pojawia się dopiero po
+     przerobieniu progu materiału — powtórka testu zaraz po pierwszym pomiarze
+     mierzyłaby szum i znajomość pytań, nie naukę. Próg jest celowo niski
+     (trzy opanowane moduły): to ma być zachęta po realnej pracy, nie odległa
+     nagroda. Sam test żyje w Profilu (`./test/?ewaluacja=1`), bo tam są
+     stwierdzenia i punktacja — kurs ich nie dubluje. */
+  const postepNauki = postep();
+  const opanowane = DANE.tomy.filter((t) => policzTom(t, postepNauki).stan === 'ok').length;
+  const ew = el('div', 'karta');
+  ew.append(el('h3', '', 'Sprawdź, czy coś się zmieniło'));
+  if (opanowane >= PROG_EWALUACJI) {
+    ew.append(el('p', '', `Masz ${opanowane} opanowanych modułów. Krótka powtórka zapyta o te same talenty, które opisał Ci raport — i pokaże różnicę.`));
+    const a = el('a', 'przycisk-link'); a.href = './test/?ewaluacja=1'; a.textContent = 'Zrób ewaluację →';
+    ew.append(a);
+  } else {
+    ew.append(el('p', 'cichy', `Ewaluacja otworzy się po ${PROG_EWALUACJI} opanowanych modułach — masz ${opanowane}. Wcześniejsza powtórka zmierzyłaby głównie to, że znasz już pytania.`));
+  }
+  m.append(ew);
+}
+
+
+
+/* ── indeks wyszukiwania ───────────────────────────────────────────────────
+   Do 16.09.2026 szukajka sprawdzała, czy CAŁE zapytanie jest podciągiem pola.
+   Trzy rzeczy przez to nie działały, a wszystkie trzy człowiek robi odruchowo:
+
+   1. DWA SŁOWA. „temperatura ciasta" znajdowało tylko moduł, w którym te
+      wyrazy stoją dokładnie obok siebie w tej kolejności. Dziś każde słowo
+      szuka się osobno i moduł musi trafić WSZYSTKIE — jak w każdej szukajce.
+   2. ODMIANA. Polski odmienia wszystko: „garowania" nie znajdowało
+      „garowanie", choć „garowanie" znajdowało „garowania" (podciąg działa
+      w jedną stronę). Porównujemy więc rdzenie — obcinamy końcówkę, zamiast
+      udawać, że mamy stemmer.
+   3. KOLEJNOŚĆ. Wyniki szły w kolejności modułów w pliku, więc trafienie
+      w nazwę modułu lądowało pod trafieniem w środku akapitu innego. Dziś
+      liczy się WAGA miejsca: nazwa i pojęcie ważą więcej niż zdanie wykładu.
+
+   Zasięg też się poszerzył o procedurę, wyczucie i checklistę — sekcje,
+   których stara wersja nie tykała w ogóle. */
+const KONCOWKI = ['ami', 'ach', 'om', 'ów', 'ie', 'ia', 'iu', 'em', 'y', 'i', 'a', 'e', 'u', 'ę', 'ą'];
+
+/* Rdzeń „na oko": ucinamy najdłuższą pasującą końcówkę, ale nigdy poniżej
+   czterech znaków — inaczej „mąka" zrobiłaby się „mą" i trafiała we wszystko. */
+function rdzen(slowo) {
+  const s = norm(slowo);
+  if (s.length < 6) return s;
+  for (const k of KONCOWKI) {
+    if (s.endsWith(k) && s.length - k.length >= 4) return s.slice(0, s.length - k.length);
+  }
+  return s;
+}
+
+function rozbijZapytanie(q) {
+  return String(q || '').trim().split(/\s+/).filter((x) => norm(x).length >= 2).map(rdzen);
+}
+
+/* Pole trafia, gdy zawiera rdzeń słowa. Składnia Markdown nie może
+   decydować o trafieniu — „**hydracja**" ma się znaleźć na „hydracja". */
+function polePasuje(tekst, rdzenSlowa) {
+  return norm(bezZnacznikow(tekst || '')).includes(rdzenSlowa);
+}
+
+/* Waga mówi, jak mocnym sygnałem jest trafienie w danym miejscu. Nazwa modułu
+   i termin ze słownika to sygnał mocny; zdanie w środku wykładu — słaby. */
+function polaTomu(t) {
+  const pola = [
+    { waga: 10, tekst: t.nazwa }, { waga: 10, tekst: t.etykieta },
+    { waga: 6, tekst: t.intro }
+  ];
+  (t.cele || []).forEach((c) => pola.push({ waga: 5, tekst: c }));
+  (t.pojecia || []).forEach((p) => pola.push({ waga: 8, tekst: p.termin, podglad: `${p.termin} — ${String(p.znaczenie || '').slice(0, 140)}…` }));
+  (t.karty || []).forEach((k) => {
+    pola.push({ waga: 7, tekst: k.tytul });
+    (k.tresc || []).forEach((a) => pola.push({ waga: 2, tekst: a, podglad: String(a).slice(0, 160) + '…' }));
+    (k.punkty || []).forEach((x) => pola.push({ waga: 3, tekst: x }));
+    if (k.mechanizm) pola.push({ waga: 3, tekst: k.mechanizm, podglad: String(k.mechanizm).slice(0, 160) + '…' });
+  });
+  (t.parametry || []).forEach((x) => pola.push({ waga: 6, tekst: x.nazwa, podglad: `${x.nazwa} — ${x.wartosc}` }));
+  (t.bledy || []).forEach((x) => pola.push({ waga: 5, tekst: `${x.objaw} ${x.przyczyna || ''}`, podglad: `${x.objaw} → ${x.korekta}` }));
+  (t.procedura || []).forEach((x) => pola.push({ waga: 3, tekst: x, podglad: String(x).slice(0, 160) + '…' }));
+  (t.wyczucie || []).forEach((x) => pola.push({ waga: 4, tekst: x, podglad: String(x).slice(0, 160) + '…' }));
+  (t.checklista || []).forEach((x) => pola.push({ waga: 3, tekst: x }));
+  return pola.filter((x) => x.tekst);
+}
+
+function przeszukajTomy(tomy, fragmenty) {
+  const wynik = [];
+  for (const t of tomy) {
+    const pola = polaTomu(t);
+    let punkty = 0;
+    const trafienia = [];
+    const trafioneSlowa = fragmenty.filter((f) => {
+      let najlepsze = 0, podglad = null;
+      for (const pole of pola) {
+        if (!polePasuje(pole.tekst, f)) continue;
+        if (pole.waga > najlepsze) { najlepsze = pole.waga; podglad = pole.podglad || pole.tekst; }
+      }
+      if (!najlepsze) return false;
+      punkty += najlepsze;
+      if (podglad && !trafienia.includes(podglad)) trafienia.push(podglad);
+      return true;
+    });
+    /* WSZYSTKIE słowa zapytania muszą trafić. Przy „albo" dwuwyrazowe
+       zapytanie zwracałoby pół kursu i człowiek przestałby go używać. */
+    if (trafioneSlowa.length !== fragmenty.length) continue;
+    wynik.push({ tom: t, punkty, trafienia });
+  }
+  return wynik.sort((a, b) => b.punkty - a.punkty);
+}
+
 /* ── szukajka ─────────────────────────────────────────────────────────── */
 function ekranSzukaj() {
   ustawPasek('Szukaj', true);
@@ -19861,31 +20340,12 @@ function ekranSzukaj() {
   const wyniki = el('div'); m.append(wyniki);
 
   const szukaj = () => {
-    const q = norm(input.value.trim());
+    const fragmenty = rozbijZapytanie(input.value);
     wyniki.innerHTML = '';
-    if (q.length < 2) { wyniki.append(el('p', 'cichy', 'Wpisz co najmniej dwa znaki.')); return }
-    let n = 0;
-    for (const t of DANE.tomy) {
-      const trafienia = [];
-      /* Szukamy po tekście BEZ składni — gwiazdki i backticki nie mogą
-         decydować o trafieniu („**hydracja**" ma się znaleźć na „hydracja").
-         Wykład ciągły (`tresc`) jest tu obowiązkowy: od standardu
-         podręcznikowego mieszka w nim większość treści modułu, więc szukajka
-         omijająca go nie znajdowałaby prawie niczego. */
-      const pasuje = (x) => norm(bezZnacznikow(x)).includes(q);
-      if (pasuje(t.nazwa) || pasuje(t.etykieta) || pasuje(t.intro)) trafienia.push(t.intro || t.etykieta || t.nazwa);
-      (t.cele || []).forEach((c) => { if (pasuje(c)) trafienia.push(c) });
-      t.karty.forEach((k) => {
-        if (pasuje(k.tytul)) trafienia.push(k.tytul);
-        (k.tresc || []).forEach((a) => { if (pasuje(a)) trafienia.push(a.slice(0, 160) + '…') });
-        (k.punkty || []).forEach((p) => { if (pasuje(p)) trafienia.push(p) });
-        if (k.mechanizm && pasuje(k.mechanizm)) trafienia.push(k.mechanizm.slice(0, 160) + '…');
-      });
-      (t.parametry || []).forEach((x) => { if (pasuje(x.nazwa)) trafienia.push(`${x.nazwa} — ${x.wartosc}`) });
-      (t.bledy || []).forEach((x) => { if (pasuje(x.objaw)) trafienia.push(`${x.objaw} → ${x.korekta}`) });
-      (t.pojecia || []).forEach((p) => { if (pasuje(p.termin)) trafienia.push(`${p.termin} — ${p.znaczenie.slice(0, 140)}…`) });
-      if (!trafienia.length) continue;
-      n++;
+    if (!fragmenty.length) { wyniki.append(el('p', 'cichy', 'Wpisz co najmniej dwa znaki.')); return }
+    const znalezione = przeszukajTomy(DANE.tomy, fragmenty);
+    let n = znalezione.length;
+    for (const { tom: t, trafienia } of znalezione) {
       const k = el('div', 'karta');
       k.append(el('h3', '', t.etykieta || t.nazwa));
       trafienia.slice(0, 3).forEach((x) => k.append(el('p', 'mini', x)));
@@ -20126,6 +20586,7 @@ function rysuj() {
   else if (w === 'postep') ekranPostep();
   else if (w === 'sciezka') ekranSciezka();
   else if (w === 'szukaj') ekranSzukaj();
+  else if (w === 'profil') ekranMojProfil();
   document.querySelectorAll('#nawigacja button').forEach((b) => b.classList.toggle('akt', b.dataset.widok === w));
 }
 

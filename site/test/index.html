@@ -167,18 +167,18 @@ li{margin-bottom:.35rem;font-size:.9rem}
 </style>
 <style id="motyw-akademii">
 :root{
-  --tlo:#EDE7DA; --karta:#FBF8F1; --karta-2:#F5EFE3;
-  --tekst:#141413; --tekst-cichy:#6E6A5F; --linia:#E0D7C8;
-  --akcent:#B5532E; --akcent-tlo:#F4E2D6;
-  --ok:#4A7C3A; --uwaga:#B7791F; --alarm:#B03030;
-  --r:14px; --r-s:9px;
+  --tlo:#F4F1E9; --karta:#FBF8F1; --karta-2:#F5EFE3;
+  --tekst:#30252B; --tekst-cichy:#72666B; --linia:#E0D7C8;
+  --akcent:#30252B; --akcent-tlo:#F4E2D6;
+  --ok:#3F6B4A; --uwaga:#8A5A12; --alarm:#9B3B33;
+  --r:4px; --r-s:4px;
 }
 @media (prefers-color-scheme:dark){
   :root{--tlo:#171310;--karta:#211C17;--karta-2:#2A231D;--tekst:#F1E9DE;--tekst-cichy:#A89A89;
     --linia:#372F27;--akcent:#D97A4D;--akcent-tlo:#3A2418;--ok:#7FB56B;--uwaga:#CFA53F;--alarm:#E06C6C}
 }
-body{font-family:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}
-h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-spacing:.005em}
+body{font-family:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif}
+h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spacing:.005em}
 .glowny{color:#fff}
 .nadtytul{letter-spacing:.13em}
 .pasek-akademii{position:sticky;top:0;z-index:20;display:flex;align-items:center;
@@ -188,7 +188,7 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
 .pasek-akademii-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--tekst)}
 .pasek-akademii .znak{font-size:1.5rem;width:2.4rem;height:2.4rem;display:grid;place-items:center;
   background:linear-gradient(160deg,#F1E4CB,var(--akcent-tlo));border:1px solid #D3C5AA;border-radius:12px}
-.pasek-akademii .nazwa{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;font-weight:700;font-size:1.12rem;line-height:1.1}
+.pasek-akademii .nazwa{font-family:"Newsreader", Georgia, "Times New Roman", serif;font-weight:700;font-size:1.12rem;line-height:1.1}
 .pasek-akademii .pod{font-size:.66rem;color:var(--tekst-cichy);text-transform:uppercase;letter-spacing:.13em}
 @media (prefers-color-scheme:dark){.pasek-akademii .znak{background:linear-gradient(160deg,#33291B,var(--akcent-tlo));border-color:#4A3F34}}
 </style>
@@ -205,11 +205,11 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
 <section id="ekran-start" class="ekran aktywny">
   <div class="kontener">
     <div class="nadtytul">Alterbake</div>
-    <h1>Profil Alterbake</h1>
-    <p class="cichy">Mapa mocnych stron, stylu pracy i zachowania w trudnych sytuacjach.
+    <h1 id="tytul-startu">Profil Alterbake</h1>
+    <p class="cichy" id="wstep-startu">Mapa mocnych stron, stylu pracy i zachowania w trudnych sytuacjach.
       Około 15 minut. Nie ma tu odpowiedzi dobrych i złych — jest opis, nie ocena.</p>
 
-    <div class="karta">
+    <div class="karta" id="karta-skladu">
       <h3>Z czego się składa</h3>
       <ul>
         <li><b>Mocne strony</b> — 48 stwierdzeń o tym, jak pracujesz (24 talenty).</li>
@@ -327,6 +327,53 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
      nie mogły się rozjechać (redteam M-06). */
   var REZIM = "publiczny";
 
+  /* ── TEST KONTROLNY (ewaluacja) — polecenie Piotra 16.09.2026 ──────────────
+     „Nowy test ma tylko sprawdzać, czy coś się poprawiło we wcześniej
+     opisywanych talentach lub cechach."
+
+     Trzy rzeczy, których nie wolno tu odwrócić bez jego słowa:
+
+     1. MIERZYMY TALENTY, NIE OBSZARY. Obszary liczą się częściowo ze
+        scenariuszy, a „Uczciwość" i „Praktyczne rozwiązywanie problemów"
+        WYŁĄCZNIE z nich (decyzja Piotra 03.09.2026). Krótki test bez
+        scenariuszy dałby więc obszary nieporównywalne z pierwszym pomiarem —
+        a dwie liczby obok siebie czyta się jako zmianę, nawet gdy mierzą
+        co innego. Dlatego test kontrolny obszarów NIE rusza i mówi to wprost.
+
+     2. PYTAMY TYLKO O TO, CO CZŁOWIEKOWI OPISANO. Raport opisuje pięć
+        najmocniejszych talentów, trzy do wzmocnienia i rdzeń archetypu —
+        i dokładnie ten zbiór wraca w ewaluacji. Pytanie o talent, o którym
+        nikt mu nic nie powiedział, nie sprawdza nauki, tylko wydłuża test.
+
+     3. RETEST NIE JEST SAMODZIELNYM DOWODEM ROZWOJU. Powtórka mierzy też
+        znajomość pytań i zmianę samooceny (`[wewn.]`,
+        „Teza do skorygowania"). Ekran wyniku ma to napisać, nie przemilczeć. */
+  var TRYB_KONTROLNY = /[?&]ewaluacja=1/.test(location.search);
+
+  function poprzedniWynik() {
+    try {
+      var log = JSON.parse(localStorage.getItem(KLUCZ_WYNIKOW) || "[]");
+      return Array.isArray(log) && log.length ? log[log.length - 1] : null;
+    } catch (e) { return null; }
+  }
+
+  /* Zbiór talentów, o których człowiek COŚ USŁYSZAŁ w poprzednim raporcie. */
+  function talentyOpisane(rekord) {
+    var t = (rekord && rekord.talenty) || {};
+    var posortowane = Object.keys(t).sort(function (a, b) { return t[b] - t[a]; });
+    if (!posortowane.length) return [];
+    var zbior = posortowane.slice(0, 5).concat(posortowane.slice(-3));
+    var a = archetyp(t);
+    if (a && a.a && a.a.core) zbior = zbior.concat(a.a.core);
+    var widziane = {};
+    return zbior.filter(function (x) {
+      if (!x || widziane[x]) return false;
+      widziane[x] = true;
+      return true;
+    });
+  }
+
+
   var stan = {
     imie: "", rola: "",
     odpowiedzi: {},        /* stwierdzenia talentów i charakteru */
@@ -396,6 +443,7 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
       naglowek: "Twoje odpowiedzi zostają u Ciebie",
       punkty: [
         "Wynik liczy się <b>na Twoim urządzeniu</b> i nigdzie automatycznie nie wychodzi.",
+        "Zostaje <b>zapamiętany w tej przeglądarce</b>, żeby kurs mógł ułożyć naukę pod Ciebie i żebyś po kilku tygodniach zobaczył zmianę. Możesz go skasować jednym przyciskiem.",
         "Raport możesz zapisać jako plik albo wydrukować.",
         "Na końcu możesz <b>dobrowolnie</b> przekazać dane, które pomagają ulepszać to narzędzie: same odpowiedzi na pytania skalowe i czas wypełniania — <b>bez imienia, bez kontaktu i bez odpowiedzi otwartych</b>.",
         "Nic nie tracisz, jeśli tego nie zrobisz — raport dostajesz tak samo."
@@ -501,17 +549,71 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
     }
 
     var zgoda = el("pole-zgoda"), btn = el("btn-start");
-    zgoda.addEventListener("change", function () { btn.disabled = !zgoda.checked; });
+
+    /* EWALUACJA — inny ekran wejścia. Bez poprzedniego wyniku nie ma czego
+       porównywać, więc zamiast pustego testu mówimy o tym wprost. */
+    if (TRYB_KONTROLNY) {
+      stan.poprzedni = poprzedniWynik();
+      var ilePytan = stan.poprzedni ? D.STWIERDZENIA.filter(function (s) {
+        return talentyOpisane(stan.poprzedni).indexOf(s.talent) >= 0;
+      }).length : 0;
+      var blok = el("blok-zgody");
+      if (!stan.poprzedni) {
+        if (el("tytul-startu")) el("tytul-startu").textContent = "Ewaluacja";
+        if (el("karta-skladu")) el("karta-skladu").style.display = "none";
+        if (el("wstep-startu")) el("wstep-startu").textContent = "";
+        blok.innerHTML = '<div class="zgoda"><h3>Nie mam z czym porównać</h3>' +
+          "<p>Ewaluacja sprawdza, czy coś zmieniło się od Twojego poprzedniego wyniku — " +
+          "a w tej przeglądarce nie ma zapisanego żadnego. Zrób najpierw pełny Profil.</p></div>";
+        btn.textContent = "Zrób pełny Profil";
+        btn.disabled = false;
+        btn.addEventListener("click", function () { location.search = ""; });
+        return;
+      }
+      /* Standardowy wstęp mówi „Około 15 minut", „48 stwierdzeń" i „6 scenariuszy"
+         — dla ewaluacji żadna z tych liczb nie jest prawdziwa. Nieaktualna
+         obietnica na ekranie jest gorsza niż jej brak, więc wstęp znika. */
+      if (el("tytul-startu")) el("tytul-startu").textContent = "Ewaluacja";
+      if (el("wstep-startu")) el("wstep-startu").textContent =
+        "Krótka powtórka po nauce. Pytamy tylko o to, co opisał Ci poprzedni raport.";
+      if (el("karta-skladu")) el("karta-skladu").style.display = "none";
+      blok.innerHTML = '<div class="zgoda"><h3>Ewaluacja — co się zmieniło</h3><ul>' +
+        "<li>Pytamy o <b>te same talenty</b>, które opisał Ci poprzedni raport — " + ilePytan + " stwierdzeń zamiast pełnego testu.</li>" +
+        "<li>Obszarów <b>nie mierzymy ponownie</b>: liczą się częściowo ze scenariuszy, których tu nie ma, więc druga liczba nie byłaby porównywalna.</li>" +
+        "<li><b>Powtórka testu nie jest sama w sobie dowodem rozwoju.</b> Mierzy też to, że znasz już pytania i że inaczej patrzysz na siebie. Traktuj wynik jako punkt do rozmowy, nie jako ocenę.</li>" +
+        "<li>Wynik zostaje w tej przeglądarce, obok poprzedniego. Poprzedniego nie nadpisuje.</li>" +
+        '</ul><label class="pole-zgody"><input type="checkbox" id="pole-zgoda-e">' +
+        "<span>Rozumiem, po co jest ta powtórka.</span></label></div>";
+      var zgodaE = el("pole-zgoda-e");
+      zgodaE.addEventListener("change", function () { btn.disabled = !zgodaE.checked; });
+      btn.textContent = "Zaczynam ewaluację";
+      if (el("pola-osoby")) el("pola-osoby").innerHTML = "";
+    }
+
+    if (zgoda) zgoda.addEventListener("change", function () { btn.disabled = !zgoda.checked; });
     btn.addEventListener("click", function () {
       stan.imie = (el("pole-imie") && el("pole-imie").value.trim()) || "";
       stan.rola = (el("pole-rola") && el("pole-rola").value.trim()) || "";
       stan.start = Date.now();
       /* Talenty i charakter idą w jednej, wspólnie potasowanej serii —
          przeplecenie utrudnia „strategię" typu odpowiadam wszędzie tak samo. */
-      stan.kolejnosc = potasuj(
-        D.STWIERDZENIA.map(function (s) { return { rodzaj: "talent", poz: s }; })
-          .concat(D.STWIERDZENIA_CHARAKTERU.map(function (s) { return { rodzaj: "charakter", poz: s }; }))
-      );
+      if (TRYB_KONTROLNY) {
+        /* Tylko stwierdzenia mierzące talenty z poprzedniego raportu.
+           Bez charakteru (styl uczenia się nie jest przedmiotem ewaluacji)
+           i bez scenariuszy — patrz blok „TEST KONTROLNY" wyżej. */
+        var pytamy = talentyOpisane(stan.poprzedni);
+        stan.kolejnosc = potasuj(
+          D.STWIERDZENIA.filter(function (s) { return pytamy.indexOf(s.talent) >= 0; })
+            .map(function (s) { return { rodzaj: "talent", poz: s }; })
+        );
+      } else {
+        /* Talenty i charakter idą w jednej, wspólnie potasowanej serii —
+           przeplecenie utrudnia „strategię" typu odpowiadam wszędzie tak samo. */
+        stan.kolejnosc = potasuj(
+          D.STWIERDZENIA.map(function (s) { return { rodzaj: "talent", poz: s }; })
+            .concat(D.STWIERDZENIA_CHARAKTERU.map(function (s) { return { rodzaj: "charakter", poz: s }; }))
+        );
+      }
       stan.krok = 0;
       pokaz("ekran-ankieta");
       rysujAnkiete();
@@ -568,6 +670,9 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
 
   /* ── 3. TIEBREAKERY (tylko dla sprzecznych talentów) ── */
   function przejdzDoTiebreakerow() {
+    /* Ewaluacja kończy się na stwierdzeniach: dopytania rozstrzygają
+       sprzeczności przy PIERWSZYM pomiarze, a scenariuszy tu nie ma. */
+    if (TRYB_KONTROLNY) return policzIPokaz();
     var stwierdzeniaTalentow = D.STWIERDZENIA;
     stan.doRozstrzygniecia = S.talentySprzeczne(stwierdzeniaTalentow, stan.odpowiedzi)
       .filter(function (t) {
@@ -800,11 +905,43 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
       sekundy: stan.start ? Math.round((Date.now() - stan.start) / 1000) : null
     });
 
-    /* Zapis do wspólnego klucza WYŁĄCZNIE w reżimie zespołowym: to jest
-       ta „cena korzystania", o której mówi ekran startowy. W wersji
-       publicznej nic nie wychodzi bez osobnego kliknięcia. */
-    var zapisano = false;
-    if (REZIM === "zespol") zapisano = zapiszDoWspolnegoKlucza(rekord);
+    if (TRYB_KONTROLNY) {
+      /* Ewaluacja mierzy WYŁĄCZNIE talenty, o które pytała. Obszary i styl
+         uczenia się zostają z poprzedniego pomiaru — nadpisanie ich wartością
+         policzoną bez scenariuszy dałoby liczby nieporównywalne z pierwszym
+         raportem, a czyta się je jako zmianę. Preferencje też przenosimy:
+         człowiek nie deklarował ich drugi raz. */
+      var poprz = stan.poprzedni || {};
+      rekord.kontrolny = true;
+      rekord.obszary = poprz.obszary || poprz.wyniki || {};
+      rekord.wyniki = poprz.wyniki || poprz.obszary || {};
+      rekord.charakter = poprz.charakter || rekord.charakter;
+      if (poprz.preferencje) rekord.preferencje = poprz.preferencje;
+      /* Talenty, o które NIE pytaliśmy, biorą wartość sprzed ewaluacji —
+         inaczej wypadłyby z rekordu i wyglądałyby na utracone. */
+      var pytane = talentyOpisane(poprz);
+      Object.keys(poprz.talenty || {}).forEach(function (k) {
+        if (pytane.indexOf(k) < 0) rekord.talenty[k] = poprz.talenty[k];
+      });
+      rekord.mierzone = pytane;
+    }
+
+    /* ZAPIS W OBU REŻIMACH (polecenie Piotra 16.09.2026). Do tego dnia
+       publiczny Profil nie zapisywał NICZEGO: warunek `REZIM === "zespol"`
+       nigdy się publicznie nie wykonywał, a przycisk obok obiecywał, że
+       wynik „zastaje sam z siebie" w Rzemiośle człowieka. Człowiek kończył
+       piętnastominutowy test, klikał jedyne wyjście i trafiał z powrotem na
+       „Zrób Profil Alterbake". Zgłoszenie Piotra z 09.09.2026 („nie ma
+       przycisku zacznij korzystać z profilu") dostało wtedy przycisk, ale
+       nie drogę.
+
+       To NIE jest złamanie obietnicy prywatności. „Nigdzie nie wychodzi"
+       dotyczy opuszczenia urządzenia — a tu wynik zostaje w tej samej
+       przeglądarce i pod tym samym originem co postęp kursu, bez sieci
+       i bez konta. Ekran zgody mówi to wprost, a raport daje przycisk
+       kasowania: zapamiętanie bez możliwości usunięcia byłoby dopiero
+       zmianą umowy z człowiekiem. */
+    var zapisano = zapiszDoWspolnegoKlucza(rekord);
 
     rysujRaport(w, rekord, zapisano);
     wyczyscRoboczy();
@@ -929,10 +1066,22 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
       html += '<div class="rzad"><button class="drugi" id="btn-plik">Zapisz wynik jako plik</button>' +
         '<button class="drugi" id="btn-druk">Drukuj profil</button></div>';
     } else {
-      html += "<p class=\"mini\">Twój raport policzył się na tym urządzeniu i nigdzie nie wyszedł. " +
-        "Jeśli chcesz go zachować albo komuś pokazać, zrób to teraz — zamknięcie karty kasuje wynik.</p>" +
+      /* To zdanie mówiło do 16.09.2026: „zamknięcie karty kasuje wynik" —
+         i było prawdą, bo publiczny Profil rzeczywiście nic nie zapisywał.
+         Odkąd zapisuje, zdanie musi mówić, co się naprawdę dzieje. Stara,
+         nieaktualna obietnica prywatności jest gorsza niż jej brak: zwalnia
+         czytelnika z myślenia i rozmija się z zachowaniem programu. */
+      html += "<p class=\"mini\">" + (zapisano
+        ? "Wynik policzył się na tym urządzeniu i <b>został zapamiętany w tej przeglądarce</b> — " +
+          "kurs ułoży pod niego naukę, a po kilku tygodniach zmierzysz zmianę. Nigdzie nie wyszedł."
+        : "Wynik policzył się na tym urządzeniu, ale <b>nie udało się go zapamiętać</b> " +
+          "(prywatne okno albo zablokowana pamięć przeglądarki). Zapisz plik, jeśli chcesz go zachować.") +
+        "</p>" +
         '<div class="rzad"><button class="drugi" id="btn-plik">Zapisz wynik jako plik</button>' +
         '<button class="drugi" id="btn-druk">Drukuj profil</button></div>';
+      if (zapisano) {
+        html += '<div class="rzad"><button class="drugi" id="btn-zapomnij">Usuń mój wynik z tej przeglądarki</button></div>';
+      }
       /* WYJŚCIE DO KURSU W WERSJI PUBLICZNEJ (09.09.2026) — do tego dnia
          publiczny raport nie miał ŻADNEJ drogi dalej. Link „Przejdź do
          kursu" istniał, ale w gałęzi `zespol`, która publicznie nigdy się
@@ -944,9 +1093,10 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
       /* DWA WYJŚCIA, W TEJ KOLEJNOŚCI. Piotr napisał „nie ma przycisku
          zacznij korzystać z profilu" — i tym miejscem jest Rzemiosło
          człowieka, jedyny moduł, który ten wynik CZYTA i dobiera do niego
-         lekcje. Leży na tym samym adresie, więc wynik policzony przed chwilą
-         zastaje tam sam z siebie, bez wgrywania pliku. Kurs jest drugi, bo
-         uczy rzemiosła niezależnie od tego, co wyszło w Profilu. */
+         lekcje. Leży na tym samym originie, więc od 16.09.2026 wynik
+         policzony przed chwilą FAKTYCZNIE tam zastaje — wcześniej to zdanie
+         opisywało zamiar, nie zachowanie programu. Kurs jest drugi, bo uczy
+         rzemiosła niezależnie od tego, co wyszło w Profilu. */
       html += '<div class="rzad">' +
         '<a class="drugi" style="text-align:center;text-decoration:none;padding:.7rem 1rem" ' +
         'href="../mistrz.html">Zobacz, co z tym zrobić →</a>' +
@@ -985,10 +1135,48 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
     var najslabsze = obszaryPosortowane.slice(-3).reverse();
 
     var html = "";
-    html += '<div class="nadtytul">Profil Alterbake</div><h1>' +
-      (stan.imie ? esc(stan.imie) : "Twój profil") + "</h1>" +
+    html += '<div class="nadtytul">' + (TRYB_KONTROLNY ? "Ewaluacja" : "Profil Alterbake") + '</div><h1>' +
+      (TRYB_KONTROLNY ? "Co się zmieniło" : (stan.imie ? esc(stan.imie) : "Twój profil")) + "</h1>" +
       '<p class="cichy">' + (stan.rola ? esc(stan.rola) + " · " : "") +
       new Date().toLocaleDateString("pl-PL") + "</p>";
+
+    /* RÓŻNICA WOBEC POPRZEDNIEGO POMIARU. Pokazujemy ją jako pierwszą rzecz
+       na ekranie — po to człowiek tu wszedł. Zastrzeżenie idzie RAZEM z nią,
+       nie w stopce: liczba „+0,6" czyta się jako postęp, a mierzy też to, że
+       ktoś zna już pytania i inaczej patrzy na siebie. */
+    if (TRYB_KONTROLNY && stan.poprzedni) {
+      var poprzT = stan.poprzedni.talenty || {};
+      var mierzone = (rekord.mierzone || []).filter(function (k) {
+        return typeof poprzT[k] === "number" && typeof w.talenty[k] === "number";
+      });
+      var zmiany = mierzone.map(function (k) {
+        return { k: k, przed: poprzT[k], po: w.talenty[k], d: w.talenty[k] - poprzT[k] };
+      }).sort(function (a, b) { return b.d - a.d; });
+      var dataPoprz = stan.poprzedni.data ? new Date(stan.poprzedni.data).toLocaleDateString("pl-PL") : null;
+
+      html += '<div class="karta"><h2 style="margin-top:0">Porównanie z poprzednim wynikiem</h2>';
+      if (dataPoprz) html += '<p class="mini">Poprzedni pomiar: ' + esc(dataPoprz) + ".</p>";
+      if (!zmiany.length) {
+        html += "<p>Nie udało się porównać żadnego talentu — poprzedni wynik nie ma wspólnych pozycji z tą ewaluacją.</p>";
+      } else {
+        html += "<ul>";
+        zmiany.forEach(function (z) {
+          var nazwa = (D.TALENTY[z.k] && D.TALENTY[z.k].name) || z.k;
+          var strzalka = z.d > 0 ? "▲" : z.d < 0 ? "▼" : "=";
+          var opis = z.d === 0 ? "bez zmiany"
+            : (z.d > 0 ? "+" : "") + z.d.toFixed(1).replace(".", ",");
+          html += "<li><b>" + esc(nazwa) + "</b> — " + strzalka + " " + esc(opis) +
+            ' <span class="mini">(' + z.przed.toFixed(1).replace(".", ",") + " → " +
+            z.po.toFixed(1).replace(".", ",") + ")</span></li>";
+        });
+        html += "</ul>";
+      }
+      html += '<p class="mini"><b>Jak to czytać.</b> Ta powtórka mierzy także to, że znasz już pytania ' +
+        "i że po nauce inaczej patrzysz na siebie — sama zmiana liczby nie jest dowodem rozwoju. " +
+        "Dowodem jest to, co zrobiłeś inaczej w pracy. Wynik traktuj jako punkt do rozmowy.</p>";
+      html += '<p class="mini">Obszarów ta ewaluacja nie mierzyła — liczą się częściowo ze scenariuszy, ' +
+        "których tu nie było. Zostają z poprzedniego pomiaru.</p></div>";
+    }
 
     /* Wiarygodność na samej górze — wynik bez tej ramki bywa czytany
        jak pomiar, którym nie jest. */
@@ -1081,6 +1269,16 @@ h1,h2,h3{font-family:"Source Serif 4", Georgia, "Times New Roman", serif;letter-
       udostepnijLubPobierz(nazwaPliku, JSON.stringify(rekord, null, 2));
     });
     if (el("btn-druk")) el("btn-druk").addEventListener("click", function () { window.print(); });
+    /* Kasowanie jest warunkiem uczciwości zapamiętywania: skoro wynik zostaje
+       w przeglądarce, człowiek musi mieć jeden przycisk, żeby go stamtąd
+       zdjąć. Kasujemy CAŁY log tego narzędzia, bo to jedyna rzecz, którą
+       Profil tu trzyma — postęp kursu żyje pod własnym kluczem i zostaje. */
+    if (el("btn-zapomnij")) el("btn-zapomnij").addEventListener("click", function () {
+      if (!window.confirm("Usunąć zapisany wynik z tej przeglądarki? Raport na ekranie zostaje, ale kurs przestanie układać naukę pod Twój profil.")) return;
+      try { localStorage.removeItem(KLUCZ_WYNIKOW); } catch (e) {}
+      this.disabled = true;
+      this.textContent = "Wynik usunięty z tej przeglądarki";
+    });
     if (el("btn-mail")) el("btn-mail").addEventListener("click", function () {
       /* `location.href`, nie `window.open`: otwarcie nowej karty pod adresem
          `mailto:` zostawia na telefonie pustą kartę, gdy system przełączy się
