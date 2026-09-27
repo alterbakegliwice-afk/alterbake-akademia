@@ -1625,40 +1625,41 @@
       ]
     }
   ],
-  PYTANIA_POGLEBIAJACE: {
-    "reliability": [
-      "Opowiedz o sytuacji, gdy dotrzymanie terminu było bardzo trudne. Co pomogło Ci go utrzymać?",
-      "Czy zdarzyło Ci się nie dotrzymać obietnicy zawodowej? Co wtedy zrobiłeś/zrobiłaś?"
-    ],
-    "pressure": [
-      "Jak wyglądał Twój najtrudniejszy tydzień w pracy? Co pomogło Ci przez niego przejść?",
-      "Opisz moment, gdy jednocześnie miałeś/miałaś kilka pilnych spraw. Jak decydowałeś/decydowałaś o kolejności?"
-    ],
-    "collaboration": [
-      "Kiedy ostatnio pomogłeś/pomogłaś komuś w zespole, gdy nie byłeś/byłaś do tego zobowiązany?",
-      "Opisz sytuację, gdy Twoje zdanie różniło się od reszty zespołu. Jak to rozwiązaliście?"
-    ],
-    "learning": [
-      "Jaką umiejętność zdobyłeś/zdobyłaś samodzielnie, bez formalnego szkolenia?",
-      "Jak reagujesz, gdy popełnisz błąd w pracy? Podaj konkretny przykład."
-    ],
-    "initiative": [
-      "Opisz coś, co poprawiłeś/poprawiłaś w pracy, bez że ktoś Cię o to prosił.",
-      "Kiedy ostatnio wyszłeś/wyszłaś poza zakres swoich obowiązków? Co Cię do tego skłoniło?"
-    ],
-    "integrity": [
-      "Opisz sytuację, gdy powiedzenie prawdy było trudne, ale konieczne.",
-      "Jak postąpiłeś/postąpiłaś, gdy odkryłeś/odkryłaś błąd, który ktoś inny mógłby zignorować?"
-    ],
-    "communication": [
-      "Jak dostosujesz sposób tłumaczenia czegoś do osoby z zupełnie innym backgroundem?",
-      "Opisz sytuację nieporozumienia w komunikacji. Co z niej wyciągnąłeś/wyciągnęłaś?"
-    ],
-    "problemSolving": [
-      "Opisz problem, który wydawał się nierozwiązywalny. Jak do niego podszedłeś/podeszłaś?",
-      "Gdy masz mało czasu i zasobów — jak decydujesz, co jest najważniejsze?"
-    ]
-  },
+  ROLE_W_PRACY: [
+    {
+      "id": "pracownik",
+      "lbl": "Pracuję w zespole",
+      "opis": "wykonuję zadania na stanowisku, nie odpowiadam za innych",
+      "sciezka": "komunikacja",
+      "raport": {
+        "wstep": "Czytasz ten wynik jako osoba, która wykonuje pracę własnymi rękami. Mocne strony to Twoje narzędzia na stanowisku, a ich cień to to, co koledzy zauważają pierwsi.",
+        "cien": "Cień mocnej strony w zespole widać w przekazaniu pracy: czy to, co robisz dobrze, nie zabiera miejsca temu, co czeka obok.",
+        "start": "Zacznij od ścieżki „Komunikacja i relacje” — od rozdziału, który raport poleci Ci w kursie."
+      }
+    },
+    {
+      "id": "lider",
+      "lbl": "Prowadzę zmianę",
+      "opis": "odpowiadam za zmianę, stanowisko albo część zespołu",
+      "sciezka": "przedsiebiorczosc",
+      "raport": {
+        "wstep": "Czytasz ten wynik jako osoba, która prowadzi innych. Twoje mocne strony działają podwójnie: robisz nimi swoją pracę i ustawiasz nimi tempo oraz standard dla reszty zmiany.",
+        "cien": "Cień mocnej strony u prowadzącego jest widoczny dla całego zespołu i bywa kopiowany. To, co u pracownika jest nawykiem, u lidera staje się normą.",
+        "start": "Zacznij od modułu „Prowadzenie ludzi i przekazywanie wiedzy” (ścieżka Przedsiębiorczość), potem „Jasny przekaz i granice”."
+      }
+    },
+    {
+      "id": "wlasciciel",
+      "lbl": "Prowadzę firmę",
+      "opis": "właściciel albo przełożony — decyduję i odpowiadam za całość",
+      "sciezka": "przedsiebiorczosc",
+      "raport": {
+        "wstep": "Czytasz ten wynik jako osoba, która decyduje i odpowiada za całość. Dopasowanie do stanowisk nie jest tu pytaniem — pytaniem jest, które decyzje przychodzą Ci naturalnie, a które kosztują więcej, niż widać z zewnątrz.",
+        "cien": "Cień mocnej strony właściciela nie ma nad sobą nikogo, kto by go zatrzymał. Jedyny hamulec to sygnał umówiony z zespołem i widoczny dla wszystkich.",
+        "start": "Zacznij od modułu „Prowadzenie ludzi i przekazywanie wiedzy” i od „Odpowiedzialności i zmiany” — oba mówią o eksperymencie zamiast rewolucji."
+      }
+    }
+  ],
   PREFERENCJE_NAUKI: [
     {
       "id": "wiodace",
@@ -1708,6 +1709,26 @@
           "v": "komunikacja",
           "lbl": "Komunikacja i relacje",
           "opis": "rozmowa, granice, praca z ludźmi"
+        },
+        {
+          "v": "siebie",
+          "lbl": "Zrozumienie siebie",
+          "opis": "własny Profil, mierzenie własnej zmiany"
+        },
+        {
+          "v": "zespol",
+          "lbl": "Praca zespołowa",
+          "opis": "przekazanie zmiany, spór bez zerwania"
+        },
+        {
+          "v": "cele",
+          "lbl": "Wyznaczanie celów",
+          "opis": "cel z miarą, nawyk, który zostaje"
+        },
+        {
+          "v": "przedsiebiorczosc",
+          "lbl": "Przedsiębiorczość",
+          "opis": "koszt, strata, wartość; prowadzenie ludzi"
         }
       ]
     },

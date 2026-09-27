@@ -126,6 +126,7 @@ textarea{min-height:5.5rem;resize:vertical;line-height:1.5}
 .pasek-wyp{height:100%;background:var(--akcent);border-radius:4px}
 .pasek-wyp.mocny{background:var(--ok)}
 .pasek-wyp.slaby{background:var(--uwaga)}
+.arch-wybrany{padding:.4rem .5rem;margin-left:-.5rem;margin-right:-.5rem;border-radius:var(--r-s);background:var(--karta-2)}
 
 .os{margin-bottom:.9rem}
 .os-glowa{display:flex;justify-content:space-between;font-size:.75rem;color:var(--tekst-cichy);margin-bottom:.2rem}
@@ -216,6 +217,9 @@ h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spac
         <li><b>Styl pracy</b> — 16 stwierdzeń o tym, jak Ci się pracuje najlepiej.</li>
         <li><b>Sytuacje</b> — 6 scenariuszy z pracy: co byś zrobił(a).</li>
       </ul>
+      <p class="mini cichy">Niektóre pytania będą brzmiały podobnie. To celowe: każdy talent
+        pytamy dwa razy, raz od drugiej strony — tak sprawdzamy, czy odpowiedzi są spójne.
+        Przy remisie dopytujemy o konkretną sytuację.</p>
     </div>
 
     <div id="blok-wznowienia"></div>
@@ -228,6 +232,8 @@ h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spac
       <label><span>Stanowisko lub rola</span>
         <input type="text" id="pole-rola" autocomplete="organization-title" maxlength="60" placeholder="np. Obsługa / Piekarz"></label>
     </div>
+
+    <div id="blok-roli"></div>
 
     <button class="glowny" id="btn-start" disabled>Zaczynam</button>
     <p class="stopka-info">Wynik możesz zapisać na swoim urządzeniu i wydrukować.</p>
@@ -376,6 +382,7 @@ h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spac
 
   var stan = {
     imie: "", rola: "",
+    kontekstRola: "",      /* rola w pracy: pracownik | lider | wlasciciel ("" = nie wybrano) */
     odpowiedzi: {},        /* stwierdzenia talentów i charakteru */
     tiebreakery: {},       /* talent → agree|dk|disagree */
     scenariusze: {},       /* id scenariusza → id opcji */
@@ -531,8 +538,37 @@ h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spac
     });
   }
 
+  /* ROLA W PRACY (27.09.2026). Trzy przyciski, słownik zamknięty. Wybór nie
+     jest wymagany — raport bez roli czyta się jak dla pracownika — ale jest
+     pytany w OBU reżimach, bo właściciel robi ten sam test co zespół i do
+     27.09.2026 dostawał raport pisany dla kogoś, kto szuka stanowiska. */
+  function rolaWPracy(id) {
+    return (D.ROLE_W_PRACY || []).filter(function (r) { return r.id === id; })[0] || null;
+  }
+  function rysujRole(wybrana) {
+    var box = el("blok-roli");
+    if (!box) return;
+    stan.kontekstRola = rolaWPracy(wybrana) ? wybrana : "";
+    box.innerHTML = '<div class="karta"><h3>W jakiej roli pracujesz?</h3>' +
+      '<p class="mini cichy">Od tego zależy, jak raport odczyta Twój wynik i który moduł kursu poleci pierwszy. ' +
+      "To pytanie o rolę, nie o stanowisko: osoba prowadząca zmianę wybiera „Prowadzę zmianę”.</p>" +
+      (D.ROLE_W_PRACY || []).map(function (r) {
+        return '<button type="button" class="opcja' + (r.id === stan.kontekstRola ? " wybrany" : "") +
+          '" data-rola="' + r.id + '"><b>' + esc(r.lbl) + "</b><br><span class=\"mini cichy\">" + esc(r.opis) + "</span></button>";
+      }).join("") + "</div>";
+    Array.prototype.forEach.call(box.querySelectorAll("[data-rola]"), function (b) {
+      b.addEventListener("click", function () {
+        stan.kontekstRola = b.getAttribute("data-rola");
+        Array.prototype.forEach.call(box.querySelectorAll("[data-rola]"), function (x) {
+          x.classList.toggle("wybrany", x === b);
+        });
+      });
+    });
+  }
+
   function rysujStart() {
     var t = TEKST_ZGODY[REZIM];
+    rysujRole("");
     el("blok-zgody").innerHTML =
       '<div class="zgoda"><h3>' + esc(t.naglowek) + "</h3><ul>" +
       t.punkty.map(function (p) { return "<li>" + p + "</li>"; }).join("") +
@@ -588,6 +624,10 @@ h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spac
       zgodaE.addEventListener("change", function () { btn.disabled = !zgodaE.checked; });
       btn.textContent = "Zaczynam ewaluację";
       if (el("pola-osoby")) el("pola-osoby").innerHTML = "";
+      /* Roli nie pytamy drugi raz — ewaluacja porównuje z poprzednim wynikiem,
+         więc czyta ją stamtąd. Zmiana roli to nowy pełny Profil. */
+      if (el("blok-roli")) el("blok-roli").innerHTML = "";
+      stan.kontekstRola = ((stan.poprzedni.kontekst || {}).rola) || "";
     }
 
     if (zgoda) zgoda.addEventListener("change", function () { btn.disabled = !zgoda.checked; });
@@ -861,6 +901,23 @@ h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spac
     return najlepszy;
   }
 
+  function listaArchetypow(talenty, wybrany) {
+    var pozycje = D.ARCHETYPY.map(function (a) {
+      var rdzen = a.core.filter(function (t) { return typeof talenty[t] === "number"; });
+      var srednia = rdzen.length ? rdzen.reduce(function (s, t) { return s + talenty[t]; }, 0) / rdzen.length : 0;
+      return { a: a, srednia: srednia };
+    }).sort(function (x, y) { return y.srednia - x.srednia; });
+    var maks = pozycje.length ? Math.max(pozycje[0].srednia, 0.01) : 1;
+    return pozycje.map(function (p) {
+      var jest = wybrany && wybrany.a.id === p.a.id;
+      var proc = Math.max(0, Math.round((p.srednia / maks) * 100));
+      return '<div class="pasek-obszaru' + (jest ? " arch-wybrany" : "") + '"><div class="pasek-glowa"><span>' +
+        (jest ? "<b>" : "") + esc(p.a.icon || "") + " " + esc(p.a.name) + (jest ? " · najbliższy</b>" : "") +
+        "</span><b>" + p.srednia.toFixed(1) + "</b></div>" +
+        '<div class="pasek-tor"><div class="pasek-wyp' + (jest ? " mocny" : "") + '" style="width:' + proc + '%"></div></div></div>';
+    }).join("");
+  }
+
   function dopasowanieRol(talenty) {
     return Object.keys(D.ROLE).map(function (id) {
       var r = D.ROLE[id], suma = 0, maks = 0;
@@ -895,6 +952,7 @@ h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spac
     var rekord = S.zbudujRekord({
       rezim: REZIM,
       osoba: { imie: stan.imie, rola: stan.rola },
+      kontekst: { rola: stan.kontekstRola },
       obszary: w.obszary,
       charakter: w.charakter,
       talenty: w.talenty,
@@ -1039,6 +1097,7 @@ h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spac
       ""
     ];
     if (arch) linie.push("Najbliższy typ: " + arch.a.name, "");
+    if (rolaWPracy(stan.kontekstRola)) linie.push("Rola w pracy: " + rolaWPracy(stan.kontekstRola).lbl, "");
     linie.push("Osiem obszarów (0-100):");
     Object.keys(w.obszary).sort(function (a, b) { return w.obszary[b] - w.obszary[a]; })
       .forEach(function (o) { linie.push("  " + D.OBSZARY[o] + ": " + w.obszary[o]); });
@@ -1133,12 +1192,12 @@ h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spac
     var arch = archetyp(w.talenty);
     var role = dopasowanieRol(w.talenty);
     var obszaryPosortowane = Object.keys(w.obszary).sort(function (a, b) { return w.obszary[b] - w.obszary[a]; });
-    var najslabsze = obszaryPosortowane.slice(-3).reverse();
 
     var html = "";
     html += '<div class="nadtytul">' + (TRYB_KONTROLNY ? "Ewaluacja" : "Profil Alterbake") + '</div><h1>' +
       (TRYB_KONTROLNY ? "Co się zmieniło" : (stan.imie ? esc(stan.imie) : "Twój profil")) + "</h1>" +
       '<p class="cichy">' + (stan.rola ? esc(stan.rola) + " · " : "") +
+      (rolaWPracy(stan.kontekstRola) ? esc(rolaWPracy(stan.kontekstRola).lbl) + " · " : "") +
       new Date().toLocaleDateString("pl-PL") + "</p>";
 
     /* RÓŻNICA WOBEC POPRZEDNIEGO POMIARU. Pokazujemy ją jako pierwszą rzecz
@@ -1206,7 +1265,14 @@ h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spac
         "<h2 style=\"margin-top:0\">" + esc(arch.a.icon || "") + " " + esc(arch.a.name) + "</h2>" +
         "<p>" + esc(arch.a.desc) + "</p>" +
         "<p class=\"mini\"><b>Gdzie się sprawdza:</b> " + esc(arch.a.fit) + "</p>" +
-        "<p class=\"mini\"><b>Na co uważać:</b> " + esc(arch.a.challenge) + "</p></div>";
+        "<p class=\"mini\"><b>Na co uważać:</b> " + esc(arch.a.challenge) + "</p>" +
+        /* WSZYSTKIE typy, wybrany podkreślony (27.09.2026, polecenie Piotra).
+           Sama etykieta bez listy nie mówi, skąd się wzięła ani jak blisko
+           był drugi typ — a to zwykle druga połowa prawdy o człowieku. */
+        '<h3 style="margin-top:1rem">Wszystkie typy — jak blisko każdego jesteś</h3>' +
+        listaArchetypow(w.talenty, arch) +
+        '<p class="cichy mini">Pasek to średnia talentów rdzenia danego typu. Dwa typy blisko siebie znaczą, że masz cechy obu — to informacja, nie remis do rozstrzygnięcia.</p>' +
+        "</div>";
     }
 
     html += '<div class="karta"><h2 style="margin-top:0">Osiem obszarów</h2>' +
@@ -1237,22 +1303,33 @@ h1,h2,h3{font-family:"Newsreader", Georgia, "Times New Roman", serif;letter-spac
       Object.keys(w.charakter).map(function (id) { return osCharakteru(id, w.charakter[id]); }).join("") +
       "</div>";
 
-    html += '<div class="karta"><h2 style="margin-top:0">Gdzie taki profil pracuje się najlepiej</h2>' +
-      role.map(function (r) {
-        return '<div class="pasek-obszaru"><div class="pasek-glowa"><span><b>' + esc(r.nazwa) + "</b> · " +
-          '<span class="cichy">' + esc(r.tag) + "</span></span><b>" + r.procent + "%</b></div>" +
-          '<div class="pasek-tor"><div class="pasek-wyp" style="width:' + r.procent + '%"></div></div></div>';
-      }).join("") +
-      '<p class="cichy mini">To podpowiedź do rozmowy, nie przydział stanowiska.</p></div>';
-
-    /* Pytania pogłębiające — materiał do rozmowy, dobierany do najsłabszych
-       obszarów. W reżimie zespołowym to jest część, którą czyta właściciel. */
-    html += '<div class="karta"><h2 style="margin-top:0">O co warto dopytać na rozmowie</h2>' +
-      najslabsze.map(function (o) {
-        var pytania = D.PYTANIA_POGLEBIAJACE[o] || [];
-        return "<h3>" + esc(D.OBSZARY[o]) + "</h3><ul>" +
-          pytania.map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("") + "</ul>";
-      }).join("") + "</div>";
+    /* ROLA A PROFIL (27.09.2026). Dla osoby prowadzącej zmianę albo firmę
+       „gdzie taki profil pracuje się najlepiej" odpowiada na cudze pytanie —
+       ona nie szuka stanowiska. Zamiast tego: co ten wynik znaczy w jej roli,
+       jaki cień widzi zespół i od czego zacząć. Pracownik dostaje dopasowanie
+       stanowisk jak dotąd.
+       Karta „O co warto dopytać na rozmowie" ZESZŁA tego samego dnia — była
+       pisana dla rekrutera, a narzędzie jest dla pracownika. */
+    var rolaKontekst = rolaWPracy(stan.kontekstRola);
+    if (rolaKontekst && rolaKontekst.id !== "pracownik") {
+      var Tm = D.TALENTY[mocne[0]] || {};
+      html += '<div class="karta"><h2 style="margin-top:0">Twoja rola a profil</h2>' +
+        '<p class="mini"><b>' + esc(rolaKontekst.lbl) + ".</b> " + esc(rolaKontekst.raport.wstep) + "</p>" +
+        '<p class="mini"><b>Cień widoczny dla zespołu:</b> ' + esc(rolaKontekst.raport.cien) +
+        (Tm.shadow ? " Twój najmocniejszy talent to " + esc(Tm.name) + " — druga strona: " + esc(Tm.shadow) : "") + "</p>" +
+        '<p class="mini"><b>Od czego zacząć:</b> ' + esc(rolaKontekst.raport.start) + "</p>" +
+        '<p class="cichy mini">Rola nie zmienia punktacji — zmienia odczyt. Dopasowanie do stanowisk pomijamy, bo nie o to tu pytasz.</p></div>';
+    } else {
+      html += '<div class="karta"><h2 style="margin-top:0">Gdzie taki profil pracuje się najlepiej</h2>' +
+        role.map(function (r) {
+          return '<div class="pasek-obszaru"><div class="pasek-glowa"><span><b>' + esc(r.nazwa) + "</b> · " +
+            '<span class="cichy">' + esc(r.tag) + "</span></span><b>" + r.procent + "%</b></div>" +
+            '<div class="pasek-tor"><div class="pasek-wyp" style="width:' + r.procent + '%"></div></div></div>';
+        }).join("") +
+        '<p class="cichy mini">To podpowiedź do rozmowy, nie przydział stanowiska.</p>' +
+        (rolaKontekst ? '<p class="mini"><b>Od czego zacząć:</b> ' + esc(rolaKontekst.raport.start) + "</p>" : "") +
+        "</div>";
+    }
 
     html += '<p class="stopka-info bez-druku">Profil Alterbake · wynik z ' +
       Object.keys(stan.odpowiedzi).length + " odpowiedzi, " +
