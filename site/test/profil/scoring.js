@@ -258,6 +258,9 @@
     };
   }
 
+  var ROLE_W_PRACY_ID = ["pracownik", "lider", "wlasciciel"];
+  function rolaWPracy(v) { return ROLE_W_PRACY_ID.indexOf(v) >= 0 ? v : ""; }
+
   function zbudujRekord(dane) {
     var d = dane || {};
     var rezim = d.rezim === "publiczny" ? "publiczny" : "zespol";
@@ -278,7 +281,12 @@
       /* Preferencje nauki (01.09.2026): czego ta osoba CHCE się uczyć i w jakiej
          kolejności. To nie jest wynik pomiaru — to deklaracja, i tak jest tu
          trzymana, osobno od talentów. Panel układa z niej drabinę nauki. */
-      preferencje: normalizujPreferencje(d.preferencje)
+      preferencje: normalizujPreferencje(d.preferencje),
+      /* Rola w pracy (27.09.2026): słownik zamknięty pracownik / lider /
+         wlasciciel. Nie wpływa na punktację — zmienia odczyt raportu i to,
+         który moduł kurs poleca pierwszy. Pole nowe: starsi czytelnicy logu
+         go nie znają i mają je przeżyć, nie kasować. */
+      kontekst: { rola: rolaWPracy(d.kontekst && d.kontekst.rola) }
     };
     if (rezim === "zespol") {
       /* Materiał do ewaluacji pracy — bo o to właściciel poprosił wprost. */
