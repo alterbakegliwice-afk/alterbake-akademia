@@ -1703,6 +1703,11 @@
           "v": "sala",
           "lbl": "Lada i klient",
           "opis": "sprzedaż, doradzanie, witryna"
+        },
+        {
+          "v": "komunikacja",
+          "lbl": "Komunikacja i relacje",
+          "opis": "rozmowa, granice, praca z ludźmi"
         }
       ]
     },
