@@ -93,11 +93,17 @@
   --r:var(--ab-r); --serif:var(--ab-font-display); --sans:var(--ab-font-body);
   --miara:36em;         /* ok. 65–75 znaków wiersza tekstu ciągłego */
   --dotyk:44px;         /* próg celu dotykowego kursu (QA 03.09.2026) */
+  --dotyk-nowy:48px;    /* nowe elementy od 16.10.2026 — próg kanonu v3 */
+  --szyna:96px;         /* boczna szyna nawigacji na komputerze (≥1024 px) */
 }
 :root{--tlo:#F4F1E9; --karta:#FCFBF7; --wnetrze:#F4F1E9; --tekst:#30252B; --cichy:#72666B; --linia:#CEC8BF; --linia-mocna:#72666B; --akcent:#30252B; --na-akcencie:#FCFBF7; --akcent-wcisniety:#1E1519; --tlo-tekstowy:#E9E5DB; --kontekst:#C6D0C5; --na-kontekscie:#30252B; --sukces:#3F6B4A; --uwaga:#8A5A12; --blad:#9B3B33; --na-sygnale:#FCFBF7; --nieaktywny:#CEC8BF; --nieaktywny-tekst:#5A4E54; --szkielet:#E6E1D7;}
 @media (prefers-color-scheme:dark){:root{--tlo:#1E1519; --karta:#30252B; --wnetrze:#1E1519; --tekst:#F4F1E9; --cichy:#CEC8BF; --linia:#72666B; --linia-mocna:#CEC8BF; --akcent:#F4F1E9; --na-akcencie:#30252B; --akcent-wcisniety:#CEC8BF; --tlo-tekstowy:#1E1519; --kontekst:#C6D0C5; --na-kontekscie:#30252B; --sukces:#3F6B4A; --uwaga:#8A5A12; --blad:#9B3B33; --na-sygnale:#F4F1E9; --nieaktywny:#72666B; --nieaktywny-tekst:#F4F1E9; --szkielet:#1E1519;}}
 @media print{:root{--tlo:#F4F1E9; --karta:#FCFBF7; --wnetrze:#F4F1E9; --tekst:#30252B; --cichy:#72666B; --linia:#CEC8BF; --linia-mocna:#72666B; --akcent:#30252B; --na-akcencie:#FCFBF7; --akcent-wcisniety:#1E1519; --tlo-tekstowy:#E9E5DB; --kontekst:#C6D0C5; --na-kontekscie:#30252B; --sukces:#3F6B4A; --uwaga:#8A5A12; --blad:#9B3B33; --na-sygnale:#FCFBF7; --nieaktywny:#CEC8BF; --nieaktywny-tekst:#5A4E54; --szkielet:#E6E1D7;}}
 *{box-sizing:border-box}
+/* `hidden` MUSI wygrywać z klasą. Do 16.10.2026 `.ikona{display:inline-flex}`
+   nadpisywała atrybut i przyciski „wstecz" i „dom" stały w pasku ZAWSZE —
+   na ekranie startowym oba prowadziły donikąd (pomiar bazowy, zrzut 390 px). */
+[hidden]{display:none!important}
 html,body{margin:0;background:var(--tlo);color:var(--tekst);font:16px/1.6 var(--sans);
   -webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 h1,h2,h3,h4{font-weight:600;line-height:1.25}
@@ -115,9 +121,11 @@ svg.ik{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-wid
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* Bieżący rozdział w pasku — po trzech ekranach wywodu wiadomo, gdzie się jest. */
 #podtytul{font-size:13px;color:var(--cichy);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ikona{display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--dotyk);height:var(--dotyk);
-  background:transparent;color:var(--tekst);border:1px solid var(--linia);border-radius:var(--r);cursor:pointer;padding:0}
-.ikona:active{background:var(--tlo-tekstowy)}
+/* Przyciski paska bez obrysu (16.10.2026): trzy ramki ważyły tyle co tytuł.
+   Kanon: reszta neutralna albo tekstowa — tu tekstowa, z tłem przy dotyku. */
+.ikona{display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--dotyk-nowy);height:var(--dotyk-nowy);
+  background:transparent;color:var(--tekst);border:0;border-radius:var(--r);cursor:pointer;padding:0}
+.ikona:hover,.ikona:active{background:var(--tlo-tekstowy)}
 a.cichy{display:inline-flex;align-items:center;min-height:var(--dotyk);color:var(--tekst);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 main{padding:16px 12px;max-width:760px;margin:0 auto}
 @media (min-width:600px){main{padding:24px 16px}}
@@ -153,7 +161,7 @@ button.tekstowy,summary.tekstowy{min-height:var(--dotyk);padding:0 8px;backgroun
 .tom-znak{flex:none;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;border:1.5px solid var(--linia-mocna);font-size:14px;color:var(--tekst)}
 .tom .naglowek span.stan{margin-left:auto;font-size:13px;color:var(--cichy);white-space:nowrap;font-weight:400}
 .tom .cichy.mini{margin:4px 0 0 40px}
-.tom .pasek{margin-left:40px}
+.tom .pasek,.tom .miernik{margin:8px 0 0 40px}
 .poziom{padding:12px 0;border-top:1px solid var(--linia)}
 .poziom:first-of-type{border-top:0}
 .poziom-glowa{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px}
@@ -184,14 +192,36 @@ button.tekstowy,summary.tekstowy{min-height:var(--dotyk);padding:0 8px;backgroun
 .ew-wiersz svg{grid-area:svg;width:100%;height:40px;display:block}
 .ew-delta{grid-area:delta;justify-self:end;font-size:13px;color:var(--cichy);white-space:nowrap}
 .ew-delta.w-gore,.ew-delta.w-dol{color:var(--tekst);font-weight:600}
-.ew-srodek{stroke:var(--linia);stroke-width:1;stroke-dasharray:3 3}
+/* Przegląd skillem dataviz (16.10.2026): linia połowy skali to linia
+   odniesienia, więc ciągła kreska — przerywana czytała się jak prognoza albo
+   próg; punkty ≥ 8 px (było 6), każdy z podpowiedzią przy najechaniu. */
+.ew-srodek{stroke:var(--linia);stroke-width:1}
 .ew-linia{fill:none;stroke:var(--tekst);stroke-width:2;vector-effect:non-scaling-stroke}
 .ew-punkt{fill:var(--tekst)}
 .plakietka{display:inline-flex;align-items:center;gap:4px;font-size:13px;padding:2px 8px;border-radius:var(--r);
   border:1px solid var(--linia-mocna);color:var(--tekst);font-weight:600}
-/* Stan CCP: sygnał zawsze ze słowem („wymagane", „zaliczone"), nigdy sam kolor. */
-.plakietka.ccp{background:var(--blad);border-color:var(--blad);color:var(--na-sygnale)}
+/* Stan CCP: sygnał zawsze ze słowem („wymagane", „zaliczone") i znakiem,
+   nigdy sam kolor. Do 16.10.2026 plakietka stała na tle BŁĘDU, choć CCP to
+   wymóg, nie błąd — dziś obrys w kolorze stanu „uwaga" + trójkąt + słowo,
+   ten sam system co `.znak-ccp` i ramka „Uwaga bezpieczeństwa". W ciemnym
+   motywie obrys bursztynu na tuszu ma 2,4:1, więc plakietka dostaje tło
+   stanu z tekstem papieru (para `na-sygnale`/`uwaga` w teście kontrastu). */
+.plakietka.ccp{background:var(--karta);border:1.5px solid var(--uwaga);color:var(--tekst)}
+.plakietka.ccp svg.ik{width:14px;height:14px}
+@media (prefers-color-scheme:dark){.plakietka.ccp{background:var(--uwaga);color:var(--na-sygnale)}}
 .sciezki{display:flex;gap:8px;overflow-x:auto;padding:0 0 16px;-webkit-overflow-scrolling:touch}
+/* Rząd ścieżek z SYGNAŁEM przewijania (16.10.2026). Dziewięć chipów w jednym
+   rzędzie urywało się na krawędzi („Sala i s…") bez znaku, że jest dalej.
+   Zamiast gradientu (kanon: zakaz) — zaślepka z kreską i strzałką, która
+   PRZEWIJA rząd (prawdziwy przycisk, nie ozdoba) i znika na końcu rzędu.
+   Od 600 px chipy łamią się na wiersze i zaślepki nie ma. */
+.sciezki-ramka{position:relative;display:flex;align-items:flex-start;margin:0 0 8px}
+.sciezki-ramka .sciezki{flex:1;min-width:0;scrollbar-width:none}
+.sciezki-ramka .sciezki::-webkit-scrollbar{display:none}
+.sciezki-dalej{flex:none;display:inline-flex;align-items:center;gap:2px;height:var(--dotyk-nowy);min-width:var(--dotyk-nowy);margin-left:0;padding:0 4px 0 8px;
+  background:transparent;border:0;border-left:1px solid var(--linia-mocna);color:var(--tekst);font-size:13px;font-weight:600;cursor:pointer}
+.sciezki-dalej svg.ik{width:18px;height:18px}
+@media (min-width:600px){.sciezki-ramka .sciezki{flex-wrap:wrap;overflow:visible}.sciezki-dalej{display:none}}
 .sciezki button{white-space:nowrap;min-height:var(--dotyk);padding:8px 16px;border-radius:var(--r);
   border:1.5px solid var(--linia);background:var(--karta);color:var(--tekst);font-size:14px;cursor:pointer}
 .sciezki button.akt{background:var(--akcent);color:var(--na-akcencie);border-color:var(--akcent);font-weight:600}
@@ -212,6 +242,23 @@ button.tekstowy,summary.tekstowy{min-height:var(--dotyk);padding:0 8px;backgroun
 #nawigacja button,#nawigacja a{flex:1 1 0;min-width:0;min-height:60px;background:none;border:0;border-top:2px solid transparent;color:var(--cichy);
   font-size:13px;cursor:pointer;display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;text-decoration:none}
 #nawigacja button.akt{color:var(--tekst);font-weight:600;border-top-color:var(--tekst)}
+/* UKŁAD NA KOMPUTERZE (≥ 1024 px, 16.10.2026). Do tego dnia telefon stał
+   wyśrodkowany: kolumna 760 px na 1440 i dolny pasek na całą szerokość
+   z dwiema zakładkami przy krawędziach — nawigacja daleko od treści.
+   Szyna to TEN SAM element `#nawigacja` przestylowany (te same dwa cele —
+   test liczy przyciski w nim), nie drugi element. Poniżej progu zostaje
+   dolny pasek telefonu. */
+@media (min-width:1024px){
+  body{padding-bottom:0;padding-left:var(--szyna)}
+  #nawigacja{top:0;bottom:0;right:auto;width:var(--szyna);flex-direction:column;justify-content:flex-start;gap:4px;
+    padding:72px 0 0;border-top:0;border-right:1px solid var(--linia)}
+  #nawigacja button,#nawigacja a{flex:0 0 auto;min-height:72px;border-top:0;border-left:3px solid transparent;padding:8px 4px}
+  #nawigacja button.akt{border-left-color:var(--tekst);background:var(--tlo)}
+  /* Szeroko tylko tam, gdzie są dwie kolumny (start, tom ze spisem);
+     ekrany czytane jak tekst zostają przy mierze wiersza. */
+  main{max-width:840px;padding:32px 40px 64px}
+  main.szeroki,main.uklad-tomu{max-width:1080px}
+}
 details.slownik{margin-top:16px}
 details.slownik dl{margin:8px 0 0}
 details.slownik dt{font-weight:600;margin-top:12px}
@@ -225,16 +272,26 @@ mark{background:var(--kontekst);color:var(--na-kontekscie);padding:0 2px;border-
 .nota-tytul{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--cichy)}
 
 /* ── strona startowa ────────────────────────────────────────────────────── */
-.kategorie{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
-.kategoria{display:grid;grid-template-columns:32px 1fr;column-gap:12px;row-gap:2px;align-items:start;text-align:left;
-  background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);padding:16px;cursor:pointer;color:inherit;min-height:64px}
-.kategoria>*{grid-column:2}
-.kategoria-ikona{grid-column:1;grid-row:1 / span 4;display:grid;place-items:center;width:32px;height:32px}
-.kategoria-ikona svg.ik{width:26px;height:26px}
-.kategoria-nazwa{font-weight:600;font-size:17px}
-.kategoria-opis{color:var(--cichy);font-size:14px;line-height:1.45}
-.kategoria-meta{margin-top:4px;font-size:13px;font-weight:600}
-.mechanizmy-wejscie{margin-top:16px;width:100%;border-left:4px solid var(--tekst)}
+/* KATALOG JAKO WIERSZE (16.10.2026). Kanon v3: „jednostką ekranu jest WIERSZ,
+   nie kafel; powierzchnie dzieli kreska". Do tego dnia kategorie były kartami
+   z obrysem dookoła w siatce 2×N. Podział na grupy i kategorie ZOSTAJE
+   (Piotr pochwalił go 02.09.2026) — zmienia się forma, nie struktura.
+   Klasa `.kategoria` zostaje na wierszu: czytają ją skrypty renderu z #201. */
+.kategorie{display:grid;grid-template-columns:1fr;border-top:1px solid var(--linia)}
+.kategoria{display:grid;grid-template-columns:24px minmax(0,1fr) auto 20px;column-gap:12px;align-items:center;width:100%;text-align:left;
+  background:transparent;border:0;border-bottom:1px solid var(--linia);border-radius:0;padding:10px 4px;cursor:pointer;color:inherit;min-height:64px}
+.kategoria:hover .kategoria-nazwa,button.stan-wiersz:hover .stan-nazwa{text-decoration:underline;text-underline-offset:3px}
+.kategoria-ikona{display:grid;place-items:center;width:24px;height:24px}
+.kategoria-ikona svg.ik{width:22px;height:22px}
+.kategoria-tekst{min-width:0;display:flex;flex-direction:column;gap:2px}
+.kategoria-nazwa{font-weight:600;font-size:16px;line-height:1.3}
+.kategoria-opis{color:var(--cichy);font-size:13px;line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.kategoria-meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-size:13px;color:var(--cichy);white-space:nowrap;text-align:right}
+.kategoria-meta strong{color:var(--tekst);font-weight:600}
+.kategoria-meta .pasek{width:72px;margin:0}
+.kategoria>svg.ik.dalej{width:20px;height:20px;color:var(--cichy)}
+.mechanizmy-wejscie{margin-top:24px;border-top:1px solid var(--linia)}
+@media (min-width:1024px){.kategorie{grid-template-columns:1fr 1fr;column-gap:32px}}
 .wstep-kursu{margin:0 0 16px}
 .wstep-kursu h2{font-family:var(--serif);font-weight:500;font-size:28px;line-height:1.15;margin:0 0 8px}
 .wstep-kursu p{margin:0;font-size:15px}
@@ -243,6 +300,132 @@ mark{background:var(--kontekst);color:var(--na-kontekscie);padding:0 2px;border-
 .wezwanie-ikona{flex:none;display:grid;place-items:center}
 .wezwanie b{display:block;font-size:16px;margin-bottom:2px}
 .wezwanie span span{display:block;color:var(--cichy);font-size:14px;line-height:1.45}
+
+/* ── PULPIT „TWOJA NAUKA" (16.10.2026, decyzja Piotra 1A) ──────────────────
+   Sekcja EKRANU STARTOWEGO, nie osobny panel (README: panel wejściowy nie
+   wraca). Rysuje się tylko, gdy w przeglądarce jest postęp — nowa osoba nie
+   widzi pustego pulpitu ani zer udających dane. Jedna akcja pierwszorzędna
+   w tuszu („Kontynuuj" albo „Następny tom"), reszta to wiersze z kreską. */
+.pulpit{margin:0 0 24px}
+.pulpit .eyebrow{margin:0 0 8px}
+button.kontynuuj{display:grid;grid-template-columns:minmax(0,1fr) 24px;align-items:center;gap:4px 12px;width:100%;min-height:72px;
+  padding:12px 16px;text-align:left;background:var(--akcent);color:var(--na-akcencie);border:0;border-radius:var(--r);cursor:pointer}
+button.kontynuuj:active{background:var(--akcent-wcisniety)}
+.kontynuuj-akcja{font-size:17px;font-weight:600;line-height:1.3}
+.kontynuuj-cel{grid-column:1;font-size:14px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.kontynuuj>svg.ik{grid-column:2;grid-row:1 / span 2;width:24px;height:24px}
+.pulpit-wiersze{margin:8px 0 0;border-top:1px solid var(--linia)}
+.stan-wiersz{display:grid;grid-template-columns:24px minmax(0,1fr) auto;column-gap:12px;row-gap:4px;align-items:center;width:100%;min-height:56px;
+  padding:8px 4px;background:transparent;border:0;border-bottom:1px solid var(--linia);text-align:left;color:inherit;font-size:15px}
+button.stan-wiersz{cursor:pointer;grid-template-columns:24px minmax(0,1fr) auto 20px;min-height:var(--dotyk-nowy)}
+.stan-wiersz>svg.ik{color:var(--tekst)}
+.stan-wiersz>svg.ik.dalej{color:var(--cichy)}
+.stan-nazwa{min-width:0;font-weight:600;line-height:1.3}
+.stan-nazwa small{display:block;font-weight:400;font-size:13px;color:var(--cichy)}
+.stan-wartosc{text-align:right;white-space:nowrap;font-size:14px;color:var(--cichy)}
+.stan-wartosc strong{font-size:16px;color:var(--tekst);font-weight:600}
+.stan-wiersz .miernik{grid-column:2 / -1}
+.stan-wiersz.ccp-wiersz>svg.ik:first-child{color:var(--uwaga)}
+@media (prefers-color-scheme:dark){.stan-wiersz.ccp-wiersz>svg.ik:first-child{color:var(--tekst)}}
+/* Miernik (dataviz: meter) — wypełnienie w tuszu na torze kreski, końce
+   zaokrąglone, WARTOŚĆ zawsze słowem obok. Próg CCP to kreska na 100%
+   z podpisem, bo próg ma być widoczny, a nie domyślny. */
+.miernik{position:relative;height:6px;background:var(--linia);border-radius:var(--r)}
+.miernik i{display:block;height:100%;background:var(--tekst);border-radius:var(--r)}
+.miernik.z-progiem::after{content:"";position:absolute;right:0;top:-4px;bottom:-4px;width:2px;background:var(--tekst)}
+.prog-podpis{grid-column:2 / -1;font-size:13px;color:var(--cichy)}
+.pulpit-sekcja{margin:24px 0 8px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cichy)}
+/* Jedno zaaranżowane wejście zamiast rozsianych mikroanimacji (§2a batonu):
+   wiersze pulpitu pojawiają się po kolei, tylko CSS, wyłączone przy
+   `prefers-reduced-motion` (reguła globalna na górze pliku). */
+@keyframes wejscie{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.pulpit.z-wejsciem>*{animation:wejscie .24s ease-out both}
+.pulpit.z-wejsciem>*:nth-child(2){animation-delay:.04s}
+.pulpit.z-wejsciem>*:nth-child(3){animation-delay:.08s}
+@media (min-width:1024px){
+  .pulpit{display:grid;grid-template-columns:minmax(260px,1fr) minmax(0,2fr);column-gap:32px;align-items:start}
+  .pulpit>.eyebrow{grid-column:1 / -1}
+  .pulpit-wiersze{margin:0;display:grid;grid-template-columns:1fr 1fr;column-gap:32px}
+}
+
+/* ── POSTĘP jako pulpit (16.10.2026) ───────────────────────────────────────
+   Nagłówek modułu wg kanonu: jedna wielka liczba z jednostką (Newsreader),
+   pod nią wiersze stanu (CCP z progiem, powtórka, seria) i ścieżki — każda
+   jako natywne `<details>` z listą tomów w środku (jak rozdziały w #201). */
+.dash-glowa{padding:4px 0 16px}
+.dash-glowa .postep-liczba{font-size:52px;margin:4px 0 8px}
+.dash-glowa p{margin:0 0 8px;font-size:14px;color:var(--cichy)}
+details.sciezka-postep{border-bottom:1px solid var(--linia)}
+/* Siatka w DZIECKU `<summary>`, nie w nim samym: Safari 14 nie układa
+   `<summary>` jako grid (otwarte D-8 z #201) — wtedy spadłoby tylko wnętrze. */
+details.sciezka-postep>summary{list-style:none;cursor:pointer;display:block;min-height:64px;padding:10px 4px}
+details.sciezka-postep>summary:hover .sp-nazwa{text-decoration:underline;text-underline-offset:3px}
+.sp-siatka{display:grid;grid-template-columns:minmax(0,1fr) auto 20px;column-gap:12px;row-gap:6px;align-items:center}
+.sp-siatka .miernik{grid-column:1 / 3}
+.sp-siatka .chevron{grid-column:3;grid-row:1 / span 2;margin:0}
+.sp-nazwa{font-weight:600;font-size:16px}
+.sp-stan{font-size:13px;color:var(--cichy);white-space:nowrap;text-align:right}
+.sp-stan strong{color:var(--tekst)}
+.sp-tomy{list-style:none;margin:0 0 12px;padding:0 0 0 4px}
+.sp-tomy button{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;width:100%;min-height:var(--dotyk-nowy);padding:6px 0;background:none;border:0;
+  border-top:1px solid var(--linia);text-align:left;font-size:15px;color:var(--tekst);cursor:pointer}
+.sp-tomy button span:last-child{font-size:13px;color:var(--cichy);white-space:nowrap}
+.przelacznik{display:inline-flex;align-items:center;min-height:var(--dotyk-nowy);padding:0 12px;border:1.5px solid var(--linia-mocna);border-radius:var(--r);
+  background:var(--karta);color:var(--tekst);font-size:14px;font-weight:600;cursor:pointer}
+.przelacznik[aria-pressed="true"]{border-color:var(--tekst)}
+.ustawienia-serii{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 0}
+
+/* ── LISTA MODUŁÓW: stan słowem (16.10.2026) ────────────────────────────────
+   Pusty pasek w kolorze kreski wyglądał jak element nieaktywny. Moduł nie
+   zaczęty mówi to słowem; pasek rysuje się dopiero, gdy jest co pokazać. */
+.tom-stan{font-size:13px;color:var(--cichy);font-weight:400;margin-left:auto;white-space:nowrap}
+.tom-stan b{color:var(--tekst);font-weight:600}
+
+/* ── OŚ ETAPÓW ŚCIEŻKI (16.10.2026, decyzja Piotra 3A) ─────────────────────
+   Pionowa oś: kreska + węzeł z numerem + stan SŁOWEM. Kolejne poziomy czyta
+   się jak etapy procesu (§2a: metafora przestrzenna z pokazów, przełożona na
+   kanon — „rzemiosło pokazuje się przez konkret: etapy, jednostki"). Odcinek
+   osi za zaliczonym poziomem jest w tuszu, dalej w kresce — widać z daleka,
+   dokąd się doszło. Kształt węzła (pełny / obrys gruby / obrys cienki) niesie
+   stan razem ze słowem, nie kolor. */
+ol.os-etapow{list-style:none;margin:8px 0 0;padding:0}
+.etap{position:relative;padding:0 0 20px 48px;min-height:56px}
+.etap::before{content:"";position:absolute;left:15px;top:32px;bottom:0;border-left:2px solid var(--linia)}
+.etap:last-child::before{display:none}
+.etap.etap-zaliczony::before{border-left-color:var(--tekst)}
+.etap-wezel{position:absolute;left:0;top:0;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;
+  font-family:var(--serif);font-size:17px;font-weight:500;background:var(--karta);border:1.5px solid var(--linia-mocna);color:var(--cichy)}
+.etap-zaliczony .etap-wezel{background:var(--tekst);border-color:var(--tekst);color:var(--karta)}
+.etap-zaliczony .etap-wezel svg.ik{width:18px;height:18px}
+.etap-otwarty .etap-wezel{border:3px solid var(--tekst);color:var(--tekst)}
+.etap-glowa{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px;min-height:32px;padding-top:4px}
+.etap-glowa b{font-size:16px}
+.etap-stan{font-size:13px;color:var(--cichy);white-space:nowrap}
+.etap-stan b{color:var(--tekst);font-size:13px}
+.etap-zamkniety .etap-glowa b{color:var(--cichy);font-weight:600}
+.etap-wazny{display:inline-block;margin-left:4px;font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.etap .miernik{margin:8px 0 4px}
+.etap .poziom-tomy{margin-top:4px}
+
+/* ── SPIS BOCZNY TOMU (komputer ≥ 1024 px) ─────────────────────────────── */
+.spis-boczny{display:none}
+@media (min-width:1024px){
+  #ekran.uklad-tomu{display:grid;grid-template-columns:232px minmax(0,1fr);column-gap:40px;align-items:start}
+  .spis-boczny{display:block;position:sticky;top:88px;max-height:calc(100vh - 104px);overflow:auto;padding:4px 0 16px}
+  .spis-boczny .eyebrow{margin-bottom:8px}
+  .spis-boczny ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--linia)}
+  .spis-boczny button{display:grid;grid-template-columns:24px minmax(0,1fr);gap:8px;width:100%;min-height:var(--dotyk-nowy);padding:8px 4px;background:none;border:0;
+    border-bottom:1px solid var(--linia);text-align:left;font-size:14px;line-height:1.35;color:var(--tekst);cursor:pointer}
+  .spis-boczny button .nr{font-family:var(--serif);font-weight:500;font-size:17px;text-align:center}
+  /* Bieżący rozdział: eukaliptus (kontekst — „zaznaczony wiersz") PLUS kreska
+     tuszem z lewej i pogrubienie. Samo tło ma na papierze 1,41:1, więc nie
+     może być jedynym znakiem (red team D-3). */
+  .spis-boczny button[aria-current]{background:var(--kontekst);color:var(--na-kontekscie);font-weight:600;box-shadow:inset 3px 0 0 var(--tekst)}
+  .spis-boczny .stan-tomu{margin:16px 0 0;font-size:13px;color:var(--cichy)}
+  .spis-boczny .stan-tomu b{color:var(--tekst);font-size:15px}
+  .spis-boczny .miernik{margin-top:8px}
+  .uklad-tomu .mapa-spis,.uklad-tomu .mapa-etykieta-spis{display:none}
+}
 
 /* ══ EKRAN TOMU ════════════════════════════════════════════════════════════
    Trzy warstwy, w tej kolejności (wzorzec „layer-cake" z badań czytania
@@ -441,7 +624,8 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
   @page{margin:16mm 14mm}
   html,body{background:none;font-size:11pt}
   body{padding:0}
-  #pasek,#nawigacja,button.glowny,button.drugi,button.tekstowy,details.mapa-sekcje-zw,.mapa-spis,.chevron,input.szukajka{display:none!important}
+  #pasek,#nawigacja,button.glowny,button.drugi,button.tekstowy,details.mapa-sekcje-zw,.mapa-spis,.chevron,input.szukajka,.spis-boczny,.sciezki-dalej,button.kontynuuj{display:none!important}
+  #ekran.uklad-tomu{display:block}
   /* Druk bez tła (domyślne ustawienie przeglądarek): cyfry „Najważniejsze”
      i znak CCP dostają obrys zamiast tła, inaczej biały tekst na białym. */
   .mapa-najwazniejsze li::before{background:none;color:var(--tekst);border:1.5px solid var(--tekst)}
@@ -471,7 +655,7 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
 <main id="ekran" aria-live="polite">
   <p class="ladowanie">Wczytuję materiały…</p>
 </main>
-<nav id="nawigacja" hidden>
+<nav id="nawigacja" aria-label="Nawigacja kursu" hidden>
   <!-- DWIE ZAKŁADKI (polecenie Piotra 20.09.2026). Do tego dnia pasek miał
        sześć pozycji: Nauka, Powtórka, Ścieżka, Postęp, Profil i wyjście do
        Rzemiosła człowieka. Rzemiosło weszło do kursu jako ścieżka
@@ -1162,8 +1346,8 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
 <text class="t-odwr" x="12" y="271">Pytanie o zdarzenie → odpowiedź, nie obrona</text>
 </svg><figcaption>Opowieść rozpisana na trzy linie pokazuje, ile w niej było dopowiedzenia, a w działanie idzie tylko trzecia linia: pytanie o zdarzenie, na które da się odpowiedzieć bez obrony.</figcaption></figure></template>
 <script id="dane-kursu" type="application/json">{
-  "wersja": "2026-10-15",
-  "zbudowano": "2026-10-15",
+  "wersja": "2026-10-16",
+  "zbudowano": "2026-10-16",
   "sciezki": [
     {
       "id": "piekarz",
@@ -30156,6 +30340,7 @@ const POLECANE_DOMYSLNE = ['fakt-przed-opowiescia', 'przewaga-ma-cien', 'ekspery
    i przekazywanie wiedzy", ścieżka Przedsiębiorczość). */
 const POLECANE_DLA_ROLI = { lider: 'zadanie-z-kryterium-odbioru', wlasciciel: 'zadanie-z-kryterium-odbioru' };
 let obserwatorRozdzialu = null;
+let pulpitPokazany = false;
 
 /* Etykieta modułu po NAZWIE-kluczu. Drabina, mostki, powiązania i mapa
    pokrycia operują nazwami (to klucze), a na ekranie ma stać etykieta. */
@@ -30192,8 +30377,153 @@ const liczba = (n, jeden, kilka, wiele) =>
 /* ── magazyn ───────────────────────────────────────────────────────────── */
 const czytaj = (k, gdy) => { try { return JSON.parse(localStorage.getItem(klucz(k))) ?? gdy } catch { return gdy } };
 const zapisz = (k, v) => { try { localStorage.setItem(klucz(k), JSON.stringify(v)) } catch { /* tryb prywatny */ } };
-const postep = () => czytaj(KLUCZ_POSTEP, {});
-const zapiszOdpowiedz = (id, dobrze) => { const p = postep(); p[id] = dobrze; zapisz(KLUCZ_POSTEP, p) };
+const postep = () => { const p = czytaj(KLUCZ_POSTEP, {}); return p && typeof p === 'object' && !Array.isArray(p) ? p : {} };
+const zapiszOdpowiedz = (id, dobrze) => { const p = postep(); p[id] = dobrze; zapisz(KLUCZ_POSTEP, p); if (dobrze) odnotujDzien() };
+
+/* ── PULPIT UCZNIA: ostatni rozdział i seria dni (16.10.2026) ──────────────
+   DWA nowe klucze i ani jednego więcej (baton „Akademia: pulpit", §7):
+   - `akademia_ostatni_v1` = { tom, rozdzial, kiedy } — tom (id), klucz
+     rozdziału (`r3`, ten sam co w `akademia_rozwiniete_v1`) i dzień. Pisany
+     WYŁĄCZNIE przy otwarciu rozdziału. Istniejące klucze nie mówią, gdzie ktoś
+     skończył: postęp to same {idPytania: true/false}.
+   - `akademia_seria_v1` = { dni: ['RRRR-MM-DD', …], pokazuj } — same DATY
+     (bez godzin i treści) dni, w których ktoś zaliczył pytanie albo otworzył
+     rozdział. Decyzja Piotra P2 = B z bezpiecznikami: przerwa nie ma
+     komunikatu straty, żadnych powiadomień, odznak ani porównań, seria niczego
+     nie blokuje i niczego nie odblokowuje, osoba może ją schować i wyzerować.
+   Oba żyją w tej przeglądarce jak cały postęp — nigdzie nie jadą.
+   Nieczytelny wpis = brak wpisu (try/catch w `czytaj`, walidacja niżej).
+   Funkcje liczące są CZYSTE (bez DOM i bez localStorage) — test wycina je
+   z tego pliku i liczy na danych syntetycznych. */
+const KLUCZ_OSTATNI = 'akademia_ostatni_v1';
+const KLUCZ_SERIA = 'akademia_seria_v1';
+/* Ile dni pamięta seria. Dwa lata wystarczą na „łącznie"; bez limitu klucz
+   rósłby bez końca na urządzeniu, którego nikt nie sprząta. */
+const MAKS_DNI_SERII = 730;
+
+/* Dzień w CZASIE LOKALNYM urządzenia, nie UTC: nauka o 23:30 w Gliwicach
+   to ten sam dzień, a `toISOString` przesunąłby ją na następny. */
+function dzienLokalny(d) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+/* Różnica dni KALENDARZOWYCH. Liczymy na Date.UTC z samych dat, więc zmiana
+   czasu (doba 23 albo 25 godzin) nie zamienia „wczoraj" w „przedwczoraj". */
+function roznicaDni(a, b) {
+  const [ya, ma, da] = a.split('-').map(Number);
+  const [yb, mb, db] = b.split('-').map(Number);
+  return Math.round((Date.UTC(yb, mb - 1, db) - Date.UTC(ya, ma - 1, da)) / 86400000);
+}
+const DATA_DNIA = /^\d{4}-\d{2}-\d{2}$/;
+function czytajSerie(surowe) {
+  const zrodlo = Array.isArray(surowe) ? { dni: surowe } : (surowe && typeof surowe === 'object' ? surowe : {});
+  const dni = [...new Set((Array.isArray(zrodlo.dni) ? zrodlo.dni : []).filter((x) => typeof x === 'string' && DATA_DNIA.test(x)))].sort();
+  return { dni, pokazuj: zrodlo.pokazuj !== false };
+}
+function dopiszDzien(seria, dzien) {
+  const s = czytajSerie(seria);
+  if (!s.dni.includes(dzien)) s.dni = [...s.dni, dzien].sort().slice(-MAKS_DNI_SERII);
+  return s;
+}
+/* Seria bieżąca = dni pod rząd kończące się DZIŚ albo WCZORAJ (dzień jeszcze
+   trwa — brak nauki dziś rano nie przerywa niczego). */
+function stanSerii(dni, dzis) {
+  const lista = czytajSerie(dni).dni.filter((d) => d <= dzis);
+  const lacznie = lista.length;
+  if (!lacznie) return { biezaca: 0, lacznie: 0, ostatni: null, poPrzerwie: false };
+  const ostatni = lista[lacznie - 1];
+  let biezaca = 0;
+  if (roznicaDni(ostatni, dzis) <= 1) {
+    biezaca = 1;
+    for (let i = lacznie - 1; i > 0 && roznicaDni(lista[i - 1], lista[i]) === 1; i--) biezaca++;
+  }
+  return { biezaca, lacznie, ostatni, poPrzerwie: biezaca > 0 && biezaca < lacznie };
+}
+/* Opis serii — ŻADNYCH słów straty (bezpiecznik 1a). Po przerwie mówi
+   „Nowa seria", a przed pierwszą nauką po przerwie samo „łącznie". */
+function opisSerii(st) {
+  if (!st || !st.lacznie) return null;
+  const dni = (n) => `${n} ${liczba(n, 'dzień', 'dni', 'dni')}`;
+  const lacznie = `łącznie ${dni(st.lacznie)} nauki`;
+  /* Bez daty ostatniej nauki: to jedyny tekst, który wskazywałby lukę. */
+  if (!st.biezaca) return { glowny: `Łącznie ${dni(st.lacznie)} nauki`, dodatkowy: null };
+  if (st.poPrzerwie && st.biezaca === 1) return { glowny: 'Nowa seria: 1 dzień', dodatkowy: lacznie };
+  return { glowny: `Seria: ${dni(st.biezaca)}`, dodatkowy: lacznie };
+}
+
+/* Ostatni rozdział — tylko gdy tom jest w TYM wariancie kursu, a klucz
+   rozdziału mieści się w jego liczbie rozdziałów. Wpis z innego wariantu
+   albo sprzed zmiany treści = brak wpisu, nie błąd. */
+function czytajOstatni(surowe, tomy) {
+  if (!surowe || typeof surowe !== 'object' || Array.isArray(surowe)) return null;
+  const tom = (tomy || []).find((t) => t && t.id === surowe.tom);
+  const m = /^r(\d+)$/.exec(String(surowe.rozdzial || ''));
+  if (!tom || !m) return null;
+  const nr = Number(m[1]);
+  if (nr < 1 || nr > (tom.karty || []).length) return null;
+  return { tom, klucz: 'r' + nr, nr, karta: tom.karty[nr - 1] };
+}
+
+/* Błędne odpowiedzi z historii — JEDNA reguła dla pulpitu i zakładki
+   Powtórka (do 16.10.2026 liczona w miejscu, w ekranie Powtórki). */
+function doPowtorki(tomy, p) {
+  return (tomy || []).flatMap((t) => t.pytania || []).filter((x) => p[x.id] === false);
+}
+function stanCcp(tomy, p) {
+  const ccp = (tomy || []).flatMap((t) => t.pytania || []).filter((x) => x.ccp);
+  const ok = ccp.filter((x) => p[x.id] === true).length;
+  const odpowiedzi = ccp.filter((x) => p[x.id] === true || p[x.id] === false).length;
+  return { ok, wszystkie: ccp.length, odpowiedzi, opanowane: ccp.length > 0 && ok === ccp.length };
+}
+/* Postęp ścieżek — wiersz na ścieżkę, która ma moduły w tym wariancie.
+   „Ścieżka, którą osoba realnie robi" = najwięcej zaliczonych pytań, przy
+   remisie więcej odpowiedzi w ogóle (także błędnych — ktoś się uczy). */
+function postepSciezek(dane, p) {
+  return (dane.sciezki || []).map((s) => {
+    const tomy = dane.tomy.filter((t) => (t.sciezki || []).includes(s.id));
+    const stany = tomy.map((t) => policzTom(t, p));
+    const ok = stany.reduce((a, x) => a + x.ok, 0);
+    const zwykle = stany.reduce((a, x) => a + x.zwykle, 0);
+    const odpowiedzi = tomy.flatMap((t) => t.pytania).filter((x) => p[x.id] !== undefined).length;
+    const opanowane = stany.filter((x) => x.stan === 'ok').length;
+    return {
+      id: s.id, nazwa: s.nazwa, tomy, tomow: tomy.length, opanowane, ok, zwykle, odpowiedzi,
+      procent: zwykle ? Math.round((ok / zwykle) * 100) : 0,
+      stan: tomy.length && opanowane === tomy.length ? 'zrobione' : odpowiedzi ? 'w toku' : 'nie zaczęte'
+    };
+  }).filter((s) => s.tomow);
+}
+function sciezkaWToku(dane, p) {
+  return postepSciezek(dane, p).filter((s) => s.odpowiedzi)
+    .sort((a, b) => b.ok - a.ok || b.odpowiedzi - a.odpowiedzi)[0] || null;
+}
+/* Dokąd prowadzi „Kontynuuj". Z ostatnim rozdziałem — do niego. Bez niego
+   (każdy, kto uczy się dziś, sprzed tej zmiany) — do pierwszego
+   niezaliczonego tomu ścieżki w toku, i mówi to SŁOWEM („Następny tom"),
+   zamiast udawać, że wie, gdzie ktoś skończył. */
+function kontynuacja(dane, p, ostatni) {
+  if (ostatni) return { rodzaj: 'ostatni', tom: ostatni.tom, klucz: ostatni.klucz, karta: ostatni.karta, nr: ostatni.nr };
+  const s = sciezkaWToku(dane, p);
+  if (!s) return null;
+  const tom = s.tomy.find((t) => policzTom(t, p).stan !== 'ok');
+  return tom ? { rodzaj: 'nastepny', tom, sciezka: s } : null;
+}
+/* Pulpit pojawia się, gdy w TYM wariancie jest odpowiedź albo ważny „ostatni"
+   rozdział. Sama seria go nie włącza: po „Wyczyść mój postęp" ma wrócić ekran
+   nowej osoby, a klucze pytań z innego wariantu (np. `file://`) nie są postępem
+   tutaj — inaczej pulpit pokazywał zera udające dane (red team, P-3). */
+function odpowiedziWariantu(tomy, p) {
+  return (tomy || []).flatMap((t) => t.pytania || []).filter((x) => p && (p[x.id] === true || p[x.id] === false)).length;
+}
+const maPostep = (tomy, p, ostatni) => odpowiedziWariantu(tomy, p) > 0 || Boolean(ostatni);
+
+/* Zapis — jedyne dwa miejsca, które piszą nowe klucze. */
+function odnotujDzien() {
+  zapisz(KLUCZ_SERIA, dopiszDzien(czytaj(KLUCZ_SERIA, null), dzienLokalny(new Date())));
+}
+function zapiszOstatni(tom, kluczRozdzialu, { bezDnia = false } = {}) {
+  zapisz(KLUCZ_OSTATNI, { tom: tom.id, rozdzial: kluczRozdzialu, kiedy: dzienLokalny(new Date()) });
+  if (!bezDnia) odnotujDzien();
+}
 
 /* ── logika postępu ────────────────────────────────────────────────────────
    Ta sama reguła co w Panelu: procent liczą WYŁĄCZNIE pytania zwykłe,
@@ -30584,7 +30914,13 @@ const IKONY = {
   zespol: '<circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 19c1-3 3-5 6-5s5 2 6 5M14 14c3 0 5 2 6 5"/>',
   cele: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
   przedsiebiorczosc: '<path d="M4 18l6-6 4 4 6-8M15 8h5v5"/>',
-  talenty: '<circle cx="12" cy="12" r="9"/><path d="M15 9l-2 5-5 2 2-5z"/>'
+  talenty: '<circle cx="12" cy="12" r="9"/><path d="M15 9l-2 5-5 2 2-5z"/>',
+  /* Pulpit ucznia (16.10.2026). */
+  dalej: '<path d="M9 6l6 6-6 6"/>',
+  strzalka: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  powtorka: '<path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/>',
+  seria: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+  zaliczony: '<path d="M5 12l5 5 9-10"/>'
 };
 IKONY.maszyny = IKONY.mechanizm;
 const NS_SVG = 'http://www.w3.org/2000/svg';
@@ -30656,10 +30992,12 @@ const akapit = (kl, tekst) => wstawTekst(el('p', kl), tekst);
 
 const norm = (t) => String(t || '').toLowerCase().replace(/[ąćęłńóśźż]/g, (z) => 'acelnoszz'['ąćęłńóśźż'.indexOf(z)]);
 
-function ustawPasek(tytul, zWstecz, podtytul) {
+/* `naStarcie` — na ekranie startowym nie ma ani „wstecz", ani „dom": oba
+   prowadziłyby tam, gdzie się już jest (przegląd 16.10.2026, E). */
+function ustawPasek(tytul, zWstecz, podtytul, naStarcie) {
   $('#tytul').textContent = tytul;
   $('#wstecz').hidden = !zWstecz;
-  $('#dom').hidden = zWstecz;
+  $('#dom').hidden = zWstecz || Boolean(naStarcie);
   const p = $('#podtytul');
   p.textContent = podtytul || '';
   p.hidden = !podtytul;
@@ -30673,7 +31011,7 @@ function ustawPasek(tytul, zWstecz, podtytul) {
    czyli druga nawigacja nad tą samą listą modułów, którą ten ekran już miał.
    Panel zniknął, a to, czego kursowi po nim brakowało, jest tutaj: jedno
    zdanie orientacyjne i wyjście do Profilu. Reszta była duplikatem. */
-function ekranTomy() {
+function ekranTomy(opcje = {}) {
   const p = postep();
   const wybrana = czytaj(KLUCZ_SCIEZKA, 'wszystkie');
   const wTejSciezce = (t) => wybrana === 'wszystkie' || t.sciezki.includes(wybrana);
@@ -30692,20 +31030,39 @@ function ekranTomy() {
       m.append(g);
     }
     m.append(listaTomow(tomy, p));
+    window.scrollTo(0, 0);
     return;
   }
 
-  ustawPasek('Akademia Alterbake', false);
+  ustawPasek('Akademia Alterbake', false, '', true);
+  /* Wybór ścieżki przerysowuje ekran W MIEJSCU — skok na górę po dotknięciu
+     chipu pod pulpitem gubiłby rząd, w który właśnie się trafiło. */
+  if (!opcje.zachowaj) window.scrollTo(0, 0);
   const m = $('#ekran'); m.innerHTML = '';
+  m.classList.add('szeroki');
+
+  /* PULPIT „TWOJA NAUKA" — tylko przy postępie (decyzja 1A). Nowa osoba widzi
+     ten sam ekran co przed 16.10.2026: zdanie orientacyjne, Profil, katalog. */
+  const ostatni = czytajOstatni(czytaj(KLUCZ_OSTATNI, null), DANE.tomy);
+  const seria = czytaj(KLUCZ_SERIA, null);
+  const wraca = maPostep(DANE.tomy, p, ostatni);
+  if (wraca) {
+    const pulpit = pulpitUcznia(p, ostatni, seria);
+    /* Wejście animuje się RAZ na otwarcie kursu — nie przy każdym dotknięciu
+       chipu ani powrocie na start (red team D-9). */
+    if (!pulpitPokazany) { pulpit.classList.add('z-wejsciem'); pulpitPokazany = true }
+    m.append(pulpit);
+  }
 
   const wstep = el('div', 'wstep-kursu');
-  wstep.append(el('h2', '', 'Czego chcesz się nauczyć?'));
-  wstep.append(el('p', 'cichy', 'Wybierz temat i ucz się we własnym tempie. Postępy zapisują się w tej przeglądarce — bez logowania, dobrowolnie.'));
+  wstep.append(el('h2', wraca ? 'pulpit-sekcja' : '', wraca ? 'Wszystkie tematy' : 'Czego chcesz się nauczyć?'));
+  if (!wraca) wstep.append(el('p', 'cichy', 'Wybierz temat i ucz się we własnym tempie. Postępy zapisują się w tej przeglądarce — bez logowania, dobrowolnie.'));
   m.append(wstep);
 
   /* Wyjście do Profilu stoi tylko wtedy, gdy ktoś go jeszcze nie zrobił —
-     po teście ta karta nie ma co mówić, a zajmowałaby pierwszy ekran. */
-  if (!maProfil()) {
+     po teście ta karta nie ma co mówić, a zajmowałaby pierwszy ekran.
+     Osoba wracająca widzi ją POD katalogiem: pierwszy ekran należy do pulpitu. */
+  const wezwanie = () => {
     const cta = el('a', 'wezwanie');
     cta.href = './test/index.html';
     const ik = el('span', 'wezwanie-ikona'); ik.append(ikona('kompas')); cta.append(ik);
@@ -30713,18 +31070,11 @@ function ekranTomy() {
     tresc.append(el('b', '', 'Nie wiesz, od czego zacząć?'));
     tresc.append(el('span', '', 'Zrób Profil Alterbake — zobaczysz swoje mocne strony i preferencje nauki, a Ścieżka ułoży kolejność pod nie.'));
     cta.append(tresc);
-    m.append(cta);
-  }
-
-  const paski = el('div', 'sciezki');
-  const dodaj = (id, nazwa) => {
-    const b = el('button', wybrana === id ? 'akt' : '', nazwa);
-    b.onclick = () => { zapisz(KLUCZ_SCIEZKA, id); ekranTomy() };
-    paski.append(b);
+    return cta;
   };
-  dodaj('wszystkie', 'Wszystko');
-  DANE.sciezki.forEach((s) => dodaj(s.id, s.nazwa));
-  m.append(paski);
+  if (!maProfil() && !wraca) m.append(wezwanie());
+
+  m.append(rzadSciezek(wybrana));
 
   /* PIERWSZY POZIOM: kategorie, nie 38 modułów jednym ciągiem.
      Lista wszystkiego naraz nie mówi, gdzie się jest ani co z czym sąsiaduje —
@@ -30742,7 +31092,7 @@ function ekranTomy() {
      (`GRUPY_DZIALOW` w rejestrze), nie trzecim rejestrem obok — druga lista
      „co z czym" rozjechałaby się przy pierwszym nowym module.
      Nagłówek pojawia się TYLKO nad grupą, w której coś stoi: pusty nagłówek
-     nad zerem kafli jest gorszy od jego braku. */
+     nad zerem wierszy jest gorszy od jego braku. */
   const grupy = (DANE.grupy || []).length ? DANE.grupy : [{ id: null, etykieta: null }];
   for (const grupa of grupy) {
     const wGrupie = grupa.id ? dzialy.filter((x) => (x.d.grupa || 'zawodowe') === grupa.id) : dzialy;
@@ -30756,20 +31106,183 @@ function ekranTomy() {
     m.append(siatkaKategorii(wGrupie, p));
   }
 
-  /* MECHANIZMY (13.10.2026) — jedno wejście na indeks, PO siatkach kategorii
-     i tylko gdy indeks coś niesie: kafel prowadzący na pustą stronę byłby
+  /* MECHANIZMY (13.10.2026) — jedno wejście na indeks, PO kategoriach
+     i tylko gdy indeks coś niesie: wiersz prowadzący na pustą stronę byłby
      obietnicą bez pokrycia. Nie w dolnym pasku — dwie zakładki to decyzja
      z 20.09.2026, a „trzeci przycisk" rozstrzygnięto odmownie 03.09.2026. */
   const mechanizmy = DANE.mechanizmy || [];
   if (mechanizmy.length) {
-    const b = el('button', 'kategoria mechanizmy-wejscie');
-    const ik = el('span', 'kategoria-ikona'); ik.append(ikona('wezel')); b.append(ik);
-    b.append(el('span', 'kategoria-nazwa', 'Mechanizmy'));
-    b.append(el('span', 'kategoria-opis', 'Ten sam mechanizm w wielu miejscach — raz nazwany, z tomami, w których go spotkasz.'));
-    b.append(el('span', 'kategoria-meta', `${mechanizmy.length} ${liczba(mechanizmy.length, 'mechanizm', 'mechanizmy', 'mechanizmów')} →`));
-    b.onclick = () => { widok = { nazwa: 'mechanizmy' }; rysuj() };
-    m.append(b);
+    m.append(wierszKatalogu({
+      klasa: 'mechanizmy-wejscie', ikonaNazwa: 'wezel', nazwa: 'Mechanizmy',
+      opis: 'Ten sam mechanizm w wielu miejscach — raz nazwany, z tomami, w których go spotkasz.',
+      licznik: `${mechanizmy.length} ${liczba(mechanizmy.length, 'mechanizm', 'mechanizmy', 'mechanizmów')}`,
+      akcja: () => { widok = { nazwa: 'mechanizmy' }; rysuj() }
+    }));
   }
+  if (!maProfil() && wraca) { const w = wezwanie(); w.style.marginTop = '24px'; m.append(w) }
+}
+
+/* Rząd ścieżek. Pokazujemy tylko ścieżki, które w TYM wariancie mają moduły:
+   do 16.10.2026 stał tu chip „Dla wszystkich" (rejestr ma tę ścieżkę, żaden
+   moduł jej nie deklaruje), który prowadził na „Brak materiałów". */
+function rzadSciezek(wybrana) {
+  const ramka = el('div', 'sciezki-ramka');
+  const paski = el('div', 'sciezki');
+  paski.setAttribute('role', 'group');
+  paski.setAttribute('aria-label', 'Ścieżki');
+  const dodaj = (id, nazwa) => {
+    const b = el('button', wybrana === id ? 'akt' : '', nazwa);
+    b.type = 'button';
+    b.setAttribute('aria-pressed', String(wybrana === id));
+    b.onclick = () => { zapisz(KLUCZ_SCIEZKA, id); ekranTomy({ zachowaj: true }) };
+    paski.append(b);
+  };
+  dodaj('wszystkie', 'Wszystko');
+  DANE.sciezki.filter((s) => DANE.tomy.some((t) => (t.sciezki || []).includes(s.id))).forEach((s) => dodaj(s.id, s.nazwa));
+  return rzadPrzewijany(paski, ramka);
+}
+
+/* Rząd chipów z zaślepką „więcej" — jedna implementacja dla ścieżek,
+   podzakładek „Mojego profilu" i wyboru rzemiosła. Zaślepka przewija rząd
+   i znika, gdy dalej nic nie ma (albo gdy rząd mieści się cały). */
+function rzadPrzewijany(paski, ramka = el('div', 'sciezki-ramka')) {
+  ramka.append(paski);
+  const dalej = el('button', 'sciezki-dalej');
+  dalej.type = 'button';
+  /* Nazwa dla czytnika zaczyna się od słowa, które widać (WCAG 2.5.3). */
+  dalej.setAttribute('aria-label', 'więcej — przewiń rząd');
+  dalej.append(document.createTextNode('więcej'), ikona('dalej'));
+  dalej.onclick = () => { paski.scrollBy({ left: Math.max(120, paski.clientWidth * 0.7), behavior: 'smooth' }) };
+  const odswiez = () => { dalej.hidden = paski.scrollLeft + paski.clientWidth >= paski.scrollWidth - 4 };
+  paski.addEventListener('scroll', odswiez, { passive: true });
+  /* Obrót telefonu zmienia szerokość rzędu — zaślepka ma to zauważyć. */
+  if ('ResizeObserver' in window) new ResizeObserver(odswiez).observe(paski);
+  ramka.append(dalej);
+  requestAnimationFrame(() => {
+    odswiez();
+    /* Wybrany chip ma być widoczny — inaczej po powrocie stoi za krawędzią. */
+    const akt = paski.querySelector('.akt');
+    if (akt && akt.offsetLeft + akt.offsetWidth > paski.clientWidth) { paski.scrollLeft = akt.offsetLeft - 8; odswiez() }
+  });
+  return ramka;
+}
+
+/* PULPIT „TWOJA NAUKA" (16.10.2026). Kolejność ważności z batonu:
+   Kontynuuj → Do powtórki → CCP → ścieżka w toku → seria. Wszystko liczone
+   z istniejących kluczy, poza dwoma nowymi (ostatni rozdział, seria). */
+function pulpitUcznia(p, ostatni, surowaSeria) {
+  const box = el('section', 'pulpit');
+  box.setAttribute('aria-label', 'Twoja nauka');
+  box.append(el('h2', 'eyebrow', 'Twoja nauka'));
+
+  const dalej = kontynuacja(DANE, p, ostatni);
+  if (dalej) {
+    const b = el('button', 'kontynuuj');
+    b.type = 'button';
+    b.dataset.kontynuuj = dalej.rodzaj;
+    const nazwaTomu = dalej.tom.etykieta || dalej.tom.nazwa;
+    b.append(el('span', 'kontynuuj-akcja', dalej.rodzaj === 'ostatni' ? 'Kontynuuj' : 'Następny tom'));
+    b.append(el('span', 'kontynuuj-cel', dalej.rodzaj === 'ostatni'
+      ? `${nazwaTomu} · ${dalej.nr}. ${dalej.karta.tytul} · ${minutyRozdzialu(dalej.karta)} min rozdziału`
+      : `${nazwaTomu} · ${dalej.sciezka.nazwa} · ${minutyCzytania(dalej.tom)} min czytania`));
+    b.append(ikona('strzalka'));
+    b.onclick = () => { widok = { nazwa: 'tom', tom: dalej.tom, klucz: dalej.klucz || null }; rysuj() };
+    box.append(b);
+  } else {
+    box.append(el('p', 'cichy', Object.values(p).some((x) => x === true)
+      ? 'Ścieżka, którą robisz, jest zaliczona. Wybierz kolejny temat niżej albo powtórz błędne odpowiedzi.'
+      : 'Wybierz temat niżej — „Kontynuuj" pojawi się po pierwszym otwartym rozdziale.'));
+  }
+
+  const wiersze = el('div', 'pulpit-wiersze');
+  /* Powtórka i CCP mówią coś dopiero, gdy są odpowiedzi — osoba, która tylko
+     czytała, nie dostaje „0 z 10" ani „wszystko poprawnie" (P-3). */
+  if (odpowiedziWariantu(DANE.tomy, p)) {
+    const ble = doPowtorki(DANE.tomy, p).length;
+    wiersze.append(wierszStanu({
+      ikonaNazwa: 'powtorka', nazwa: 'Do powtórki',
+      wartosc: ble ? `**${ble}** ${liczba(ble, 'pytanie', 'pytania', 'pytań')}` : 'brak błędnych',
+      akcja: () => { widok = { nazwa: 'profil', karta: 'powtorka' }; rysuj() }
+    }));
+    wiersze.append(wierszCcp(stanCcp(DANE.tomy, p), () => { widok = { nazwa: 'profil', karta: 'postep' }; rysuj() }));
+  }
+  const s = sciezkaWToku(DANE, p);
+  if (s) {
+    wiersze.append(wierszStanu({
+      ikonaNazwa: 'kompas', nazwa: s.nazwa,
+      podpis: `${s.stan} · ${s.opanowane} z ${s.tomow} ${liczba(s.tomow, 'modułu', 'modułów', 'modułów')} opanowanych`,
+      wartosc: `**${s.ok}** z ${s.zwykle} ${liczba(s.zwykle, 'pytania', 'pytań', 'pytań')}`,
+      miernik: s.procent, opisMiernika: `${s.nazwa}: ${s.procent}% pytań zaliczonych`,
+      akcja: () => { widok = { nazwa: 'profil', karta: 'postep', rozwin: s.id }; rysuj() }
+    }));
+  }
+  const ser = czytajSerie(surowaSeria);
+  const opis = ser.pokazuj ? opisSerii(stanSerii(ser.dni, dzienLokalny(new Date()))) : null;
+  if (opis) wiersze.append(wierszStanu({ ikonaNazwa: 'seria', nazwa: opis.glowny, podpis: opis.dodatkowy }));
+  box.append(wiersze);
+  return box;
+}
+
+/* Wiersz stanu — jeden komponent dla pulpitu i Postępu. Wartość jest
+   SŁOWEM i liczbą; miernik (gdy jest) tylko ją podpiera. `wartosc` niesie
+   pogrubienie składnią `**…**` i wchodzi przez `wstawTekst` (węzły, nie HTML). */
+function wierszStanu({ ikonaNazwa, nazwa, podpis, wartosc, miernik, opisMiernika, prog, akcja, klasa }) {
+  const w = el(akcja ? 'button' : 'div', 'stan-wiersz' + (klasa ? ' ' + klasa : ''));
+  if (akcja) { w.type = 'button'; w.onclick = akcja }
+  w.append(ikona(ikonaNazwa));
+  const n = el('span', 'stan-nazwa', nazwa);
+  if (podpis) n.append(el('small', '', podpis));
+  w.append(n);
+  const v = el('span', 'stan-wartosc');
+  if (wartosc) wstawTekst(v, wartosc);
+  w.append(v);
+  if (akcja) { const d = ikona('dalej'); d.setAttribute('class', 'ik dalej'); w.append(d) }
+  if (miernik != null) w.append(pasekMiernika(miernik, opisMiernika, prog, Boolean(akcja)));
+  if (prog) w.append(el('span', 'prog-podpis', prog));
+  return w;
+}
+/* `wPrzycisku` — miernik wewnątrz przycisku jest ozdobą liczby, którą przycisk
+   już mówi słowem; jako `role=img` dublowałby nazwę w czytniku (red team D-6). */
+function pasekMiernika(procent, opis, zProgiem, wPrzycisku) {
+  const pm = el('div', 'miernik' + (zProgiem ? ' z-progiem' : ''));
+  if (wPrzycisku) pm.setAttribute('aria-hidden', 'true');
+  else { pm.setAttribute('role', 'img'); pm.setAttribute('aria-label', opis || `${procent}%`) }
+  const i = el('i'); i.style.width = Math.max(0, Math.min(100, procent)) + '%';
+  pm.append(i);
+  return pm;
+}
+/* CCP: liczba z jednostką i SŁOWO; próg 100% widoczny jako kreska na końcu
+   miernika z podpisem. Treść i próg CCP bez zmian — zmienia się wygląd. */
+function wierszCcp(c, akcja) {
+  const slowo = !c.wszystkie ? '—' : c.opanowane ? 'opanowane' : c.odpowiedzi ? 'wymagane 100%' : 'nie zaczęte';
+  return wierszStanu({
+    klasa: 'ccp-wiersz', ikonaNazwa: 'bezpieczenstwo', nazwa: 'Bezpieczeństwo (CCP)', podpis: slowo,
+    wartosc: c.wszystkie ? `**${c.ok}** z ${c.wszystkie}` : '—',
+    miernik: c.wszystkie ? Math.round((c.ok / c.wszystkie) * 100) : null,
+    opisMiernika: `CCP: ${c.ok} z ${c.wszystkie} pytań, próg 100%`,
+    prog: c.wszystkie ? 'próg: 100% — wszystkie pytania krytyczne' : null, akcja
+  });
+}
+
+/* Wiersz katalogu — jedna implementacja dla kategorii i wejścia do
+   Mechanizmów. Klasa `.kategoria` zostaje (czytają ją skrypty renderu). */
+function wierszKatalogu({ klasa, ikonaNazwa, ikonaZnak, nazwa, opis, licznik, procent, akcja }) {
+  const b = el('button', 'kategoria' + (klasa ? ' ' + klasa : ''));
+  b.type = 'button';
+  const ik = el('span', 'kategoria-ikona');
+  if (IKONY[ikonaNazwa]) ik.append(ikona(ikonaNazwa)); else ik.textContent = ikonaZnak || '';
+  b.append(ik);
+  const t = el('span', 'kategoria-tekst');
+  t.append(el('span', 'kategoria-nazwa', nazwa));
+  if (opis) t.append(el('span', 'kategoria-opis', opis));
+  b.append(t);
+  const meta = el('span', 'kategoria-meta');
+  meta.append(el('span', '', licznik));
+  if (procent) meta.append(pasekMiernika(procent, `${nazwa}: ${procent}%`, false, true));
+  b.append(meta);
+  const d = ikona('dalej'); d.setAttribute('class', 'ik dalej'); b.append(d);
+  b.onclick = akcja;
+  return b;
 }
 
 /* ── ekran: MECHANIZMY ────────────────────────────────────────────────────
@@ -30863,55 +31376,63 @@ function ekranMechanizmy() {
   window.scrollTo(0, 0);
 }
 
-/* Kafle jednej grupy. Wydzielone z ekranu startowego przy podziale na grupy —
-   jedna implementacja kafla, dwa miejsca wywołania. */
+/* Wiersze jednej grupy. Wydzielone z ekranu startowego przy podziale na
+   grupy — jedna implementacja wiersza, dwa miejsca wywołania. Od 16.10.2026
+   wiersze z kreską zamiast kafli z obrysem (kanon v3). */
 function siatkaKategorii(dzialy, p) {
   const siatka = el('div', 'kategorie');
+  siatka.dataset.katalog = '';
   for (const { d, tomy } of dzialy) {
     const stany = tomy.map((t) => policzTom(t, p));
     const gotowe = stany.filter((x) => x.stan === 'ok').length;
     const procent = Math.round(100 * stany.reduce((a, x) => a + x.procent, 0) / stany.length);
-
-    const b = el('button', 'kategoria');
     /* Ikona kreską zamiast emoji z rejestru działów (emoji wygląda inaczej
        na każdym telefonie i nie bierze koloru motywu); dział bez rysunku
        zostaje przy swoim znaku z rejestru. */
-    const ik = el('span', 'kategoria-ikona');
-    if (IKONY[d.id]) ik.append(ikona(d.id)); else ik.textContent = d.ikona;
-    b.append(ik);
-    b.append(el('span', 'kategoria-nazwa', d.etykieta));
-    b.append(el('span', 'kategoria-opis', d.opis));
-    const meta = el('span', 'kategoria-meta',
-      `${tomy.length} ${tomy.length === 1 ? 'moduł' : tomy.length < 5 ? 'moduły' : 'modułów'}` +
-      (gotowe ? ` · ${gotowe} opanowanych` : '') + ' →');
-    b.append(meta);
-    if (procent) {
-      const pasek = el('div', 'pasek'); const i = el('i'); i.style.width = procent + '%';
-      pasek.append(i); b.append(pasek);
-    }
-    b.onclick = () => { widok = { nazwa: 'tomy', dzial: d.id }; rysuj() };
-    siatka.append(b);
+    siatka.append(wierszKatalogu({
+      ikonaNazwa: d.id, ikonaZnak: d.ikona, nazwa: d.etykieta, opis: d.opis,
+      licznik: gotowe ? `${gotowe} z ${tomy.length} ${liczba(tomy.length, 'modułu', 'modułów', 'modułów')}`
+        : `${tomy.length} ${liczba(tomy.length, 'moduł', 'moduły', 'modułów')}`,
+      procent,
+      akcja: () => { widok = { nazwa: 'tomy', dzial: d.id }; rysuj() }
+    }));
   }
   return siatka;
 }
 
-/* Lista modułów — jedna implementacja dla kategorii i dla wyników szukania. */
+/* Plakietka CCP — obrys stanu „uwaga" + trójkąt + słowo (nie kolor błędu). */
+function plakietkaCcp(tekst) {
+  const pl = el('span', 'plakietka ccp');
+  pl.append(ikona('bezpieczenstwo'), document.createTextNode(tekst));
+  return pl;
+}
+
+/* Lista modułów — jedna implementacja dla kategorii i dla wyników szukania.
+   Stan SŁOWEM (16.10.2026): pusty pasek w kolorze kreski wyglądał jak
+   element nieaktywny, więc moduł nie zaczęty mówi „nie zaczęte", a pasek
+   rysuje się dopiero, gdy jest co na nim pokazać. */
+const SLOWO_STANU = { ok: 'opanowany', toku: 'w toku', blok: 'w toku', start: 'nie zaczęte' };
 function listaTomow(tomy, p) {
   const lista = el('div', 'lista-tomow');
   for (const t of tomy) {
     const s = policzTom(t, p);
+    const odpowiedzi = t.pytania.some((x) => p[x.id] !== undefined);
     const b = el('button', 'tom');
+    b.type = 'button';
     const nag = el('div', 'naglowek');
-    nag.append(el('span', 'tom-znak', s.stan === 'ok' ? '✓' : s.stan === 'toku' ? '◐' : '○'));
+    nag.append(el('span', 'tom-znak', s.stan === 'ok' ? '✓' : s.ok > 0 ? '◐' : '○'));
     nag.append(el('span', '', t.etykieta || t.nazwa));
-    nag.append(el('span', 'stan', `${s.ok}/${s.zwykle}`));
+    const st = el('span', 'tom-stan');
+    if (s.ok > 0 || odpowiedzi) wstawTekst(st, `**${s.ok}** z ${s.zwykle} · ${s.stan === 'ok' ? SLOWO_STANU.ok : 'w toku'}`);
+    else st.textContent = SLOWO_STANU.start;
+    nag.append(st);
     b.append(nag);
     const meta = el('div', 'cichy mini');
     meta.textContent = `${t.karty.length} ${liczba(t.karty.length, 'karta', 'karty', 'kart')}`
       + ` · ${t.pytania.length} ${liczba(t.pytania.length, 'pytanie', 'pytania', 'pytań')}`;
-    if (s.ccpPytan) { meta.append(' '); const pl = el('span', 'plakietka ccp', `CCP ${s.ccpOk ? 'zaliczone' : 'wymagane'}`); meta.append(pl) }
+    if (s.ccpPytan) { meta.append(' '); meta.append(plakietkaCcp(`CCP ${s.ccpOk ? 'zaliczone' : 'wymagane'}`)) }
     b.append(meta);
-    const pasek = el('div', 'pasek'); const i = el('i'); i.style.width = Math.round(s.procent * 100) + '%'; pasek.append(i); b.append(pasek);
+    if (s.ok > 0) b.append(pasekMiernika(Math.round(s.procent * 100), `${t.etykieta || t.nazwa}: ${s.ok} z ${s.zwykle}`, false, true));
     b.onclick = () => { widok = { nazwa: 'tom', tom: t }; rysuj() };
     lista.append(b);
   }
@@ -31042,10 +31563,24 @@ function ekranTom() {
     : widok.tom;
   if (!t) { widok = { nazwa: 'tomy', dzial: null }; return ekranTomy() }
   ustawPasek(t.etykieta || t.nazwa, true);
-  const m = $('#ekran'); m.innerHTML = '';
+  /* Dwie kolumny na komputerze (16.10.2026): spis rozdziałów i postęp tomu
+     z lewej (`aside`, schowany poniżej 1024 px), treść w kolumnie z prawej.
+     Na telefonie `aside` nie istnieje wizualnie i ekran jest jak w #201. */
+  const ekran = $('#ekran'); ekran.innerHTML = '';
+  ekran.classList.add('uklad-tomu');
+  const boczny = el('aside', 'spis-boczny');
+  boczny.setAttribute('aria-label', 'Spis rozdziałów');
+  const m = el('div', 'tom-tresc');
+  ekran.append(boczny, m);
   const karty = t.karty || [];
   const zapisane = rozwiniete(t.id);
   const otwarte = new Set(zapisane || ['r1']);
+  /* OSTATNI ROZDZIAŁ (`akademia_ostatni_v1`) zapisuje się przy OTWARCIU
+     rozdziału: ręcznym, skokiem ze spisu albo z adresu. Rozdziały otwarte
+     już przy rysowaniu (zapamiętany stan) przysyłają `toggle` same z siebie —
+     te pierwsze zdarzenia pomijamy, a wejście w tom zapisuje się niżej raz,
+     świadomie. Druk rozwija wszystko — wtedy nic się nie zapisuje. */
+  const pomin = new Set(otwarte);
   const zwijane = [];   // { klucz, details }
   let przelacz = null;
   const zapiszStan = () => {
@@ -31060,6 +31595,13 @@ function ekranTom() {
     d.dataset.klucz = klucz;
     if (otwarte.has(klucz)) d.open = true;
     d.addEventListener('toggle', zapiszStan);
+    if (/^r\d+$/.test(klucz)) {
+      d.addEventListener('toggle', () => {
+        if (!d.open) { pomin.delete(klucz); return }
+        if (pomin.has(klucz)) { pomin.delete(klucz); return }
+        if (!drukuje) zapiszOstatni(t, klucz);
+      });
+    }
     zwijane.push({ klucz, details: d });
     return d;
   };
@@ -31067,8 +31609,10 @@ function ekranTom() {
   const idzDo = (klucz) => {
     const x = zwijane.find((z) => z.klucz === klucz);
     if (!x) return;
+    pomin.delete(klucz);
     x.details.open = true;
     zapiszStan();
+    if (/^r\d+$/.test(klucz)) zapiszOstatni(t, klucz);
     przewinDo(x.details);
   };
   const p = postep();
@@ -31099,7 +31643,7 @@ function ekranTom() {
     mapa.append(r);
   }
   if (karty.length) {
-    const e = el('div', 'mapa-etykieta'); e.append(ikona('skrot'), document.createTextNode('Rozdziały'));
+    const e = el('div', 'mapa-etykieta mapa-etykieta-spis'); e.append(ikona('skrot'), document.createTextNode('Rozdziały'));
     mapa.append(e);
     const ol = el('ol', 'mapa-spis');
     karty.forEach((k, i) => {
@@ -31112,6 +31656,26 @@ function ekranTom() {
       li.append(b); ol.append(li);
     });
     mapa.append(ol);
+    /* Spis boczny (komputer) — te same skoki co w mapie, plus stan tomu. */
+    boczny.append(el('span', 'eyebrow', 'Rozdziały'));
+    const olb = el('ol');
+    karty.forEach((k, i) => {
+      const li = el('li');
+      const b = el('button');
+      b.type = 'button';
+      b.dataset.doRozdzialu = String(i + 1);
+      b.append(el('span', 'nr', String(i + 1)), el('span', '', k.tytul));
+      b.onclick = () => idzDo('r' + (i + 1));
+      li.append(b); olb.append(li);
+    });
+    boczny.append(olb);
+  }
+  if (t.pytania.length) {
+    const st = el('p', 'stan-tomu');
+    if (stanTomu.zwykle) wstawTekst(st, `**${stanTomu.ok}** z ${stanTomu.zwykle} ${liczba(stanTomu.zwykle, 'pytania', 'pytań', 'pytań')} zaliczonych · ${stanTomu.stan === 'ok' ? 'opanowany' : stanTomu.ok ? 'w toku' : 'nie zaczęty'}`);
+    boczny.append(st);
+    if (stanTomu.ok) boczny.append(pasekMiernika(Math.round(stanTomu.procent * 100), `Tom: ${stanTomu.ok} z ${stanTomu.zwykle}`));
+    if (stanTomu.ccpPytan) { const pc = el('p', 'stan-tomu'); pc.append(plakietkaCcp(`CCP ${stanTomu.ccpOk ? 'zaliczone' : 'wymagane 100%'}`)); boczny.append(pc) }
   }
   /* Sekcje odniesienia schowane za jednym wierszem (test czytelności
      15.10.2026: jedenaście przycisków pod spisem zabierało najlepsze miejsce
@@ -31126,6 +31690,9 @@ function ekranTom() {
   przelacz.type = 'button';
   przelacz.onclick = () => {
     const wszystkie = zwijane.every((x) => x.details.open);
+    /* Masowe rozwinięcie to przegląd tomu, nie czytanie rozdziału — bez tego
+       „Kontynuuj" skakał na OSTATNI rozdział (red team 16.10.2026, P-1). */
+    if (!wszystkie) zwijane.forEach((x) => { if (!x.details.open && /^r\d+$/.test(x.klucz)) pomin.add(x.klucz) });
     zwijane.forEach((x) => { x.details.open = !wszystkie });
     przelacz.textContent = wszystkie ? 'Rozwiń wszystko' : 'Zwiń wszystko';
     zapiszStan();
@@ -31397,16 +31964,39 @@ function ekranTom() {
       for (const x of wpisy) x.isIntersecting ? widoczne.add(x.target) : widoczne.delete(x.target);
       const biezacy = rozdzialy.find((x) => widoczne.has(x.element) && x.element.open);
       ustawPasek(t.etykieta || t.nazwa, true, biezacy ? `${biezacy.numer}/${rozdzialy.length} · ${biezacy.etykieta}` : '');
+      boczny.querySelectorAll('button[data-do-rozdzialu]').forEach((b) => {
+        if (biezacy && b.dataset.doRozdzialu === biezacy.numer) b.setAttribute('aria-current', 'location'); else b.removeAttribute('aria-current');
+      });
     }, { rootMargin: '-96px 0px -55% 0px' });
     rozdzialy.forEach((x) => obserwatorRozdzialu.observe(x.element));
   }
 
   /* Wejście z adresu albo z połączenia wskazuje ROZDZIAŁ: rozwijamy go
      i przewijamy dopiero po tym, jak cały ekran stanął. */
+  /* „Kontynuuj" z pulpitu niesie KLUCZ rozdziału (`r3`) — rozdział bez
+     stałego `id` też da się wskazać. */
+  if (widok.klucz) {
+    const x = zwijane.find((z) => z.klucz === widok.klucz);
+    widok.klucz = null;
+    if (x) { pomin.delete(x.klucz); x.details.open = true; zapiszStan(); zapiszOstatni(t, x.klucz); przewinDo(x.details); return }
+  }
   if (widok.rozdzial) {
     const cel = m.querySelector('[data-rozdzial="' + widok.rozdzial + '"]');
     widok.rozdzial = null;
-    if (cel) { cel.open = true; zapiszStan(); przewinDo(cel); return }
+    if (cel) {
+      pomin.delete(cel.dataset.klucz);
+      cel.open = true; zapiszStan(); zapiszOstatni(t, cel.dataset.klucz); przewinDo(cel); return;
+    }
+  }
+  /* Samo WEJŚCIE w tom nie jest otwarciem rozdziału (baton §2 pkt 1) —
+     zerknięcie do innego tomu z wyszukiwarki nie może zamienić
+     „Kontynuuj · 5. …" na „1. …" (red team 16.10.2026, P-2). Jedyny wyjątek:
+     pierwszy tom w ogóle, gdy wpisu jeszcze nie ma — wtedy rozwinięty
+     rozdział jest jedynym, co wiemy, i nic nie nadpisujemy. Dzień serii
+     liczy się dopiero przy otwarciu rozdziału albo zaliczonym pytaniu. */
+  const pierwszyOtwarty = zwijane.find((z) => /^r\d+$/.test(z.klucz) && z.details.open);
+  if (pierwszyOtwarty && !czytajOstatni(czytaj(KLUCZ_OSTATNI, null), DANE.tomy)) {
+    zapiszOstatni(t, pierwszyOtwarty.klucz, { bezDnia: true });
   }
   window.scrollTo(0, 0);
 }
@@ -31495,7 +32085,8 @@ function ekranWynik() {
     : 'To normalne. Wróć do materiału, przeczytaj bloki „Jak to działa” i spróbuj ponownie.'));
   const ccpZle = q.ble.filter((p) => p.ccp);
   if (ccpZle.length) {
-    const u = el('p', 'plakietka ccp', `Uwaga: ${ccpZle.length} niezaliczonych pytań o bezpieczeństwo — te wymagają 100%.`);
+    const u = el('p');
+    u.append(plakietkaCcp(`Uwaga: ${ccpZle.length} ${liczba(ccpZle.length, 'niezaliczone pytanie', 'niezaliczone pytania', 'niezaliczonych pytań')} o bezpieczeństwo — te wymagają 100%.`));
     k.append(u);
   }
   m.append(k);
@@ -31513,55 +32104,119 @@ function ekranWynik() {
 /* ── powtórka: wszystkie błędne z historii ────────────────────────────── */
 function ekranPowtorka(m) {
   const p = postep();
-  const ble = DANE.tomy.flatMap((t) => t.pytania).filter((x) => p[x.id] === false);
+  const ble = doPowtorki(DANE.tomy, p);
   const nowe = DANE.tomy.flatMap((t) => t.pytania).filter((x) => p[x.id] === undefined);
   const k = el('div', 'karta');
   k.append(el('h2', '', 'Powtórka'));
   k.append(el('p', 'cichy', ble.length
-    ? `Masz ${ble.length} pytań, w których się pomyliłeś. To najlepszy materiał do powtórki — pamięć utrwala się na błędach.`
+    ? `Masz ${ble.length} ${liczba(ble.length, 'pytanie', 'pytania', 'pytań')}, w których się pomyliłeś. To najlepszy materiał do powtórki — pamięć utrwala się na błędach.`
     : 'Brak błędnych odpowiedzi do powtórzenia. Możesz przećwiczyć pytania, których jeszcze nie widziałeś.'));
   m.append(k);
-  if (ble.length) { const b = el('button', 'glowny', `Powtórz ${ble.length} błędnych`); b.onclick = () => startQuiz(ble, 'Powtórka'); m.append(b) }
+  if (ble.length) { const b = el('button', 'glowny', `Powtórz ${ble.length} ${liczba(ble.length, 'błędne', 'błędne', 'błędnych')}`); b.onclick = () => startQuiz(ble, 'Powtórka'); m.append(b) }
   if (nowe.length) { const b = el('button', 'drugi', `Losowe 10 z nieprzerobionych (${nowe.length})`); b.onclick = () => startQuiz(przetasuj(nowe).slice(0, 10), 'Nowe pytania'); m.append(b) }
 }
 
-/* ── postęp ───────────────────────────────────────────────────────────── */
+/* ── postęp jako pulpit (16.10.2026) ──────────────────────────────────────
+   Do tego dnia: duże „0%", karta CCP jednym zdaniem i 53 tomy zwykłym
+   tekstem z „○". Dziś nagłówek modułu wg kanonu (jedna liczba z jednostką),
+   wiersze stanu (CCP z progiem, powtórka, seria) i ścieżki — wiersz na
+   ścieżkę z licznikiem i stanem słowem, a w środku (natywne `<details>`,
+   jedno dotknięcie) lista jej tomów. Liczy te same funkcje co pulpit. */
 function ekranPostep(m) {
   const p = postep();
   const wszystkie = DANE.tomy.flatMap((t) => t.pytania);
   const zwykle = wszystkie.filter((x) => !x.ccp);
-  const ccp = wszystkie.filter((x) => x.ccp);
   const ok = zwykle.filter((x) => p[x.id] === true).length;
-  const ccpOk = ccp.filter((x) => p[x.id] === true).length;
+  const procent = Math.round((ok / (zwykle.length || 1)) * 100);
+  const opanowane = DANE.tomy.filter((t) => policzTom(t, p).stan === 'ok').length;
 
-  const k = el('div', 'karta');
-  k.append(el('h2', '', 'Razem'));
-  k.append(el('div', 'postep-liczba', `${Math.round((ok / (zwykle.length || 1)) * 100)}%`));
-  k.append(el('p', 'cichy', `${ok} z ${zwykle.length} pytań zaliczonych`));
-  const pasek = el('div', 'pasek'); const i = el('i'); i.style.width = Math.round((ok / (zwykle.length || 1)) * 100) + '%'; pasek.append(i); k.append(pasek);
-  m.append(k);
+  const g = el('section', 'dash-glowa');
+  g.setAttribute('aria-label', 'Postęp razem');
+  g.append(el('span', 'eyebrow', 'Razem · w tej przeglądarce'));
+  g.append(el('div', 'postep-liczba', `${procent}%`));
+  g.append(el('p', '', `${ok} z ${zwykle.length} ${liczba(zwykle.length, 'pytania', 'pytań', 'pytań')} zaliczonych · ${opanowane} z ${DANE.tomy.length} ${liczba(DANE.tomy.length, 'modułu', 'modułów', 'modułów')} opanowanych`));
+  g.append(pasekMiernika(procent, `Razem: ${procent}% pytań zaliczonych`));
+  m.append(g);
 
-  const kc = el('div', 'karta');
-  kc.append(el('h3', '', 'Bezpieczeństwo żywności (CCP)'));
-  kc.append(el('p', '', `${ccpOk} z ${ccp.length} zaliczonych`));
-  kc.append(el('p', 'cichy mini', 'Pytania oznaczone jako krytyczne wymagają 100% — bez nich tom nie jest opanowany.'));
-  m.append(kc);
+  const w = el('div', 'pulpit-wiersze');
+  w.append(wierszCcp(stanCcp(DANE.tomy, p), null));
+  const ble = doPowtorki(DANE.tomy, p).length;
+  w.append(wierszStanu({
+    ikonaNazwa: 'powtorka', nazwa: 'Do powtórki', podpis: 'błędne odpowiedzi z historii',
+    wartosc: ble ? `**${ble}** ${liczba(ble, 'pytanie', 'pytania', 'pytań')}` : 'brak',
+    akcja: () => { widok = { nazwa: 'profil', karta: 'powtorka' }; rysuj() }
+  }));
+  m.append(w);
 
-  const lista = el('div', 'karta');
-  lista.append(el('h3', '', 'Tomy'));
-  for (const t of DANE.tomy) {
-    const s = policzTom(t, p);
-    const r = el('div', 'cichy mini');
-    r.textContent = `${s.stan === 'ok' ? '✓' : s.stan === 'toku' ? '◐' : '○'} ${t.etykieta || t.nazwa} — ${s.ok}/${s.zwykle}`;
-    lista.append(r);
+  m.append(el('h3', 'pulpit-sekcja', 'Ścieżki'));
+  const rozwin = widok.rozwin; widok.rozwin = null;
+  let cel = null;
+  for (const s of postepSciezek(DANE, p)) {
+    const d = el('details', 'sciezka-postep');
+    d.dataset.sciezkaPostep = s.id;
+    if (rozwin === s.id) { d.open = true; cel = d }
+    const sum = el('summary');
+    const siatka = el('span', 'sp-siatka');
+    siatka.append(el('span', 'sp-nazwa', s.nazwa));
+    const st = el('span', 'sp-stan');
+    wstawTekst(st, `**${s.opanowane}** z ${s.tomow} ${liczba(s.tomow, 'modułu', 'modułów', 'modułów')} · ${s.stan}`);
+    siatka.append(st);
+    const ch = ikona('chevron'); ch.setAttribute('class', 'ik chevron'); siatka.append(ch);
+    /* Pusty pasek przy „nie zaczęte" wyglądał jak element nieaktywny (G). */
+    if (s.stan !== 'nie zaczęte') siatka.append(pasekMiernika(s.procent, `${s.nazwa}: ${s.procent}% pytań zaliczonych`, false, true));
+    sum.append(siatka);
+    d.append(sum);
+    const ul = el('ul', 'sp-tomy');
+    for (const t of s.tomy) {
+      const st2 = policzTom(t, p);
+      const li = el('li');
+      const b = el('button');
+      b.type = 'button';
+      b.append(el('span', '', `${st2.stan === 'ok' ? '✓ ' : ''}${t.etykieta || t.nazwa}`),
+        el('span', '', st2.ok || t.pytania.some((x) => p[x.id] !== undefined) ? `${st2.ok} z ${st2.zwykle}` : 'nie zaczęte'));
+      b.onclick = () => { widok = { nazwa: 'tom', tom: t }; rysuj() };
+      li.append(b); ul.append(li);
+    }
+    d.append(ul);
+    m.append(d);
   }
-  m.append(lista);
+
+  /* SERIA — widoczna tylko na pulpicie i tutaj. Tu też jej wyłącznik
+     i zerowanie (bezpieczniki 1a): seria jest dla osoby, nie o osobie. */
+  const ser = czytajSerie(czytaj(KLUCZ_SERIA, null));
+  m.append(el('h3', 'pulpit-sekcja', 'Seria dni nauki'));
+  const opis = opisSerii(stanSerii(ser.dni, dzienLokalny(new Date())));
+  const ws = el('div', 'pulpit-wiersze');
+  if (ser.pokazuj && opis) ws.append(wierszStanu({ ikonaNazwa: 'seria', nazwa: opis.glowny, podpis: opis.dodatkowy }));
+  else ws.append(wierszStanu({ ikonaNazwa: 'seria', nazwa: ser.pokazuj ? 'Seria pojawi się po pierwszym dniu nauki' : 'Seria schowana', podpis: 'dzień liczy się po zaliczonym pytaniu albo otwartym rozdziale' }));
+  m.append(ws);
+  const us = el('div', 'ustawienia-serii');
+  const prz = el('button', 'przelacznik', `Pokazuj serię: ${ser.pokazuj ? 'tak' : 'nie'}`);
+  prz.type = 'button';
+  prz.setAttribute('aria-pressed', String(ser.pokazuj));
+  prz.onclick = () => { zapisz(KLUCZ_SERIA, { ...ser, pokazuj: !ser.pokazuj }); rysuj() };
+  us.append(prz);
+  if (ser.dni.length) {
+    const zer = el('button', 'tekstowy', 'Wyzeruj serię');
+    zer.type = 'button';
+    zer.onclick = () => { if (confirm('Wyzerować serię dni nauki na tym urządzeniu? Postęp w pytaniach zostaje.')) { zapisz(KLUCZ_SERIA, { dni: [], pokazuj: ser.pokazuj }); rysuj() } };
+    us.append(zer);
+  }
+  m.append(us);
+  m.append(el('p', 'cichy mini', 'Seria niczego nie odblokowuje i niczego nie blokuje. Nie ma powiadomień ani porównań z innymi — jest tylko dla Ciebie.'));
 
   const reset = el('button', 'drugi', 'Wyczyść mój postęp');
-  reset.onclick = () => { if (confirm('Skasować cały zapisany postęp na tym urządzeniu?')) { localStorage.removeItem(klucz(KLUCZ_POSTEP)); rysuj() } };
+  /* „Cały postęp" = odpowiedzi i miejsce, w którym skończyłeś. Seria ma
+     własny wyłącznik i zerowanie wyżej, więc tu jej nie ruszamy. */
+  reset.onclick = () => {
+    if (!confirm('Skasować cały zapisany postęp na tym urządzeniu?')) return;
+    try { localStorage.removeItem(klucz(KLUCZ_POSTEP)); localStorage.removeItem(klucz(KLUCZ_OSTATNI)) } catch { /* tryb prywatny */ }
+    rysuj();
+  };
   m.append(reset);
   const info = el('p', 'cichy mini', 'Postęp zapisuje się wyłącznie w tej przeglądarce. Nikt go nie widzi i nie jest nigdzie wysyłany.');
   m.append(info);
+  if (cel) przewinDo(cel);
 }
 
 /* ── ekran: MÓJ PROFIL ─────────────────────────────────────────────────────
@@ -31624,7 +32279,7 @@ function ekranMojProfil() {
     b.onclick = () => { widok = { nazwa: 'profil', karta: z.id }; rysuj() };
     chipy.append(b);
   }
-  m.append(chipy);
+  m.append(rzadPrzewijany(chipy));
   if (karta === 'sciezka') return ekranSciezka(m);
   if (karta === 'postep') return ekranPostep(m);
   if (karta === 'powtorka') return ekranPowtorka(m);
@@ -31854,7 +32509,13 @@ function wykresZmian(pomiary, klucze, etykiety) {
     const y = (v) => H - 6 - (Math.max(0, Math.min(MAKS, v)) / MAKS) * (H - 12);
     svg.append(svgEl('line', { x1: 0, y1: y(MAKS / 2), x2: W, y2: y(MAKS / 2), class: 'ew-srodek' }));
     if (punkty.length > 1) svg.append(svgEl('polyline', { points: punkty.map((p) => `${x(p.i)},${y(p.v)}`).join(' '), class: 'ew-linia' }));
-    for (const p of punkty) svg.append(svgEl('circle', { cx: x(p.i), cy: y(p.v), r: 3, class: 'ew-punkt' }));
+    for (const p of punkty) {
+      const c = svgEl('circle', { cx: x(p.i), cy: y(p.v), r: 4, class: 'ew-punkt' });
+      const tt = document.createElementNS(NS, 'title');
+      tt.textContent = `${dataKrotko(pomiary[p.i].data)}: ${String(p.v).replace('.', ',')}`;
+      c.append(tt);
+      svg.append(c);
+    }
     w.append(svg);
     const pierwszy = punkty[0].v, ostatni = punkty[punkty.length - 1].v, d = Math.round((ostatni - pierwszy) * 10) / 10;
     const pl = (v) => String(v).replace('.', ',');
@@ -32058,7 +32719,7 @@ function ekranSciezka(m) {
       b.onclick = () => { zapisz(KLUCZ_SCIEZKA, id); rysuj() };
       paski.append(b);
     }
-    k.append(paski);
+    k.append(rzadPrzewijany(paski));
     /* Redteam 03.09.2026: kurs nie miał ŻADNEGO wewnętrznego odniesienia
        do Profilu Alterbake — jedyne drogi do niego szły przez wejście albo
        przez Mistrza. To jest dokładnie ekran, na którym Profil realnie
@@ -32084,7 +32745,9 @@ function ekranSciezka(m) {
     kk.append(el('p', 'cichy mini', krok.haslo || ''));
     const doZrobienia = krok.tomy.filter((t) => t.procent < PROG_POZIOMU);
     if (doZrobienia.length) {
-      const b = el('button', '', 'Otwórz: ' + etykietaPoNazwie(doZrobienia[0].tom));
+      /* Jedyna akcja ekranu — w tuszu. Do 16.10.2026 przycisk bez klasy
+         rysował się domyślnym stylem przeglądarki (szary, 20 px wysokości). */
+      const b = el('button', 'glowny', 'Otwórz: ' + etykietaPoNazwie(doZrobienia[0].tom));
       b.onclick = () => { widok = { nazwa: 'tom', tom: doZrobienia[0].tom }; rysuj() };
       kk.append(b);
     }
@@ -32099,15 +32762,28 @@ function ekranSciezka(m) {
     const rz = D2.rzemiosla[idRz];
     const karta = el('div', 'karta');
     karta.append(el('h3', '', rz.nazwa));
-    drabinaRzemiosla(rz, idRz, post).forEach((p) => {
-      const w = el('div', 'poziom' + (p.otwarty ? '' : ' poziom-zamkniety') + (p.wyrozniony ? ' poziom-wazny' : ''));
-      const glowa = el('div', 'poziom-glowa');
-      glowa.append(el('b', '', `${p.zaliczony ? '✓' : p.otwarty ? '▶' : '○'} ${p.nr}. ${p.nazwa}`));
-      glowa.append(el('span', 'cichy mini', p.procent + '%'));
+    /* OŚ ETAPÓW (16.10.2026, decyzja Piotra 3A): poziom = etap na pionowej
+       osi — węzeł z numerem, stan SŁOWEM, odcinek osi w tuszu za zaliczonym
+       poziomem. Te same dane i ta sama reguła otwierania co dotąd. */
+    const os = el('ol', 'os-etapow');
+    drabinaRzemiosla(rz, idRz, post).forEach((p, i, wszystkie) => {
+      const stan = p.zaliczony ? 'zaliczony' : p.otwarty ? 'otwarty' : 'zamkniety';
+      const w = el('li', 'etap etap-' + stan);
+      const wezel = el('span', 'etap-wezel');
+      wezel.setAttribute('aria-hidden', 'true');
+      if (p.zaliczony) wezel.append(ikona('zaliczony')); else wezel.textContent = String(p.nr);
+      w.append(wezel);
+      const glowa = el('div', 'etap-glowa');
+      const tyt = el('b', '', `${p.nr}. ${p.nazwa}`);
+      glowa.append(tyt);
+      const slowo = p.zaliczony ? 'zaliczony' : p.otwarty ? (p.procent ? 'w toku' : 'otwarty') : 'zamknięty';
+      const st = el('span', 'etap-stan');
+      wstawTekst(st, p.otwarty || p.zaliczony ? `**${slowo}** · ${p.procent}%` : slowo);
+      glowa.append(st);
       w.append(glowa);
-      w.append(el('p', 'cichy mini', p.haslo || ''));
-      const pasek = el('div', 'pasek'); const i = el('i'); i.style.width = p.procent + '%'; pasek.append(i);
-      w.append(pasek);
+      if (p.wyrozniony) w.append(el('span', 'etap-wazny', 'ważne dla Ciebie'));
+      if (p.haslo) w.append(el('p', 'cichy mini', p.haslo));
+      if (p.otwarty && p.procent) w.append(pasekMiernika(p.procent, `Poziom ${p.nr}: ${p.procent}%`));
       if (p.otwarty) {
         const lista = el('div', 'poziom-tomy');
         p.tomy.forEach((t) => {
@@ -32117,10 +32793,11 @@ function ekranSciezka(m) {
         });
         w.append(lista);
       } else {
-        w.append(el('p', 'cichy mini', 'Otworzy się po zaliczeniu poprzedniego poziomu.'));
+        w.append(el('p', 'cichy mini', i ? `Otworzy się po zaliczeniu poziomu ${wszystkie[i - 1].nr}.` : 'Otworzy się po zaliczeniu poprzedniego poziomu.'));
       }
-      karta.append(w);
+      os.append(w);
     });
+    karta.append(os);
     m.append(karta);
 
     /* Tematy pokrewne — poza własnym rzemiosłem, bez wymagań wstępnych. */
@@ -32246,7 +32923,7 @@ function ekranSciezka(m) {
     b.onclick = () => { zapisz(KLUCZ_SCIEZKA, id); rysuj() };
     paski.append(b);
   }
-  kw.append(paski);
+  kw.append(rzadPrzewijany(paski));
   m.append(kw);
 }
 
@@ -32259,6 +32936,8 @@ function rysuj() {
   /* Obserwator żyje tylko na ekranie modułu — w quizie dopisywałby do paska
      nazwę rozdziału, którego nikt już nie czyta. */
   if (w !== 'tom' && obserwatorRozdzialu) { obserwatorRozdzialu.disconnect(); obserwatorRozdzialu = null }
+  /* Klasa układu (szeroki start, dwie kolumny tomu) należy do jednego ekranu. */
+  $('#ekran').className = '';
   if (w === 'tomy') ekranTomy();
   else if (w === 'tom') ekranTom();
   else if (w === 'quiz') ekranQuiz();
@@ -32267,8 +32946,13 @@ function rysuj() {
   else if (w === 'mechanizmy') ekranMechanizmy();
   /* Indeks mechanizmów jest częścią NAUKI (wejście z jej ekranu startowego),
      więc w pasku świeci zakładka Nauka — nie trzecia, której nie ma. */
-  const aktywna = w === 'mechanizmy' ? 'tomy' : w;
-  document.querySelectorAll('#nawigacja button').forEach((b) => b.classList.toggle('akt', b.dataset.widok === aktywna));
+  /* Od 16.10.2026 także tom, quiz i szukajka świecą Naukę — są jej częścią,
+     a pasek bez zaznaczenia nie mówił, gdzie się jest. */
+  const aktywna = w === 'profil' ? 'profil' : 'tomy';
+  document.querySelectorAll('#nawigacja button').forEach((b) => {
+    b.classList.toggle('akt', b.dataset.widok === aktywna);
+    if (b.dataset.widok === aktywna) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
+  });
 }
 
 function podepnij() {
@@ -32311,11 +32995,35 @@ async function start() {
     return;
   }
   $('#nawigacja').hidden = false;
+  /* Ekrany rysuje skrypt, więc to on decyduje o przewinięciu. Przywracanie
+     przeglądarki po odświeżeniu kotwiczyło się na treści POD pulpitem
+     i chowało go nad krawędzią (pomiar 16.10.2026, scenariusz B). */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   podepnij();
-  /* Adres może wskazywać wprost ścieżkę albo widok (`#sciezka=piekarz`,
-     `#widok=sciezka`). Panelu wejściowego już nie ma, ale linki tego kształtu
-     są rozdane i mają dalej działać — a poza tym to najkrótszy sposób, żeby
-     wysłać komuś od razu właściwą ścieżkę. */
+  /* Adres czytamy przy starcie ORAZ przy każdej zmianie kotwicy w otwartej
+     karcie (16.10.2026, H): do tego dnia link `#widok=postep` kliknięty
+     w otwartym kursie zostawiał ekran startowy, bo adres czytał tylko start. */
+  window.addEventListener('hashchange', zmianaAdresu);
+  zAdresu();
+}
+
+/* `hashchange` w otwartej karcie: reagujemy WYŁĄCZNIE na rozpoznany adres
+   (pusty albo obcy hash nie przerysowuje bieżącego ekranu — w quizie wracało
+   pytanie z ponownym „Sprawdź", red team D-1), a po obsłużeniu zdejmujemy
+   kotwicę, żeby ten sam link kliknięty drugi raz znowu zadziałał. */
+const PARAMETRY_ADRESU = ['widok', 'sciezka', 'modul', 'mechanizm'];
+function zmianaAdresu() {
+  const adres = new URLSearchParams(location.hash.replace(/^#/, ''));
+  if (!PARAMETRY_ADRESU.some((k) => adres.get(k))) return;
+  zAdresu();
+  try { history.replaceState(null, '', location.pathname + location.search) } catch { /* file:// w starszych przeglądarkach */ }
+}
+
+/* Adres może wskazywać wprost ścieżkę albo widok (`#sciezka=piekarz`,
+   `#widok=sciezka`). Panelu wejściowego już nie ma, ale linki tego kształtu
+   są rozdane i mają dalej działać — a poza tym to najkrótszy sposób, żeby
+   wysłać komuś od razu właściwą ścieżkę. */
+function zAdresu() {
   const adres = new URLSearchParams(location.hash.replace(/^#/, ''));
   const sciezkaZAdresu = adres.get('sciezka');
   if (sciezkaZAdresu && DANE.sciezki.some((x) => x.id === sciezkaZAdresu)) zapisz(KLUCZ_SCIEZKA, sciezkaZAdresu);
@@ -32330,12 +33038,14 @@ async function start() {
   /* Stare adresy `#widok=sciezka|postep|powtorka` prowadzą do właściwej
      podzakładki „Mojego profilu" — link rozdany przed 20.09.2026 ma działać. */
   else if (PODZAKLADKI_ID.includes(widokZAdresu)) widok = { nazwa: 'profil', karta: widokZAdresu };
+  /* `#sciezka=…` bez widoku w otwartej karcie: ekran startowy z tą ścieżką. */
+  else if (sciezkaZAdresu) widok = { nazwa: 'tomy', dzial: null };
   /* `#modul=<id>&rozdzial=<id>` — tak tabliczka pod starym `mistrz.html`
      przenosi kotwicę `#lekcja=…` na rozdział kursu. */
   const modulZAdresu = adres.get('modul');
   if (modulZAdresu && otworzRozdzial(modulZAdresu, adres.get('rozdzial'))) return;
   rysuj();
-  }
+}
 
 if (typeof document !== 'undefined') start();
 
