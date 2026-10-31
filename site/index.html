@@ -1346,8 +1346,8 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
 <text class="t-odwr" x="12" y="271">Pytanie o zdarzenie → odpowiedź, nie obrona</text>
 </svg><figcaption>Opowieść rozpisana na trzy linie pokazuje, ile w niej było dopowiedzenia, a w działanie idzie tylko trzecia linia: pytanie o zdarzenie, na które da się odpowiedzieć bez obrony.</figcaption></figure></template>
 <script id="dane-kursu" type="application/json">{
-  "wersja": "2026-10-16",
-  "zbudowano": "2026-10-16",
+  "wersja": "2026-10-30",
+  "zbudowano": "2026-10-30",
   "sciezki": [
     {
       "id": "piekarz",
@@ -4972,6 +4972,13 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
           "tekst": "Chłód spowalnia wzrost drobnoustrojów, ale go nie zatrzymuje i nie cofa: drożdże w chłodni pracują dalej wolniej, a bakterie w wyrobie z kremem rosną w witrynie wolniej, lecz te, które namnożyły się poza chłodem, zostają. Obsługa i sprzedaż pokazuje, co z tego wynika dla wyrobu z kremem wystawionego poza chłód.",
           "kierunek": "obustronny",
           "doId": "tom-obsluga-i-sprzedaz"
+        },
+        {
+          "do": "Sterowanie laminatem: dźwignie i kompromisy",
+          "mechanizm": "temperatura-jako-dzwignia-tempa",
+          "tekst": "Odroczony rozrost w laminacie ma trzy możliwe miejsca: ciasto, płat albo wyrób uformowany. Sterowanie laminatem pokazuje, czym każde z nich płaci w strukturze i jak dobrać je do godziny sprzedaży.",
+          "kierunek": "obustronny",
+          "doId": "tom-sterowanie-laminatem-dzwignie-i-kompromisy"
         }
       ],
       "pojecia": [
@@ -6022,6 +6029,13 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
           "tekst": "Skórka miękka w zamkniętym opakowaniu i chleb wyschnięty w zamrażarce to dwa końce jednej fizyki: woda zmienia stan także poza piecem. W ciepłym opakowaniu para się skrapla, w zamrażarce lód odparowuje z pominięciem cieczy.",
           "kierunek": "obustronny",
           "doId": "tom-mrozenie-i-odswiezanie-pieczywa"
+        },
+        {
+          "do": "Ciasto półfrancuskie i pieczywo weneckie",
+          "mechanizm": "woda-zwiazana-i-wolna",
+          "tekst": "Wędrówka wody z miękiszu do skórki, która odbiera chlebowi chrupkość, w wyrobie weneckim zaczyna się już w piecu, od nadzienia. Ciasto półfrancuskie pokazuje, jak wilgotność nadzienia ustawia spód i trwałość wyrobu.",
+          "kierunek": "obustronny",
+          "doId": "tom-ciasto-polfrancuskie-i-pieczywo-weneckie"
         }
       ],
       "pojecia": [
@@ -6865,7 +6879,7 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
         {
           "nazwa": "Laminacja — temperatura",
           "wartosc": "ciasto i masło 14–16°C",
-          "uwaga": "Wartość startowa z praktyki cukierniczej (pewność B). Przesuwa ją rodzaj masła: im więcej frakcji wysokotopliwej, tym szerszy zakres pracy. Powyżej masło wtapia się w ciasto, poniżej pęka i zostawia luki."
+          "uwaga": "Wartość startowa z praktyki cukierniczej (pewność C). Przesuwa ją rodzaj masła: im więcej frakcji wysokotopliwej, tym szerszy zakres pracy. Powyżej masło wtapia się w ciasto, poniżej pęka i zostawia luki."
         },
         {
           "nazwa": "Tourage",
@@ -6875,12 +6889,12 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
         {
           "nazwa": "Obroty",
           "wartosc": "3 pojedyncze (27 warstw) albo podwójny + pojedynczy (12)",
-          "uwaga": "Liczby warstw to arytmetyka składania, a wybór obrotów — praktyka cukiernicza (pewność B). Więcej warstw nie daje wyższego wyrobu, bo zbyt cienki tłuszcz się rwie (pewność B; Deligny i Lucas 2015). Chłodnia między każdym obrotem."
+          "uwaga": "Liczby warstw to arytmetyka składania, a wybór obrotów — praktyka cukiernicza (pewność C). Więcej warstw nie daje wyższego wyrobu, bo zbyt cienki tłuszcz się rwie (pewność B; Deligny i Lucas 2015). Chłodnia między każdym obrotem."
         },
         {
           "nazwa": "Wyrastanie laminatu",
           "wartosc": "poniżej 26°C",
-          "uwaga": "Granica z praktyki cukierniczej (pewność B). Masło nie ma jednej temperatury topnienia — około 30°C traci kryształy i zaczyna spływać jeszcze przed wsadem. Przesuwa ją rodzaj masła; potwierdź próbą dwóch temperatur na jednej partii."
+          "uwaga": "Granica z praktyki cukierniczej (pewność C). Masło nie ma jednej temperatury topnienia — około 30°C traci kryształy i zaczyna spływać jeszcze przed wsadem. Przesuwa ją rodzaj masła; potwierdź próbą dwóch temperatur na jednej partii."
         },
         {
           "nazwa": "Wypiek viennoiserie",
@@ -7075,6 +7089,20 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
           "tekst": "Reguła „gluten przed masłem” w brioche ma odpowiednik w cukierni: tłuszcz w białku uniemożliwia pianę. W obu wypadkach tłuszcz otula białka i nie pozwala im się zetknąć, więc sieć zbudowana wcześniej przetrwa, a sieć, której nie było, już nie powstanie.",
           "kierunek": "obustronny",
           "doId": "tom-bialko-tluszcz-i-woda-chemia-mas-i-kremow"
+        },
+        {
+          "do": "Ciasto półfrancuskie i pieczywo weneckie",
+          "mechanizm": "para-i-zmiana-stanu",
+          "tekst": "Para rozsuwająca warstwy croissanta pracuje tak samo w pieczywie weneckim, tylko pod nadzieniem i w zarobie z cukrem. Ciasto półfrancuskie pokazuje, co dzieje się z tym mechanizmem, gdy warstwy muszą unieść ładunek.",
+          "kierunek": "obustronny",
+          "doId": "tom-ciasto-polfrancuskie-i-pieczywo-weneckie"
+        },
+        {
+          "do": "Sterowanie laminatem: dźwignie i kompromisy",
+          "mechanizm": "temperatura-jako-dzwignia-tempa",
+          "tekst": "Granica garowania croissanta to jedno z kilku pokręteł temperatury w laminacie. Sterowanie laminatem pokazuje, jak temperatura garowania, chłodu i pieca przesuwa wnętrze, skórkę i harmonogram.",
+          "kierunek": "obustronny",
+          "doId": "tom-sterowanie-laminatem-dzwignie-i-kompromisy"
         }
       ],
       "pojecia": [
@@ -11373,6 +11401,13 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
           "tekst": "Część wiedzy mistrza nie przechodzi przez papier, bo kryteria zeszły do ręki i oka, dlatego szkoły z długim terminowaniem zapisują mało, a przekazują wspólną pracą. Prowadzenie ludzi i przekazywanie wiedzy pokazuje, jak taką wiedzę przekazać: pokaz z „dlaczego” przy każdym kroku, powtórzenie i sprawdzenie.",
           "kierunek": "obustronny",
           "doId": "tom-prowadzenie-ludzi-i-przekazywanie-wiedzy"
+        },
+        {
+          "do": "Sterowanie laminatem: dźwignie i kompromisy",
+          "mechanizm": "niewidoczna-wiedza-eksperta",
+          "tekst": "Wiedza, która przeszła do ręki mistrza, staje się niewidoczna także dla niego samego. Sterowanie laminatem pokazuje, jak pomiar korekty przy płacie przenosi ją do receptury i do rozmowy z innymi praktykami.",
+          "kierunek": "obustronny",
+          "doId": "tom-sterowanie-laminatem-dzwignie-i-kompromisy"
         }
       ],
       "pojecia": [
@@ -12855,6 +12890,13 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
           "tekst": "Odparowanie wody pochłania energię i trzyma temperaturę wnętrza przy wrzeniu; w suszeniu odwraca się tę zależność i prowadzi odparowanie wolno, żeby powierzchnia nie zamknęła drogi wodzie z wnętrza. Przekąski i suszenie pokazują, jak wygląda ta fizyka ustawiona na minimum.",
           "kierunek": "obustronny",
           "doId": "tom-przekaski-suszenie-i-trwalosc"
+        },
+        {
+          "do": "Ciasto półfrancuskie i pieczywo weneckie",
+          "mechanizm": "para-i-zmiana-stanu",
+          "tekst": "Para, która w chlebie tworzy wyrost i skórkę, w cieście półfrancuskim rozsuwa warstwy oddzielone tłuszczem. Ten tom pokazuje, jak kształt, nacięcie i nadzienie decydują, gdzie para zdoła to zrobić.",
+          "kierunek": "obustronny",
+          "doId": "tom-ciasto-polfrancuskie-i-pieczywo-weneckie"
         }
       ],
       "pojecia": [
@@ -14715,6 +14757,13 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
           "tekst": "Żytnie ciasto to lekcja wyrobu bez sprężystej sieci glutenu: strukturę trzyma żel pentozanowy, który pęka zamiast się rozciągać. Kruche robi to samo celowo, odgradzając białka tłuszczem, więc oba wyroby rozpadają się pod naciskiem, zamiast ustępować sprężyście.",
           "kierunek": "obustronny",
           "doId": "tom-pieczywo-zytnie-formowe"
+        },
+        {
+          "do": "Ciasto półfrancuskie i pieczywo weneckie",
+          "mechanizm": "para-i-zmiana-stanu",
+          "tekst": "Para rozpychająca warstwy francuskiego pracuje także w cieście półfrancuskim, tylko obok drożdży. Pieczywo weneckie pokazuje, dlaczego ciasto drożdżowe zostaje przy kilku obrotach, a francuskie znosi ich wiele.",
+          "kierunek": "obustronny",
+          "doId": "tom-ciasto-polfrancuskie-i-pieczywo-weneckie"
         }
       ],
       "pojecia": [
@@ -18427,6 +18476,1153 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
             0
           ],
           "wyjasnienie": "Powolne przejście przez zakres, w którym rosną kryształy, daje czas na rozbudowę niewielu dużych — a te przebijają strukturę od środka. Grubość warstwy działa tu silniej niż nastawa urządzenia, bo środek grubego bloku przechodzi ten zakres wielokrotnie wolniej niż brzeg."
+        }
+      ]
+    },
+    {
+      "id": "tom-ciasto-polfrancuskie-i-pieczywo-weneckie",
+      "nazwa": "Ciasto półfrancuskie i pieczywo weneckie",
+      "etykieta": "Ciasto półfrancuskie i pieczywo weneckie",
+      "dzial": "cukiernia",
+      "sciezki": [
+        "cukiernik"
+      ],
+      "intro": "Ciasto półfrancuskie to rodzina laminatów na drożdżach, a ten tom skupia się na jej odmianie wzbogaconej: cukier, jajo, mleko i masło w zarobie spotykają się z płatem tłuszczu przekładanego. Powstaje z niej pieczywo weneckie i duńskie — wyroby kształtowane, nacinane i nadziewane. Mistrzostwo nie polega tu na znajomości jednej receptury, tylko na panowaniu nad trzema napięciami: między drożdżami a parą, między miękkim ciastem a twardym tłuszczem i między nadzieniem a warstwami, które mają to nadzienie unieść.",
+      "cele": [
+        "Umieścić odmianę wzbogaconą i pieczywo weneckie na mapie laminatów i nazwać, czym różnią się od croissanta i od ciasta francuskiego.",
+        "Wyjaśnić, jak cukier, jajo i tłuszcz w zarobie zmieniają wałkowanie, garowanie i wypiek.",
+        "Dobrać tłuszcz przekładany i jego temperaturę do twardości ciasta, a nie do tabeli.",
+        "Policzyć grubość warstwy z obrotów i grubości płata i przewidzieć, kiedy warstwy przestaną być ciągłe.",
+        "Zaprojektować kształt, nacięcie i nadzienie tak, żeby nie odbierały wyrobowi wzrostu ani suchego spodu."
+      ],
+      "karty": [
+        {
+          "tytul": "Mapa laminatów i miejsce pieczywa weneckiego",
+          "tresc": [
+            "Wszystkie ciasta laminowane powstają tak samo: płat tłuszczu zamyka się w cieście, a potem całość wałkuje się i składa, aż powstaną naprzemienne warstwy. Różnią je dwie osie. Pierwsza to **źródło wzrostu**: ciasto francuskie rośnie wyłącznie od pary, drożdżowe ciasta przekładane — od pary i drożdży. W polskiej praktyce całą tę drożdżową rodzinę, łącznie z croissantowym, nazywa się zwykle półfrancuskim (pewność C; nazewnictwo zwyczajowe). Druga oś to **bogactwo zarobu**: croissant ma ciasto chude, a odmiana duńska i wenecka dostaje cukier, jajo, więcej masła i zwykle więcej tłuszczu przekładanego.",
+            "Nazwa „pieczywo weneckie” nie ma w polskich pracowniach jednej definicji (pewność C; nazewnictwo zwyczajowe). Najczęściej oznacza wyroby z drożdżowego ciasta laminowanego, kształtowane i nadziewane — ślimaki, koperty, warkocze, rogaliki z nadzieniem — czyli tę samą rodzinę, którą za granicą nazywa się duńską. Część praktyków nazywa tak odmianę lżejszą, z mniejszą ilością tłuszczu przekładanego i z mniejszą liczbą obrotów, bliższą ciastu drożdżowemu niż croissantowi. Dlatego rozmowę o weneckim zaczyna się od dwóch pytań: ile tłuszczu przekładanego i ile obrotów.",
+            "Między ciastem drożdżowym a francuskim leży ciągłe spektrum, nie kilka szuflad. Na jednym końcu jest ciasto drożdżowe z tłuszczem tylko w zarobie, dalej ciasto rozsmarowane tłuszczem i zwinięte raz, potem półfrancuskie i croissant po kilku obrotach, na końcu francuskie z wieloma obrotami i bez drożdży. Im bliżej francuskiego, tym więcej pracy wykonuje para i tym bardziej kruchy i łamliwy jest wyrób. Im bliżej drożdżowego, tym więcej robią drożdże i tym miększy, bardziej sprężysty jest miękisz."
+          ],
+          "punkty": [
+            "Dwie osie laminatu: **źródło wzrostu** (sama para albo para z drożdżami) i **bogactwo zarobu** (chudy albo z cukrem, jajem i masłem).",
+            "Półfrancuskie to cała rodzina drożdżowych laminatów: croissantowe z chudym zarobem i wzbogacone — duńskie, weneckie. Francuskie nie ma drożdży.",
+            "„Weneckie” to nazwa zwyczajowa, nie norma. Zanim porównasz dwa wyroby, zapytaj o udział tłuszczu przekładanego i liczbę obrotów.",
+            "Przesunięcie po spektrum w stronę francuskiego daje kruchość i łamliwość, w stronę drożdżowego — miękkość i sprężystość.",
+            "🔎 Z hali: dwóch cukierników spiera się, czy ich weneckie „to jeszcze półfrancuskie”. Spór kończy się, gdy każdy powie, ile masła przekłada i ile robi obrotów — jeden robi dwa obroty z cienkim płatem tłuszczu, drugi trzy z grubym, i obaj mówili o czym innym.",
+            "🧠 Zapamiętaj: nazwa wyrobu mówi o tradycji, a proporcja tłuszczu i liczba obrotów — o technologii."
+          ],
+          "mechanizm": "Wzrost laminatu ma dwa źródła, które w piecu się sumują, ale wcześniej ze sobą konkurują. Drożdże budują objętość w garowni, rozciągając warstwy ciasta zamknięte między warstwami tłuszczu, a para rozpycha płaty dopiero w piecu. Im cieńsza warstwa ciasta, tym mniej miejsca ma w niej pęcherzyk gazu, więc przy wielu obrotach drożdże zamiast unosić warstwy zaczynają je rozrywać. Stąd ciasta o największej liczbie warstw obywają się bez drożdży, a ciasta drożdżowe zostają przy kilku obrotach (pewność C; wniosek z budowy warstw i praktyki cukierniczej)."
+        },
+        {
+          "tytul": "Zarób wzbogacony: co cukier, jajo i masło robią w cieście",
+          "tresc": [
+            "Cukier w zarobie działa na trzech frontach naraz. Wiąże wodę, więc przy tej samej ilości płynu ciasto jest miększe i bardziej lepkie, a drożdże mają jej mniej do dyspozycji i zwalniają, choć pożywki mają pod dostatkiem. Zmiękcza miękisz i spowalnia jego czerstwienie, bo utrudnia skrobi powrót do uporządkowanej budowy (pewność B; Figoni, How Baking Works). W piecu brązowieje wcześniej niż ciasto chude, więc skórka osiąga kolor, zanim warstwy pod nią zdążą się dopiec.",
+            "Jajo daje ciastu emulgatory z żółtka, kolor i białko, które ścina się w piecu i usztywnia warstwy. Masło w zarobie skraca gluten, przez co miękisz jest delikatniejszy, a ciasto bardziej plastyczne pod wałkiem, ale zarazem miększe. Zarób wzbogacony jest więc z natury bardziej miękki i lepki niż croissantowy, a to przestawia całą laminację. Płat tłuszczu musi pasować do niego twardością, a samo ciasto trzeba trzymać zimniej, żeby nie mazało się pod wałkiem.",
+            "Zarób na laminat miesza się krócej niż ciasto na chleb, a wzbogacony jeszcze ostrożniej. Każde przejście przez wałek albo laminownicę rozwija gluten dalej, więc sieć dorabia się w trakcie obrotów. Ciasto wyrobione do pełnej sprężystości przed laminacją stawia opór, kurczy się po wycięciu i wymaga długich przerw w chłodzie, a każda dodatkowa minuta w cieple przybliża masło do granicy. Celem jest ciasto gładkie, ale jeszcze nie sprężyste — resztę pracy zrobi wałek (pewność C; praktyka cukiernicza)."
+          ],
+          "punkty": [
+            "Cukier wiąże wodę: ciasto miększe, drożdże wolniejsze, kolor szybszy. Te trzy skutki przychodzą razem — nie da się wziąć jednego bez dwóch pozostałych.",
+            "Jajo to emulgator, kolor i białko ścinające się w piecu. Masło w zarobie daje krótszy gluten i delikatniejszy miękisz.",
+            "Zarób wzbogacony jest miększy niż croissantowy, więc trzyma się go zimniej i dobiera do niego tłuszcz przekładany.",
+            "Mieszaj do gładkości, nie do pełnej sprężystości: laminacja dorabia gluten przy każdym obrocie.",
+            "🔎 Z hali: ciasto na ślimaki wyrobione „jak na bułki”, do cienkiej błony, po drugim obrocie zaczyna się cofać spod wałka. Ktoś dosypuje mąki i wałkuje mocniej, a w wyrobach widać potem zbity, chlebowy środek — ciasto nie było złe, tylko za długo mieszane.",
+            "🧠 Zapamiętaj: każdy składnik wzbogacający zmienia trzy rzeczy naraz — twardość ciasta, tempo drożdży i kolor w piecu."
+          ],
+          "mechanizm": "Cukier i sól obniżają aktywność wody, bo wiążą jej cząsteczki, więc drożdże tracą wodę przez błonę komórkową i zwalniają, choć mają czym się żywić. Tłuszcz z zarobu i z żółtka otacza białka mąki i przerywa ich wzajemny styk, przez co sieć glutenowa jest krótsza i słabsza, a ciasto bardziej plastyczne niż sprężyste. Ta plastyczność ułatwia wałkowanie, ale obniża twardość ciasta, a od stosunku twardości ciasta i tłuszczu zależy, czy pod wałkiem odkształcą się razem (pewność B dla kierunku zależności; Figoni, How Baking Works)."
+        },
+        {
+          "tytul": "Tłuszcz przekładany i zgodność twardości",
+          "tresc": [
+            "Laminacja udaje się wtedy, gdy ciasto i tłuszcz odkształcają się pod wałkiem **razem**, jak jeden materiał. Tłuszcz twardszy od ciasta nie nadąża za wydłużaniem, pęka na płytki i przebija cienkie warstwy. Tłuszcz miększy ucieka spod nacisku do boków i na końce płata, a w środku zostaje go za mało. Temperatura `14–16°C` z praktyki (pewność C; praktyka cukiernicza) jest w istocie sposobem na zrównanie twardości obu materiałów, a nie celem samym w sobie.",
+            "Masło to tłuszcz mleczny z wodą; według przepisów unijnych ma co najmniej `80%` tłuszczu i najwyżej `16%` wody (pewność A; rozporządzenie UE 1308/2013). Masło przeznaczone do laminacji ma zwykle tłuszczu więcej, a wody mniej, i szerszy zakres pracy, który zależy głównie od frakcji tłuszczu (pewność C; praktyka cukiernicza). Margaryny laminacyjne projektuje się tak, żeby ten zakres był jeszcze szerszy: wybaczają błędy temperatury, ale część z nich topi się powyżej temperatury ust i zostawia woskowy posmak. To wybór między wygodą procesu a smakiem, nie między tłuszczem dobrym i złym.",
+            "Masło zmienia twardość z porą roku, bo skład tłuszczu mlecznego zależy od żywienia krów: latem bywa miększe, zimą twardsze (pewność C; praktyka cukiernicza). Ta sama temperatura daje więc w lipcu inną laminację niż w styczniu. Na twardość wpływa też historia temperatury, bo od niej zależy budowa kryształów tłuszczu (pewność B; Rønholt i in. 2014). Masło doprowadzone do temperatury pracy powoli, przez noc, jest bardziej plastyczne niż ogrzane w pośpiechu prosto z zimna (pewność C; praktyka cukiernicza), dlatego mistrz zamiast patrzeć na termometr zgina płat i ugniata go palcem."
+          ],
+          "punkty": [
+            "Cel laminacji: ciasto i tłuszcz o **tej samej twardości**. Temperatura jest narzędziem, nie celem.",
+            "Tłuszcz twardszy od ciasta pęka i przebija warstwy; miększy ucieka na brzegi i zostawia środek bez przegrody.",
+            "Masło: co najmniej `80%` tłuszczu, najwyżej `16%` wody. Masło laminacyjne ma zwykle tłuszczu więcej i szerszy zakres pracy (pewność C).",
+            "Margaryna laminacyjna wybacza błędy temperatury, ale część z nich topi się powyżej temperatury ust — płacisz smakiem.",
+            "🔎 Z hali: w upalny tydzień płat masła prosto z chłodni pęka przy pierwszym obrocie, a zostawiony na kwadrans przy stole zaczyna się mazać. Kto przestanie gonić temperaturę stołu, a zamiast tego doprowadzi masło do temperatury pracy przez noc i mocniej schłodzi samo ciasto, zrówna oba materiały i wróci do spokojnej pracy.",
+            "🧠 Zapamiętaj: laminujesz parę materiałów, więc stroisz je do siebie, a nie każdy osobno do tabeli."
+          ],
+          "mechanizm": "Masło w temperaturze pracy to siatka kryształów tłuszczu zanurzona w ciekłym tłuszczu i kropelkach wody, a jego twardość zależy od tego, jaka część tłuszczu jest akurat stała. Ciasto zachowuje się jak lepkosprężysty żel białkowo-skrobiowy, którego twardość rośnie z zimnem i spada z wodą, cukrem i tłuszczem w zarobie. Pod wałkiem oba materiały są jednocześnie ściskane i wydłużane; jeśli jeden stawia większy opór, naprężenie skupia się na granicy warstw i tam warstwa pęka albo się rozmazuje. Zrównanie twardości rozkłada naprężenie równo, więc warstwy cienieją proporcjonalnie (pewność C; wniosek z mechanizmu)."
+        },
+        {
+          "tytul": "Geometria warstw: obroty, grubość i wałkowanie",
+          "tresc": [
+            "Każdy obrót mnoży liczbę warstw tłuszczu: pojedynczy przez trzy, podwójny przez cztery. Z jednym płatem zamkniętym w cieście trzy pojedyncze dają `27` warstw, a podwójny z pojedynczym `12`. Sposób zamknięcia też się liczy: tłuszcz położony na dwóch trzecich płata i złożony na trzy daje na starcie dwie warstwy zamiast jednej, więc ta sama seria obrotów kończy się dwukrotnie większą liczbą. Porównując dwie receptury, licz warstwy od zamknięcia, a nie same obroty.",
+            "Liczba warstw ma sens tylko razem z grubością końcowego płata. Gdy płat ma kilka milimetrów i kilkadziesiąt warstw tłuszczu, nominalna grubość jednej warstwy to dziesiątki mikrometrów, a przy kilkuset — pojedyncze mikrometry. To rachunek orientacyjny, bo rzeczywiste warstwy są nierówne i częściowo zlane (pewność C). Ciasto francuskie bez drożdży działa jeszcze przy kilkuset warstwach nominalnych. W drożdżowym granica przychodzi wcześniej: w badaniu ciasta duńskiego przyrost w piecu przestał rosnąć powyżej `48` warstw tłuszczu (pewność B; Deligny i Lucas 2015).",
+            "Wałkowanie to rozciąganie połączone ze zmniejszaniem grubości, a jego tempo decyduje, czy warstwy przeżyją. Jedno gwałtowne zmniejszenie płata o połowę rozmazuje tłuszcz bardziej niż kilka mniejszych kroków, bo naprężenie rośnie z wielkością odkształcenia (pewność C; praktyka cukiernicza). Kierunek też ma znaczenie: obracanie płata o ćwierć obrotu między obrotami wyrównuje napięcie glutenu w obu osiach, inaczej wyrób kurczy się w kierunku ostatniego wałkowania. Na laminownicy redukuj grubość stopniowo, a ręcznym wałkiem pracuj od środka ku brzegom."
+          ],
+          "punkty": [
+            "Obrót pojedynczy mnoży warstwy przez trzy, podwójny przez cztery. Trzy pojedyncze dają `27` warstw, podwójny z pojedynczym `12` (od jednego płata).",
+            "Zamknięcie tłuszczu na dwóch trzecich płata zaczyna od dwóch warstw — ta sama seria obrotów daje wtedy dwa razy więcej.",
+            "Nominalna grubość warstwy tłuszczu to grubość płata razy objętościowy udział tłuszczu, podzielone przez liczbę warstw. Policz ją, zanim dołożysz obrót.",
+            "Zmniejszaj grubość stopniowo i obracaj płat o ćwierć obrotu — mniej rozmazania i równiejsze kurczenie.",
+            "🔎 Z hali: ktoś „poprawia” ciasto na koperty czwartym obrotem, bo poprzednia partia wyszła mało płatkowa. Wyroby nie są wyższe, a przekrój ma drobniejsze komory: przy cienkim płacie część warstw przestała być ciągła.",
+            "🧠 Zapamiętaj: więcej obrotów nie znaczy więcej płatków — liczy się grubość jednej warstwy, nie liczba warstw."
+          ],
+          "mechanizm": "Para rozsuwa płaty tylko wtedy, gdy przegroda z tłuszczu jest szczelna. Każde złożenie mnoży warstwy i dzieli ich grubość, więc rośnie liczba miejsc, w których cienka warstwa rwie się przy wałkowaniu i przepuszcza parę bokiem. W cieście drożdżowym dochodzi do tego garowanie: gaz rozpycha warstwy ciasta i dodatkowo rozciąga tłuszcz między nimi, zanim w piecu pojawi się para, dlatego granica przychodzi tu wcześniej niż we francuskim. Zjawisko zmierzono na cieście duńskim (pewność B; Deligny i Lucas 2015), a jego wyjaśnienie rwaniem warstw podają sami autorzy."
+        },
+        {
+          "tytul": "Kształt, nacięcie i nadzienie: architektura wyrobu weneckiego",
+          "tresc": [
+            "W wyrobie laminowanym rośnie przede wszystkim to, co ma otwarte warstwy. Krawędź przecięta ostrym nożem odsłania warstwy, które para może rozsunąć, a krawędź zgnieciona tępym nożem, wałkiem albo palcem zlepia je ze sobą. Kształt wyrobu weneckiego jest więc w istocie decyzją, gdzie wyrób ma się otworzyć, a gdzie zostać zamknięty. Ślimak otwiera się bokami, koperta rośnie w narożnikach, które nie są dociśnięte, a środek dociśnięty pod nadzienie zostaje płaski i tworzy gniazdo.",
+            "Częsty błąd architektury jest niewidoczny przy formowaniu: smarowanie jajem po krawędziach przekroju. Jajo ścina się w piecu, zanim warstwy zdążą się rozsunąć, i skleja je jak klej, więc bok, który miał się rozwarstwić, rośnie jak jeden blok. Smaruje się powierzchnię, nie przekroje, i robi to cienko, pędzlem prowadzonym od środka. Ten sam mechanizm wykorzystuje się celowo tam, gdzie wyrób ma zostać zamknięty: odrobina jaja skleja zakładkę koperty, żeby nie rozeszła się w piecu.",
+            "Nadzienie jest ładunkiem, który warstwy muszą unieść. Ciężkie i mokre nadzienie dociska ciasto pod sobą i oddaje mu wodę, dlatego spod niego warstwy wychodzą surowe, gumowate i sklejone, choć wierzch jest złoty. Nadzienie do pieczenia musi być stabilne w piecu: zagęszczone tak, żeby nie wrzało i nie wypływało, z ograniczoną wodą wolną. Krem z zagęstnikiem odpornym na wypiek, odciśnięty twaróg z żółtkiem i skrobią albo owoce podsuszone zachowują się inaczej niż zwykły krem budyniowy, który w piecu potrafi puścić wodę (pewność C; praktyka cukiernicza)."
+          ],
+          "punkty": [
+            "Ostry nóż otwiera warstwy, tępy je zlepia. Kształt decyduje, gdzie wyrób się otworzy.",
+            "Jajo na przekroju skleja warstwy przed wypiekiem — smaruj powierzchnię, nie boki.",
+            "Nadzienie do pieczenia ma być stabilne w piecu: zagęszczone, z ograniczoną wodą wolną, w ilości, którą warstwy uniosą.",
+            "Mokry spód pod nadzieniem to woda z nadzienia i za krótki wypiek dna, a nie „za mało masła”.",
+            "Krem nakładany po wypieku wychodzi poza temat laminacji — rządzi nim bezpieczeństwo kremów i punkt krytyczny.",
+            "🔎 Z hali: na blasze kopert z serem połowa ma wysokie, rozwarstwione rogi, a połowa płaskie i lśniące. Różnica nie leży w cieście, tylko w osobie z pędzlem: jedna smarowała wierzch, druga — „żeby było ładniej” — także krawędzie.",
+            "🧠 Zapamiętaj: jajo i nadzienie to klej i ładunek — kładź je tam, gdzie wyrób ma nie rosnąć."
+          ],
+          "mechanizm": "Para rozsuwa warstwy tylko tam, gdzie są wolne na krawędzi i mogą się od siebie oddalić; gdzie krawędź jest zlepiona, ciśnienie pary rozkłada się na cały blok i podnosi go w całości. Białka jaja ścinają się w temperaturze wyraźnie niższej niż ta, w której woda w cieście zaczyna gwałtownie parować, więc warstwy posmarowane na przekroju zostają zszyte, zanim para zdąży je rozdzielić. Nadzienie działa podwójnie: masą dociska warstwy pod sobą, a wodą, która w piecu przechodzi do ciasta, obniża temperaturę dna i opóźnia jego ścięcie (pewność C; wniosek z mechanizmu i praktyka cukiernicza)."
+        },
+        {
+          "tytul": "Porównanie: jak robią to inni i kiedy to ma sens",
+          "tresc": [
+            "Szkoła duńska prowadzi wienerbrød na bogatym zarobie z jajem i cukrem i daje dużo tłuszczu przekładanego, a wyroby nadziewa masą z masła i cukru, zwaną remonce, często z marcepanem albo cynamonem (pewność C; opis praktyki). Optymalizuje bogactwo, miękkość i nośność nadzienia. Płaci najtrudniejszą laminacją w rodzinie, bo miękkie ciasto i dużo tłuszczu wymagają ścisłego reżimu zimna, a także kosztem surowca. Wybierasz ją, gdy wyrób jest przede wszystkim nadzieniem i kształtem.",
+            "Terminologia niemiecka zna to samo ciasto pod nazwą Plunder i rozróżnia odmianę lżejszą (Deutscher Plunder) i bogatszą w tłuszcz (Dänischer Plunder) (pewność C; terminologia zawodowa). Ten podział przypomina polskie rozumienie weneckiego jako odmiany lżejszej. Szkoła lekkiego laminatu daje mniej tłuszczu i mniej obrotów i optymalizuje miękkość, tolerancję na ciepło hali i świeżość do następnego dnia. Płaci słabszym rozwarstwieniem i mniej wyraźną łuską. Wybierasz ją dla wyrobów z serem i owocami, sprzedawanych przez cały dzień.",
+            "Mała pracownia często rezygnuje z osobnego ciasta i robi wyroby duńskie z ciasta croissantowego. Optymalizuje logistykę: jedno ciasto, jedna laminacja, jedno miejsce w chłodni, wiele wyrobów. Płaci tym, że chudszy zarób daje pod nadzieniem mniej miękki i mniej słodki miękisz, a wyrób jest bardziej kruchy niż bogaty. Wybierasz ją, gdy wąskim gardłem jest czas i chłodnia, a nie różnorodność ciasta — i świadomie przenosisz wtedy bogactwo z ciasta do nadzienia i glazury."
+          ],
+          "punkty": [
+            "Duńska: bogaty zarób i dużo tłuszczu — optymalizuje nadzienie i miękkość, płaci trudną laminacją i kosztem.",
+            "Lekki laminat (Plunder lżejszy, weneckie w lżejszym rozumieniu): optymalizuje miękkość i świeżość, płaci słabszym rozwarstwieniem.",
+            "Ciasto croissantowe dla wyrobów duńskich: optymalizuje logistykę, płaci mniej bogatym miękiszem pod nadzieniem.",
+            "Wybór szkoły to wybór, gdzie umieścić bogactwo: w cieście, w tłuszczu przekładanym albo w nadzieniu.",
+            "🔎 Z hali: pracownia, która robi duńskie z ciasta croissantowego, słyszy od klientów, że „są suche”. Zamiast zakładać drugie ciasto, dodaje wilgotniejsze nadzienie i glazurę morelową po wypieku — i trafia, bo przeniosła bogactwo tam, gdzie nie kosztuje laminacji.",
+            "🧠 Zapamiętaj: każda szkoła płaci za swoją zaletę — pytaj nie „która lepsza”, tylko „co optymalizuje i czym płaci”."
+          ],
+          "mechanizm": "Szkoły różnią się tym, gdzie umieszczają tłuszcz i cukier, a każde z tych miejsc działa inaczej. Tłuszcz w zarobie skraca gluten i daje miękkość, tłuszcz przekładany daje warstwy i łuskę, a tłuszcz w nadzieniu daje bogactwo bez wpływu na laminację. Cukier w zarobie hamuje drożdże i przyspiesza kolor, a cukier w nadzieniu i glazurze robi tylko to drugie. Dlatego ten sam efekt smakowy da się osiągnąć różnymi drogami, a ich koszt technologiczny jest zupełnie inny (pewność C; wniosek z mechanizmu)."
+        },
+        {
+          "tytul": "Pogłębienie: dowody, granice i mity",
+          "tresc": [
+            "Najpewniejsza część wiedzy o półfrancuskim to fizyka. Para jako źródło rozwarstwienia, tłuszcz jako szczelna przegroda i stopniowe topnienie masła mają oparcie w badaniach laminatów (pewność B; Deligny i Lucas 2015; Rønholt i in. 2014). Arytmetyka warstw jest pewna, bo wynika z geometrii; rachunek grubości warstwy daje tylko wartość nominalną. Skład masła określa prawo. Mniej pewne jest wszystko, co dotyczy konkretnych liczb: temperatury pracy, udziału tłuszczu, długości garowania — to wartości z praktyki, które przesuwają się z masłem, mąką, kształtem i piecem.",
+            "Najlepiej zbadanym laminatem drożdżowym jest właśnie ciasto duńskie: w badaniu od 4 do 162 warstw tłuszczu przyrost w piecu przestał rosnąć powyżej `48` warstw, a większość objętości powstała w garowni (pewność B; Deligny i Lucas 2015). Nie zbadano za to samej nazwy „weneckie”, garowania wyrobów nadziewanych ani tego, czy jajo w zarobie podnosi wyrób, czy tylko go barwi. W tych miejscach mistrz ma rację wtedy, gdy potrafi pokazać przekrój i zapis próby, a nie wtedy, gdy powołuje się na szkołę.",
+            "Kilka przekonań brzmi jak prawa, a jest uproszczeniem. „Więcej obrotów to więcej płatków” — tylko do granicy ciągłości warstwy. „Masło musi być jak najzimniejsze” — zimne masło pęka, liczy się zgodność twardości z ciastem. „Najmocniejsza mąka jest najlepsza do laminatu” — za mocna daje ciasto sprężyste, kurczące się i wymagające długich przerw (pewność C; praktyka cukiernicza). „Mokry spód to za mało masła” — to zwykle woda z nadzienia i za krótki wypiek dna."
+          ],
+          "punkty": [
+            "Zbadane: para i przegroda tłuszczowa, stopniowe topnienie masła, w cieście duńskim brak przyrostu w piecu powyżej `48` warstw (pewność B); pewne: arytmetyka warstw i skład masła (pewność A).",
+            "Robocze: temperatury pracy, udział tłuszczu, długość garowania — pewność C, kalibracja u siebie.",
+            "Nieopisane w badaniach: samo „weneckie”, garowanie wyrobów nadziewanych, rola jaja w wysokości wyrobu.",
+            "Mity: więcej obrotów to więcej płatków; masło jak najzimniejsze; najmocniejsza mąka; mokry spód z braku masła.",
+            "🔎 Z hali: na szkoleniu pada zdanie, że „prawdziwe weneckie ma zawsze trzy obroty”. Prowadzący prosi o dwa przekroje z jednej partii — po dwóch i po trzech obrotach — i rozmowa przechodzi z tradycji na to, który przekrój pasuje do nadzienia z sera.",
+            "🧠 Zapamiętaj: mechanizm jest pewniejszy niż liczba — liczbę kalibrujesz u siebie, mechanizm przenosisz bez zmian."
+          ],
+          "mechanizm": "Badania nad laminatami mierzą zjawiska, które da się powtórzyć w laboratorium: grubość warstw pod mikroskopem, objętość w garowni i w piecu, krystalizację masła w zależności od temperatury. Praktyka pracowni zmienia jednocześnie wiele zmiennych i rzadko je zapisuje, więc jej liczby są prawdziwe dla jednego zestawu masła, mąki i pieca. Mechanizm, na przykład zgodność twardości albo granica ciągłości warstwy, pozostaje ten sam przy zmianie surowca, dlatego to on przenosi się między pracowniami, a liczba trzeba ją każdorazowo ustawić od nowa (pewność C; wniosek metodologiczny)."
+        }
+      ],
+      "wyczucie": [
+        {
+          "zmysl": "Dotyk (płat tłuszczu)",
+          "opis": "Zegnij płat tłuszczu przekładanego wpół i ugnieć go palcem. Gotowy ugina się bez pęknięć na zgięciu, a odcisk palca zostaje, ale powierzchnia nie tłustnieje. Pęknięcie na zgięciu oznacza tłuszcz za twardy wobec ciasta, a tłusty ślad — za miękki.",
+          "porownanie": "chłodna plastelina, nie kostka z zamrażarki ani masło z blatu w lipcu"
+        },
+        {
+          "zmysl": "Dotyk (zarób)",
+          "opis": "Naciśnij schłodzony zarób przed zamknięciem tłuszczu. Ma być chłodny, gładki i ustępować pod palcem bez sprężystego odbicia. Ciasto, które odbija i stawia opór, było za długo mieszane i będzie się kurczyć.",
+          "porownanie": "miękka glina, nie gumowa piłka"
+        },
+        {
+          "zmysl": "Wzrok (przekrój płata)",
+          "opis": "Po ostatnim obrocie odetnij ostrym nożem cienki pasek z brzegu płata i obejrzyj go z boku. Widoczne, równe pasy jasnego tłuszczu i ciasta to ciągłe warstwy. Pasy przerywane albo smugi zamiast linii to tłuszcz pęknięty albo rozmazany — wiesz to przed garowaniem, a nie po wypieku.",
+          "porownanie": "równo ułożone kartki, nie zmięty papier"
+        },
+        {
+          "zmysl": "Wzrok i dotyk (spód z nadzieniem)",
+          "opis": "Odwróć upieczony wyrób z nadzieniem i naciśnij spód pod środkiem. Prawidłowy spód jest suchy, rumiany i sprężysty, a na przekroju widać rozwarstwienie aż do dna. Szary, wilgotny pas pod nadzieniem znaczy, że dno nie zdążyło się dopiec albo nadzienie oddało za dużo wody.",
+          "porownanie": "sucha tektura falista, nie rozmoczony karton"
+        }
+      ],
+      "parametry": [
+        {
+          "nazwa": "Laminacja — temperatura",
+          "wartosc": "ciasto i tłuszcz 14–16°C",
+          "uwaga": "Wartość startowa z praktyki cukierniczej (pewność C). W istocie chodzi o zrównanie twardości ciasta i tłuszczu: zarób wzbogacony jest miększy niż croissantowy, więc trzyma się go raczej w dolnej części zakresu. Sprawdzaj zgięciem płata, nie samym termometrem."
+        },
+        {
+          "nazwa": "Masło — skład",
+          "wartosc": "co najmniej 80% tłuszczu, najwyżej 16% wody",
+          "uwaga": "Wymóg prawny dla masła w UE (pewność A; rozporządzenie 1308/2013). Osobno, z praktyki (pewność C): masło laminacyjne ma zwykle tłuszczu więcej i szerszy zakres pracy, a twardość każdego masła zmienia się z porą roku i z historią temperatury."
+        },
+        {
+          "nazwa": "Obroty w półfrancuskim",
+          "wartosc": "2–3 pojedyncze albo podwójny i pojedynczy",
+          "uwaga": "Zakres z praktyki cukierniczej (pewność C). Lżejsze weneckie bywa robione na mniejszej liczbie obrotów. Liczbę warstw licz od zamknięcia tłuszczu, a o granicy decyduje grubość pojedynczej warstwy, nie liczba obrotów."
+        },
+        {
+          "nazwa": "Garowanie",
+          "wartosc": "poniżej 26°C",
+          "uwaga": "Granica z praktyki cukierniczej (pewność C), wspólna dla wszystkich laminatów: powyżej masło traci kryształy i spływa jeszcze przed piecem, a wyrób niedogarowany też gubi masło w piecu. Wyroby z ciężkim nadzieniem praktycy garują zwykle krócej niż croissanta, czego nie potwierdzają pomiary — ustal to próbą."
+        },
+        {
+          "nazwa": "Chłód wyrobów uformowanych",
+          "wartosc": "4–6°C",
+          "uwaga": "Zakres praktyków (pewność C). Chłód spowalnia drożdże i trzyma tłuszcz w stanie stałym; po wyjęciu wyrób potrzebuje czasu na dojście, zanim zacznie garować."
+        },
+        {
+          "nazwa": "Wypiek wyrobów wzbogaconych",
+          "wartosc": "dolna część zakresu 175–200°C, dłużej",
+          "uwaga": "Zakres z praktyki cukierniczej (pewność C). Cukier, mleko i jajo przyspieszają brązowienie, więc wyrób osiąga kolor, zanim dopiecze się dno. Gotowość oceniaj po spodzie i przekroju. Za chłodny start sprzyja wyciekowi masła, więc nie schodź poniżej zakresu. Przy płaskich wyrobach z nadzieniem para krótko albo wcale — rozstrzyga próba."
+        }
+      ],
+      "procedura": [
+        {
+          "krok": "1. Wymieszaj zarób do gładkości, nie do sprężystości",
+          "opis": "Zarób wzbogacony mieszaj krótko, aż będzie gładki, i od razu schłodź płasko rozłożony. Laminacja dorobi gluten przy każdym obrocie.",
+          "uwaga": "Ciasto wyrobione jak na bułki będzie się kurczyć i wymagać długich przerw."
+        },
+        {
+          "krok": "2. Zrównaj twardość ciasta i tłuszczu",
+          "opis": "Przed zamknięciem zegnij płat tłuszczu i naciśnij zarób. Oba mają ustępować podobnie. Jeśli tłuszcz pęka, ogrzej go; jeśli ciasto jest miększe od tłuszczu, schłodź ciasto."
+        },
+        {
+          "krok": "3. Zamknij tłuszcz i zapisz, od ilu warstw zaczynasz",
+          "opis": "Zamknięcie w kopercie daje jedną warstwę tłuszczu na starcie, zamknięcie na dwóch trzecich płata — dwie. Zapisz to przy recepturze, bo zmienia rachunek warstw."
+        },
+        {
+          "krok": "4. Wykonaj obroty z chłodzeniem i obracaniem płata",
+          "opis": "Po każdym obrocie płat wraca do chłodni. Między obrotami obracaj go o ćwierć obrotu, a grubość zmniejszaj stopniowo.",
+          "uwaga": "Płat wypuszczający tłuszcz przez brzegi potrzebuje chłodni, a nie mocniejszego wałka ani mąki."
+        },
+        {
+          "krok": "5. Sprawdź przekrój płata przed formowaniem",
+          "opis": "Odetnij cienki pasek z brzegu i obejrzyj warstwy z boku. Ciągłe pasy — formuj; smugi i przerwy — zanotuj przyczynę przed wypiekiem."
+        },
+        {
+          "krok": "6. Tnij ostrym nożem i kształtuj z myślą o otwarciu",
+          "opis": "Krawędzie, które mają się rozwarstwić, tnij jednym ruchem ostrego noża. Dociskaj tylko tam, gdzie wyrób ma zostać zamknięty albo gdzie leży nadzienie."
+        },
+        {
+          "krok": "7. Nałóż nadzienie stabilne w piecu i posmaruj tylko powierzchnię",
+          "opis": "Nadzienie zagęszczone, w ilości, którą warstwy uniosą. Jajo cienko, pędzlem od środka, bez przekrojów."
+        },
+        {
+          "krok": "8. Garuj poniżej granicy i piecz do suchego spodu",
+          "opis": "Garuj poniżej 26°C, aż wyrób wyraźnie urośnie, a warstwy na boku się rozsuną. Piecz w dolnej części zakresu dłużej i sprawdź spód przed wyjęciem całej blachy."
+        },
+        {
+          "krok": "9. Wykończ po wypieku",
+          "opis": "Glazurę morelową nakładaj na gorący wyrób, lukier dopiero na wystudzony. Kremy nakładane po wypieku prowadź według zasad bezpieczeństwa kremów."
+        }
+      ],
+      "bledy": [
+        {
+          "objaw": "Spód pod nadzieniem szary, wilgotny i zbity, choć wierzch jest złoty",
+          "przyczyna": "Nadzienie oddało wodę do ciasta i schłodziło dno, a wypiek skończył się, gdy wierzch osiągnął kolor. Cukier w zarobie przyspieszył brązowienie, więc kolor przyszedł wcześniej niż dopieczenie dna.",
+          "korekta": "Zagęść nadzienie albo zmniejsz jego ilość, piecz niżej i dłużej, sprawdzaj spód przed wyjęciem blachy."
+        },
+        {
+          "objaw": "Boki wyrobu nie rozwarstwiły się, rosną jak lity blok",
+          "przyczyna": "Krawędzie zostały sklejone: jajem posmarowanym na przekroju, tępym nożem albo dociśnięciem przy formowaniu. Para nie mogła rozsunąć warstw, które były zszyte, zanim zaczęła działać.",
+          "korekta": "Tnij ostrym nożem jednym ruchem i smaruj jajem wyłącznie powierzchnię."
+        },
+        {
+          "objaw": "Wyrób zbity, o strukturze bardziej chlebowej niż warstwowej",
+          "przyczyna": "Tłuszcz wtopił się w ciasto. Miękki zarób wzbogacony mazał się przy cieplejszej laminacji albo był za długo wałkowany, więc przegroda przestała być ciągła i para nie miała czego rozsuwać.",
+          "korekta": "Trzymaj zarób zimniej niż przy croissancie, skróć kontakt z ciepłem i rękami, chłódź między obrotami."
+        },
+        {
+          "objaw": "Tłuszcz przebija się przez ciasto płytkami, warstwy przerywane",
+          "przyczyna": "Tłuszcz był twardszy od ciasta: za zimny albo z masła, które w tym sezonie jest twardsze. Pod wałkiem nie nadążał za wydłużaniem i pękał na kawałki.",
+          "korekta": "Doprowadź tłuszcz do temperatury pracy powoli i sprawdź zgięciem płata, zanim go zamkniesz."
+        },
+        {
+          "objaw": "Ciasto kurczy się po wycięciu, kształty zmieniają wymiar",
+          "przyczyna": "Gluten był napięty: zarób wyrobiony do pełnej sprężystości albo płat wałkowany ciągle w jednym kierunku bez odpoczynku. Wycięty kształt cofa się w kierunku ostatniego wałkowania.",
+          "korekta": "Mieszaj krócej, obracaj płat między obrotami, daj płatowi odpocząć w chłodzie przed cięciem."
+        },
+        {
+          "objaw": "Nadzienie wypłynęło i przypaliło się na blasze",
+          "przyczyna": "Nadzienie było za rzadkie albo go było za dużo, więc w piecu zaczęło wrzeć i znalazło drogę przez szew albo przez otwarte warstwy obok gniazda.",
+          "korekta": "Zagęść nadzienie, zmniejsz porcję, dociśnij gniazdo i zamknij zakładki odrobiną jaja."
+        },
+        {
+          "objaw": "Ślimak rozwija się w piecu i traci kształt",
+          "przyczyna": "Zwinięcie było luźne, a koniec płata nie trafił pod spód. W piecu para i drożdże rozpychają zwoje, a nic ich nie trzyma.",
+          "korekta": "Zwijaj ciasno, połóż koniec pod spód albo przyklej go odrobiną jaja do sąsiedniego zwoju."
+        }
+      ],
+      "checklista": [
+        "Zarób wymieszany do gładkości i schłodzony płasko; nie stawia sprężystego oporu.",
+        "Twardość tłuszczu i ciasta sprawdzona zgięciem płata przed zamknięciem.",
+        "Sposób zamknięcia i liczba warstw zapisane przy recepturze.",
+        "Chłodnia po każdym obrocie; płat obracany o ćwierć obrotu; grubość zmniejszana stopniowo.",
+        "Przekrój płata sprawdzony przed formowaniem.",
+        "Krawędzie cięte ostrym nożem; jajo wyłącznie na powierzchni.",
+        "Nadzienie zagęszczone, w ilości, którą wyrób uniesie.",
+        "Garowanie poniżej 26°C; wypiek oceniony po spodzie i przekroju, nie po kolorze wierzchu."
+      ],
+      "powiazania": [
+        "Laminowanie / viennoiserie",
+        "Ciasta i masy cukiernicze",
+        "Kremy i emulsje (CCP5)",
+        "Sterowanie laminatem: dźwignie i kompromisy"
+      ],
+      "cwiczenie": {
+        "tytul": "Jedna partia, trzy decyzje architektury",
+        "kroki": [
+          "Z jednej partii ciasta półfrancuskiego uformuj trzy grupy kopert o tej samej masie i z tym samym nadzieniem.",
+          "Grupę A posmaruj jajem tylko po wierzchu. Grupę B posmaruj także po krawędziach przekroju.",
+          "Grupę C posmaruj jak A, ale nałóż nadzienie wyraźnie rzadsze albo w większej ilości.",
+          "Garuj wszystkie trzy obok siebie i wstaw do pieca razem, gdy pierwsza grupa osiągnie gotowość.",
+          "Po wystudzeniu przetnij po dwie sztuki z każdej grupy przez środek nadzienia i sfotografuj przekroje z linijką.",
+          "Zapisz przy recepturze, które smarowanie i jakie nadzienie wchodzą do standardu, razem ze zdjęciami."
+        ],
+        "kryterium": "Potrafisz na przekrojach wskazać różnicę w wysokości rogów między grupą A i B oraz różnicę w spodzie między grupą A i C, i wyjaśnić każdą z nich mechanizmem, a nie wrażeniem."
+      },
+      "mosty": [
+        {
+          "do": "Laminowanie / viennoiserie",
+          "mechanizm": "para-i-zmiana-stanu",
+          "tekst": "Croissant i pieczywo weneckie rosną od tej samej pary rozpychającej warstwy rozdzielone tłuszczem. Laminowanie pokazuje ten mechanizm na cieście chudym, tutaj wraca pod ciężarem cukru, jaja i nadzienia.",
+          "kierunek": "obustronny",
+          "doId": "tom-laminowanie-viennoiserie"
+        },
+        {
+          "do": "Fizyka wypieku: ciepło, para i przemiany",
+          "mechanizm": "para-i-zmiana-stanu",
+          "tekst": "Rozwarstwienie wyrobu weneckiego to zamiana wody w parę zamkniętą między przegrodami z tłuszczu. Fizyka wypieku tłumaczy, skąd bierze się ciśnienie pary i dlaczego dno pod mokrym nadzieniem nagrzewa się wolniej.",
+          "kierunek": "obustronny",
+          "doId": "tom-fizyka-wypieku-cieplo-para-i-przemiany"
+        },
+        {
+          "do": "Ciasta i masy cukiernicze",
+          "mechanizm": "para-i-zmiana-stanu",
+          "tekst": "Ciasto francuskie rośnie wyłącznie od pary, półfrancuskie od pary i drożdży naraz. Ciasta i masy pokazują laminat bez drożdży, czyli ten sam mechanizm bez konkurencji ze strony gazu z fermentacji.",
+          "kierunek": "obustronny",
+          "doId": "tom-ciasta-i-masy-cukiernicze"
+        },
+        {
+          "do": "Studzenie i świeżość",
+          "mechanizm": "woda-zwiazana-i-wolna",
+          "tekst": "Nadzienie oddaje wodę ciastu, a wnętrze oddaje ją skórce — w obu przypadkach woda wędruje tam, gdzie jest jej mniej. Studzenie i świeżość pokazuje ten sam ruch wody na chlebie, z czerstwieniem w tle.",
+          "kierunek": "obustronny",
+          "doId": "tom-studzenie-i-swiezosc"
+        },
+        {
+          "do": "Sterowanie laminatem: dźwignie i kompromisy",
+          "mechanizm": "przewaga-ma-cien",
+          "tekst": "Tłuszcz przekładany i liczba obrotów pomagają warstwom tylko do granicy, za którą zaczynają im szkodzić. Sterowanie laminatem zbiera takie progi wszystkich dźwigni w jednej mapie przyczyn i skutków.",
+          "kierunek": "obustronny",
+          "doId": "tom-sterowanie-laminatem-dzwignie-i-kompromisy"
+        }
+      ],
+      "pojecia": [
+        {
+          "id": "ccp",
+          "termin": "CCP",
+          "kategoria": "Bezpieczeństwo żywności",
+          "rozwiniecie": "Critical Control Point — krytyczny punkt kontroli",
+          "znaczenie": "Miejsce w procesie, w którym zagrożenie da się jeszcze usunąć albo obniżyć do bezpiecznego poziomu — i jest to OSTATNIA taka szansa. Dlatego CCP ma próg liczbowy, pomiar i zapis, a nie zalecenie.",
+          "aliasy": [
+            "punkt krytyczny",
+            "punktów krytycznych",
+            "punkty krytyczne"
+          ]
+        },
+        {
+          "id": "gluten",
+          "termin": "gluten",
+          "kategoria": "Ciasto i mąka",
+          "znaczenie": "Elastyczna siatka powstająca, gdy białka mąki połączą się z wodą i ze sobą. To ona zatrzymuje gaz w cieście — a w cieście kruchym jest wrogiem, bo daje ciągliwość zamiast kruchości.",
+          "aliasy": [
+            "glutenu",
+            "glutenow",
+            "glutenem"
+          ]
+        },
+        {
+          "id": "naciecie",
+          "termin": "nacięcie (scoring)",
+          "kategoria": "Wypiek i piece",
+          "znaczenie": "Zaplanowane miejsce, którym gaz ma wyjść z bochenka w piecu. Gdy skórka zastygnie za wcześnie, ciśnienie i tak znajdzie ujście — tyle że w przypadkowym, najsłabszym punkcie.",
+          "aliasy": [
+            "nacięcia",
+            "naciecie",
+            "scoring",
+            "grigne"
+          ]
+        },
+        {
+          "id": "retrogradacja",
+          "termin": "retrogradacja skrobi",
+          "kategoria": "Wypiek i piece",
+          "znaczenie": "Powrót skleikowanej skrobi do uporządkowanych kryształów po ostygnięciu — czyli czerstwienie. Zachodzi także w szczelnym opakowaniu i najszybciej w temperaturach lodówkowych.",
+          "aliasy": [
+            "retrogradacji",
+            "czerstwienie",
+            "czerstwienia"
+          ]
+        },
+        {
+          "id": "laminacja",
+          "termin": "laminacja (tourage)",
+          "kategoria": "Cukiernia — technika",
+          "rozwiniecie": "franc. tourage",
+          "znaczenie": "Wielokrotne wałkowanie i składanie ciasta z płatem masła, żeby powstały naprzemienne warstwy. Masło musi być plastyczne (~14–16°C): zbyt zimne pęka i przebija ciasto, zbyt ciepłe wsiąka i warstwy znikają.",
+          "aliasy": [
+            "tourage",
+            "laminowan",
+            "détrempe",
+            "detrempe",
+            "beurrage"
+          ]
+        },
+        {
+          "id": "garowanie",
+          "termin": "garowanie (rozrost)",
+          "kategoria": "Zakwas i fermentacja",
+          "rozwiniecie": "franc. apprêt — końcowy rozrost",
+          "znaczenie": "Ostatnie wyrastanie już uformowanych kęsów, tuż przed piecem. Prowadzi się je w ciepłej i wilgotnej komorze, bo sucha powierzchnia zasycha w skorupkę, która w piecu pęka bokiem zamiast otworzyć się nacięciem.",
+          "aliasy": [
+            "garowni",
+            "garownia",
+            "garowania",
+            "garze",
+            "gar ",
+            "rozrost",
+            "rozrostu",
+            "apprêt"
+          ]
+        }
+      ],
+      "pytania": [
+        {
+          "id": "WN-01",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Oba należą do rodziny półfrancuskiej. Co najlepiej odróżnia ciasto duńskie od croissantowego?",
+          "opcje": [
+            "Brak drożdży i wzrost wyłącznie dzięki parze w warstwach",
+            "Zarób z cukrem i jajem, zwykle też więcej tłuszczu do przekładania",
+            "Większa liczba obrotów, zwykle pięć albo sześć pojedynczych",
+            "Margaryna zamiast masła jako tłuszcz do przekładania"
+          ],
+          "poprawne": [
+            1
+          ],
+          "wyjasnienie": "Croissantowe i duńskie to dwie odmiany drożdżowego ciasta przekładanego: oba rosną od drożdży w garowni i od pary w piecu. Duńskie dostaje w zarobie cukier, jajo i więcej masła, a praktycy dają mu zwykle także więcej tłuszczu przekładanego, przez co jest miększe, wolniej fermentuje i szybciej brązowieje. Brak drożdży i wiele obrotów to cechy ciasta francuskiego, a rodzaj tłuszczu jest wyborem pracowni."
+        },
+        {
+          "id": "WN-02",
+          "poziom": "MENTOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Dwóch cukierników spiera się, czy ich wyroby to jeszcze „weneckie”. Od czego najrozsądniej zacząć porównanie?",
+          "opcje": [
+            "Od tego, czy nadzienie wchodzi do pieca, czy po wypieku",
+            "Od kształtu wyrobu, bo to on wyznacza tę nazwę",
+            "Od udziału tłuszczu przekładanego i liczby obrotów",
+            "Od rodzaju nadzienia, bo weneckie musi mieć ser"
+          ],
+          "poprawne": [
+            2
+          ],
+          "wyjasnienie": "„Weneckie” nie ma jednej definicji: jedni nazywają tak całą rodzinę wyrobów z drożdżowego ciasta laminowanego, inni jej lżejszą odmianę. Spór o nazwę nie da się rozstrzygnąć, ale dwie liczby — ile tłuszczu przekładanego i ile obrotów — od razu pokazują, czy rozmówcy mówią o tym samym cieście."
+        },
+        {
+          "id": "WN-03",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Po co w laminacji trzyma się ciasto i tłuszcz w zbliżonej temperaturze, np. 14–16°C?",
+          "opcje": [
+            "Żeby drożdże całkowicie przerwały pracę na czas obrotów",
+            "Żeby tłuszcz częściowo wsiąkł w ciasto i je zmiękczył",
+            "Żeby sól i cukier zdążyły się rozpuścić w zarobie",
+            "Żeby oba materiały miały podobną twardość i cieniały razem"
+          ],
+          "poprawne": [
+            3
+          ],
+          "wyjasnienie": "Pod wałkiem ciasto i tłuszcz są jednocześnie ściskane i wydłużane. Jeśli jeden z nich jest twardszy, naprężenie skupia się na granicy warstw i tłuszcz pęka albo się rozmazuje. Zbliżona temperatura to najprostszy sposób, żeby oba materiały miały podobną twardość i cieniały proporcjonalnie."
+        },
+        {
+          "id": "WN-04",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Płat masła prosto z chłodni pęka przy pierwszym obrocie na płytki. Co to mówi o relacji masła i ciasta?",
+          "opcje": [
+            "Masło jest twardsze od ciasta i nie nadąża za wydłużaniem",
+            "Masło jest za miękkie i ucieka spod wałka na brzegi",
+            "Ciasto ma za mało glutenu, żeby utrzymać masło w środku",
+            "Wałek jest zbyt ciężki i trzeba pracować lżejszym"
+          ],
+          "poprawne": [
+            0
+          ],
+          "wyjasnienie": "Kruche, zimne masło nie odkształca się razem z ciastem, tylko pęka na kawałki, które przebijają cienkie warstwy. Przez te luki para ucieka bokiem i wzrost jest nierówny. Rozwiązaniem jest doprowadzenie masła do temperatury pracy i sprawdzenie go zgięciem płata, a nie mocniejszy albo lżejszy wałek."
+        },
+        {
+          "id": "WN-05",
+          "poziom": "MENTOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Ciasto po trzech obrotach pojedynczych dostaje czwarty obrót. Ile razy wzrośnie liczba warstw tłuszczu i czym to grozi w cieście drożdżowym?",
+          "opcje": [
+            "Dwukrotnie; wyrób rośnie wtedy wyżej i równiej",
+            "Czterokrotnie; masło przestaje wtedy wyciekać w piecu",
+            "Trzykrotnie; część warstw się rwie i wyrób nie urośnie wyżej",
+            "Nie wzrośnie; obrót tylko wyrównuje grubość płata"
+          ],
+          "poprawne": [
+            2
+          ],
+          "wyjasnienie": "Każdy obrót pojedynczy mnoży liczbę warstw tłuszczu przez trzy, więc z 27 robi się 81, a ich grubość spada trzykrotnie. W badaniu ciasta duńskiego przyrost w piecu przestał rosnąć powyżej 48 warstw, co autorzy łączą z rwaniem się cienkich warstw przy wałkowaniu (Deligny i Lucas 2015). Wyrób nie jest więc wyższy, a przekrój ma drobniejsze komory."
+        },
+        {
+          "id": "WN-06",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Dlaczego przy kopertach nie smaruje się jajem krawędzi przekroju?",
+          "opcje": [
+            "Jajo na bokach przypala się szybciej niż na wierzchu wyrobu",
+            "Jajo ścina się wcześniej i skleja warstwy, zanim para je rozsunie",
+            "Jajo wsiąka w tłuszcz i rozpuszcza warstwy masła w cieście",
+            "Boki bez jaja szybciej tracą wilgoć po upieczeniu"
+          ],
+          "poprawne": [
+            1
+          ],
+          "wyjasnienie": "Para może rozsunąć tylko te warstwy, które są wolne na krawędzi. Jajo posmarowane na przekroju ścina się w piecu wcześniej, niż woda zacznie gwałtownie parować, i zszywa warstwy w jeden blok. Dlatego smaruje się powierzchnię, a jajo na krawędzi stosuje się tylko tam, gdzie wyrób ma zostać zamknięty."
+        },
+        {
+          "id": "WN-07",
+          "poziom": "MENTOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Koperty z serem mają złoty wierzch, ale pod nadzieniem szary, wilgotny pas. Która korekta trafia w przyczynę?",
+          "opcje": [
+            "Dodać więcej tłuszczu przekładanego przy laminacji",
+            "Podnieść temperaturę pieca, żeby szybciej zamknąć wierzch",
+            "Wydłużyć garowanie, żeby wyrób był wyższy i lżejszy",
+            "Zagęścić nadzienie i piec niżej, ale dłużej, patrząc na spód"
+          ],
+          "poprawne": [
+            3
+          ],
+          "wyjasnienie": "Nadzienie oddaje wodę ciastu i chłodzi dno, a cukier w zarobie przyspiesza brązowienie wierzchu. Wyrób osiąga więc kolor, zanim dno się dopiecze. Wyższa temperatura pogłębia ten rozjazd, a więcej tłuszczu czy dłuższe garowanie nie zmieniają ani wody w nadzieniu, ani czasu wypieku dna."
+        },
+        {
+          "id": "WN-08",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Zarób na półfrancuskie wyrobiono „jak na bułki”, do pełnej sprężystości. Czego należy się spodziewać przy laminacji?",
+          "opcje": [
+            "Warstwy wyjdą wyraźniejsze, bo mocny gluten lepiej je trzyma",
+            "Płat będzie się kurczył i wymagał dłuższych przerw w chłodzie",
+            "Tłuszcz rozprowadzi się równiej, bo ciasto jest gładsze",
+            "Nic się nie zmieni, bo gluten i tak rozwija dopiero wałek"
+          ],
+          "poprawne": [
+            1
+          ],
+          "wyjasnienie": "Każde przejście przez wałek dalej rozwija sieć glutenową. Ciasto już na starcie w pełni sprężyste stawia opór, cofa się po wycięciu i potrzebuje długich przerw w chłodzie, a każda dodatkowa minuta w cieple przybliża tłuszcz do granicy. Skutkiem bywa wtopione masło i zbity, chlebowy środek."
+        },
+        {
+          "id": "WN-09",
+          "poziom": "MENTOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Mała pracownia robi wyroby duńskie z ciasta croissantowego. Jaki jest główny koszt tej decyzji i jak się go zwykle kompensuje?",
+          "opcje": [
+            "Krótsza trwałość; kompensuje się ją podwójnym wypiekiem",
+            "Mniej bogaty miękisz; bogactwo idzie do nadzienia i glazury",
+            "Gorsza laminacja; dokłada się dwa obroty pojedyncze",
+            "Wyższy koszt masła; zmniejsza się wielkość każdej sztuki"
+          ],
+          "poprawne": [
+            1
+          ],
+          "wyjasnienie": "Ciasto croissantowe ma chudszy zarób niż duńskie, więc pod nadzieniem daje miękisz mniej miękki i mniej słodki. W zamian pracownia ma jedną laminację i jedno miejsce w chłodni. Bogactwo, którego brakuje w cieście, przenosi się tam, gdzie nie kosztuje laminacji: do wilgotniejszego nadzienia i glazury po wypieku."
+        },
+        {
+          "id": "WN-10",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Masło do laminacji latem i zimą, przy tej samej temperaturze, zachowuje się inaczej. Co jest najbardziej prawdopodobną przyczyną?",
+          "opcje": [
+            "Latem masło ma więcej wody, bo krowy więcej piją",
+            "Masło twardnieje zimą od dłuższego leżenia w chłodni",
+            "Skład tłuszczu mlecznego zmienia się z żywieniem krów",
+            "Latem masło dostaje więcej soli, która je zmiękcza"
+          ],
+          "poprawne": [
+            2
+          ],
+          "wyjasnienie": "Tłuszcz mleczny to mieszanina frakcji o różnych temperaturach topnienia, a ich proporcje zależą od żywienia krów. Latem masło bywa miększe, zimą twardsze, więc ta sama temperatura daje inną plastyczność. Dlatego mistrz sprawdza płat zgięciem i palcem i stroi go do twardości ciasta."
+        }
+      ]
+    },
+    {
+      "id": "tom-sterowanie-laminatem-dzwignie-i-kompromisy",
+      "nazwa": "Sterowanie laminatem: dźwignie i kompromisy",
+      "etykieta": "Sterowanie laminatem: dźwignie i kompromisy",
+      "dzial": "cukiernia",
+      "sciezki": [
+        "cukiernik"
+      ],
+      "intro": "Mistrz nie pyta, jak zrobić croissanta, tylko co zmienić, żeby wyszedł inny: wyższy albo niższy, bardziej płatkowy albo bardziej miękki, chrupiący do wieczora albo delikatny rano. Ten moduł układa dźwignie laminatu w jedną mapę przyczyn i skutków, uczy czytać przekrój jak raport z procesu i pokazuje, gdzie kończy się wiedza, a zaczyna zwyczaj pracowni. Dzięki temu rozmowa z praktykiem staje się wymianą argumentów, a nie zderzeniem receptur.",
+      "cele": [
+        "Przewidzieć, jak zmiana jednej dźwigni — tłuszczu, obrotów, twardości zarobu, garowania albo wypieku — przesunie strukturę, kolor i trwałość.",
+        "Odczytać z przekroju i spodu wyrobu, który etap procesu zdecydował o wyniku.",
+        "Dobrać harmonogram z chłodem, mrożeniem i wypiekiem do godziny sprzedaży, znając koszt każdego wariantu dla struktury.",
+        "Zaplanować próbę porównawczą, która zmienia jedną rzecz i daje wynik do zapisania.",
+        "Prowadzić rozmowę z praktykiem przez mechanizm i pomiar, odróżniając pomiar, sprawdzoną praktykę i zwyczaj."
+      ],
+      "karty": [
+        {
+          "tytul": "Mapa dźwigni: co przesuwa co",
+          "tresc": [
+            "Laminat ma kilka niezależnych pokręteł, a każde przesuwa więcej niż jedną cechę wyrobu. Udział tłuszczu przekładanego i liczba obrotów ustawiają **architekturę warstw**. Twardość i bogactwo zarobu decydują, czy warstwy przeżyją wałkowanie. Garowanie ustawia, ile objętości zbudują drożdże, a wypiek — ile dołoży para i jaka będzie skórka. Mistrz trzyma w głowie nie przepis, tylko tę mapę: wie, które pokrętło ruszyć, żeby zmienić jedną cechę i nie zepsuć przy tym dwóch innych.",
+            "Więcej tłuszczu przekładanego daje grubsze przegrody, wyraźniejsze płatki i bogatszy smak, ale tylko do pewnej granicy. Powyżej niej warstwy ciasta są zbyt cienkie, żeby unieść ciężar tłuszczu i ciśnienie pary, tłuszcz wycieka w piecu, a wyrób kładzie się na boki zamiast rosnąć (pewność C; praktyka cukiernicza). Mniej tłuszczu daje wyrób bardziej drożdżowy: wyższy, miększy, z mniej wyraźnym rozwarstwieniem i dłużej świeży. W tym samym kierunku działa liczba obrotów, tyle że zmienia grubość warstwy, a nie ilość tłuszczu.",
+            "Garowanie jest pokrętłem kształtu wnętrza. Za krótkie daje wnętrze ciasne i wyrób, który w piecu rośnie gwałtownie, pęka wzdłuż zwojów i często gubi masło na blachę; pełne daje duże, otwarte komory; przerośnięte — zapadnięty środek. Wypiek ustawia skórkę: wyższa temperatura szybciej utrwala zewnętrzne warstwy, niższa i dłuższa dosusza wnętrze i wydłuża chrupkość. Każde z tych pokręteł ma też koszt w czasie i w miejscu w chłodni, więc wybór struktury jest zawsze także wyborem harmonogramu."
+          ],
+          "punkty": [
+            "**Więcej tłuszczu przekładanego**: płatki wyraźniejsze, smak bogatszy — do granicy, za którą jest wyciek i opadanie.",
+            "**Więcej obrotów**: warstwy cieńsze, struktura delikatniejsza — za granicą ciągłości warstwy się zlewają.",
+            "**Miększy zarób** (więcej wody, cukru albo tłuszczu): łatwiejsze wałkowanie, ale tłuszcz łatwiej się wtapia, więc pracuj zimniej.",
+            "**Dłuższe garowanie**: wnętrze bardziej otwarte, wyrób lżejszy — przerost oznacza zapadnięcie środka.",
+            "**Wyższa temperatura pieca**: więcej łuski, krótszy wypiek — ryzyko surowych warstw w środku i pod nadzieniem.",
+            "🔎 Z hali: zespół chce „bardziej chrupiących” rogali i w jednej partii dokłada masła, dodaje obrót i podnosi piec. Rogale wychodzą płaskie i tłuste, a nikt nie wie, która z trzech zmian zawiodła — następną partię zmienia się już tylko jedną.",
+            "🧠 Zapamiętaj: każde pokrętło laminatu przesuwa kilka cech naraz — kręć jednym, patrz na wszystkie."
+          ],
+          "mechanizm": "Cechy laminatu nie mają osobnych przyczyn, bo wszystkie wynikają z kilku wspólnych wielkości: grubości i ciągłości warstwy tłuszczu, wytrzymałości warstwy ciasta, ilości gazu z drożdży i ilości pary z wody. Każda dźwignia zmienia co najmniej dwie z nich naraz: tłuszcz przekładany pogrubia przegrodę, ale odchudza ciasto między przegrodami, a garowanie dokłada gazu, ale rozciąga i osłabia warstwy. Dlatego ten sam wynik, na przykład wyższy wyrób, da się osiągnąć kilkoma drogami, a każda zostawia inny ślad na przekroju i ma inny koszt (pewność C; wniosek z mechanizmu)."
+        },
+        {
+          "tytul": "Przekrój jako raport z procesu",
+          "tresc": [
+            "Przekrój wyrobu laminowanego jest zapisem całego procesu i da się go czytać. Wnętrze o strukturze plastra miodu, z dużymi, wydłużonymi komorami oddzielonymi cienkimi, połyskliwymi ściankami, mówi, że warstwy przeżyły laminację, garowanie było pełne, a para rozsunęła płaty, zanim ich ścianki się ścięły. Większość tej objętości powstaje w garowni, a piec ją utrwala (pewność B; Deligny i Lucas 2015). Wnętrze drobne i jednolite jak w bułce mówi, że tłuszcz wtopił się w ciasto przy laminacji albo w garowni.",
+            "Kilka wzorów powtarza się na tyle często, że można je nazwać. Gruby, zbity pas ciasta tuż nad dnem, przy rozwarstwionym wierzchu, to zwykle za krótki wypiek dna, a pod nadzieniem — także woda z nadzienia. Jedna duża pustka pod skórką i ciasny środek to niedorost: skórka utrwaliła się, gdy środek jeszcze rósł. Pasy zlane obok wyraźnych, całych warstw to tłuszcz, który pękł przy wałkowaniu, bo był za twardy wobec ciasta. Różna wysokość lewej i prawej strony to nierówny płat albo wałkowanie w jednym kierunku.",
+            "Żeby przekrój był raportem, a nie wrażeniem, trzeba go wykonywać za każdym razem tak samo. Wyrób przecina się po pełnym wystudzeniu, ostrym nożem z ząbkami, ruchem piłującym, zawsze w tym samym miejscu kształtu: rogal w połowie długości, ślimak przez oś. Zdjęcie z linijką obok i zapis wysokości oraz masy przed i po wypieku dają liczby, które da się porównać z partią sprzed tygodnia. Mistrz, który mówi „ta partia ma lepsze wnętrze”, ma przed oczami poprzedni przekrój — ty też powinieneś go mieć."
+          ],
+          "punkty": [
+            "Plaster miodu: warstwy przeżyły, garowanie było pełne, para zdążyła. Wnętrze jak w bułce: tłuszcz się wtopił.",
+            "Zbity pas nad dnem: za krótki wypiek dna albo woda z nadzienia.",
+            "Pustka pod skórką i ciasny środek: niedorost. Pasy zlane obok całych warstw: tłuszcz pękł przy wałkowaniu.",
+            "Tnij po wystudzeniu, ostrym nożem z ząbkami, zawsze w tym samym miejscu kształtu, i fotografuj z linijką.",
+            "🔎 Z hali: na porannej odprawie dwie osoby spierają się, czy nowe masło „zmieniło croissanty”. Rozstrzyga teczka z wydrukami przekrojów z ostatniego miesiąca: na zdjęciach z linijką widać, że wnętrze zmieniło się tydzień wcześniej, w dniu, w którym przestawiono garownię.",
+            "🧠 Zapamiętaj: przekrój nie mówi, co zrobić, ale mówi, który etap trzeba sprawdzić najpierw."
+          ],
+          "mechanizm": "Struktura wnętrza utrwala się w piecu w chwili, gdy białka się ścinają, a skrobia kleikuje: to, co było w tym momencie gazem, zostaje pustką, a to, co było masą, ścianką. Każdy etap procesu zostawia więc ślad w innym miejscu przekroju — laminacja w ciągłości ścianek, garowanie w wielkości komór, wypiek w grubości skórki i w dnie. Ślady nakładają się na siebie, ale rzadko się zacierają, dlatego przekrój pozwala rozdzielić przyczyny, których nie da się rozdzielić, patrząc na wyrób z zewnątrz (pewność C; wniosek z fizyki wypieku)."
+        },
+        {
+          "tytul": "Skórka, łuska i kolor: wypiek, cukier i jajo",
+          "tresc": [
+            "Chrupka, łuszcząca się skórka laminatu to cienkie zewnętrzne warstwy, które w piecu straciły większość wody, a tłuszcz między nimi dosmażył je od środka. Im cieńsze i bardziej ciągłe są te warstwy, tym więcej drobnych płatków odpada przy łamaniu. Łuskę buduje wysoka temperatura na początku wypieku, która szybko odparowuje wodę z zewnętrznych warstw, a utrwala ją czas, który dosusza je do końca. Wyrób wyjęty, gdy tylko osiągnął kolor, ma skórkę, która szybko mięknie, bo wilgoć z wnętrza ma do niej krótką drogę.",
+            "Kolor laminatu powstaje w reakcjach Maillarda, które przyspieszają cukry redukujące i białka z mleka i jaja, oraz w karmelizacji samego cukru w wysokiej temperaturze (pewność B; Figoni, How Baking Works). Zarób z cukrem, mlekiem i jajem brązowieje więc wcześniej niż croissantowy, a wyrób osiąga kolor, zanim wnętrze się dopiecze. Dlatego wyroby wzbogacone piecze się w niższej części zakresu i dłużej, a kolor ocenia się razem ze spodem i przekrojem. Smarowanie jajem też jest pokrętłem: samo żółtko daje ciemny, błyszczący kolor, samo białko — połysk i jaśniejszy ton.",
+            "Para na początku wypieku opóźnia zastyganie skórki, daje połysk i pozwala warstwom rozejść się, zanim zewnętrzna warstwa stwardnieje. W płaskich wyrobach weneckich z nadzieniem jej korzyść jest mniejsza, a koszt — rozmyty połysk i plamy na jaju — większy, więc część pracowni piecze je z krótką parą albo bez niej (pewność C; praktyka cukiernicza). Odprowadzenie pary w końcowej fazie, przy otwartym wylocie, suszy skórkę i przedłuża chrupkość. To kolejna decyzja, której nie wolno przenosić z chleba bez sprawdzenia."
+          ],
+          "punkty": [
+            "Łuska to cienkie, ciągłe warstwy zewnętrzne dosuszone do końca. Temperatura startu ją buduje, czas ją utrwala.",
+            "Cukier, mleko i jajo w zarobie przyspieszają brązowienie: piecz niżej i dłużej, oceniaj spód i przekrój, nie wierzch.",
+            "Żółtko daje ciemny połysk, białko jaśniejszy połysk. Proporcja i rozcieńczenie jaja to pokrętło koloru.",
+            "Para daje połysk i rozejście warstw; przy płaskich wyrobach z nadzieniem — krótko albo wcale, rozstrzyga próba.",
+            "Suchy koniec wypieku z otwartym wylotem przedłuża chrupkość.",
+            "🔎 Z hali: croissanty wyglądają idealnie przy wyjmowaniu, a do południa są miękkie jak bułki. Partia pieczona tak samo, ale kilka minut dłużej w nieco niższej temperaturze, ma ten sam kolor i trzyma chrupkość do popołudnia — różnica leżała w wodzie, nie w maśle.",
+            "🧠 Zapamiętaj: kolor mówi o cukrze i temperaturze, chrupkość o wodzie — to dwie różne miary."
+          ],
+          "mechanizm": "Chrupkość zależy od ilości wody w skórce: sucha, szklista warstwa skrobi i białka pęka, a ta sama warstwa z odrobiną wody ugina się, bo woda ją zmiękcza i obniża temperaturę przejścia ze stanu szklistego w elastyczny (pewność B; Slade i Levine 1991). Po wypieku woda wędruje z wilgotnego wnętrza do suchej skórki, więc chrupkość trwa tak długo, jak skórka ma zapas suchości. Kolor nic nie mówi o tym zapasie, bo brązowienie przyspieszają cukier i białko, a nie suchość, dlatego wyrób z bogatego zarobu potrafi być jednocześnie ciemny i wilgotny."
+        },
+        {
+          "tytul": "Czas jako składnik: chłód, mrożenie i godzina sprzedaży",
+          "tresc": [
+            "Laminat da się zatrzymać w trzech miejscach: jako ciasto przed laminacją, jako płat po obrotach i jako wyrób uformowany. Każde zatrzymanie działa przez zimno, które spowalnia drożdże i utrzymuje tłuszcz w stanie stałym, ale każde ma inny koszt. Ciasto przetrzymane przed laminacją rozluźnia się i dojrzewa smakowo, za to drożdże pracują w nim dłużej i przy obrotach bywa zbyt aktywne. Wyrób uformowany i trzymany w `4–6°C` (pewność C; praktyka cukiernicza) daje poranny wypiek bez nocnej laminacji, ale po wyjęciu potrzebuje czasu na dojście, zanim zacznie garować.",
+            "Mrożenie surowych wyrobów przenosi pracę na inny dzień, ale kryształy lodu uszkadzają część komórek drożdży i osłabiają sieć glutenową, więc po rozmrożeniu wyrób rośnie wolniej i niżej (pewność B; Cauvain, Technology of Breadmaking). Praktyka kompensuje to większą dawką drożdży, szybkim mrożeniem w szafie szokowej tuż po uformowaniu, ale nie kriogenicznie, i krótkim przechowywaniem. Inną drogą jest mrożenie wyrobu wyrośniętego albo podpieczonego: uszkodzenie drożdży przestaje wtedy mieć znaczenie, a ceną jest skórka, która po drugim wypieku bywa twardsza i bardziej łamliwa.",
+            "Laminat jest najlepszy w kilka godzin po wypieku i traci chrupkość szybciej niż chleb, bo jego cienkie, suche warstwy chłoną wilgoć z wnętrza i z powietrza. Dlatego harmonogram układa się od godziny sprzedaży wstecz, a nie od wygody pieczenia: wypiek falami przed szczytami popytu daje więcej niż jedna duża partia rano. Wyrób z dnia poprzedniego można odświeżyć krótkim podgrzaniem, które odparuje wodę ze skórki i na chwilę cofnie czerstwienie miękiszu, ale po ostygnięciu czerstwienie wraca szybciej niż przedtem."
+          ],
+          "punkty": [
+            "Trzy miejsca zatrzymania: ciasto przed laminacją, płat po obrotach, wyrób uformowany. Każde ma inny koszt w strukturze.",
+            "Wyrób uformowany i trzymany w `4–6°C` potrzebuje po wyjęciu czasu na dojście, zanim zacznie garować.",
+            "Mrożenie surowe obniża wzrost po rozmrożeniu — rekompensuj dawką drożdży, szybkim mrożeniem i krótkim przechowywaniem.",
+            "Mrożenie wyrośniętego albo podpieczonego chroni drożdże, ale daje twardszą skórkę po drugim wypieku.",
+            "Planuj od godziny sprzedaży wstecz; odświeżenie cofa czerstwienie tylko na krótko.",
+            "🔎 Z hali: rogale z nocnego chłodu idą do pieca prosto z chłodni, bo „przecież rosły całą noc”. Wychodzą małe, z ciasnym środkiem i pękniętymi zwojami: rdzeń był zimny, a drożdże dopiero ruszały, gdy skórka już się zamknęła.",
+            "🧠 Zapamiętaj: chłód kupuje czas, ale każda godzina w zimnie ma cenę w strukturze — wybierz, gdzie ją zapłacić."
+          ],
+          "mechanizm": "Zimno spowalnia drożdże i utrzymuje tłuszcz w stanie stałym, ale nie zatrzymuje fermentacji ani przemian w cieście: enzymy dalej rozkładają skrobię i białka, a gluten się rozluźnia. Zamrożenie zatrzymuje te procesy prawie całkiem, za to zamarzająca woda tworzy kryształy, które przebijają błony komórek drożdży i rozrywają sieć glutenową, a z obumarłych komórek uwalnia się glutation, który dodatkowo ją osłabia; im wolniejsze mrożenie i dłuższe przechowywanie, tym kryształy większe. Po wypieku proces biegnie w drugą stronę: skrobia w miękiszu porządkuje się z powrotem, a woda wędruje do skórki, więc wyrób traci jednocześnie miękkość wnętrza i chrupkość powierzchni (pewność B; Cauvain, Technology of Breadmaking)."
+        },
+        {
+          "tytul": "Próba porównawcza: jak zmieniać, żeby się czegoś dowiedzieć",
+          "tresc": [
+            "Laminat ma za dużo zmiennych, żeby uczyć się go na wyczucie, i za długi cykl, żeby zgadywać. Jedna partia od zarobu do przekroju to często więcej niż doba, więc każda próba bez wniosku kosztuje dzień. Dlatego mistrzowska próba zmienia **jedną rzecz** i porównuje ją z kontrolą upieczoną obok, z tego samego ciasta i w tym samym piecu. Dwie blachy z jednej partii mówią więcej niż dwie partie z różnych dni, bo dzielą wszystkie ukryte zmienne: mąkę, masło, temperaturę hali i rękę.",
+            "Mierzy się to, co da się zapisać liczbą albo zdjęciem: temperaturę ciasta i tłuszczu przed każdym obrotem, grubość płata, masę kęsa przed garowaniem i po wypieku, czas i temperaturę garowania, wysokość wyrobu i przekrój z linijką. Ocena smaku i chrupkości też jest pomiarem, jeśli robi się ją na ślepo, w parach i o tej samej godzinie po wypieku. Bez zapisu pamięć wygładza wyniki: po tygodniu „lepsza” wydaje się ta partia, której wynik się przewidywało albo którą się bardziej lubiło.",
+            "Najtrudniejsze w laminacie są zmienne, których nikt nie zmienia celowo. Masło z nowej dostawy ma inną twardość, hala latem ma inną temperaturę, laminownica po przeglądzie inaczej zmniejsza grubość, a nowa osoba inaczej smaruje jajem. Wynik, który zmienia się nagle bez zmiany receptury, jest prawie zawsze skutkiem jednej z nich. Dziennik partii — data, dostawa masła, temperatura hali, kto laminował — pozwala tę zmienną znaleźć, zamiast obwiniać przepis albo człowieka."
+          ],
+          "punkty": [
+            "Jedna zmiana na próbę i kontrola z tej samej partii upieczona obok.",
+            "Zapisuj temperatury ciasta i tłuszczu, grubość płata, masy przed i po wypieku, garowanie, wysokość i przekrój z linijką.",
+            "Smak i chrupkość oceniaj na ślepo, w parach, o tej samej godzinie po wypieku.",
+            "Nagła zmiana bez zmiany receptury to ukryta zmienna: dostawa masła, hala, maszyna, ręka.",
+            "🔎 Z hali: w jednym tygodniu zmieniła się dostawa masła i ustawienie laminownicy, a zespół przez dwa tygodnie spierał się, co zepsuło ślimaki. Rozstrzygnęła jedna próba: ten sam płat podzielony na pół, jedna połowa wałkowana starym ustawieniem, druga nowym.",
+            "🧠 Zapamiętaj: próba bez kontroli obok i bez zapisu to tylko kolejna partia."
+          ],
+          "mechanizm": "Wynik wypieku jest sumą wielu drobnych wpływów, z których większość zmienia się z dnia na dzień bez niczyjej decyzji. Porównanie dwóch partii z różnych dni miesza wpływ zmiany z całym tym tłem, a porównanie dwóch blach z jednej partii odejmuje tło, bo obie niosą je w tej samej wielkości. Zapis przenosi obserwację z pamięci, która zatrzymuje skrajności i to, czego się oczekiwało, do danych, które da się zestawić po tygodniu. To ta sama zasada, na której stoją badania z grupą kontrolną, tylko w skali jednej pracowni (zasada metodologiczna badań z grupą kontrolną)."
+        },
+        {
+          "tytul": "Porównanie: jak robią to inni i kiedy to ma sens",
+          "tresc": [
+            "Szkoła ręki, oparta na przekazie od mistrza do czeladnika, trzyma wiedzę o laminacie w dotyku płata i w oku mistrza (pewność C; opis praktyki). Optymalizuje szybką reakcję na zmienny surowiec: mistrz czuje inne masło, zanim pokaże je termometr. Płaci trudnym przekazaniem, bo wiedza odchodzi razem z osobą, a nowy pracownik uczy się latami. Wybierasz ją w małym, stałym zespole, w którym mistrz codziennie stoi przy stole.",
+            "Szkoła receptury i parametru, podręcznikowa, w duchu Hamelmana, zapisuje każdą wartość: temperatury ciasta i tłuszczu, grubości, czasy i obroty (pewność C; opis praktyki). Optymalizuje powtarzalność i przekazywalność: nowa osoba robi to samo co doświadczona. Płaci sztywnością, bo zapisane liczby zakładają stały surowiec, a masło i mąka się zmieniają. Wybierasz ją przy rotacji ludzi i przy kilku zmianach, które muszą dawać ten sam wyrób.",
+            "Szkoła eksperymentu łączy podejście modernistyczne, opisane w Modernist Bread Myhrvolda i Migoyi (2017), z przemysłową kontrolą procesu: specyfikacją surowca i kartami kontrolnymi w tradycji Shewharta (pewność C; opis praktyki). Optymalizuje zrozumienie i stabilność, bo każdą zmianę sprawdza się próbą z kontrolą. Płaci czasem i kosztem pomiaru. Wybierasz ją przy zmianie surowca, przy nowym wyrobie i wtedy, gdy spór praktyków nie daje się rozstrzygnąć rozmową."
+          ],
+          "punkty": [
+            "Szkoła ręki: optymalizuje reakcję na zmienny surowiec, płaci trudnym przekazaniem wiedzy.",
+            "Szkoła receptury i parametru: optymalizuje powtarzalność i przekazywalność, płaci sztywnością wobec surowca.",
+            "Szkoła eksperymentu: optymalizuje zrozumienie i stabilność, płaci czasem i kosztem pomiaru.",
+            "Dojrzała pracownia łączy trzy szkoły: parametr jako punkt startu, ręka do korekty, próba do rozstrzygania sporów.",
+            "🔎 Z hali: starszy cukiernik poprawia nowej osobie laminację „na czucie” i nie umie powiedzieć, co zmienił. Gdy zaczyna mierzyć temperaturę płata przed swoją korektą i po niej, okazuje się, że od lat ogrzewa masło o kilka stopni wyżej niż stoi w recepturze — i to on ma rację.",
+            "🧠 Zapamiętaj: ręka, receptura i próba to trzy nośniki tej samej wiedzy — pracownia potrzebuje wszystkich trzech."
+          ],
+          "mechanizm": "Wiedza o laminacie musi gdzieś mieszkać: w ciele mistrza, w zapisanej recepturze albo w wyniku próby. Każde z tych miejsc przechowuje ją inaczej — ręka reaguje na zmianę surowca natychmiast, ale nie umie jej nazwać, receptura nazywa wszystko, ale nie widzi zmiany surowca, a próba widzi i nazywa, ale kosztuje czas. Doświadczenie, które przeszło do ręki, staje się niewidoczne dla samego mistrza, dlatego pomiar jego korekt jest najszybszą drogą, by przenieść je do receptury (pewność C; wniosek z praktyki i badań nad wiedzą ekspercką)."
+        },
+        {
+          "tytul": "Pogłębienie: dowody, granice i mity",
+          "tresc": [
+            "Pewne jest to, co wynika z fizyki i ma oparcie w badaniach: para jako źródło rozwarstwienia, tłuszcz jako szczelna przegroda, rola garowania w objętości i stopniowe topnienie masła (pewność B; Deligny i Lucas 2015; Rønholt i in. 2014). Pewne jest też to, co wynika z arytmetyki i chemii: liczba warstw z obrotów, grubość warstwy z grubości płata, przyspieszenie brązowienia przez cukier. Konkretne liczby — temperatury pracy, udział tłuszczu, czasy garowania — to wartości z praktyki, które przesuwają się z masłem, mąką, kształtem i piecem; ich pewność to zwykle C.",
+            "Mity o warstwach i o zimnym maśle, razem z liczbą z pomiaru, omawiają tomy o laminowaniu i o cieście półfrancuskim; tu zostają mity o sterowaniu. „Wyciek masła ma jedną przyczynę” — praktycy wskazują trzy: za ciepłą garownię, niedogarowanie i za chłodny start pieca (pewność C; praktyka cukiernicza). „Ciemny wyrób jest dopieczony” — kolor mówi o cukrze, nie o wodzie. „Mrożenie nie zmienia laminatu” — zmienia, a koszt zależy od etapu. „Wyższy piec to trwała chrupkość” — szybciej daje łuskę, ale chrupkość trwa dzięki dosuszeniu.",
+            "Rozmowa z praktykiem na poziomie mistrzowskim zaczyna się od rozdzielenia trzech rzeczy: tego, co zmierzył, tego, co robi od lat z dobrym skutkiem, i tego, co przejął jako zwyczaj. Wszystkie trzy są cenne, ale bezpośrednio porównać da się tylko pierwsze. Dobre pytania są konkretne i mechaniczne: ile tłuszczu na kilogram ciasta i ile obrotów, w jakiej temperaturze garujesz i po czym poznajesz koniec, co zmieniłeś ostatnio i co zobaczyłeś na przekroju. Gdy praktyka przeczy teorii, szukaj najpierw ukrytej zmiennej — innego masła, mąki albo pieca."
+          ],
+          "punkty": [
+            "Pewne: para i przegroda tłuszczowa, rola garowania, stopniowe topnienie masła (pewność B); arytmetyka warstw i brązowienie przez cukier (pewność A).",
+            "Robocze: temperatury, udział tłuszczu, czasy — pewność C, kalibracja u siebie.",
+            "Mity: jedna przyczyna wycieku; ciemny znaczy dopieczony; mrożenie bez kosztu; wyższy piec to trwała chrupkość.",
+            "W rozmowie rozdzielaj pomiar, sprawdzoną praktykę i zwyczaj — porównywalny wprost jest tylko pomiar.",
+            "Praktyka sprzeczna z teorią? Najpierw szukaj ukrytej zmiennej, dopiero potem rozstrzygaj, kto się myli.",
+            "🔎 Z hali: doświadczony cukiernik twierdzi, że jego croissanty „nie znoszą” trzech obrotów pojedynczych, i robi podwójny z pojedynczym. Zamiast sporu o szkołę wystarczy rachunek: wałkuje do cieńszego płata i ma bardziej miękkie masło, więc przy dwudziestu siedmiu warstwach jego tłuszcz przestaje być ciągły — w swoich warunkach ma rację.",
+            "🧠 Zapamiętaj: w sporze o laminat wygrywa nie szkoła, tylko ten, kto wskaże mechanizm i pokaże przekrój."
+          ],
+          "mechanizm": "Wiedza o laminacie powstaje w pracowniach szybciej, niż trafia do badań, bo każda zmiana surowca jest małym eksperymentem, którego nikt nie publikuje. Dlatego większość liczb ma pewność C, a mechanizmy pod nimi są pewniejsze od samych liczb. Rozmowa, która schodzi z liczby na mechanizm, pozwala przenieść doświadczenie z cudzej pracowni do swojej: liczba ustalona przy innym maśle i piecu nie zadziała, a przyczyna, która ją uzasadnia, przenosi się bez zmian (pewność C; wniosek metodologiczny)."
+        }
+      ],
+      "wyczucie": [
+        {
+          "zmysl": "Słuch i dotyk (łamanie)",
+          "opis": "Przełam wystudzony wyrób nad jasną kartką. Dobra łuska pęka z suchym trzaskiem i sypie drobnymi płatkami, a wnętrze rozciąga się w nitki. Głuche zgięcie bez płatków znaczy, że skórka wciągnęła wodę albo warstwy zewnętrzne się zlały.",
+          "porownanie": "suchy liść, nie wilgotny papier"
+        },
+        {
+          "zmysl": "Dotyk (waga w dłoni)",
+          "opis": "Weź do ręki dwa wyroby tej samej wielkości z dwóch partii. Lżejszy przy tej samej objętości ma bardziej otwarte wnętrze; cięższy — zbity środek albo wodę pod nadzieniem. Ręka wyłapuje różnicę, zanim nóż ją pokaże.",
+          "porownanie": "pusty plaster miodu, nie kostka ciasta"
+        },
+        {
+          "zmysl": "Wzrok (przekrój)",
+          "opis": "Przetnij wystudzony wyrób w stałym miejscu kształtu. Szukaj trzech rzeczy: ciągłości ścianek, wielkości komór i grubości pasa nad dnem. Każda z nich odpowiada innemu etapowi procesu.",
+          "porownanie": "mapa z trzema warstwami informacji, nie jedno wrażenie"
+        },
+        {
+          "zmysl": "Wzrok (blacha po wypieku)",
+          "opis": "Spójrz na papier pod wyrobami po zdjęciu ich z blachy. Lekki ślad tłuszczu jest normalny, kałuża — nie. Kałuża wskazuje zwykle na garownię — za ciepłą albo za krótką — albo na zbyt chłodny start pieca.",
+          "porownanie": "ślad palca na papierze, nie rozlany olej"
+        }
+      ],
+      "parametry": [
+        {
+          "nazwa": "Próba porównawcza",
+          "wartosc": "jedna zmiana, kontrola z tej samej partii obok",
+          "uwaga": "Zasada metodologiczna porównania z kontrolą. Dwie blachy z jednej partii dzielą ukryte zmienne: mąkę, masło, halę i rękę. Dwie partie z różnych dni ich nie dzielą."
+        },
+        {
+          "nazwa": "Przekrój do oceny",
+          "wartosc": "po pełnym wystudzeniu, stałe miejsce kształtu, zdjęcie z linijką",
+          "uwaga": "Reguła pracowni, nie wynik badań (pewność C). Przekrój ciepłego wyrobu się zgniata i zafałszowuje wielkość komór."
+        },
+        {
+          "nazwa": "Garowanie laminatu",
+          "wartosc": "poniżej 26°C",
+          "uwaga": "Granica z praktyki cukierniczej (pewność C). Powyżej masło traci kryształy i spływa przed piecem; przyspieszać można dawką drożdży albo temperaturą ciasta, nie komorą."
+        },
+        {
+          "nazwa": "Chłód wyrobów uformowanych",
+          "wartosc": "4–6°C",
+          "uwaga": "Zakres praktyków (pewność C). Po wyjęciu wyrób potrzebuje czasu na dojście; wstawiony prosto z chłodu rośnie nierówno i pęka wzdłuż zwojów."
+        },
+        {
+          "nazwa": "Wypiek laminatów",
+          "wartosc": "175–200°C, wzbogacone w dolnej części zakresu",
+          "uwaga": "Zakres z praktyki cukierniczej (pewność C); przesuwa go typ pieca, wielkość kęsa i bogactwo zarobu. Chrupkość wydłuża suchy koniec wypieku z otwartym wylotem."
+        },
+        {
+          "nazwa": "Mrożenie surowych wyrobów",
+          "wartosc": "szybko po uformowaniu, krótko",
+          "uwaga": "Kierunek z literatury ciasta mrożonego (pewność B; Cauvain). Szybko znaczy w szafie szokowej, nie kriogenicznie — zbyt gwałtowne mrożenie też szkodzi drożdżom. Wolne mrożenie i długie przechowywanie dają większe kryształy lodu i większe uszkodzenie drożdży; konkretne czasy ustal próbą."
+        }
+      ],
+      "procedura": [
+        {
+          "krok": "1. Nazwij cechę, którą chcesz zmienić",
+          "opis": "Jedną: wysokość, rozwarstwienie, miękkość wnętrza, chrupkość po kilku godzinach albo kolor. Cecha nienazwana nie da się zmierzyć."
+        },
+        {
+          "krok": "2. Wybierz jedno pokrętło z mapy dźwigni",
+          "opis": "Wybierz to, które przesuwa tę cechę najsilniej i najmniej rusza pozostałe. Zapisz, co przewidujesz zobaczyć na przekroju.",
+          "uwaga": "Przewidywanie zapisane przed wypiekiem chroni przed dopasowaniem wniosku do wyniku."
+        },
+        {
+          "krok": "3. Podziel jedną partię na kontrolę i próbę",
+          "opis": "To samo ciasto, ta sama laminacja do chwili zmiany, te same blachy i ten sam piec. Oznacz blachy, zanim trafią do garowni."
+        },
+        {
+          "krok": "4. Zapisz zmienne ukryte",
+          "opis": "Dostawa masła, temperatura hali, osoba laminująca, ustawienie maszyny. Bez nich nie porównasz tej próby z następną."
+        },
+        {
+          "krok": "5. Piecz obok siebie i oceniaj po wystudzeniu",
+          "opis": "Wysokość, masa, przekrój z linijką w stałym miejscu kształtu, łamanie nad kartką."
+        },
+        {
+          "krok": "6. Oceń smak i chrupkość na ślepo",
+          "opis": "W parach, o tej samej godzinie po wypieku, przez osoby, które nie wiedzą, która blacha jest próbą."
+        },
+        {
+          "krok": "7. Zapisz wniosek przy recepturze",
+          "opis": "Co zmieniono, co przewidywano, co wyszło i czy zmiana wchodzi do standardu. Zdjęcia przekrojów dołącz do zapisu."
+        }
+      ],
+      "bledy": [
+        {
+          "objaw": "Wyrób wyższy, ale płatki niewyraźne i wnętrze bardziej drożdżowe",
+          "przyczyna": "Wzrost przyszedł z drożdży, a nie z warstw: dłuższe garowanie, więcej drożdży albo mniej tłuszczu przekładanego. Gaz rozciągnął warstwy ciasta, a cieńsze przegrody słabiej oddzieliły płaty.",
+          "korekta": "Wróć do poprzedniego garowania i zmieniaj tylko jedną dźwignię; po wysokość sięgaj przez pełne, ale nie przedłużone garowanie."
+        },
+        {
+          "objaw": "Ta sama receptura daje różne wyniki z dnia na dzień",
+          "przyczyna": "Zmienia się coś, czego nikt nie zmienia celowo: twardość masła z nowej dostawy, temperatura hali, ustawienie maszyny albo osoba laminująca.",
+          "korekta": "Prowadź dziennik partii i porównuj zmienne ukryte z dni dobrych i złych, zanim zmienisz recepturę."
+        },
+        {
+          "objaw": "Wyrób chrupie przy wyjęciu, a po kilku godzinach jest miękki",
+          "przyczyna": "Skórka miała mały zapas suchości: wyrób wyjęto, gdy osiągnął kolor, a woda z wnętrza szybko przeszła do zewnętrznych warstw.",
+          "korekta": "Piecz niżej i dłużej przy tym samym kolorze, zakończ wypiek z otwartym wylotem, studź na kratce, nie w zamkniętym pojemniku."
+        },
+        {
+          "objaw": "Wyrób ciemny z wierzchu, a w środku i nad dnem surowy",
+          "przyczyna": "Cukier, mleko i jajo przyspieszyły brązowienie, więc kolor przyszedł, zanim ciepło doszło do środka i do dna.",
+          "korekta": "Obniż temperaturę i wydłuż wypiek; oceniaj gotowość po spodzie i przekroju."
+        },
+        {
+          "objaw": "Wyroby po nocy w chłodzie małe, z ciasnym środkiem i pękniętymi zwojami",
+          "przyczyna": "Wstawiono je do pieca z zimnym rdzeniem: drożdże dopiero ruszały, gdy skórka już się zamknęła, a rosnący środek rozerwał ją wzdłuż zwojów.",
+          "korekta": "Po wyjęciu z chłodu daj wyrobom dojść i garuj do rzeczywistej gotowości, nie do godziny."
+        },
+        {
+          "objaw": "Wyroby z mrożenia surowego niższe niż świeże",
+          "przyczyna": "Kryształy lodu uszkodziły część komórek drożdży i osłabiły gluten; im wolniej mrożono i dłużej przechowywano, tym strata większa.",
+          "korekta": "Mroź szybko po uformowaniu, przechowuj krótko, rozważ większą dawkę drożdży albo mrożenie wyrobów wyrośniętych."
+        },
+        {
+          "objaw": "Próba niczego nie rozstrzygnęła",
+          "przyczyna": "Zmieniono kilka rzeczy naraz albo porównano partie z różnych dni, więc wpływ zmiany zmieszał się z tłem.",
+          "korekta": "Jedna zmiana, kontrola z tej samej partii, zapis przewidywania przed wypiekiem."
+        }
+      ],
+      "checklista": [
+        "Cecha do zmiany nazwana jednym słowem przed próbą.",
+        "Zmieniana jedna dźwignia; kontrola z tej samej partii upieczona obok.",
+        "Przewidywanie zapisane przed wypiekiem.",
+        "Zmienne ukryte zapisane: dostawa masła, hala, maszyna, osoba.",
+        "Przekrój po wystudzeniu, w stałym miejscu, ze zdjęciem i linijką.",
+        "Ocena smaku i chrupkości na ślepo, w parach, o tej samej godzinie.",
+        "Wniosek i zdjęcia zapisane przy recepturze."
+      ],
+      "powiazania": [
+        "Ciasto półfrancuskie i pieczywo weneckie",
+        "Laminowanie / viennoiserie",
+        "Fizyka wypieku: ciepło, para i przemiany",
+        "Szkoły i filozofie"
+      ],
+      "cwiczenie": {
+        "tytul": "Mapa jednej dźwigni",
+        "kroki": [
+          "Wybierz jedną dźwignię, na przykład czas garowania, i trzy jej poziomy: krótszy, standardowy i dłuższy.",
+          "Z jednej partii przygotuj trzy blachy tego samego wyrobu i oznacz je przed garowaniem.",
+          "Przed wypiekiem zapisz, jak według ciebie będzie wyglądał przekrój każdej blachy: wysokość, komory, pas nad dnem.",
+          "Upiecz blachy w tym samym piecu, wystudź i przetnij po dwie sztuki z każdej w stałym miejscu kształtu.",
+          "Porównaj przekroje z zapisanym przewidywaniem i zaznacz, gdzie trafiłeś, a gdzie nie.",
+          "Powtórz ćwiczenie z inną dźwignią, na przykład temperaturą wypieku, i zbierz obie mapy w jednym zapisie przy recepturze."
+        ],
+        "kryterium": "Przed wypiekiem przewidujesz, jak zmieni się przekrój przy zmianie jednej dźwigni, i trafiasz w kierunek zmiany co najmniej w wysokości i wielkości komór, a każdą pomyłkę umiesz wyjaśnić mechanizmem."
+      },
+      "mosty": [
+        {
+          "do": "Ciasto półfrancuskie i pieczywo weneckie",
+          "mechanizm": "przewaga-ma-cien",
+          "tekst": "Każda dźwignia z mapy ma próg, za którym działa odwrotnie, a najlepiej widać to w cieście półfrancuskim: więcej obrotów i więcej tłuszczu najpierw pomagają, potem zlewają warstwy.",
+          "kierunek": "obustronny",
+          "doId": "tom-ciasto-polfrancuskie-i-pieczywo-weneckie"
+        },
+        {
+          "do": "Laminowanie / viennoiserie",
+          "mechanizm": "temperatura-jako-dzwignia-tempa",
+          "tekst": "Garowanie poniżej granicy topnienia masła to ta sama zależność, której mapa dźwigni używa do sterowania wnętrzem: kilka stopni zmienia tempo drożdży, a laminowanie pokazuje, gdzie leży twarda granica.",
+          "kierunek": "obustronny",
+          "doId": "tom-laminowanie-viennoiserie"
+        },
+        {
+          "do": "Fermentacja odroczona / odroczony rozrost",
+          "mechanizm": "temperatura-jako-dzwignia-tempa",
+          "tekst": "Chłód nocny w laminacie rozciąga pracę drożdży tak samo jak w chlebie, ale dodatkowo trzyma masło w stanie stałym. Fermentacja odroczona pokazuje, ile kosztuje każda godzina w zimnie i jak liczyć dojście po wyjęciu.",
+          "kierunek": "obustronny",
+          "doId": "tom-fermentacja-odroczona-odroczony-rozrost"
+        },
+        {
+          "do": "Szkoły i filozofie",
+          "mechanizm": "niewidoczna-wiedza-eksperta",
+          "tekst": "Mistrz laminatu, który poprawia płat „na czucie”, nie umie nazwać swojej korekty, dopóki jej nie zmierzy. Szkoły i filozofie pokazują, jak ta sama wiedza żyje w ręce, w recepturze i w eksperymencie.",
+          "kierunek": "obustronny",
+          "doId": "tom-szkoly-i-filozofie"
+        }
+      ],
+      "pojecia": [
+        {
+          "id": "gluten",
+          "termin": "gluten",
+          "kategoria": "Ciasto i mąka",
+          "znaczenie": "Elastyczna siatka powstająca, gdy białka mąki połączą się z wodą i ze sobą. To ona zatrzymuje gaz w cieście — a w cieście kruchym jest wrogiem, bo daje ciągliwość zamiast kruchości.",
+          "aliasy": [
+            "glutenu",
+            "glutenow",
+            "glutenem"
+          ]
+        },
+        {
+          "id": "maillard",
+          "termin": "reakcja Maillarda",
+          "kategoria": "Wypiek i piece",
+          "znaczenie": "Reakcja cukrów z białkami w wysokiej temperaturze — źródło brązowego koloru i większości aromatu skórki. Potrzebuje ciepła, cukrów i odpowiedniej wilgotności powierzchni, stąd rola pary na starcie.",
+          "aliasy": [
+            "Maillard",
+            "Maillarda"
+          ]
+        },
+        {
+          "id": "retrogradacja",
+          "termin": "retrogradacja skrobi",
+          "kategoria": "Wypiek i piece",
+          "znaczenie": "Powrót skleikowanej skrobi do uporządkowanych kryształów po ostygnięciu — czyli czerstwienie. Zachodzi także w szczelnym opakowaniu i najszybciej w temperaturach lodówkowych.",
+          "aliasy": [
+            "retrogradacji",
+            "czerstwienie",
+            "czerstwienia"
+          ]
+        },
+        {
+          "id": "laminacja",
+          "termin": "laminacja (tourage)",
+          "kategoria": "Cukiernia — technika",
+          "rozwiniecie": "franc. tourage",
+          "znaczenie": "Wielokrotne wałkowanie i składanie ciasta z płatem masła, żeby powstały naprzemienne warstwy. Masło musi być plastyczne (~14–16°C): zbyt zimne pęka i przebija ciasto, zbyt ciepłe wsiąka i warstwy znikają.",
+          "aliasy": [
+            "tourage",
+            "laminowan",
+            "détrempe",
+            "detrempe",
+            "beurrage"
+          ]
+        },
+        {
+          "id": "garowanie",
+          "termin": "garowanie (rozrost)",
+          "kategoria": "Zakwas i fermentacja",
+          "rozwiniecie": "franc. apprêt — końcowy rozrost",
+          "znaczenie": "Ostatnie wyrastanie już uformowanych kęsów, tuż przed piecem. Prowadzi się je w ciepłej i wilgotnej komorze, bo sucha powierzchnia zasycha w skorupkę, która w piecu pęka bokiem zamiast otworzyć się nacięciem.",
+          "aliasy": [
+            "garowni",
+            "garownia",
+            "garowania",
+            "garze",
+            "gar ",
+            "rozrost",
+            "rozrostu",
+            "apprêt"
+          ]
+        }
+      ],
+      "pytania": [
+        {
+          "id": "SL-01",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Zespół w jednej partii dodał masła, dołożył obrót i podniósł piec. Rogale wyszły płaskie. Jaki jest główny błąd metody?",
+          "opcje": [
+            "Zmieniono kilka dźwigni naraz, więc nie wiadomo, która zawiodła",
+            "Masło powinno było trafić do zarobu zamiast do laminacji",
+            "Piec należało obniżyć, a nie podnieść przy dodatkowym obrocie",
+            "Obrót należało zrobić przed dodaniem masła, a nie po nim"
+          ],
+          "poprawne": [
+            0
+          ],
+          "wyjasnienie": "Tłuszcz, obroty i temperatura pieca zmieniają jednocześnie grubość warstw, ich ciągłość i skórkę. Gdy zmieni się trzy naraz, każdy wynik da się wytłumaczyć każdą z nich i zespół nie wie, co powtórzyć, a czego unikać. Następna partia zmienia jedną dźwignię i ma obok kontrolę."
+        },
+        {
+          "id": "SL-02",
+          "poziom": "MENTOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Na przekroju croissanta widać dużą pustkę pod skórką i ciasny środek. Na który etap to wskazuje najpierw?",
+          "opcje": [
+            "Przerost: sieć rozciągnięta ponad wytrzymałość opadła",
+            "Niedorost: skórka utrwaliła się, gdy środek jeszcze rósł",
+            "Za długi wypiek, który wysuszył środek wyrobu",
+            "Za dużo tłuszczu przekładanego w samym środku płata"
+          ],
+          "poprawne": [
+            1
+          ],
+          "wyjasnienie": "Wyrób wstawiony za wcześnie rośnie w piecu gwałtownie. Zewnętrzne warstwy szybko się ścinają, a środek, który dalej rośnie, odrywa się od nich i zostawia pustkę pod skórką, sam zostając ciasny. Przerost wygląda inaczej: środek się zapada, a komory są porozrywane."
+        },
+        {
+          "id": "SL-03",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Croissant chrupie przy wyjęciu, a po kilku godzinach jest miękki. Co najprawdopodobniej to poprawi?",
+          "opcje": [
+            "Więcej cukru w zarobie, żeby skórka była ciemniejsza",
+            "Krótszy wypiek w wyższej temperaturze, żeby zamknąć skórkę",
+            "Dłuższy wypiek w nieco niższej temperaturze, ten sam kolor",
+            "Pakowanie jeszcze ciepłych wyrobów w szczelne pojemniki"
+          ],
+          "poprawne": [
+            2
+          ],
+          "wyjasnienie": "Skórka mięknie, gdy woda z wnętrza przechodzi do jej suchych warstw. Dłuższy wypiek w nieco niższej temperaturze daje ten sam kolor, ale głębiej dosusza zewnętrzne warstwy, więc mają większy zapas suchości. Więcej cukru przyspiesza tylko brązowienie, a szczelne pakowanie ciepłego wyrobu zatrzymuje parę przy skórce."
+        },
+        {
+          "id": "SL-04",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Dlaczego wyrób z zarobu z cukrem i jajem bywa ciemny z wierzchu, a surowy nad dnem?",
+          "opcje": [
+            "Jajo blokuje przepływ ciepła z góry do dołu wyrobu",
+            "Cukier obniża temperaturę pieca w otoczeniu wyrobu",
+            "Ciemna skórka odbija ciepło i nie wpuszcza go do środka",
+            "Brązowienie przyspieszają cukier i białko, nie dopieczenie"
+          ],
+          "poprawne": [
+            3
+          ],
+          "wyjasnienie": "Reakcje Maillarda i karmelizacja przyspieszają w obecności cukrów i białek, więc wzbogacony zarób osiąga kolor wcześniej, niż ciepło dojdzie do środka i do dna. Dlatego takie wyroby piecze się niżej i dłużej, a gotowość ocenia się po spodzie i przekroju, nie po wierzchu."
+        },
+        {
+          "id": "SL-05",
+          "poziom": "MENTOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Rogale z nocnego chłodu włożono do pieca prosto z chłodni. Wyszły małe, z pękniętymi zwojami. Co zrobić w następnej partii?",
+          "opcje": [
+            "Podnieść temperaturę pieca, żeby nadrobić zimny rdzeń",
+            "Dać im dojść i garować do gotowości, nie do godziny",
+            "Wydłużyć noc w chłodzie, żeby drożdże miały więcej czasu",
+            "Zmniejszyć ilość tłuszczu przekładanego w recepturze"
+          ],
+          "poprawne": [
+            1
+          ],
+          "wyjasnienie": "Zimny rdzeń oznacza, że drożdże dopiero ruszają, gdy skórka w piecu już się zamyka. Rosnący środek rozrywa ją wtedy wzdłuż zwojów, a wyrób zostaje mały. Wyższy piec szybciej zamyka skórkę, a dłuższa noc w chłodzie nie zmienia temperatury rdzenia przy wsadzie — pomaga dopiero dojście i garowanie do gotowości."
+        },
+        {
+          "id": "SL-06",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Wyroby mrożone na surowo rosną po rozmrożeniu niżej niż świeże. Co jest główną przyczyną?",
+          "opcje": [
+            "Kryształy lodu uszkadzają część drożdży i osłabiają gluten",
+            "Masło w zamrażarce zmienia się trwale w inny tłuszcz",
+            "Mróz zabija bakterie, od których zależy wzrost laminatu",
+            "Woda odparowuje z ciasta i zostaje w nim sucha masa"
+          ],
+          "poprawne": [
+            0
+          ],
+          "wyjasnienie": "Zamarzająca woda tworzy kryształy, które uszkadzają część komórek drożdży i rozrywają sieć glutenową. Im wolniej mrożono i im dłużej przechowywano, tym kryształy są większe, a strata wzrostu wyraźniejsza. Praktyka kompensuje to szybkim mrożeniem tuż po uformowaniu, krótkim przechowywaniem albo większą dawką drożdży."
+        },
+        {
+          "id": "SL-07",
+          "poziom": "MENTOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Chcesz sprawdzić, czy nowe masło zmienia strukturę ślimaków. Który plan próby rozstrzygnie to najpewniej?",
+          "opcje": [
+            "Dwie partie w kolejne dni: wczoraj stare masło, dziś nowe",
+            "Jedna partia ciasta, dwa płaty masła, wypiek obok siebie",
+            "Tydzień na nowym maśle i porównanie z zeszłym tygodniem",
+            "Dwie partie jednego dnia, każda z osobnego zarobu"
+          ],
+          "poprawne": [
+            1
+          ],
+          "wyjasnienie": "Dwie partie z różnych dni różnią się nie tylko masłem, ale też mąką, temperaturą hali, osobą i ustawieniem pieca, więc wpływ masła miesza się z tłem. Jedna partia ciasta z dwoma płatami masła, upieczona obok, niesie to tło w obu połowach jednakowo. Pamięć i opinia zespołu nie zastąpią przekroju z linijką."
+        },
+        {
+          "id": "SL-08",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Pod croissantami po wypieku stoi kałuża masła. Które wyjaśnienie praktycy podają najczęściej?",
+          "opcje": [
+            "Za mało pary na początku wypieku",
+            "Za ciepła garownia albo wyrób niedogarowany",
+            "Tłuszcz przekładany za twardy przy zamykaniu",
+            "Za długi wypiek w końcowej fazie"
+          ],
+          "poprawne": [
+            1
+          ],
+          "wyjasnienie": "Masło traci kryształy w okolicach trzydziestu stopni, więc za ciepła garownia roztapia je jeszcze przed piecem. Wyrób niedogarowany rośnie w piecu gwałtownie, a ciasny środek wyciska topiące się masło na zewnątrz (pewność C; praktyka). Trzecią przyczyną bywa za chłodny start pieca. Za twardy tłuszcz daje inny objaw — przerywane warstwy — a para i długość wypieku kałuży nie tworzą."
+        },
+        {
+          "id": "SL-09",
+          "poziom": "MENTOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Doświadczony cukiernik twierdzi, że jego ciasto „nie znosi” trzech obrotów pojedynczych. Jaka reakcja najlepiej prowadzi rozmowę dalej?",
+          "opcje": [
+            "Wskazać, że podręczniki zalecają trzy obroty, więc to błąd",
+            "Przyjąć, że to zwyczaj jego szkoły, i nie drążyć tematu",
+            "Zapytać o grubość płata i twardość masła, potem porównać przekroje",
+            "Zaproponować, żeby dołożył obrót i ocenił różnicę na smak"
+          ],
+          "poprawne": [
+            2
+          ],
+          "wyjasnienie": "Liczba obrotów sama nic nie mówi: o ciągłości warstwy decyduje jej grubość, a ta zależy od grubości płata, udziału tłuszczu i twardości masła. Pytanie o te zmienne i porównanie przekrojów pozwala sprawdzić, czy w jego warunkach trzy obroty rzeczywiście przekraczają granicę ciągłości — wtedy obie strony mają rację w swoich warunkach."
+        },
+        {
+          "id": "SL-10",
+          "poziom": "SAMODZIELNY",
+          "typ": "wielokrotny",
+          "ccp": false,
+          "pytanie": "Które zdania o dźwigniach laminatu są PRAWDZIWE? (zaznacz wszystkie poprawne)",
+          "opcje": [
+            "Więcej tłuszczu przekładanego daje wyraźniejsze płatki tylko do pewnej granicy",
+            "Wyższa temperatura pieca wydłuża chrupkość wyrobu wzbogaconego",
+            "Dłuższe garowanie otwiera wnętrze, ale przerost grozi zapadnięciem środka",
+            "Czwarty obrót podnosi wyrób, bo warstw jest trzy razy więcej",
+            "Mniej tłuszczu przekładanego daje wyrób bardziej drożdżowy i miększy"
+          ],
+          "poprawne": [
+            0,
+            2,
+            4
+          ],
+          "wyjasnienie": "Tłuszcz przekładany pomaga warstwom tylko do granicy, a garowanie otwiera wnętrze do chwili przerostu. Mniej tłuszczu przesuwa wyrób w stronę ciasta drożdżowego. Wyższy piec szybciej daje łuskę i kolor, ale chrupkość trwa dzięki dosuszeniu skórki, a czwarty obrót nie podnosi wyrobu, bo cieńsze warstwy częściej się rwą."
         }
       ]
     },
@@ -28456,6 +29652,10 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
         {
           "nazwa": "Biochemia fermentacji: co żyje w cieście",
           "id": "tom-biochemia-fermentacji-co-zyje-w-ciescie"
+        },
+        {
+          "nazwa": "Sterowanie laminatem: dźwignie i kompromisy",
+          "id": "tom-sterowanie-laminatem-dzwignie-i-kompromisy"
         }
       ]
     },
@@ -28511,6 +29711,10 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
         {
           "nazwa": "Mrożenie i odświeżanie pieczywa",
           "id": "tom-mrozenie-i-odswiezanie-pieczywa"
+        },
+        {
+          "nazwa": "Ciasto półfrancuskie i pieczywo weneckie",
+          "id": "tom-ciasto-polfrancuskie-i-pieczywo-weneckie"
         }
       ]
     },
@@ -28764,6 +29968,10 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
         {
           "nazwa": "Mrożenie i odświeżanie pieczywa",
           "id": "tom-mrozenie-i-odswiezanie-pieczywa"
+        },
+        {
+          "nazwa": "Ciasto półfrancuskie i pieczywo weneckie",
+          "id": "tom-ciasto-polfrancuskie-i-pieczywo-weneckie"
         }
       ]
     },
@@ -29237,6 +30445,14 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
         {
           "nazwa": "Prowadzenie ludzi i przekazywanie wiedzy",
           "id": "tom-prowadzenie-ludzi-i-przekazywanie-wiedzy"
+        },
+        {
+          "nazwa": "Ciasto półfrancuskie i pieczywo weneckie",
+          "id": "tom-ciasto-polfrancuskie-i-pieczywo-weneckie"
+        },
+        {
+          "nazwa": "Sterowanie laminatem: dźwignie i kompromisy",
+          "id": "tom-sterowanie-laminatem-dzwignie-i-kompromisy"
         }
       ]
     },
@@ -29381,6 +30597,10 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
         {
           "nazwa": "Prowadzenie ludzi i przekazywanie wiedzy",
           "id": "tom-prowadzenie-ludzi-i-przekazywanie-wiedzy"
+        },
+        {
+          "nazwa": "Sterowanie laminatem: dźwignie i kompromisy",
+          "id": "tom-sterowanie-laminatem-dzwignie-i-kompromisy"
         }
       ]
     }
@@ -29568,6 +30788,7 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
             ],
             "tomy": [
               "Laminowanie / viennoiserie",
+              "Ciasto półfrancuskie i pieczywo weneckie",
               "Pasty orzechowe i praliné"
             ]
           },
@@ -29581,7 +30802,8 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
             ],
             "tomy": [
               "Białko, tłuszcz i woda: chemia mas i kremów",
-              "Kryształy, żele i woda związana"
+              "Kryształy, żele i woda związana",
+              "Sterowanie laminatem: dźwignie i kompromisy"
             ]
           },
           {
@@ -30116,6 +31338,7 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
             "Bezy, cukier i czekolada",
             "Żelifikacja, mrożenie i montaż",
             "Laminowanie / viennoiserie",
+            "Ciasto półfrancuskie i pieczywo weneckie",
             "Pasty orzechowe i praliné",
             "Przekąski, suszenie i trwałość"
           ],
