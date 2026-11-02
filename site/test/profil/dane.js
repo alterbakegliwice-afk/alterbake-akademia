@@ -1729,6 +1729,11 @@
           "v": "przedsiebiorczosc",
           "lbl": "Przedsiębiorczość",
           "opis": "koszt, strata, wartość; prowadzenie ludzi"
+        },
+        {
+          "v": "zsoba",
+          "lbl": "Ja ze sobą",
+          "opis": "emocje, sen, regeneracja po pracy"
         }
       ]
     },
