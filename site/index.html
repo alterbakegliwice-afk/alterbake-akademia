@@ -512,6 +512,60 @@ details.rozdzial[open]>summary{border-bottom:1px solid var(--linia);margin-botto
 .ramka[data-ramka="bezpieczenstwo"]{background:var(--karta);border:1px solid var(--uwaga);border-left:6px solid var(--uwaga)}
 .ramka[data-ramka="bezpieczenstwo"] .ramka-glowa{color:var(--tekst)}
 .ramka[data-ramka="alterbake"]{background:var(--kontekst);color:var(--na-kontekscie)}
+
+/* ── ROZDZIAŁ PO REDAKCJI „TEZA + ROZWINIĘCIE" (DEC-203, 02.11.2026) ──────
+   Jeden nośnik treści: teza widać zawsze, rozwinięcie na „Dlaczego?".
+   Czytelnik coś robi po drodze: zgaduje na start, odsłania „Zapamiętaj",
+   odpowiada na jedno pytanie z banku. Teza w Plex Sans 600 — Newsreader
+   zostaje dla tytułu ekranu i liczby głównej (kanon v3). */
+.mysli-glowa{display:grid;gap:8px;margin:0 0 16px;max-width:calc(var(--miara) + 34px)}
+.mysli-postep{display:flex;gap:4px}
+.mysli-postep span{flex:1;height:4px;border-radius:2px;background:var(--linia)}
+.mysli-postep span.zrob{background:var(--akcent)}
+.mysli-tryb{display:flex;flex-wrap:wrap;gap:8px}
+.mysli-tryb button{min-height:var(--dotyk);padding:0 14px;border:1.5px solid var(--linia);border-radius:22px;background:var(--karta);color:var(--tekst);font-size:14px;cursor:pointer}
+.mysli-tryb button[aria-pressed="true"]{border-color:var(--tekst);font-weight:600}
+.na-start,.sprawdz-sie{margin:0 0 24px;padding:16px;border:2px solid var(--tekst);border-radius:var(--r);background:var(--karta);max-width:calc(var(--miara) + 34px)}
+.na-start .pyt,.sprawdz-sie .pyt{margin:0 0 12px;font-size:18px;line-height:1.4;font-weight:600}
+.na-start .info,.sprawdz-sie .info{margin:8px 0 0;font-size:14px;color:var(--cichy)}
+.na-start .opcja,.sprawdz-sie .opcja{min-height:var(--dotyk-nowy)}
+.na-start .opcja[aria-pressed="true"]{border-color:var(--akcent);border-width:2.5px;font-weight:600}
+ol.mysli{list-style:none;margin:0 0 24px;padding:0;counter-reset:mysl;max-width:calc(var(--miara) + 34px)}
+li.mysl{counter-increment:mysl;display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:12px;padding:16px 0;border-top:1px solid var(--linia)}
+li.mysl:last-child{border-bottom:1px solid var(--linia)}
+li.mysl::before{content:counter(mysl);grid-row:1;font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.3;color:var(--cichy)}
+li.mysl>*{grid-column:2}
+.mysl-teza{margin:0;font-size:18px;line-height:1.45;font-weight:600}
+li.mysl .schemat{margin:12px 0 0}
+details.mysl-rozw{margin-top:8px}
+details.mysl-rozw>summary{display:inline-flex;align-items:center;min-height:var(--dotyk);cursor:pointer;list-style:none;font-size:15px;font-weight:600;
+  text-decoration:underline;text-underline-offset:4px}
+details.mysl-rozw>summary::-webkit-details-marker{display:none}
+details.mysl-rozw[open]>summary{text-decoration:none;color:var(--cichy)}
+.mysl-rozw .nauka-tresc{margin:8px 0 0;font-size:16px}
+.mysl-rozw .ramka{margin:12px 0 0}
+.mysl-powrot{margin:12px 0 0;padding:10px 14px;border-radius:var(--r);background:var(--kontekst);color:var(--na-kontekscie);font-size:15px;line-height:1.5}
+.fazy{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+.fazy button{min-height:var(--dotyk);padding:6px 8px;border:1.5px solid var(--linia);border-radius:var(--r);background:var(--karta);color:var(--tekst);font-size:14px;cursor:pointer}
+.fazy button[aria-pressed="true"]{border-color:var(--tekst);border-width:2.5px;font-weight:600}
+.faza-opis{min-height:3em;margin:8px 0 0;font-size:15px;line-height:1.5}
+.schemat .pas{fill:var(--kontekst);opacity:0}
+.schemat .pas.on{opacity:.55}
+.fazy-druk{display:none}
+.zap-odslon .zap-tekst{font-size:17px;line-height:1.5;font-weight:600}
+.ramka.zap-odslon p.info{margin:0 0 8px;font-size:14px;font-weight:400;color:var(--cichy)}
+.krok-nav{display:flex;gap:8px;max-width:calc(var(--miara) + 34px)}
+.krok-nav button{flex:1;margin-top:0}
+@media print{
+  .mysli-glowa,.krok-nav,.fazy,.faza-opis,.na-start .info,.zap-odslon .info,.zap-odslon button{display:none!important}
+  .fazy-druk{display:block;margin:8px 0 0;font-size:10pt}
+  .fazy-druk dt{font-weight:600}
+  .fazy-druk dd{margin:0 0 4px}
+  .schemat .pas{opacity:0!important}
+  .zap-odslon .zap-tekst[hidden],.mysli-blok[hidden]{display:block!important}
+  li.mysl[hidden]{display:grid!important}
+  ol.mysli[hidden]{display:block!important}
+}
 .ramka[data-ramka="skrot"]{background:var(--karta);border-top:1px solid var(--linia);border-bottom:1px solid var(--linia);border-radius:0;padding:16px 0}
 .ramka[data-ramka="skrot"] ul{margin:0;padding-left:20px}
 .ramka[data-ramka="skrot"] li{margin-bottom:8px;font-size:15px;line-height:1.55}
@@ -667,7 +721,7 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
   <button data-widok="tomy" class="akt"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4zM20 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z"/></svg>Nauka</button>
   <button data-widok="profil"><svg class="ik" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Mój profil</button>
 </nav>
-<template id="grafiki"><figure class="schemat" data-tom="tom-ii-zakwas" data-karta="Etapy dojrzałości i moment szczytu" data-miejsce="tresc"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 236" role="img">
+<template id="grafiki"><figure class="schemat" data-tom="tom-ii-zakwas" data-karta="Etapy dojrzałości i moment szczytu" data-miejsce="tresc" data-fazy="[{&quot;etykieta&quot;:&quot;Po wymieszaniu&quot;,&quot;x&quot;:30,&quot;szer&quot;:80,&quot;y&quot;:26,&quot;wys&quot;:149,&quot;opis&quot;:&quot;Fermentacji nie widać: komórek jest mało, masa jest tylko wygładzona.&quot;},{&quot;etykieta&quot;:&quot;Wzrost&quot;,&quot;x&quot;:110,&quot;szer&quot;:50,&quot;y&quot;:26,&quot;wys&quot;:149,&quot;opis&quot;:&quot;Komórek szybko przybywa, gaz powstaje szybciej, niż ucieka: są pęcherze, masa rośnie.&quot;},{&quot;etykieta&quot;:&quot;Szczyt&quot;,&quot;x&quot;:160,&quot;szer&quot;:70,&quot;y&quot;:26,&quot;wys&quot;:149,&quot;opis&quot;:&quot;Największa objętość i zaokrąglona kopułka, drożdże są najaktywniejsze. Tu zakwas się używa i dokarmia.&quot;},{&quot;etykieta&quot;:&quot;Opadanie&quot;,&quot;x&quot;:230,&quot;szer&quot;:78,&quot;y&quot;:26,&quot;wys&quot;:149,&quot;opis&quot;:&quot;Kultura rzednie i kwaśnieje: do ciasta wnosi więcej kwasu i mniej siły.&quot;}]"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 236" role="img">
 <title>Etapy dojrzałości zakwasu i okno szczytu</title><desc>Wykres bez skali liczbowej. Oś pozioma to czas od dokarmienia, podzielony na cztery fazy: po wymieszaniu, wzrost, szczyt i opadanie. Linia ciągła pokazuje objętość zakwasu. Najpierw jest płaska, potem rośnie, osiąga kopułę w fazie szczytu i opada. Linia przerywana pokazuje kwasowość, która rośnie przez cały czas, także po szczycie. Fazę szczytu obejmują dwie pionowe linie przerywane podpisane „okno szczytu”. U dołu okna stoi wyróżnione pole „użyj i dokarm”. Lewa adnotacja mówi, że przy zakwasie niedojrzałym ciasto ruszy za wolno. Prawa mówi, że przejrzały zakwas daje więcej kwasu i mniej siły.</desc>
 <rect class="f-kontekst" x="160" y="143" width="70" height="32"/>
 <path class="l lp" d="M160 30 V143 M230 30 V143"/>
@@ -1348,8 +1402,8 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
 <text class="t-odwr" x="12" y="271">Pytanie o zdarzenie → odpowiedź, nie obrona</text>
 </svg><figcaption>Opowieść rozpisana na trzy linie pokazuje, ile w niej było dopowiedzenia, a w działanie idzie tylko trzecia linia: pytanie o zdarzenie, na które da się odpowiedzieć bez obrony.</figcaption></figure></template>
 <script id="dane-kursu" type="application/json">{
-  "wersja": "2026-11-01",
-  "zbudowano": "2026-11-01",
+  "wersja": "2026-11-02",
+  "zbudowano": "2026-11-02",
   "sciezki": [
     {
       "id": "piekarz",
@@ -3324,76 +3378,204 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
       "karty": [
         {
           "tytul": "Dwa zespoły mikrobów, dwie role",
-          "tresc": [
-            "Zakwas to wspólnota dwóch grup organizmów żyjących na mące i wodzie. **Bakterie kwasu mlekowego** przerabiają cukry na kwasy — mlekowy i octowy — oraz na związki smaku i trwałości. **Dzikie drożdże** dają głównie dwutlenek węgla i alkohol, więc odpowiadają przede wszystkim za wyrost. Obie grupy rosną na cukrach z mąki, ale znoszą inne warunki. Drożdże zakwasowe mają niższe optimum temperatury niż pałeczki kwasu mlekowego (pewność B; Gänzle i in. 1998). Z tej różnicy bierze się sterowalność zakwasu.",
-            "Główna oś smaku biegnie między **kwasem mlekowym** — łagodnym, jogurtowym — a **kwasem octowym**, ostrym i kłującym w nos. To nie są dwa różne zakwasy, tylko dwa profile tej samej kultury. Bakterie homofermentatywne zamieniają cukier prawie wyłącznie w kwas mlekowy. Heterofermentatywne idą szlakiem rozgałęzionym i dokładają kwas octowy, dwutlenek węgla i alkohol.",
-            "Praktyczny wniosek: temperatura nie jest tylko pokrętłem „szybciej i wolniej”. Razem z gęstością i rytmem dokarmiania działa jak **suwak między profilami**. Cieplej, luźniej i częściej dokarmiane przesuwa kulturę ku profilowi mlekowemu. Chłodniej, gęściej i rzadziej — ku octowemu. Badania potwierdzają kierunek, ale nie siłę. Najpewniejszą dźwignią okazała się gęstość zaczynu, a wpływ samej temperatury na proporcję kwasów bywa słaby (szczegóły w karcie pogłębienia). Ta sama receptura daje więc różny chleb, zależnie od prowadzenia kultury w poprzednich dniach."
+          "na_start": {
+            "pytanie": "Na zimę słoik z zakwasem stanął bliżej okna. Po kilku dniach chleb jest kwaśniejszy, choć receptura ta sama. Dlaczego?",
+            "opcje": [
+              "W słoiku wyrosła inna, gorsza kultura",
+              "Inne miejsce zmieniło warunki, a one przesuwają kulturę ku octowi",
+              "Chłód tylko spowolnił zakwas, kwaśność to przypadek"
+            ],
+            "poprawna": 1,
+            "mysl": 4,
+            "wyjasnienie": "Temperatura to nie tylko tempo: razem z gęstością i rytmem dokarmiania przesuwa tę samą kulturę ku octowemu profilowi. Kierunek jest pewny, siła nie."
+          },
+          "mysli": [
+            {
+              "teza": "Bakterie kwasu mlekowego dają kwasy i smak, a dzikie drożdże dają gaz do wyrostu.",
+              "rozwiniecie": [
+                "**Bakterie** przerabiają cukry z mąki na kwas mlekowy i octowy oraz na związki smaku i trwałości. Drożdże dają głównie dwutlenek węgla i alkohol. Obie grupy żyją razem na mące i wodzie."
+              ]
+            },
+            {
+              "teza": "Drożdże i bakterie znoszą inne warunki, dlatego zakwasem da się sterować.",
+              "rozwiniecie": [
+                "Drożdże zakwasowe mają niższe optimum temperatury niż pałeczki kwasu mlekowego (pewność B; Gänzle i in. 1998). Zatrzymuje je **niezdysocjowany kwas octowy**, a nie samo pH."
+              ]
+            },
+            {
+              "teza": "Kwas mlekowy (łagodny, jogurtowy) i octowy (ostry, kłujący w nos) to dwa profile tej samej kultury.",
+              "rozwiniecie": [
+                "Bakterie **homofermentatywne** zamieniają cukier prawie wyłącznie w kwas mlekowy. Heterofermentatywne idą szlakiem rozgałęzionym i dokładają kwas octowy, dwutlenek węgla i alkohol."
+              ]
+            },
+            {
+              "teza": "Cieplej, luźniej i częściej dokarmiane przesuwa kulturę ku profilowi mlekowemu, a chłodniej, gęściej i rzadziej ku octowemu.",
+              "rozwiniecie": [
+                "Temperatura to więc nie tylko tempo. Razem z gęstością i rytmem dokarmiania działa jak **suwak między profilami**: zmienia naraz skład kwasów i stosunek gazu do kwasowości.",
+                "Heterofermentatywne kierują więcej cukru na kwas octowy, gdy mają czym odebrać nadmiar elektronów: fruktozą albo tlenem. Gęsty zaczyn zmienia dostęp do wody i substratów, więc przesuwa ten bilans."
+              ],
+              "hala": "Zakwas przeniesiony na zimę bliżej okna po kilku dniach pachnie ostrzej i daje kwaśniejszy chleb. Nikt nie zmienił receptury, zmieniło się tylko miejsce słoika."
+            },
+            {
+              "teza": "W badaniach najpewniejszą dźwignią okazała się gęstość zaczynu, a wpływ samej temperatury na proporcję kwasów bywa słaby.",
+              "rozwiniecie": [
+                "Badania potwierdzają kierunek, ale nie siłę (szczegóły w karcie pogłębienia). Ta sama receptura daje więc różny chleb, zależnie od prowadzenia kultury w poprzednich dniach."
+              ]
+            }
           ],
-          "punkty": [
-            "Dwa zespoły: **bakterie kwasu mlekowego** (kwasy, smak, trwałość) i **dzikie drożdże** (dwutlenek węgla, czyli wyrost).",
-            "Oś smaku: **kwas mlekowy** (łagodny, jogurtowy) ↔ **kwas octowy** (ostry, kłujący w nos). To dwa profile tej samej kultury.",
-            "Cieplej, luźniej, częściej dokarmiane → profil **mlekowy**. Chłodniej, gęściej, rzadziej → profil **octowy**.",
-            "Temperatura to suwak między profilami, a nie tylko regulator tempa. Ta sama receptura da inny chleb przy innym prowadzeniu kultury.",
-            "🔎 Z hali: zakwas przeniesiony na zimę bliżej okna zaczyna po kilku dniach pachnieć ostrzej i dawać kwaśniejszy chleb, choć nikt nie zmienił receptury. Zmieniło się miejsce, w którym stoi słoik.",
-            "🧠 Zapamiętaj: profilu smaku nie ustawia się przepisem, tylko warunkami prowadzenia kultury."
-          ],
-          "mechanizm": "Obie grupy rosną obok siebie, ale różnią się tolerancją. Drożdże zakwasowe rosną najszybciej niżej na skali temperatury niż pałeczki kwasu mlekowego, a zatrzymuje je niezdysocjowany kwas octowy, nie samo pH. Bakterie heterofermentatywne kierują więcej cukru na kwas octowy wtedy, gdy mają czym odebrać nadmiar elektronów ze swojego szlaku — fruktozą albo tlenem. Gęsty zaczyn zmienia dostęp do wody i substratów, więc przesuwa ten bilans. Zmiana warunków działa zatem naraz na skład kwasów i na stosunek gazu do kwasowości."
+          "zapamietaj": "Profilu smaku nie ustawia się przepisem, tylko warunkami prowadzenia kultury.",
+          "sprawdz": "Z-04"
         },
         {
           "tytul": "Etapy dojrzałości i moment szczytu",
-          "tresc": [
-            "Po dokarmieniu zakwas przechodzi cztery rozpoznawalne fazy. Ich odczytanie jest podstawą stabilnego harmonogramu, bo każda faza oznacza inny stan populacji. **Po wymieszaniu** nie widać fermentacji — komórek jest mało, a struktura jest tylko wygładzona. **Wzrost** przynosi pęcherze i podnoszenie masy. **Szczyt** to maksymalna objętość i zaokrąglona kopułka, gdy drożdże są najaktywniejsze. **Opadanie** daje kulturę rzadszą i kwaśniejszą.",
-            "Szczyt jest właściwym momentem na dwie rzeczy: użycie zakwasu do ciasta i dokarmienie go metodą łapania kolejnych szczytów. Zakwas przejrzały wnosi do ciasta więcej kwasu i mniej siły wyrostowej, bo kwasy nie ulatniają się razem z gazem. Chleb wychodzi wtedy kwaśniejszy i gęstszy, choć receptura się nie zmieniła.",
-            "Obowiązuje też zasada, która ratuje więcej wypieków niż inne: **lepiej zostawić zaczyn dodatkową godzinę niż użyć niedojrzałego**. Niedojrzały zaczyn ma za małą populację drożdży, więc ciasto rusza wolno i zostaje niedofermentowane. Wydłużenie fermentacji ciasta nie nadrobi tego w pełni, bo w cieście z solą populacja rośnie już wolniej. Zakwas pszenny i żytni dojrzewają inaczej, więc obserwacji z jednego nie przenosi się na drugi."
+          "na_start": {
+            "pytanie": "Wrzucasz łyżkę zakwasu do wody. Pływa. Czy to znaczy, że jest gotowy do ciasta?",
+            "opcje": [
+              "Tak, pływa, więc jest gotowy",
+              "Nie, pływa, więc jest przejrzały",
+              "Z samego testu nie da się tego powiedzieć"
+            ],
+            "poprawna": 2,
+            "mysl": 4,
+            "wyjasnienie": "Pływać potrafi i zakwas gotowy, i przejrzały, a gotowy, ale gęsty, potrafi utonąć."
+          },
+          "mysli": [
+            {
+              "teza": "Po dokarmieniu zakwas przechodzi cztery fazy: po wymieszaniu, wzrost, szczyt i opadanie.",
+              "rozwiniecie": [
+                "Każda faza to inny stan populacji. **Po wymieszaniu** fermentacji nie widać: komórek jest mało, masa jest tylko wygładzona. We wzroście komórek szybko przybywa, a gaz powstaje szybciej, niż ucieka: są pęcherze, masa rośnie.",
+                "Szczyt to największa objętość i zaokrąglona kopułka, gdy drożdże są najaktywniejsze. Opadanie daje kulturę rzadszą i kwaśniejszą. Odczytanie faz to podstawa stabilnego harmonogramu."
+              ]
+            },
+            {
+              "teza": "Szczyt to moment na dwie rzeczy: użycie zakwasu do ciasta i dokarmienie.",
+              "rozwiniecie": [
+                "Dokarmia się metodą łapania kolejnych szczytów. Szczyt wypada, gdy kończą się łatwo dostępne cukry, a kwasy osłabiają siatkę: gaz powstaje wolniej, niż ucieka, i kopułka opada.",
+                "Kwasy nie ulatniają się z gazem, więc po szczycie kwasowość dalej rośnie, a siła wyrostowa spada. **Przejrzały zakwas** daje chleb kwaśniejszy i gęstszy przy tej samej recepturze."
+              ]
+            },
+            {
+              "teza": "Lepiej zostawić zaczyn godzinę dłużej, niż użyć niedojrzałego — ta zasada ratuje więcej wypieków niż inne.",
+              "rozwiniecie": [
+                "Niedojrzały zaczyn ma za mało drożdży, więc ciasto rusza wolno i zostaje niedofermentowane. Dłuższa fermentacja ciasta nie nadrobi tego w pełni: w cieście z solą populacja rośnie już wolniej."
+              ]
+            },
+            {
+              "teza": "Test flotacji nie wystarcza jako jedyny wskaźnik gotowości.",
+              "rozwiniecie": [
+                "Test mierzy tylko uwięziony gaz, czyli średnią gęstość próbki, a nie siłę fermentacji ani strukturę. Gęstość zależy naraz od aktywności i od hydracji, a test tych przyczyn nie rozróżnia."
+              ],
+              "hala": "Zakwas potrafi pływać, choć jest przejrzały, i tonąć, choć jest gotowy: przy gęstej hydracji gazu jest mniej mimo pełnej aktywności. Kto polega na tym jednym teście, myli się w obie strony."
+            },
+            {
+              "teza": "Obserwacji z zakwasu pszennego i żytniego nie przenosi się z jednego na drugi.",
+              "rozwiniecie": [
+                "Zakwas pszenny i żytni dojrzewają inaczej."
+              ]
+            }
           ],
-          "punkty": [
-            "Cztery fazy: **po wymieszaniu** → **wzrost** → **szczyt** (kopułka, maksymalna objętość) → **opadanie** (rzadszy, kwaśniejszy).",
-            "Szczyt to właściwy moment na użycie do ciasta i na dokarmienie kultury.",
-            "Zakwas przejrzały wnosi więcej kwasu i mniej siły — chleb kwaśniejszy i gęstszy przy niezmienionej recepturze.",
-            "**Lepiej zostawić zaczyn godzinę dłużej niż użyć niedojrzałego.** Niedojrzały daje chleb niedofermentowany, czego nie da się nadgonić.",
-            "Zakwas pszenny i żytni dojrzewają inaczej — obserwacji z jednego nie przenosi się na drugi.",
-            "**Test flotacji jest zawodny** jako jedyny wskaźnik: mierzy uwięziony gaz, nie siłę fermentacji ani strukturę.",
-            "🔎 Z hali: kawałek zakwasu potrafi pływać, choć kultura jest już przejrzała, i tonąć, choć jest gotowa — bo przy gęstej hydracji gazu jest mniej mimo pełnej aktywności. Kto polega na tym jednym teście, myli się w obie strony.",
-            "🧠 Zapamiętaj: każdy pojedynczy wskaźnik ma ślepą plamkę, dlatego czyta się kilka naraz — zapach, objętość, czas."
-          ],
-          "mechanizm": "Po dokarmieniu populacja najpierw szybko rośnie, a gaz powstaje szybciej, niż ucieka, więc masa się podnosi. Szczyt wypada, gdy kończą się łatwo dostępne cukry, a kwasy osłabiają siatkę — produkcja gazu przestaje nadążać za jego ucieczką i kopułka opada. Kwasy zostają w masie, więc po szczycie kwasowość dalej rośnie, a siła wyrostowa spada. Test flotacji mierzy tylko średnią gęstość próbki. Ta zależy naraz od aktywności i od hydracji, więc test nie rozróżnia tych dwóch przyczyn."
+          "zapamietaj": "Każdy pojedynczy wskaźnik ma ślepą plamkę, dlatego czyta się kilka naraz: zapach, objętość, czas."
         },
         {
           "tytul": "Słaby zakwas to zwykle zakwas przekwaszony",
-          "tresc": [
-            "Diagnoza „mój zakwas jest słaby” jest najczęściej nietrafiona. Kultura zwykle żyje — problemem jest **nadmiar kwasu**, który hamuje drożdże. Hamuje je głównie niezdysocjowany kwas octowy, a nie sama kwaśność (szczegóły w karcie pogłębienia). Bakterie znoszą tego kwasu więcej, więc pracują dalej. Efekt wygląda jak osłabienie: zakwas rośnie mało i wolno, a chleb ma słaby wyrost. To nie brak aktywności, tylko jej przewaga po stronie bakterii.",
-            "Rozwiązaniem nie jest nowa kultura, tylko **odkwaszenie** trzema narzędziami, które można łączyć. Krótsze przerwy między dokarmianiami nie pozwalają kwasom narosnąć. Większa proporcja dokarmiania — więcej świeżej mąki i wody na jednostkę starego zakwasu — po prostu rozcieńcza nagromadzony kwas. Dokarmianie **w szczycie**, a nie po opadnięciu, trafia w moment, gdy drożdży jest najwięcej. Świeży cukier dostaje wtedy populacja zdolna go zużyć, zanim kwas znów narośnie.",
-            "Dwa zapachy mówią wprost, co się dzieje. **Acetonowy**, jak zmywacz do paznokci, oznacza głód: przerwa była za długa i cukry się skończyły. Ostrą nutę przypisuje się octanowi etylu, czyli połączeniu alkoholu z kwasem octowym (pewność C; mechanizm wiarygodny, niezmierzony w zakwasie). **Octowy zamiast mlecznego** oznacza zwykle warunki — gęstość i rzadkie dokarmianie — a nie zły stan kultury. Pierwszy naprawia się rytmem karmienia, drugi warunkami prowadzenia."
+          "na_start": {
+            "pytanie": "Zakwas „przestał działać”: rośnie mało i wolno, a chleb słabo wyrasta. Co robisz najpierw?",
+            "opcje": [
+              "Wyrzucam go i zakładam nowy",
+              "Dokarmiam częściej i w większej proporcji",
+              "Dokarmiam rzadziej, żeby kultura nabrała sił"
+            ],
+            "poprawna": 1,
+            "mysl": 3,
+            "wyjasnienie": "Taki zakwas zwykle żyje, tylko jest przekwaszony. Częstsze dokarmianie w większej proporcji rozcieńcza kwas, a nowa kultura kosztowałaby tygodnie."
+          },
+          "mysli": [
+            {
+              "teza": "Zakwas uznany za słaby zwykle żyje, tylko jest przekwaszony.",
+              "rozwiniecie": [
+                "Nadmiar kwasu hamuje drożdże, głównie **niezdysocjowany kwas octowy**, a nie sama kwaśność (szczegóły w karcie pogłębienia). Bakterie znoszą go lepiej i pracują dalej. Stąd mały, wolny przyrost i słaby wyrost chleba: to przewaga bakterii, nie brak aktywności."
+              ]
+            },
+            {
+              "teza": "Niezdysocjowany kwas octowy wnika do komórki drożdży i zabiera jej energię na wzrost i fermentację.",
+              "rozwiniecie": [
+                "Przenika przez błonę i rozpada się w środku, zakwaszając cytoplazmę. Komórka zużywa energię na wypompowanie protonów.",
+                "Niższe pH przesuwa równowagę ku formie niezdysocjowanej: kwaśność i octowość wzmacniają się nawzajem."
+              ]
+            },
+            {
+              "teza": "Przekwaszony zakwas się odkwasza, a nie wyrzuca.",
+              "rozwiniecie": [
+                "Trzy narzędzia, które można łączyć, obniżają stężenie kwasu na komórkę drożdży. **Krótsze przerwy** nie dają kwasom narosnąć. Większa proporcja dokarmiania (więcej świeżej mąki i wody na jednostkę starego zakwasu) rozcieńcza kwas.",
+                "Dokarmianie w szczycie, nie po opadnięciu, daje cukier najliczniejszym drożdżom. Zużyją go, zanim kwas znów narośnie."
+              ],
+              "hala": "Zakwas, który „przestał działać”, po trzech dniach dokarmiania co dwanaście godzin w większej proporcji wraca do formy bez innej interwencji. Założenie nowego kosztowałoby tygodnie."
+            },
+            {
+              "teza": "Zapach acetonowy to głód, a octowy zamiast mlecznego to warunki prowadzenia, nie zły stan kultury.",
+              "rozwiniecie": [
+                "**Acetonowy**, jak zmywacz, znaczy: przerwa była za długa, cukry się skończyły. Nutę przypisuje się octanowi etylu, czyli połączeniu alkoholu z kwasem octowym (pewność C; mechanizm wiarygodny, niezmierzony w zakwasie). Naprawa: częściej albo obficiej dokarmiać.",
+                "Octowy wynika zwykle z gęstości i rzadkiego dokarmiania. Naprawa: cieplej i luźniej."
+              ]
+            },
+            {
+              "teza": "Reżim wzmacniający to rutynowy serwis, a wolniejszy start po zmianie mąki to nie awaria, tylko chwilowo uboższy ekosystem.",
+              "rozwiniecie": [
+                "Kilkudniowy reżim wzmacniający przed ważnym wypiekiem to rutynowy serwis kultury, nie ratunek. Po konwersji na inną mąkę kultura potrzebuje kilku dni adaptacji, bo jej ekosystem jest chwilowo uboższy."
+              ]
+            }
           ],
-          "punkty": [
-            "Większość „słabych” zakwasów to zakwasy **przekwaszone** — nadmiar kwasu hamuje drożdże, choć kultura żyje.",
-            "Rozwiązaniem jest **odkwaszanie**, nie wyrzucanie: krótsze przerwy, większe proporcje dokarmiania, dokarmianie w szczycie.",
-            "Zapach **acetonowy** (jak zmywacz) = GŁÓD. Przerwa była za długa. Naprawa: częstsze albo obfitsze dokarmianie.",
-            "Zapach **octowy zamiast mlecznego** = warunki, nie zły stan kultury. Naprawa: cieplej i luźniej.",
-            "Przed ważnym wypiekiem można przeprowadzić kilkudniowy reżim wzmacniający — to rutynowy serwis kultury, nie ratunek.",
-            "Nowa kultura po konwersji na inną mąkę potrzebuje kilku dni adaptacji — to nie jest awaria, tylko uboższy chwilowo ekosystem.",
-            "🔎 Z hali: zakwas, który „przestał działać”, po trzech dniach dokarmiania co dwanaście godzin w większej proporcji wraca do formy bez żadnej innej interwencji. Wyrzucenie go i założenie nowego kosztowałoby tygodnie.",
-            "🧠 Zapamiętaj: zanim uznasz zakwas za słaby, sprawdź, czy nie jest po prostu przekwaszony."
-          ],
-          "mechanizm": "Niezdysocjowany kwas octowy przenika przez błonę komórki drożdży i rozpada się w jej wnętrzu, zakwaszając cytoplazmę. Komórka zużywa wtedy energię na wypompowanie protonów zamiast na wzrost i fermentację. Bakterie kwasu mlekowego znoszą wyższe stężenia tego kwasu, więc w przekwaszonym zaczynie zyskują przewagę. Niższe pH przesuwa przy tym równowagę ku formie niezdysocjowanej, więc kwaśność i octowość wzmacniają się nawzajem. Każde z narzędzi odkwaszania obniża stężenie kwasu przypadające na komórkę drożdży."
+          "zapamietaj": "Zanim uznasz zakwas za słaby, sprawdź, czy nie jest po prostu przekwaszony.",
+          "sprawdz": "Z-02"
         },
         {
           "tytul": "Ciągłość kultury",
-          "tresc": [
-            "Zakwas jest jedynym składnikiem piekarni, którego nie da się kupić rano w razie awarii. Nowa kultura musi przejść całą drogę selekcji od początku. Przez pierwsze tygodnie jej skład jest uboższy i mniej stabilny, więc chleb wychodzi inny. To czyni ciągłość kultury **ryzykiem operacyjnym**, a nie kwestią starannego prowadzenia. Traktuje się je tak samo jak kopie zapasowe danych.",
-            "Sprawdzoną zasadą jest kilka **niezależnych rezerw w różnej postaci i w różnych miejscach**. Porcja w chłodzie budzi się w kilkanaście godzin, bo chłód tylko spowalnia metabolizm — to pierwsza linia. Zakwas wysuszony przechowuje się tygodniami, bo bez wody komórki niemal nie pracują. Żywotność suszu z czasem jednak spada: liofilizat trzymany pół roku w temperaturze pokojowej stracił większość żywych komórek (pewność B; Coronas i in. 2025). Rezerwa w drugim miejscu chroni przed awarią prądu albo zalaniem, gdy wszystko na miejscu przepada naraz.",
-            "Jeden warunek decyduje, czy ten układ działa: **rezerwa musi być odświeżana i sprawdzana**. Przeżywalność zależy od sposobu suszenia, wilgotności i temperatury przechowania, więc nie da się jej założyć z góry. Kopia, której nikt nie budził, istnieje na papierze. Dochodzi rytm tygodnia: po dniu czy dwóch przerwy kultura potrzebuje kilku cykli dokarmiania, zanim populacja drożdży wróci do pełnej liczebności. Dlatego rozbudza się ją z wyprzedzeniem."
+          "na_start": {
+            "pytanie": "W weekend padła chłodziarka z zakwasem. Został słoik suszu, którego nikt nigdy nie budził. Czy to pewna rezerwa?",
+            "opcje": [
+              "Tak, susz bez wody przetrwa bez końca",
+              "Tak, o ile data na słoiku jest świeża",
+              "Nie wiadomo, dopóki nie przejdzie próby rozbudzenia"
+            ],
+            "poprawna": 2,
+            "mysl": 4,
+            "wyjasnienie": "Przeżywalność suszu zależy od suszenia i przechowania, więc nie da się jej założyć z góry. Pewność daje tylko próba rozbudzenia, zrobiona zawczasu."
+          },
+          "mysli": [
+            {
+              "teza": "Zakwasu nie da się kupić rano, więc jego ciągłość to ryzyko operacyjne, a nie kwestia starannego prowadzenia.",
+              "rozwiniecie": [
+                "Nowa kultura przechodzi całą selekcję od początku: wypierają resztę gatunki, które w danych warunkach rosną najszybciej i najlepiej znoszą kwas. Ta równowaga zależy od mąki, wody, temperatury i rytmu dokarmiania.",
+                "Przez pierwsze tygodnie skład jest uboższy i mniej stabilny, a chleb ma inny profil smaku. Ciągłość traktuje się więc jak **kopie zapasowe** danych."
+              ]
+            },
+            {
+              "teza": "Trzyma się kilka niezależnych rezerw, w różnej postaci i w różnych miejscach.",
+              "rozwiniecie": [
+                "Porcja w chłodzie to pierwsza linia: budzi się w kilkanaście godzin, bo chłód tylko spowalnia metabolizm. **Zakwas wysuszony** wytrzymuje tygodnie, bo bez wody komórki niemal nie pracują. Rezerwa poza zakładem chroni przed awarią prądu albo zalaniem, gdy na miejscu przepada wszystko naraz."
+              ]
+            },
+            {
+              "teza": "Susz z czasem traci żywe komórki, a w temperaturze pokojowej straty rosną z każdym tygodniem.",
+              "rozwiniecie": [
+                "Suszenie i chłód nie zabijają komórek, tylko obniżają metabolizm do poziomu przetrwania. Suszenie uszkadza jednak błony części komórek. Liofilizat trzymany pół roku w temperaturze pokojowej stracił większość żywych komórek (pewność B; Coronas i in. 2025)."
+              ]
+            },
+            {
+              "teza": "Rezerwę ocenia się próbą rozbudzenia, a nie datą na słoiku.",
+              "rozwiniecie": [
+                "Rezerwa musi być **odświeżana i sprawdzana**: przeżywalność zależy od sposobu suszenia, wilgotności i temperatury przechowania, więc nie da się jej założyć z góry. Kopia, której nikt nie budził, istnieje tylko na papierze."
+              ],
+              "hala": "Awaria chłodziarki w weekend to jedyny moment, gdy okazuje się, czy rezerwa istniała naprawdę. Wtedy jest za późno na sprawdzanie, więc budzi się ją profilaktycznie, raz na jakiś czas, bez powodu."
+            },
+            {
+              "teza": "Po dniu czy dwóch przerwy kultura wraca do formy wolniej, więc rozbudza się ją z wyprzedzeniem.",
+              "rozwiniecie": [
+                "Populacja drożdży potrzebuje kilku cykli dokarmiania, zanim wróci do pełnej liczebności. Pierwszego dnia planuj wyroby wybaczające, nie najtrudniejsze."
+              ]
+            }
           ],
-          "punkty": [
-            "Zakwasu nie da się kupić rano. Odbudowa od zera trwa tygodnie i daje inny profil smaku.",
-            "Ciągłość kultury jest **ryzykiem operacyjnym** i traktuje się ją jak kopie zapasowe danych.",
-            "Kilka niezależnych rezerw, w różnej postaci i w różnych miejscach: porcja w chłodzie, zakwas wysuszony, rezerwa poza zakładem.",
-            "**Rezerwa musi być odświeżana i sprawdzana.** Kopia, której nikt nie budził, istnieje tylko na papierze.",
-            "Po przerwie w pracy kultura wraca do formy wolniej — pierwszego dnia planuj wyroby wybaczające, nie najtrudniejsze.",
-            "🔎 Z hali: awaria chłodziarki w weekend jest jedynym momentem, w którym okazuje się, czy rezerwa istniała naprawdę. Wtedy jest już za późno na sprawdzanie — i dlatego budzi się ją profilaktycznie, raz na jakiś czas, bez powodu.",
-            "🧠 Zapamiętaj: rezerwa zakwasu, której nigdy nie rozbudziłeś, nie jest rezerwą, tylko nadzieją."
-          ],
-          "mechanizm": "Skład zakwasu ustala się przez selekcję: gatunki, które w danych warunkach rosną najszybciej i najlepiej znoszą kwas, wypierają resztę. Ta równowaga zależy od mąki, wody, temperatury i rytmu dokarmiania, więc nowa kultura dochodzi do niej od nowa. Suszenie i chłód nie zabijają komórek, tylko obniżają ich metabolizm do poziomu przetrwania. Suszenie uszkadza jednak błony części komórek, a w temperaturze pokojowej straty narastają z każdym tygodniem. Dlatego rezerwę ocenia się próbą rozbudzenia, a nie datą na słoiku."
+          "zapamietaj": "Rezerwa zakwasu, której nigdy nie rozbudziłeś, nie jest rezerwą, tylko nadzieją."
         },
         {
           "tytul": "Porównanie: jak robią to inni i kiedy to ma sens",
@@ -3702,23 +3884,6 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
       ],
       "pytania": [
         {
-          "id": "Z-02",
-          "poziom": "JUNIOR",
-          "typ": "jednokrotny",
-          "ccp": false,
-          "pytanie": "Co oznacza zapach acetonowy (zmywacza) w zakwasie?",
-          "opcje": [
-            "Nadmiar karmienia — odświeżany częściej, niż zdąży przefermentować",
-            "Za niska temperatura — metabolizm zwolnił i utknął na starcie",
-            "Głód — przerwa między karmieniami dłuższa, niż zakwas wytrzymuje",
-            "Zakażenie pleśnią — kultura nie nadaje się do dalszej pracy"
-          ],
-          "poprawne": [
-            2
-          ],
-          "wyjasnienie": "Zapach zmywacza to aceton i octan etylu — produkty metabolizmu zapasowego. Gdy cukry z ostatniego dokarmiania się skończą, drożdże i LAB przechodzą na to, co zostało, i zaczynają wypuszczać związki lotne. To sygnał odwracalny: częstsze albo mocniejsze odświeżenie wraca profil do normy. Pleśń wygląda inaczej — widać kolonie na powierzchni, a nie sam zapach."
-        },
-        {
           "id": "Z-03",
           "poziom": "JUNIOR",
           "typ": "jednokrotny",
@@ -3734,23 +3899,6 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
             0
           ],
           "wyjasnienie": "Proporcja zaczyn:mąka:woda to nie kosmetyka, tylko nastawienie zegara. Im mniej zaczynu na porcję świeżej mąki, tym dłużej do szczytu — a temperatura wody ustawia, jak szybko ten zegar tyka. Zmiana obu „na oko” przesuwa szczyt o godziny, więc levain trafia do zarobu młody albo przejrzały. Ważysz nie dlatego, że tak każe procedura, tylko dlatego, że chcesz znać godzinę."
-        },
-        {
-          "id": "Z-04",
-          "poziom": "SAMODZIELNY",
-          "typ": "jednokrotny",
-          "ccp": false,
-          "pytanie": "Zakwas pachnie octowo zamiast mlecznie. Który mechanizm i korekta są poprawne?",
-          "opcje": [
-            "Za wysoka temperatura zabiła bakterie mlekowe — mocno schłodzić kulturę",
-            "Chłód i gęste ciasto sprzyjają szlakowi octowemu — podnieść temperaturę i hydrację",
-            "Nadmiar dzikich drożdży zdominował bakterie — dodać drożdży piekarskich",
-            "Mąka jest zbyt świeża po przemiale — użyć partii leżakującej kilka miesięcy"
-          ],
-          "poprawne": [
-            1
-          ],
-          "wyjasnienie": "Bakterie heterofermentatywne robią jednocześnie kwas mlekowy (łagodny) i octowy (ostry) — o proporcji decydują warunki, nie gatunek. Niższa temperatura i mniej wody przesuwają je ku gałęzi octowej. Dlatego korekta idzie w tę samą stronę co przyczyna: ciepłej i luźniej, a profil wraca ku mlecznemu. Schładzanie pogłębiłoby problem, który miało naprawić."
         },
         {
           "id": "Z-05",
@@ -3785,6 +3933,42 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
             2
           ],
           "wyjasnienie": "Mąka pełnoziarnista wnosi nie tylko pokarm, ale i mikroflorę oraz minerały z okrywy ziarna. Po przejściu na mąkę rafinowaną populacja musi się przebudować pod uboższe wejście — to trwa dni i wygląda jak słabnięcie. Prowadzenie zespołu polega tu na odróżnieniu adaptacji od awarii: monitorujesz pH i przyrost, zamiast reagować paniką na jeden słabszy dzień."
+        }
+      ],
+      "pytaniaRozdzialow": [
+        {
+          "id": "Z-02",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Co oznacza zapach acetonowy (zmywacza) w zakwasie?",
+          "opcje": [
+            "Nadmiar karmienia — odświeżany częściej, niż zdąży przefermentować",
+            "Za niska temperatura — metabolizm zwolnił i utknął na starcie",
+            "Głód — przerwa między karmieniami dłuższa, niż zakwas wytrzymuje",
+            "Zakażenie pleśnią — kultura nie nadaje się do dalszej pracy"
+          ],
+          "poprawne": [
+            2
+          ],
+          "wyjasnienie": "Zapach zmywacza to aceton i octan etylu — produkty metabolizmu zapasowego. Gdy cukry z ostatniego dokarmiania się skończą, drożdże i LAB przechodzą na to, co zostało, i zaczynają wypuszczać związki lotne. To sygnał odwracalny: częstsze albo mocniejsze odświeżenie wraca profil do normy. Pleśń wygląda inaczej — widać kolonie na powierzchni, a nie sam zapach."
+        },
+        {
+          "id": "Z-04",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Zakwas pachnie octowo zamiast mlecznie. Który mechanizm i korekta są poprawne?",
+          "opcje": [
+            "Za wysoka temperatura zabiła bakterie mlekowe — mocno schłodzić kulturę",
+            "Chłód i gęste ciasto sprzyjają szlakowi octowemu — podnieść temperaturę i hydrację",
+            "Nadmiar dzikich drożdży zdominował bakterie — dodać drożdży piekarskich",
+            "Mąka jest zbyt świeża po przemiale — użyć partii leżakującej kilka miesięcy"
+          ],
+          "poprawne": [
+            1
+          ],
+          "wyjasnienie": "Bakterie heterofermentatywne robią jednocześnie kwas mlekowy (łagodny) i octowy (ostry) — o proporcji decydują warunki, nie gatunek. Niższa temperatura i mniej wody przesuwają je ku gałęzi octowej. Dlatego korekta idzie w tę samą stronę co przyczyna: ciepłej i luźniej, a profil wraca ku mlecznemu. Schładzanie pogłębiłoby problem, który miało naprawić."
         }
       ]
     },
@@ -21130,85 +21314,245 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
       "karty": [
         {
           "tytul": "Opowiadać prawdziwie, nie efektownie",
-          "tresc": [
-            "Pieczywo rzemieślnicze sprzedaje się różnicą, a nie przymiotnikami. „Nasz chleb jest najlepszy” nie mówi nic, bo każdy sklep może to powiedzieć o każdym wyrobie. „Prowadzony długo na zakwasie, więc kwaśniejszy i dłużej świeży” daje klientowi podstawę do wyboru. Pierwsze zdanie jest reklamą, drugie obsługą, bo tylko drugie da się sprawdzić w domu.",
-            "Dobry opis mieści się w dwóch zdaniach i ma trzy elementy. Są to: **co to jest** (rodzaj mąki, sposób prowadzenia), **jak smakuje** (kwaśność, słodycz, chrupkość, wilgotność) i **do czego pasuje albo jak długo się trzyma**. Uwaga klienta w kolejce jest podzielona między wybór, portfel i ludzi z tyłu. Wykładu nie wysłucha, ale jedną konkretną cechę zapamięta i wróci po nią.",
-            "Osobną sprawą jest **uprzedzanie o właściwościach nietypowych**. Chleb żytni pokrojony w dniu wypieku maże się pod nożem i wygląda na surowy. To właściwość, nie wada, ale klient nie ma skąd tego wiedzieć. Zdanie przed zakupem ustawia oczekiwanie, z którym klient porówna wyrób w domu. Brak tego zdania kosztuje reklamację i klienta, który już nie wróci."
+          "na_start": {
+            "pytanie": "Klient oddaje żytni bochenek: „niedopieczony, w środku się maże”. Kiedy była właściwa chwila na rozmowę o tym chlebie?",
+            "opcje": [
+              "Teraz, przy reklamacji — wtedy klient słucha najuważniej",
+              "Przy zakupie — jednym zdaniem o krojeniu żytniego",
+              "Na ulotce przy witrynie — przy ladzie nie ma na to czasu"
+            ],
+            "poprawna": 1,
+            "mysl": 4,
+            "wyjasnienie": "Żytni pokrojony w dniu wypieku maże się — to właściwość, nie wada. Powiedziana przy zakupie ustawia oczekiwanie; przy reklamacji brzmi już jak tłumaczenie się."
+          },
+          "mysli": [
+            {
+              "teza": "Pieczywo rzemieślnicze sprzedaje się konkretem, a nie przymiotnikiem.",
+              "rozwiniecie": [
+                "„Najlepszy” czy „wyjątkowy” powie każdy sklep o każdym wyrobie. **Konkret** to rodzaj mąki, sposób prowadzenia, długość fermentacji: „Prowadzony długo na zakwasie, więc kwaśniejszy i dłużej świeży”. To obsługa, nie reklama, bo klient sprawdzi to w domu."
+              ]
+            },
+            {
+              "teza": "Dobry opis to dwa zdania: co to jest, jak smakuje, do czego pasuje albo jak długo się trzyma.",
+              "rozwiniecie": [
+                "Smak to kwaśność, słodycz, chrupkość, wilgotność. Klient w kolejce dzieli uwagę między wybór, portfel i ludzi z tyłu. Wykładu nie wysłucha, a jedną cechę zapamięta i wróci po nią."
+              ]
+            },
+            {
+              "teza": "Słowa sprzedawcy ustawiają oczekiwanie, z którym klient porówna wyrób w domu.",
+              "rozwiniecie": [
+                "Zadowolenie zależy od różnicy między wyrobem a oczekiwaniem z chwili zakupu — to **model potwierdzenia oczekiwań** (pewność B; Oliver 1980). Przymiotnik podnosi oczekiwanie w nieznaną stronę, więc łatwo o rozczarowanie. Konkret ustawia je tam, gdzie wyrób je spełni."
+              ]
+            },
+            {
+              "teza": "O właściwościach nietypowych uprzedza się przy sprzedaży, nie przy reklamacji.",
+              "rozwiniecie": [
+                "Żytni pokrojony w dniu wypieku maże się pod nożem i wygląda na surowy. To **właściwość, nie wada**, ale klient tego nie wie. Przemilczana kosztuje reklamację i klienta, który nie wróci."
+              ],
+              "hala": "Klient odsyłający żytni bochenek jako „niedopieczony” prawie zawsze pokroił go w dniu zakupu. Ta rozmowa należy do sprzedaży — przy reklamacji jest już tłumaczeniem się."
+            }
           ],
-          "punkty": [
-            "Opis w dwóch zdaniach: **co to jest**, **jak smakuje**, **do czego pasuje albo jak długo się trzyma**.",
-            "Przymiotniki („najlepszy”, „wyjątkowy”) nie niosą informacji. Konkret niesie: rodzaj mąki, sposób prowadzenia, długość fermentacji.",
-            "**Uprzedzaj o właściwościach nietypowych przy sprzedaży**, nie przy reklamacji.",
-            "🔎 Z hali: klient odsyłający żytni bochenek jako „niedopieczony” prawie zawsze pokroił go w dniu zakupu. Ta rozmowa należy do sprzedaży — przy reklamacji jest już tłumaczeniem się.",
-            "🧠 Zapamiętaj: przy ladzie sprzedaje się konkret, a nie przymiotnik."
-          ],
-          "mechanizm": "Zadowolenie nie zależy od samego wyrobu, tylko od różnicy między wyrobem a oczekiwaniem — tak opisuje to model potwierdzenia oczekiwań (pewność B; Oliver 1980). Oczekiwanie powstaje w chwili zakupu, więc słowa sprzedawcy są jego częścią. Przymiotnik oceniający podnosi oczekiwanie, nie mówiąc, w którą stronę, więc łatwo o rozczarowanie. Cecha konkretna ustawia je tam, gdzie wyrób je spełni. Cecha nietypowa nazwana z góry przestaje być niespodzianką i nie wraca jako reklamacja."
+          "zapamietaj": "Przy ladzie sprzedaje się konkret, a nie przymiotnik.",
+          "sprawdz": "OS-06"
         },
         {
           "tytul": "Dobrać wyrób do potrzeby, nie do własnego gustu",
-          "tresc": [
-            "Klient rzadko mówi nazwą wyrobu — mówi zastosowaniem. Przy niezdecydowanym kliencie pierwsze jest więc jedno krótkie pytanie: **na kiedy** i **do czego**. „Na dziś, do zupy” prowadzi gdzie indziej niż „na tydzień, do kanapek”. Pytanie zmniejsza niepewność klienta co do własnych potrzeb, a to ona, nie sama liczba wyrobów, utrudnia wybór (pewność A; Chernev i in. 2015).",
-            "Dalej działa kilka zależności, które warto mieć w głowie jako mapę. Im **więcej pełnego przemiału i dłuższa fermentacja**, tym dłużej wyrób zostaje wilgotny i wyraźniej kwaśny. Im **więcej tłuszczu i cukru**, tym miększy miękisz i krótsze okno dobrego smaku. **Cienkie i chrupiące** żyje godzinami, bo szybko oddaje wilgoć; **suche i kruche** — tygodniami, bo nie ma czego oddać.",
-            "Jest jeszcze pytanie, które rozstrzyga najwięcej: **czy ktoś w domu czegoś nie może jeść**. Nie zadaje się go przy każdym zakupie. Gdy klient napomknie o dziecku, diecie albo alergii, sięga się po wykaz alergenów, nie po domysł, bo skład zna dokument, a nie pamięć. Granicę opisuje osobny moduł o odpowiedzialności."
+          "na_start": {
+            "pytanie": "Klient szuka chleba, który przez tydzień będzie dobry do kanapek. Który kierunek jest trafny?",
+            "opcje": [
+              "Maślany i miękki — dłużej zostanie miękki",
+              "Z pełnego przemiału, długo fermentowany",
+              "Cienki i chrupiący — nie ma w nim czego wysuszyć"
+            ],
+            "poprawna": 1,
+            "mysl": 2,
+            "wyjasnienie": "Pełny przemiał wiąże wodę mocniej i oddaje ją wolniej, a kwasy z długiej fermentacji spowalniają pleśnienie. Tłuszcz daje miękkość od razu, ale na krótko."
+          },
+          "mysli": [
+            {
+              "teza": "Klient zwykle mówi zastosowaniem, więc gdy się waha, zacznij od pytania: na kiedy i do czego.",
+              "rozwiniecie": [
+                "„Na dziś, do zupy” prowadzi gdzie indziej niż „na tydzień, do kanapek”. Wybór utrudnia **niepewność co do własnych potrzeb**, nie sama liczba wyrobów, a pytanie ją zmniejsza (pewność A; Chernev i in. 2015)."
+              ],
+              "hala": "„Poproszę coś dobrego” to zaproszenie do pytania, nie brak decyzji. Kto zamiast pytać pokazuje własny ulubiony wyrób, trafia rzadko i nie dowiaduje się, czego klient szukał."
+            },
+            {
+              "teza": "Pełny przemiał i długa fermentacja dają wyrób dłużej wilgotny i wyraźniej kwaśny.",
+              "rozwiniecie": [
+                "Otręby i cząstki pełnego przemiału wiążą wodę mocniej niż skrobia i wolniej ją oddają. Fermentacja dokłada **kwasy organiczne**: wyraźniejszy smak, wolniejsze pleśnienie."
+              ]
+            },
+            {
+              "teza": "Tłuszcz i cukier dają miększy miękisz, ale krótsze okno dobrego smaku.",
+              "rozwiniecie": [
+                "Tłuszcz nie trzyma wody: przerywa sieć glutenu i powleka skrobię. Miękisz jest miękki od razu, ale szybciej traci strukturę, a tłuszcz z czasem jełczeje."
+              ]
+            },
+            {
+              "teza": "Cienkie i chrupiące żyje godzinami, a suche i kruche — tygodniami.",
+              "rozwiniecie": [
+                "Pierwsze szybko oddaje wilgoć, drugie nie ma czego oddać. Termin wynika więc z tego, ile wody zostało i jak łatwo ucieka."
+              ]
+            },
+            {
+              "teza": "Przy wzmiance o dziecku, diecie albo alergii sięgasz po wykaz alergenów, nie po domysł.",
+              "rozwiniecie": [
+                "Pytanie, czy ktoś w domu czegoś nie może jeść, rozstrzyga najwięcej, ale nie zadaje się go przy każdym zakupie. Skład zna **dokument, nie pamięć**. Granicę opisuje osobny moduł o odpowiedzialności."
+              ]
+            }
           ],
-          "punkty": [
-            "Zacznij od jednego pytania: **na kiedy** i **do czego**. Reszta wyboru układa się sama.",
-            "Więcej pełnego przemiału i dłuższa fermentacja → dłużej wilgotny, wyraźniej kwaśny.",
-            "Więcej tłuszczu i cukru → miększy miękisz, **krótsze okno** naprawdę dobrego smaku.",
-            "🔎 Z hali: „poproszę coś dobrego” to nie jest brak decyzji, tylko zaproszenie do pytania. Kto zamiast pytać pokazuje własny ulubiony wyrób, trafia rzadko — i nie dowiaduje się, czego klient naprawdę szukał.",
-            "🧠 Zapamiętaj: klient kupuje zastosowanie, nie nazwę — najpierw ustal zastosowanie."
-          ],
-          "mechanizm": "Za tymi zależnościami stoją woda i tłuszcz. Otręby i cząstki pełnego przemiału wiążą wodę mocniej niż skrobia, więc oddają ją wolniej. Dłuższa fermentacja dokłada kwasy organiczne, stąd wyraźniejszy smak i wolniejsze pleśnienie. Tłuszcz nie trzyma wody, tylko przerywa sieć glutenu i powleka skrobię. Miękisz jest miękki od razu, ale szybciej traci strukturę, a tłuszcz z czasem jełczeje. Termin nie jest więc nadany z zewnątrz — wynika z tego, ile wody zostało i jak łatwo ucieka."
+          "zapamietaj": "Klient kupuje zastosowanie, nie nazwę — najpierw ustal zastosowanie.",
+          "sprawdz": "LD-01"
         },
         {
           "tytul": "Gdy tego nie ma — zamiennik zamiast odmowy",
-          "tresc": [
-            "„Nie ma” to najkrótsza droga do wypuszczenia klienta z pustymi rękami. Nie ma **tego wyrobu**, ale zwykle jest coś, co spełni tę samą potrzebę. Wiedzę o asortymencie ma obsługa, nie klient, więc to obsługa powinna wykonać pracę szukania. Kolejność jest zawsze ta sama: czego nie ma, konkretny zamiennik, **czym się różni**.",
-            "Zamiennik dobiera się po zastosowaniu, nie po wyglądzie. Zamiast pszenno-żytniego pod kanapki — inny chleb o zbliżonym miękiszu, nie ciemniejszy bochenek, który akurat stoi obok. Różnicę nazywa się wprost: „ten jest bardziej kwaśny”, „ten będzie wilgotniejszy”. Uprzedzona różnica zostaje przyjęta jako wybór, bo nie zaskakuje. Nieuprzedzona wygląda w domu na pomyłkę obsługi.",
-            "Trzecia rzecz to **kiedy będzie**. „Jutro od rana” zamienia dzisiejszy brak w jutrzejszy zakup, bo daje klientowi plan zamiast szukania gdzie indziej. Wyrób schodzący regularnie przed końcem dnia to informacja dla produkcji — razem z godziną, bo dopiero godzina pokazuje, ile popytu przepadło."
+          "na_start": {
+            "pytanie": "Klient chce pszenno-żytni pod kanapki, a ten się skończył. Co mu proponujesz?",
+            "opcje": [
+              "Ciemniejszy bochenek, który stoi zaraz obok",
+              "Inny chleb o zbliżonym miękiszu i mówisz, czym się różni",
+              "Nic — mówisz, że nie ma, i czekasz, aż sam wybierze"
+            ],
+            "poprawna": 1,
+            "mysl": 2,
+            "wyjasnienie": "Zamiennik dobiera się po zastosowaniu, nie po wyglądzie, a różnicę nazywa się wprost — wtedy w domu jest wyborem, nie pomyłką obsługi."
+          },
+          "mysli": [
+            {
+              "teza": "Samo „nie ma” wypuszcza klienta z pustymi rękami.",
+              "rozwiniecie": [
+                "Nie ma tego wyrobu, ale zwykle jest coś, co spełni tę samą potrzebę.",
+                "Klient ma gotowy plan, a „nie ma” każe mu wymyślić nowy w kolejce, bez znajomości asortymentu. Tę wiedzę ma obsługa, więc to ona szuka. Kolejność: **czego nie ma → konkretny zamiennik → czym się różni**."
+              ],
+              "hala": "Klient, który usłyszał tylko „nie ma”, prawie nigdy nie pyta o nic więcej — wychodzi. Ta sama osoba po „nie ma, ale ten spełni to samo, tylko jest bardziej kwaśny” zwykle zostaje."
+            },
+            {
+              "teza": "Zamiennik dobiera się po zastosowaniu, nie po wyglądzie.",
+              "rozwiniecie": [
+                "Pod kanapki zamiast pszenno-żytniego podajesz inny chleb o zbliżonym miękiszu, a nie ciemniejszy bochenek, który akurat stoi obok."
+              ]
+            },
+            {
+              "teza": "Różnicę nazywa się wprost, bo uprzedzona jest wyborem, a nieuprzedzona — pomyłką obsługi.",
+              "rozwiniecie": [
+                "„Ten jest bardziej kwaśny”, „ten będzie wilgotniejszy”, krócej świeży. Uprzedzona różnica nie zaskakuje klienta w domu."
+              ]
+            },
+            {
+              "teza": "Powiedz, kiedy wyrób będzie, a dzisiejszy brak zmieni się w jutrzejszy zakup.",
+              "rozwiniecie": [
+                "Badania braków na półce opisują kilka reakcji: zamianę wyrobu, odroczeniem, innym sklepem albo rezygnacją (pewność B; Sloot i in. 2005). Zamiennik ułatwia zamianę, a „jutro od rana” daje plan: **odroczenie** zamiast wyjścia do konkurencji."
+              ]
+            },
+            {
+              "teza": "Wyrób, który regularnie schodzi przed końcem dnia, zgłaszasz produkcji razem z godziną.",
+              "rozwiniecie": [
+                "Dopiero godzina pokazuje, ile popytu przepadło. Powtarzalnego braku o stałej porze kasa nie widzi, bo nic nie sprzedano."
+              ]
+            }
           ],
-          "punkty": [
-            "Kolejność: **czego nie ma → konkretny zamiennik → czym się różni**. Samo „nie ma” wypuszcza klienta z pustymi rękami.",
-            "Różnicę nazwij wprost: bardziej kwaśny, wilgotniejszy, krócej świeży. Uprzedzona różnica jest wyborem, nieuprzedzona jest pomyłką.",
-            "Powiedz, **kiedy będzie** — to zamienia dzisiejszy brak w jutrzejszy zakup.",
-            "🔎 Z hali: klient, któremu powiedziano tylko „nie ma”, prawie nigdy nie pyta o nic więcej — wychodzi. Ta sama osoba, usłyszawszy „nie ma, ale ten spełni to samo, tylko jest bardziej kwaśny”, zwykle zostaje.",
-            "🧠 Zapamiętaj: „nie ma” kończy rozmowę — „nie ma, ale” ją prowadzi."
-          ],
-          "mechanizm": "Klient przychodzi z gotowym planem, a samo „nie ma” zostawia go z kosztem wymyślenia nowego w kolejce, bez znajomości asortymentu. Badania braków na półce opisują kilka reakcji: zamianę wyrobu, odroczenie, inny sklep albo rezygnację (pewność B; Sloot i in. 2005). Podany zamiennik obniża koszt pierwszej z nich, a zapowiedź terminu zamienia brak w odroczenie zamiast wyjścia do konkurencji. Powtarzalny brak o stałej porze jest przy tym popytem, którego kasa nie widzi, bo nie sprzedano niczego."
+          "zapamietaj": "„Nie ma” kończy rozmowę — „nie ma, ale” ją prowadzi.",
+          "sprawdz": "LD-02"
         },
         {
           "tytul": "Rada na drogę: przechowywanie, krojenie, mrożenie",
-          "tresc": [
-            "Większość rozczarowań powstaje w domu klienta i da się im zapobiec jednym zdaniem. Najważniejsze dotyczy przechowywania: **chleba nie trzyma się w lodówce**. Skrobia krystalizowała najszybciej w temperaturze lodówki spośród badanych warunków (pewność B; Aguirre i in. 2011). Chleb żyje w temperaturze pokojowej, w papierze albo chlebaku, nie w folii, która zatrzymuje parę i zmiękcza skórkę.",
-            "Druga rada dotyczy **krojenia**. Pieczywo kroi się po wystudzeniu, a żytnie dopiero następnego dnia. W ciepłym miękiszu skrobia nie związała jeszcze wody i nóż ją rozmazuje. Napoczęty bochenek kładzie się przekrojem do deski, bo odsłonięty miękisz najszybciej oddaje wilgoć.",
-            "Trzecia rada jest najbardziej niedoceniana: **mrożenie zatrzymuje czerstwienie prawie całkowicie**, bo w zamrożeniu nie powstają nowe kryształy skrobi (pewność B; Aguirre i in. 2011). Chleb zamrożony w dniu zakupu, pokrojony, wyjmuje się porcjami i odświeża w piekarniku. Szczegóły: moduł „Mrożenie i odświeżanie pieczywa”."
+          "na_start": {
+            "pytanie": "Klient bierze chleb na cały tydzień: „Schowam do lodówki, to dłużej postoi”. Co mu radzisz?",
+            "opcje": [
+              "Dobrze — w chłodzie chleb czerstwieje wolniej",
+              "Lepiej blat w papierze, a nadmiar zamrozić",
+              "Lodówka, ale w szczelnej folii, żeby nie wysechł"
+            ],
+            "poprawna": 1,
+            "mysl": 2,
+            "wyjasnienie": "Z badanych warunków skrobia krystalizowała najszybciej w temperaturze lodówki, więc chleb twardnieje tam szybciej niż na blacie. Zamrażarka ten proces prawie zatrzymuje."
+          },
+          "mysli": [
+            {
+              "teza": "Czerstwienie to nie wysychanie, tylko powrót skrobi do kryształów.",
+              "rozwiniecie": [
+                "W wypieku skrobia chłonie wodę i traci strukturę krystaliczną. Po ostygnięciu łańcuchy **amylopektyny** powoli wracają do kryształów i wypychają wodę, więc chleb twardnieje i w szczelnym worku. Potrzeba do tego siły napędowej i ruchliwości cząsteczek."
+              ]
+            },
+            {
+              "teza": "Chleba nie trzyma się w lodówce, bo tam czerstwieje najszybciej.",
+              "rozwiniecie": [
+                "Skrobia krystalizowała najszybciej w temperaturze lodówki spośród badanych warunków (pewność B; Aguirre i in. 2011). W lodówce siła napędowa jest duża, a ruchliwość wciąż wystarcza.",
+                "Chleb trzyma się w **temperaturze pokojowej**, w papierze albo chlebaku, nie w folii, która zatrzymuje parę i zmiękcza skórkę."
+              ]
+            },
+            {
+              "teza": "Kroi się po całkowitym wystudzeniu, a żytnie dopiero następnego dnia.",
+              "rozwiniecie": [
+                "W ciepłym miękiszu skrobia nie związała wody i nóż ją rozmazuje. Napoczęty bochenek kładzie się **przekrojem do deski**: odsłonięty miękisz najszybciej oddaje wilgoć."
+              ]
+            },
+            {
+              "teza": "Mrożenie zatrzymuje czerstwienie prawie całkowicie.",
+              "rozwiniecie": [
+                "W zamrożeniu nie powstają nowe kryształy skrobi (pewność B; Aguirre i in. 2011). Woda zamarza i ruch prawie ustaje. Zamroź **w dniu zakupu**, najlepiej pokrojony, wyjmuj porcjami, odświeżaj w piekarniku. Więcej: moduł „Mrożenie i odświeżanie pieczywa”."
+              ],
+              "hala": "Rada o mrożeniu wraca po tygodniu jako „a wie pani, że to naprawdę działa”. Żadna inna rada nie ma takiego zwrotu i żadna nie jest tak rzadko mówiona."
+            },
+            {
+              "teza": "Ciekawostka przy ladzie opisuje proces i kończy się radą.",
+              "rozwiniecie": [
+                "Jedno zdanie rady zapobiega większości rozczarowań w domu klienta. Przykład: po ostygnięciu skrobia jest inaczej ułożona, a podgrzanie topi kryształy, ale tylko na krótko. Stąd rada: odświeżać porcję, **piekarnik zamiast mikrofali**."
+              ]
+            },
+            {
+              "teza": "Na „a to jest zdrowsze?” odpowiadasz wprost, że to pytanie do lekarza.",
+              "rozwiniecie": [
+                "⚠️ *„Tego nie umiem powiedzieć — to pytanie do lekarza. Mogę powiedzieć, jak ten chleb jest robiony i jak go przechować.”* Dlaczego: „Granica komunikacji zdrowotnej”."
+              ]
+            }
           ],
-          "punkty": [
-            "**Chleba nie trzyma się w lodówce** — czerstwienie jest najszybsze w zakresie chłodniczym.",
-            "Kroić po całkowitym wystudzeniu; **żytnie dopiero następnego dnia**.",
-            "**Mrożenie zatrzymuje czerstwienie**: zamroź w dniu zakupu, najlepiej pokrojony, odświeżaj porcjami.",
-            "**Ciekawostka opisuje proces i kończy się radą.** Chleb po ostygnięciu ma inaczej ułożoną skrobię, a odgrzewanie działa krótko — stąd rada: odświeżać porcję, piekarnik zamiast mikrofali.",
-            "⚠️ Na „a to jest zdrowsze?” odpowiadamy wprost: *„Tego nie umiem powiedzieć — to pytanie do lekarza. Mogę powiedzieć, jak ten chleb jest robiony i jak go przechować.”* Dlaczego: „Granica komunikacji zdrowotnej”.",
-            "🔎 Z hali: rada o mrożeniu wraca po tygodniu jako „a wie pani, że to naprawdę działa”. Żadna inna rada nie ma takiego zwrotu i żadna nie jest tak rzadko mówiona.",
-            "🧠 Zapamiętaj: lodówka psuje chleb szybciej niż blat, a zamrażarka zatrzymuje go prawie całkiem."
-          ],
-          "mechanizm": "Czerstwienie to nie wysychanie, tylko powrót skrobi do porządku. W wypieku ziarna skrobi chłoną wodę i tracą strukturę krystaliczną. Po ostygnięciu łańcuchy amylopektyny powoli układają się znów w kryształy i wypychają wodę, dlatego chleb twardnieje także w szczelnym worku. Proces potrzebuje siły napędowej i ruchliwości cząsteczek. W lodówce siła jest duża, a ruchliwość wciąż wystarcza; w zamrażarce woda zamarza i ruch prawie ustaje. Podgrzanie topi kryształy, ale tylko na krótko."
+          "zapamietaj": "Lodówka psuje chleb szybciej niż blat, a zamrażarka zatrzymuje go prawie całkiem.",
+          "sprawdz": "LD-03"
         },
         {
           "tytul": "Witryna mówi — zanim ktokolwiek się odezwie",
-          "tresc": [
-            "Witryna nie jest magazynem, tylko komunikatem. Klient odczytuje z niej, co jest świeże, czego jest dużo, a co się kończy, zanim cokolwiek powie. Przerzedzona półka bywa czytana jako resztka. Badania znają też odczyt odwrotny: ubytek po zakupach innych bywa znakiem popularności (pewność B; van Herpen i in. 2009). Dlatego stan witryny prowadzi się świadomie, a pod koniec dnia zwęża ekspozycję.",
-            "Rotacja ma jedną twardą zasadę: wydaje się **według najkrótszego terminu**, a nie to, co leży z brzegu. Wydając zawsze najstarszą sztukę, trzymasz wiek zapasu najniżej, jak się da. Sprawdza się to na bieżąco, bo pod koniec dnia zostaje już tylko liczenie strat. Wyroby o krótkim oknie mają stałe miejsce, chłodne albo eksponowane, którego nie zajmuje się „na chwilę”.",
-            "Z lady płynie informacja, której nie ma nigdzie indziej: **o której co się skończyło** i **o co pytano, choć tego nie było**. Kasa widzi tylko to, co było na półce; popytu niezaspokojonego w niej nie ma. To pomiar, nie wrażenie — przekazany zmienia jutrzejszą produkcję, nieprzekazany znika z końcem zmiany."
+          "na_start": {
+            "pytanie": "Z brzegu tacy leży sztuka z późniejszym terminem, w głębi — z najkrótszym. Którą podajesz klientowi?",
+            "opcje": [
+              "Tę z brzegu — szybciej i wygląda świeżo",
+              "Tę z najkrótszym terminem, z głębi",
+              "Tę, która leży najbliżej kasy"
+            ],
+            "poprawna": 1,
+            "mysl": 3,
+            "wyjasnienie": "Wydając zawsze najstarszą sztukę, trzymasz wiek zapasu najniżej. Kto wydaje z brzegu, hoduje w głębi zapas, który w całości trafi do strat."
+          },
+          "mysli": [
+            {
+              "teza": "Witryna jest komunikatem, nie magazynem — klient czyta ją, zanim się odezwie.",
+              "rozwiniecie": [
+                "Widać z niej, co jest świeże, czego dużo, co się kończy. Pełna do końca dnia mówi „nikt tego nie kupuje”, pusta o czternastej — „przyjdź wcześniej”. Stan witryny prowadzi się więc świadomie."
+              ]
+            },
+            {
+              "teza": "Puste miejsce na półce jest dwuznaczne, więc pod koniec dnia zwęża się ekspozycję.",
+              "rozwiniecie": [
+                "Przerzedzona półka bywa czytana jako resztka. Badania znają też odczyt odwrotny: ubytek po zakupach innych bywa znakiem popularności (pewność B; van Herpen i in. 2009). Wygrywa odczyt zależny od pory i ułożenia.",
+                "Obfitość i świeżość ocenia się **porównawczo**. Zwężenie zabiera nie towar, tylko pustkę."
+              ],
+              "hala": "Trzy rodzaje pieczywa po jednej sztuce wyglądają jak koniec dnia, a te same trzy złożone na jednej tacy — jak wybór. Towar ten sam, decyzja klienta inna."
+            },
+            {
+              "teza": "Wydaje się według najkrótszego terminu, a nie to, co leży z brzegu.",
+              "rozwiniecie": [
+                "Najstarsza sztuka wydana pierwsza trzyma wiek zapasu najniżej. Wydawanie z brzegu hoduje w głębi **starzejący się ogon zapasu**, który w całości trafi do strat.",
+                "Rotację sprawdza się na bieżąco, bo wieczorem zostaje już tylko liczenie strat. Wyroby o krótkim oknie mają stałe miejsce, chłodne albo eksponowane, którego nie zajmuje się „na chwilę”."
+              ]
+            },
+            {
+              "teza": "Godzina wyprzedania i pytania o to, czego nie było, to pomiar popytu, nie wrażenie.",
+              "rozwiniecie": [
+                "Nie ma go nigdzie poza ladą: kasa widzi tylko to, co było na półce, a **popytu niezaspokojonego** nie zna. Przekazany zmienia jutrzejszą produkcję, nieprzekazany znika z końcem zmiany."
+              ]
+            }
           ],
-          "punkty": [
-            "Witryna jest **komunikatem**: pełna do końca dnia mówi „nikt tego nie kupuje”, pusta o czternastej mówi „przyjdź wcześniej”.",
-            "Rotacja idzie według **najkrótszego terminu**, nie kolejności ułożenia — i sprawdza się ją na bieżąco.",
-            "Godzina wyprzedania i pytania o rzeczy, których nie było, to **pomiar popytu** — przekaż go dalej.",
-            "🔎 Z hali: trzy rodzaje pieczywa po jednej sztuce wyglądają jak koniec dnia, a te same trzy sztuki złożone na jednej tacy wyglądają jak wybór. Towar ten sam, decyzja klienta inna.",
-            "🧠 Zapamiętaj: klient czyta witrynę wcześniej, niż zada pytanie — więc witryna odpowiada pierwsza."
-          ],
-          "mechanizm": "Obfitość i świeżość ocenia się porównawczo, a nie bezwzględnie: ten sam bochenek wygląda inaczej samotnie na dużej tacy, a inaczej wśród podobnych. Puste miejsce jest dwuznaczne — może znaczyć „wykupione” albo „zostawione”, a który odczyt wygra, zależy od pory i ułożenia. Zwężanie ekspozycji usuwa tę dwuznaczność: towaru nie ubywa, ubywa pustki. Kto wydaje sztukę z brzegu, hoduje w głębi starzejący się ogon zapasu, który w całości trafi do strat."
+          "zapamietaj": "Klient czyta witrynę wcześniej, niż zada pytanie — więc witryna odpowiada pierwsza."
         },
         {
           "tytul": "Porównanie: jak robią to inni i kiedy to ma sens",
@@ -21485,6 +21829,17 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
           ]
         },
         {
+          "id": "gluten",
+          "termin": "gluten",
+          "kategoria": "Ciasto i mąka",
+          "znaczenie": "Elastyczna siatka powstająca, gdy białka mąki połączą się z wodą i ze sobą. To ona zatrzymuje gaz w cieście — a w cieście kruchym jest wrogiem, bo daje ciągliwość zamiast kruchości.",
+          "aliasy": [
+            "glutenu",
+            "glutenow",
+            "glutenem"
+          ]
+        },
+        {
           "id": "retrogradacja",
           "termin": "retrogradacja skrobi",
           "kategoria": "Wypiek i piece",
@@ -21493,6 +21848,16 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
             "retrogradacji",
             "czerstwienie",
             "czerstwienia"
+          ]
+        },
+        {
+          "id": "amylopektyna",
+          "termin": "amylopektyna",
+          "kategoria": "Wypiek i piece",
+          "znaczenie": "Mocno rozgałęziona cząsteczka skrobi. Porządkuje się powoli, przez kolejne dni, i odpowiada za większość czerstwienia miękiszu — jej kryształy topnieją przy odgrzewaniu, dlatego pieczywo da się odświeżyć.",
+          "aliasy": [
+            "amylopektyny",
+            "amylopektynę"
           ]
         }
       ],
@@ -21514,6 +21879,59 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
           ],
           "wyjasnienie": "Czerstwienie to przebudowa struktury skrobi po ostygnięciu, a nie ucieczka wilgoci, więc zachodzi także w szczelnym opakowaniu. Tempo tej przebudowy zależy od temperatury nieliniowo: mróz ją zatrzymuje, ciepło odwraca, a optimum wypada w zakresie chłodniczym. Dlatego lodówka pogarsza to, co miała poprawić, i jest to jedno z najczęstszych nieporozumień do wyjaśnienia przy ladzie."
         },
+        {
+          "id": "LD-04",
+          "poziom": "MENTOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Pod koniec dnia zostały pojedyncze sztuki na wielu tacach. Co zrobić?",
+          "opcje": [
+            "Złożyć je razem — pustka wokół towaru czyta się jako resztka",
+            "Rozłożyć szerzej, żeby witryna wyglądała na pełniejszą",
+            "Zostawić bez zmian, bo przekładanie skraca trwałość wyrobów",
+            "Przenieść wszystko na zaplecze i wydawać wyłącznie na prośbę"
+          ],
+          "poprawne": [
+            0
+          ],
+          "wyjasnienie": "Człowiek ocenia świeżość porównawczo: pełna półka kojarzy się z początkiem dnia, a przerzedzona z końcem. Pojedyncze sztuki rozłożone szeroko wysyłają więc sygnał resztek, choć towar jest ten sam. Zwężenie ekspozycji nie jest sztuczką — usuwa sygnał nieprawdziwy wobec stanu wyrobu."
+        },
+        {
+          "id": "LD-05",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Które zdanie o skrobi w chlebie wolno powiedzieć klientowi przy ladzie?",
+          "opcje": [
+            "Chleb po ostygnięciu ma inaczej ułożoną skrobię niż prosto z pieca",
+            "Wystudzony chleb jest zdrowszy, bo ma więcej skrobi opornej",
+            "Ten chleb reguluje poziom cukru dzięki skrobi opornej w miękiszu",
+            "Chleb z tą skrobią jest lżej strawny dla osób z wrażliwym jelitem"
+          ],
+          "poprawne": [
+            0
+          ],
+          "wyjasnienie": "Pierwsze zdanie opisuje to, co dzieje się z wyrobem, i da się je uzasadnić bez wchodzenia w rolę doradcy zdrowotnego. Pozostałe mówią o skutku u konkretnej osoby — takich twierdzeń obsługa nie ma podstaw formułować, niezależnie od tego, ile prawdy stoi u ich podstaw."
+        },
+        {
+          "id": "LD-06",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Czym powinna kończyć się ciekawostka opowiedziana przy ladzie?",
+          "opcje": [
+            "Radą, którą klient wykorzysta w domu tego samego dnia",
+            "Odwołaniem do badań, które potwierdzają opisane zjawisko",
+            "Pytaniem, czy klient chce dokupić coś z bieżącej witryny",
+            "Porównaniem naszego wyrobu z pieczywem z innych piekarni"
+          ],
+          "poprawne": [
+            0
+          ],
+          "wyjasnienie": "Fakt sam w sobie łatwo wraca po tygodniu w przekręconej postaci — najczęściej jako zdanie o zdrowiu, którego nikt nie powiedział. Zakończenie radą („mrozić pokrojone”, „nie trzymać w lodówce”) daje klientowi coś sprawdzalnego i nie daje się przerobić na obietnicę."
+        }
+      ],
+      "pytaniaRozdzialow": [
         {
           "id": "OS-06",
           "poziom": "MENTOR",
@@ -21581,57 +21999,6 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
             0
           ],
           "wyjasnienie": "Czerstwienie to przebudowa struktury skrobi, nie wysychanie, więc zachodzi także w szczelnym opakowaniu. Jego tempo jest najwyższe tuż powyżej zera, niższe w temperaturze pokojowej, a poniżej punktu zamarzania praktycznie ustaje. Stąd dwie pozornie sprzeczne rady, które są jedną: nie lodówka, za to zamrażarka."
-        },
-        {
-          "id": "LD-04",
-          "poziom": "MENTOR",
-          "typ": "jednokrotny",
-          "ccp": false,
-          "pytanie": "Pod koniec dnia zostały pojedyncze sztuki na wielu tacach. Co zrobić?",
-          "opcje": [
-            "Złożyć je razem — pustka wokół towaru czyta się jako resztka",
-            "Rozłożyć szerzej, żeby witryna wyglądała na pełniejszą",
-            "Zostawić bez zmian, bo przekładanie skraca trwałość wyrobów",
-            "Przenieść wszystko na zaplecze i wydawać wyłącznie na prośbę"
-          ],
-          "poprawne": [
-            0
-          ],
-          "wyjasnienie": "Człowiek ocenia świeżość porównawczo: pełna półka kojarzy się z początkiem dnia, a przerzedzona z końcem. Pojedyncze sztuki rozłożone szeroko wysyłają więc sygnał resztek, choć towar jest ten sam. Zwężenie ekspozycji nie jest sztuczką — usuwa sygnał nieprawdziwy wobec stanu wyrobu."
-        },
-        {
-          "id": "LD-05",
-          "poziom": "SAMODZIELNY",
-          "typ": "jednokrotny",
-          "ccp": false,
-          "pytanie": "Które zdanie o skrobi w chlebie wolno powiedzieć klientowi przy ladzie?",
-          "opcje": [
-            "Chleb po ostygnięciu ma inaczej ułożoną skrobię niż prosto z pieca",
-            "Wystudzony chleb jest zdrowszy, bo ma więcej skrobi opornej",
-            "Ten chleb reguluje poziom cukru dzięki skrobi opornej w miękiszu",
-            "Chleb z tą skrobią jest lżej strawny dla osób z wrażliwym jelitem"
-          ],
-          "poprawne": [
-            0
-          ],
-          "wyjasnienie": "Pierwsze zdanie opisuje to, co dzieje się z wyrobem, i da się je uzasadnić bez wchodzenia w rolę doradcy zdrowotnego. Pozostałe mówią o skutku u konkretnej osoby — takich twierdzeń obsługa nie ma podstaw formułować, niezależnie od tego, ile prawdy stoi u ich podstaw."
-        },
-        {
-          "id": "LD-06",
-          "poziom": "JUNIOR",
-          "typ": "jednokrotny",
-          "ccp": false,
-          "pytanie": "Czym powinna kończyć się ciekawostka opowiedziana przy ladzie?",
-          "opcje": [
-            "Radą, którą klient wykorzysta w domu tego samego dnia",
-            "Odwołaniem do badań, które potwierdzają opisane zjawisko",
-            "Pytaniem, czy klient chce dokupić coś z bieżącej witryny",
-            "Porównaniem naszego wyrobu z pieczywem z innych piekarni"
-          ],
-          "poprawne": [
-            0
-          ],
-          "wyjasnienie": "Fakt sam w sobie łatwo wraca po tygodniu w przekręconej postaci — najczęściej jako zdanie o zdrowiu, którego nikt nie powiedział. Zakończenie radą („mrozić pokrojone”, „nie trzymać w lodówce”) daje klientowi coś sprawdzalnego i nie daje się przerobić na obietnicę."
         }
       ]
     },
@@ -27002,22 +27369,49 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
       ],
       "karty": [
         {
-          "id": "powiedziane-nie-znaczy-zrozumiane",
           "tytul": "Powiedziane nie znaczy zrozumiane",
-          "tresc": [
-            "Instrukcja została wypowiedziana jasno. Odbiorca przytaknął, a później zrobił co innego. Najprościej uznać, że nie słuchał, i czasem tak było. Częściej każde z was wyszło z rozmowy z inną wersją tego samego zdania. Mówiący przeceniają, jak dobrze zostali zrozumiani, bo znają swój zamiar i słyszą w zdaniu tylko jedno znaczenie (Keysar i Henly 2002).",
-            "Przeciwnikiem jest przytaknięcie uznane za potwierdzenie. Ludzie przytakują także wtedy, gdy chcą skończyć rozmowę, myślą o czymś innym albo nie chcą wyjść na kogoś, kto nie zrozumiał. Przytaknięcie mówi więc o rozmowie, nie o zrozumieniu. Cena: błąd wraca, a korekta zmienia się w spór o to, co „przecież było mówione”. Tego sporu nie da się rozstrzygnąć, bo każde pamięta swoją wersję.",
-            "Ruch: po ważnym przekazaniu poproś: „Powiedz własnymi słowami, co teraz robisz i kiedy wracasz z informacją.” Bez tonu sprawdzania, bo chodzi o to, czy Ty powiedziałeś jasno. Różnica wychodzi wtedy przed działaniem, a nie po nim, i kosztuje chwilę zamiast poprawiania partii. W ochronie zdrowia ta metoda pomogła w większości badań, choć przeważnie słabej jakości (Talevski i in. 2020)."
+          "na_start": {
+            "pytanie": "Przy przekazaniu zmiany mówisz o wyrobie, który trzeba potraktować inaczej. Kolega kiwa głową, rozkładając rzeczy. Zrozumiał?",
+            "opcje": [
+              "Tak, przytaknął",
+              "Tak, jeśli mówiłem jasno i wyraźnie",
+              "Nie wiem, dopóki nie powie własnymi słowami, co zrobi"
+            ],
+            "poprawna": 2,
+            "mysl": 3,
+            "wyjasnienie": "Przytaknięcie mówi o rozmowie, nie o zrozumieniu. Dowodem jest dopiero treść w słowach odbiorcy."
+          },
+          "mysli": [
+            {
+              "teza": "Mówiący przeceniają, jak dobrze zostali zrozumiani.",
+              "rozwiniecie": [
+                "Odbiorca przytaknął, a zrobił co innego. Czasem nie słuchał, częściej wyszliście z dwiema wersjami jednego zdania. Nadawca zna swój zamiar i słyszy jedno znaczenie, więc nie widzi niejasności widocznej dla odbiorcy (Keysar i Henly 2002)."
+              ]
+            },
+            {
+              "teza": "Przytaknięcie mówi o rozmowie, nie o zrozumieniu.",
+              "rozwiniecie": [
+                "**Przytaknięcie** to gest społeczny: sygnał uwagi, nie zgodności rozumienia. Przytakuje się też, by skończyć rozmowę, myśląc o czym innym albo by nie wyjść na kogoś, kto nie zrozumiał.",
+                "Potem błąd wraca, a korekta staje się nierozstrzygalnym sporem o to, co „przecież było mówione”, bo każde pamięta swoją wersję."
+              ]
+            },
+            {
+              "teza": "Po ważnym przekazaniu poproś o powtórzenie własnymi słowami: co odbiorca robi i kiedy wraca z informacją.",
+              "rozwiniecie": [
+                "Jedynym sprawdzalnym dowodem jest treść w słowach odbiorcy. Różnica wychodzi przed działaniem i kosztuje chwilę, nie poprawianie partii. W ochronie zdrowia metoda pomogła w większości badań, choć przeważnie słabej jakości (Talevski i in. 2020)."
+              ],
+              "hala": "Przy przekazaniu zmiany pada informacja o wyrobie wymagającym innego traktowania. Wchodzący kiwa głową, rozkładając rzeczy. Pytanie „powiedz, co z nim robisz i kiedy” trwa kilkanaście sekund i to jedyny moment, by wyłapać różnicę przed wypiekiem."
+            },
+            {
+              "teza": "Proś bez tonu sprawdzania, bo sprawdzasz, czy Ty powiedziałeś jasno.",
+              "rozwiniecie": [
+                "Odbiorca nie musi się wtedy bronić, więc powtarza to, co naprawdę zrozumiał, a nie to, co ma zdać.",
+                "**Próba w pracy:** jedno zadanie z terminem albo ryzykiem. Czy różnica wyszła przed działaniem, a nie po nim? Odpuść powtarzanie tego samego zdania głośniej."
+              ]
+            }
           ],
-          "punkty": [
-            "Ruch: po ważnym przekazaniu poproś o powtórzenie własnymi słowami — co robi i kiedy wraca z informacją. Bez tonu sprawdzania.",
-            "Próba w pracy: zastosuj to przy jednym zadaniu z terminem albo ryzykiem. Sprawdź, czy różnica wyszła przed działaniem, a nie po nim.",
-            "Odpuszczasz: powtarzanie tego samego zdania głośniej.",
-            "Przytaknięcie mówi o rozmowie, nie o zrozumieniu.",
-            "🔎 Z hali: przy przekazaniu zmiany pada informacja o wyrobie wymagającym innego traktowania. Osoba wchodząca kiwa głową, bo akurat rozkłada rzeczy. Pytanie „powiedz, co z nim robisz i kiedy” zajmuje kilkanaście sekund i jest jedynym momentem, w którym różnicę da się wyłapać przed wypiekiem.",
-            "🧠 Zapamiętaj: przekaz kończy się w głowie odbiorcy, nie w ustach nadawcy."
-          ],
-          "mechanizm": "Nadawca zna swój zamiar i słyszy w zdaniu jedno znaczenie, więc nie zauważa niejasności widocznej dla odbiorcy (Keysar i Henly 2002). Przytaknięcie jest gestem społecznym: sygnalizuje uwagę, a nie zgodność rozumienia. Jedynym sprawdzalnym dowodem jest treść wracająca w słowach odbiorcy. Prośba bez tonu kontroli działa, bo odbiorca nie musi się bronić i powtarza to, co naprawdę zrozumiał, a nie to, co ma zdać.",
+          "zapamietaj": "Przekaz kończy się w głowie odbiorcy, nie w ustach nadawcy.",
+          "id": "powiedziane-nie-znaczy-zrozumiane",
           "rozwoj": {
             "trenuje": [
               "communication",
@@ -27036,22 +27430,50 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
           }
         },
         {
-          "id": "granica-bez-wykladu",
           "tytul": "Granica bez wykładu",
-          "tresc": [
-            "Ktoś przerywa, przekazuje zadanie za późno albo wraca z tym samym zachowaniem. Frustracja narasta. Zamiast krótkiej granicy pojawia się wyliczanie wszystkich poprzednich razów, z datami i tym, co jeszcze nie pasowało. Granica ma być zrozumiała, a nie długa. Długa przestaje być zrozumiała, bo odbiorca nie wie, który z wielu punktów jest właściwą sprawą.",
-            "Przeciwnikiem jest nadzieja, że długie uzasadnienie oszczędzi drugiej osobie dyskomfortu. Nie oszczędzi, bo dyskomfort jest częścią usłyszenia granicy. Długa lista przesuwa za to uwagę odbiorcy z zachowania na ocenę całej jego osoby, a taka uwaga działa słabiej (Kluger i DeNisi 1996). Odbiorca broni się przed najsłabszym punktem, a zdanie o tym, czego oczekujesz, ginie.",
-            "Ruch: powiedz trzy rzeczy, po jednym zdaniu — co się stało, jaki to miało wpływ na Twoją pracę, czego oczekujesz następnym razem. Potem zamilcz, bo cisza daje odbiorcy czas na odpowiedź, a Tobie odbiera okazję do dopowiadania. Jeśli zaległa rozmowa nie mieści się w czterdziestu pięciu słowach (to limit ćwiczeniowy tego kursu, nie liczba z badań), przygotowujesz wykład, a nie granicę."
+          "na_start": {
+            "pytanie": "Ktoś znowu zgłasza braki dopiero wtedy, gdy trzeba je uzupełnić natychmiast. Co mówisz, żeby granica dotarła?",
+            "opcje": [
+              "Trzy zdania: co się stało, jaki był skutek, czego oczekuję. Potem cisza",
+              "Wyliczam wszystkie poprzednie razy, żeby zobaczył skalę",
+              "Dodaję długie uzasadnienie, żeby było mu mniej przykro"
+            ],
+            "poprawna": 0,
+            "mysl": 3,
+            "wyjasnienie": "Wyliczanka uruchamia obronę, a uzasadnienie nie oszczędza dyskomfortu. Fakt, skutek i oczekiwanie da się sprawdzić i wykonać."
+          },
+          "mysli": [
+            {
+              "teza": "Granica ma być zrozumiała, a długa przestaje być zrozumiała.",
+              "rozwiniecie": [
+                "Ktoś przerywa, przekazuje zadanie za późno albo wraca z tym samym zachowaniem. Rośnie frustracja i zamiast granicy pada wyliczanka poprzednich razów, z datami i tym, co jeszcze nie pasowało. Odbiorca nie wie wtedy, który punkt jest właściwą sprawą."
+              ]
+            },
+            {
+              "teza": "Długie uzasadnienie nie oszczędzi dyskomfortu, bo dyskomfort należy do usłyszenia granicy.",
+              "rozwiniecie": [
+                "Chroni raczej nadawcę przed poczuciem bycia niemiłym niż odbiorcę przed przykrością. Lista zarzutów kieruje uwagę z zachowania na ocenę całej osoby i na obronę, a informacja zwrotna o osobie działa słabiej niż o zadaniu (Kluger i DeNisi 1996).",
+                "Odbiorca broni się przed najsłabszym zarzutem, a zdanie o tym, czego oczekujesz, ginie."
+              ]
+            },
+            {
+              "teza": "Granica to trzy zdania: co się stało, jaki to miało wpływ na Twoją pracę, czego oczekujesz następnym razem.",
+              "rozwiniecie": [
+                "To **fakt, skutek i oczekiwanie**: rzeczy sprawdzalne i wykonalne, o zachowaniu, nie o człowieku i nie o historii. Potem zamilcz: cisza daje odbiorcy czas na odpowiedź, a Tobie odbiera okazję do dopowiadania."
+              ],
+              "hala": "Ktoś stale zgłasza braki dopiero, gdy trzeba je uzupełnić natychmiast. Zamiast rozmowy o poprzednich razach padają trzy zdania: kiedy przyszło zgłoszenie, czego przez to nie dało się przeplanować, do kiedy ma przychodzić. Mieszczą się między dwoma klientami."
+            },
+            {
+              "teza": "Jeśli zaległa rozmowa nie mieści się w 45 słowach, przygotowujesz wykład, a nie granicę.",
+              "rozwiniecie": [
+                "Limit zmusza do wyboru jednego zdarzenia. To limit ćwiczeniowy tego kursu, nie liczba z badań: badań nad długością takich komunikatów nie ma.",
+                "**Próba w pracy:** skróć jedną zaległą rozmowę do najwyżej 45 słów. Jeśli się nie mieści, wracasz do wyliczania. Odpuść domyślanie się cudzych intencji i argumenty na odpowiedzi, które jeszcze nie padły."
+              ]
+            }
           ],
-          "punkty": [
-            "Ruch: trzy zdania — co się stało, jaki to miało wpływ na Twoją pracę, czego oczekujesz następnym razem. Potem cisza.",
-            "Próba w pracy: przepisz jedną zaległą rozmowę do najwyżej 45 słów. Jeśli się nie mieści, wracasz do wyliczania.",
-            "Odpuszczasz: domyślanie się cudzych intencji i przygotowywanie argumentów na odpowiedzi, które jeszcze nie padły.",
-            "Granica mówi o zachowaniu i o skutku. Nie o człowieku i nie o historii.",
-            "🔎 Z hali: ktoś regularnie zgłasza braki dopiero wtedy, gdy trzeba je uzupełnić natychmiast. Zamiast rozmowy o wszystkich poprzednich razach padają trzy zdania: kiedy przyszło zgłoszenie, czego przez to nie dało się przeplanować, do kiedy ma przychodzić — i mieszczą się między jednym a drugim klientem.",
-            "🧠 Zapamiętaj: granica ma być zrozumiała. Nie musi być długa."
-          ],
-          "mechanizm": "Długie uzasadnienie częściej chroni nadawcę przed poczuciem bycia niemiłym niż odbiorcę przed przykrością. Lista zarzutów kieruje uwagę odbiorcy na obronę siebie, a informacja zwrotna o osobie działa słabiej niż o zadaniu (Kluger i DeNisi 1996). Trzy zdania zawierają fakt, skutek i oczekiwanie, czyli rzeczy sprawdzalne i wykonalne. Limit słów zmusza do wyboru jednego zdarzenia; badań nad długością takich komunikatów nie ma.",
+          "zapamietaj": "Granica ma być zrozumiała. Nie musi być długa.",
+          "sprawdz": "KR-10",
+          "id": "granica-bez-wykladu",
           "rozwoj": {
             "trenuje": [
               "communication",
@@ -27070,22 +27492,48 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
           }
         },
         {
-          "id": "wlasciciel-wyniku",
           "tytul": "Właściciel wyniku",
-          "tresc": [
-            "Zadanie zostało zrobione, wiadomość wysłana, rzecz odłożona na miejsce. Odbiorca jej nie zauważył, nie potwierdził albo nie wiedział, co dalej. Nadawca mówi: „ja swoje zrobiłem”, i formalnie ma rację. W praktyce robota nadal nie jest zrobiona. To różnica między wykonaniem własnego ruchu a odpowiedzialnością za wynik, który ma zadziałać u kogoś innego.",
-            "Przeciwnikiem jest odpowiedzialność rozumiana jako ruch własnych rąk. Poczucie „zrobione” pojawia się w chwili zakończenia własnej czynności, a nie wtedy, gdy wynik działa u odbiorcy. Wiadomość pisana wydaje się przy tym nadawcy jaśniejsza, niż jest, bo słyszy w niej własną intonację (Kruger i in. 2005). Każdy ma czyste sumienie, a wyniku nadal nie ma.",
-            "Ruch: zanim nazwiesz zadanie gotowym, sprawdź, czy odbiorca potwierdził, że ma wynik i wie, co z nim zrobić. Jeśli nie, zadanie jest nadal w toku. Przy zadaniu przechodzącym między dwiema osobami ustalcie z góry, po czym poznacie odbiór: słowo, kartka, potwierdzenie. Umowa jest potrzebna, bo bez niej każda strona zakłada inny sygnał."
+          "na_start": {
+            "pytanie": "Przed końcem zmiany odstawiasz na miejsce tacę z wyrobem, który wymaga uwagi. Sprawa zamknięta?",
+            "opcje": [
+              "Tak, wyrób stoi tam, gdzie powinien",
+              "Nie, dopóki zmiana wchodząca nie potwierdzi, że wie, co z nim zrobić",
+              "Tak, jeśli wcześniej wysłałem o nim wiadomość"
+            ],
+            "poprawna": 1,
+            "mysl": 3,
+            "wyjasnienie": "Odstawienie i wysłanie opisują Twój ruch. Gotowe jest wtedy, gdy odbiorca potwierdził, że ma wynik i wie, co z nim zrobić."
+          },
+          "mysli": [
+            {
+              "teza": "Wykonanie własnego ruchu to jeszcze nie wynik, który działa u kogoś innego.",
+              "rozwiniecie": [
+                "Zadanie zrobione, wiadomość wysłana, rzecz odłożona, a odbiorca jej nie zauważył, nie potwierdził albo nie wie, co dalej. „Ja swoje zrobiłem” jest formalnie prawdą, a robota nadal nie jest zrobiona."
+              ]
+            },
+            {
+              "teza": "Poczucie „zrobione” przychodzi po własnej czynności, a nie wtedy, gdy wynik działa u odbiorcy.",
+              "rozwiniecie": [
+                "Kryterium „gotowe” ustawia się zwykle na końcu własnej czynności, bo tylko ją widać od środka. Odpowiedzialność myli się wtedy z ruchem własnych rąk. Wiadomość pisana wydaje się nadawcy jaśniejsza, niż jest, bo słyszy w niej własną intonację (Kruger i in. 2005).",
+                "W łańcuchu kilku osób każda wykonała swój ruch i ma czyste sumienie, a wynik ginie na styku, za który nikt nie odpowiada."
+              ]
+            },
+            {
+              "teza": "Zadanie jest gotowe dopiero, gdy odbiorca potwierdził, że ma wynik i wie, co z nim zrobić.",
+              "rozwiniecie": [
+                "Bez potwierdzenia jest nadal w toku. **Wysłane** opisuje Twój ruch, przekazane widać po drugiej stronie. „Wysłałem”, „położyłem”, „mówiłem” nie dowodzą, że rzecz działa. Potwierdzenie odbioru przenosi kryterium na stan po drugiej stronie."
+              ],
+              "hala": "Przed końcem zmiany wyrób wymagający uwagi zostaje odstawiony na miejsce, a stawiający uznaje sprawę za zamkniętą. Zmiana wchodząca widzi tacę, ale nie wie, że trzeba z nią postąpić inaczej. Nikt tego nie powiedział ani nie potwierdził."
+            },
+            {
+              "teza": "Przy zadaniu przechodzącym między dwiema osobami ustalcie z góry, po czym poznacie odbiór.",
+              "rozwiniecie": [
+                "Sygnałem może być słowo, kartka, potwierdzenie. Bez umowy jedna strona zakłada, że wystarczy odłożyć, a druga, że ktoś jej powie. **Próba w pracy:** ustal taki sygnał dla jednego zadania."
+              ]
+            }
           ],
-          "punkty": [
-            "Ruch: zanim nazwiesz zadanie gotowym, sprawdź, czy odbiorca potwierdził, że ma wynik i wie, co z nim zrobić. Jeśli nie — jest w toku.",
-            "Próba w pracy: wybierz jedno zadanie przechodzące między dwiema osobami i ustal, po czym poznacie, że zostało odebrane.",
-            "Odpuszczasz: „wysłałem”, „położyłem”, „mówiłem” traktowane jako dowód, że rzecz działa.",
-            "Wysłane opisuje Twój ruch. Przekazane widać po drugiej stronie.",
-            "🔎 Z hali: wyrób wymagający uwagi zostaje odstawiony na miejsce przed końcem zmiany. Osoba, która go tam postawiła, uznaje sprawę za zamkniętą. Zmiana wchodząca widzi tacę, ale nie wie, że coś z nią trzeba zrobić inaczej — bo nikt tego nie powiedział i nikt nie potwierdził.",
-            "🧠 Zapamiętaj: wykonanie własnego ruchu nie kończy odpowiedzialności, jeśli wynik nadal nie dotarł."
-          ],
-          "mechanizm": "Kryterium „gotowe” ustawia się zwykle na końcu własnej czynności, bo tylko ją widać od środka. W łańcuchu kilku osób każda wykonała swój ruch, a wynik ginie na styku, za który nikt nie odpowiada. Potwierdzenie odbioru przenosi kryterium na stan po drugiej stronie. Umówiony z góry sygnał zapobiega sytuacji, w której jedna strona zakłada, że wystarczy odłożyć, a druga, że ktoś jej powie.",
+          "zapamietaj": "Wykonanie własnego ruchu nie kończy odpowiedzialności, jeśli wynik nadal nie dotarł.",
+          "id": "wlasciciel-wyniku",
           "rozwoj": {
             "trenuje": [
               "reliability",
@@ -27308,23 +27756,6 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
           "wyjasnienie": "Przytaknięcie jest gestem społecznym: znaczy „słyszę cię”, nie „zrozumiałem to samo, co masz na myśli”. Dowód zrozumienia to treść, która wraca w słowach odbiorcy — następny krok i termin. Dopiero wtedy widać, co zostało z przekazu po przejściu przez cudzą głowę."
         },
         {
-          "id": "KR-10",
-          "poziom": "SAMODZIELNY",
-          "typ": "jednokrotny",
-          "ccp": false,
-          "pytanie": "Z ilu zdań składa się krótka granica i co jest po nich?",
-          "opcje": [
-            "Z jednego zdania i z uzasadnienia, dlaczego to ważne",
-            "Z trzech zdań — fakt, wpływ, oczekiwanie — i z ciszy",
-            "Z listy wszystkich poprzednich razów i z prośby",
-            "Z pytania o intencje i z propozycji rozwiązania"
-          ],
-          "poprawne": [
-            1
-          ],
-          "wyjasnienie": "Trzy zdania nie dają się bronić, bo nie zawierają oceny: fakt, skutek dla Twojej pracy i oczekiwanie da się sprawdzić i wykonać. Cisza jest czwartym elementem — bez niej wracasz do wyliczania, a lista zarzutów zawsze ma najsłabszy punkt, którego broni odbiorca."
-        },
-        {
           "id": "KR-11",
           "poziom": "MENTOR",
           "typ": "jednokrotny",
@@ -27357,6 +27788,25 @@ figure.schemat figcaption::before{content:"Schemat · ";font-weight:600;color:va
             1
           ],
           "wyjasnienie": "Głośność nie zmienia tego, przez co przechodzi przekaz — problem jest w odbiorze, nie w sile głosu. Prośba „powiedz własnymi słowami, co teraz robisz i kiedy wracasz” pokazuje różnicę przed działaniem i przenosi odpowiedzialność na nadawcę, więc odbiorca nie ma czego bronić."
+        }
+      ],
+      "pytaniaRozdzialow": [
+        {
+          "id": "KR-10",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Z ilu zdań składa się krótka granica i co jest po nich?",
+          "opcje": [
+            "Z jednego zdania i z uzasadnienia, dlaczego to ważne",
+            "Z trzech zdań — fakt, wpływ, oczekiwanie — i z ciszy",
+            "Z listy wszystkich poprzednich razów i z prośby",
+            "Z pytania o intencje i z propozycji rozwiązania"
+          ],
+          "poprawne": [
+            1
+          ],
+          "wyjasnienie": "Trzy zdania nie dają się bronić, bo nie zawierają oceny: fakt, skutek dla Twojej pracy i oczekiwanie da się sprawdzić i wykonać. Cisza jest czwartym elementem — bez niej wracasz do wyliczania, a lista zarzutów zawsze ma najsłabszy punkt, którego broni odbiorca."
         }
       ]
     },
@@ -34290,20 +34740,46 @@ function ramkaTekstu(rodzic, rodzaj, tekst) {
    stojący na przystanku wiedział, czy zaczyna coś na trzy minuty, czy na
    dwadzieścia. ~200 słów/min to ostrożne tempo dla tekstu technicznego. */
 const slowa = (teksty) => bezZnacznikow(teksty.filter(Boolean).join(' ')).split(/\s+/).filter(Boolean).length;
+const tekstyRozdzialu = (k) => { const p = plaskiRozdzial(k); return [k.tytul, ...p.tresc, ...p.punkty, p.mechanizm] };
 function minutyCzytania(tom) {
-  return Math.max(1, Math.round(slowa([tom.intro, ...(tom.cele || []), ...(tom.karty || []).flatMap((k) =>
-    [k.tytul, ...(k.tresc || []), ...(k.punkty || []), k.mechanizm])]) / 200));
+  return Math.max(1, Math.round(slowa([tom.intro, ...(tom.cele || []), ...(tom.karty || []).flatMap(tekstyRozdzialu)]) / 200));
 }
-const minutyRozdzialu = (k) => Math.max(1, Math.round(slowa([k.tytul, ...(k.tresc || []), ...(k.punkty || []), k.mechanizm]) / 200));
+const minutyRozdzialu = (k) => Math.max(1, Math.round(slowa(tekstyRozdzialu(k)) / 200));
 const typRozdzialu = (k) => /^Porównanie\b/.test(k.tytul) ? 'porownanie' : /^Pogłębienie\b/.test(k.tytul) ? 'poglebienie' : null;
 
 /* NAJWAŻNIEJSZE RZECZY — zdania „Zapamiętaj" z rozdziałów wykładu (bez
    Porównania i Pogłębienia: to karty dowodów, nie sedno modułu). Trzy do
    czterech, w kolejności rozdziałów, z limitem długości — mają się zmieścić
    na pierwszym ekranie telefonu razem z mapą. */
+/* ROZDZIAŁ PO REDAKCJI (DEC-203) — PORT z [wewn.]
+   (`maMysli`, `plaskiRozdzial`, `zapamietajRozdzialu`); bliźniaczy test liczy
+   obie implementacje na tych samych rozdziałach. Widok płaski służy temu, co
+   zna tylko stare pola: minuty czytania, wyszukiwarka, zajawka. */
+function maMysli(k) { return Array.isArray(k && k.mysli) && k.mysli.length > 0 }
+function plaskiRozdzial(k) {
+  if (!maMysli(k)) return { tresc: (k && k.tresc) || [], punkty: (k && k.punkty) || [], mechanizm: (k && k.mechanizm) || '' };
+  const hala = k.mysli.map((m) => m && m.hala).filter(Boolean);
+  const start = k.na_start || {};
+  return {
+    tresc: [
+      ...k.mysli.map((m) => ((m && m.rozwiniecie) || []).join(' ')).filter(Boolean),
+      ...[start.pytanie, start.wyjasnienie].filter(Boolean)
+    ],
+    punkty: [
+      ...k.mysli.map((m) => m && m.teza).filter(Boolean),
+      ...hala.map((h) => ZNACZNIK_HALA + ' ' + h),
+      ...(k.zapamietaj ? [ZNACZNIK_ZAPAMIETAJ + ' ' + k.zapamietaj] : [])
+    ],
+    mechanizm: ''
+  };
+}
+function zapamietajRozdzialu(k) {
+  return maMysli(k) ? (k.zapamietaj ? jakZdanie(k.zapamietaj) : null) : rozdzielPunkty(k && k.punkty).zapamietaj;
+}
+
 function najwazniejsze(tom) {
   const zdania = (tom.karty || []).filter((k) => !typRozdzialu(k))
-    .map((k) => rozdzielPunkty(k.punkty).zapamietaj).filter(Boolean);
+    .map(zapamietajRozdzialu).filter(Boolean);
   const wynik = [];
   let dlugosc = 0;
   for (const z of zdania) {
@@ -34323,6 +34799,231 @@ function przewinDo(element) {
 }
 
 let drukuje = false;
+/* „Rozwiń wszystko" rozwija też „Dlaczego?" — to przegląd, nie działanie
+   czytelnika, więc pasek postępu rozdziału go nie liczy. */
+let masowo = false;
+
+/* SCHEMAT DO DOTKNIĘCIA (DEC-203, 3A): figura z `data-fazy` dostaje pasy na
+   rysunku i przyciski faz. Pas to prostokąt w jednostkach viewBox, wstawiany
+   pod rysunek (pierwsze dziecko po <title>/<desc>), więc linie zostają na
+   wierzchu. Plik SVG się nie zmienia — dokłada to ekran. */
+function ozywSchemat(fig, przyDotknieciu) {
+  let fazy = null;
+  try { fazy = JSON.parse(fig.getAttribute('data-fazy') || 'null') } catch { fazy = null }
+  const svg = fig.querySelector('svg');
+  if (!Array.isArray(fazy) || !fazy.length || !svg) return fig;
+  const NS = 'http://www.w3.org/2000/svg';
+  const vb = (svg.getAttribute('viewBox') || '0 0 320 240').split(/\s+/).map(Number);
+  const przed = [...svg.children].find((c) => c.tagName !== 'title' && c.tagName !== 'desc') || null;
+  const pasy = fazy.map((f) => {
+    const r = document.createElementNS(NS, 'rect');
+    r.setAttribute('class', 'pas'); r.setAttribute('x', String(f.x)); r.setAttribute('y', String(f.y != null ? f.y : vb[1]));
+    r.setAttribute('width', String(f.szer)); r.setAttribute('height', String(f.wys != null ? f.wys : vb[3]));
+    svg.insertBefore(r, przed);
+    return r;
+  });
+  const grupa = el('div', 'fazy');
+  grupa.setAttribute('role', 'group');
+  grupa.setAttribute('aria-label', 'Wybierz fazę na schemacie');
+  const opis = el('p', 'faza-opis');
+  opis.setAttribute('aria-live', 'polite');
+  const przyciski = fazy.map((f, i) => {
+    const b = el('button', '', f.etykieta);
+    b.type = 'button';
+    b.onclick = () => { wybierz(i); if (przyDotknieciu) przyDotknieciu() };
+    grupa.append(b);
+    return b;
+  });
+  function wybierz(i) {
+    przyciski.forEach((b, j) => b.setAttribute('aria-pressed', String(i === j)));
+    pasy.forEach((r, j) => r.classList.toggle('on', i === j));
+    opis.textContent = fazy[i].opis;
+  }
+  wybierz(0);
+  /* Na wydruku nie ma przycisków — drukuje się lista wszystkich faz. */
+  const druk = el('dl', 'fazy-druk');
+  fazy.forEach((f) => { druk.append(el('dt', '', f.etykieta), el('dd', '', f.opis)) });
+  const podpis = fig.querySelector('figcaption');
+  fig.insertBefore(grupa, podpis);
+  fig.insertBefore(opis, podpis);
+  fig.insertBefore(druk, podpis);
+  return fig;
+}
+
+/* ROZDZIAŁ PO REDAKCJI „TEZA + ROZWINIĘCIE" (DEC-203, 02.11.2026).
+   Kolejność: pytanie na start → myśli (teza + „Dlaczego?", scena z hali
+   w rozwinięciu swojej myśli, odpowiedź na start przy myśli, której dotyczy)
+   → „Zapamiętaj" do odsłonięcia → jedno pytanie z banku tomu. Dwa sposoby
+   czytania: całość (przeglądanie) i krok po kroku (jedna rzecz na ekran).
+   Pasek postępu zapala się od DZIAŁANIA czytelnika, nie od przewinięcia
+   (ani od druku, ani od „Rozwiń wszystko").
+   Stan trybu i odpowiedzi żyje tylko w tym ekranie — bez nowego klucza.
+   Odpowiedź z „Sprawdź się" NIE zapisuje się do postępu (red team kodu
+   02.11.2026, P-1): samo czytanie rozdziałów dawało tomowi 75 % przy progu
+   poziomu 70, a Panel tej samej odpowiedzi nie liczy — dwie prawdy o jednym
+   kliknięciu. Wynikiem tomu zostaje quiz. */
+function rysujMysli(cialo, karta, tom) {
+  const bloki = [];
+  const zrobione = new Set();
+  const glowa = el('div', 'mysli-glowa');
+  const pasek = el('div', 'mysli-postep');
+  pasek.setAttribute('aria-hidden', 'true');
+  const tryb = el('div', 'mysli-tryb');
+  tryb.setAttribute('role', 'group');
+  tryb.setAttribute('aria-label', 'Sposób czytania');
+  const bCalosc = el('button', '', 'Przewijam całość');
+  const bKrok = el('button', '', 'Krok po kroku');
+  [bCalosc, bKrok].forEach((b) => { b.type = 'button'; tryb.append(b) });
+  glowa.append(pasek, tryb);
+  cialo.append(glowa);
+  const odhacz = (i) => { zrobione.add(i); rysujPasek() };
+  function rysujPasek() {
+    pasek.innerHTML = '';
+    bloki.forEach((_, i) => pasek.append(el('span', zrobione.has(i) ? 'zrob' : '')));
+  }
+
+  /* 1. Na start — zgadnij, zanim przeczytasz. */
+  /* Opcje „Na start" mieszane jak w quizie — stała kolejność uczy pozycji
+     (w „Ladzie" poprawna była zawsze środkowa). `poprawna` idzie za treścią. */
+  const start = karta.na_start && Array.isArray(karta.na_start.opcje) ? (() => {
+    const u = ulozPytanie({ opcje: karta.na_start.opcje, poprawne: [karta.na_start.poprawna] });
+    return { ...karta.na_start, opcje: u.opcje, poprawna: u.poprawne[0] };
+  })() : null;
+  let powrot = null;
+  if (start) {
+    const blok = el('div', 'na-start mysli-blok');
+    const g = el('div', 'ramka-glowa'); g.append(ikona('kompas'), document.createTextNode('Na start · zgadnij, zanim przeczytasz'));
+    blok.append(g, wstawTekst(el('p', 'pyt'), start.pytanie));
+    const info = el('p', 'info', `Nie musisz trafić. Odpowiedź wróci przy myśli ${start.mysl}.`);
+    const nr = bloki.length;
+    const przyciski = start.opcje.map((o, i) => {
+      const b = el('button', 'opcja', o);
+      b.type = 'button';
+      b.onclick = () => {
+        przyciski.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        info.textContent = `Zapisane: „${o}”. Sprawdzisz przy myśli ${start.mysl}.`;
+        if (powrot) {
+          powrot.innerHTML = '';
+          powrot.append(el('b', '', i === start.poprawna ? 'Dobrze. ' : `Na start: „${o}”. `));
+          wstawTekst(powrot, `Odpowiedź: ${start.opcje[start.poprawna]}. ${start.wyjasnienie}`);
+        }
+        odhacz(nr);
+      };
+      blok.append(b);
+      return b;
+    });
+    blok.append(info);
+    cialo.append(blok);
+    bloki.push(blok);
+  }
+
+  /* 2. Myśli. */
+  const ol = el('ol', 'mysli');
+  karta.mysli.forEach((mysl, j) => {
+    const li = el('li', 'mysl mysli-blok');
+    const nr = bloki.length;
+    li.append(wstawTekst(el('p', 'mysl-teza'), mysl.teza));
+    if (j === 0) grafiki(tom.id, karta.tytul, 'tresc').concat(grafiki(tom.id, karta.tytul, 'mechanizm'))
+      .forEach((f) => li.append(ozywSchemat(f, () => odhacz(nr))));
+    if (start && start.mysl === j + 1) {
+      powrot = el('p', 'mysl-powrot');
+      wstawTekst(powrot, `Odpowiedź na pytanie ze startu: ${start.opcje[start.poprawna]}. ${start.wyjasnienie}`);
+      li.append(powrot);
+    }
+    const rozw = (mysl.rozwiniecie || []).filter(Boolean);
+    if (rozw.length || mysl.hala) {
+      const d = el('details', 'mysl-rozw');
+      d.append(el('summary', '', 'Dlaczego?'));
+      rozw.forEach((a) => d.append(akapit('nauka-tresc', a)));
+      if (mysl.hala) ramkaTekstu(d, 'zhali', mysl.hala);
+      d.addEventListener('toggle', () => { if (d.open && !drukuje && !masowo) odhacz(nr) });
+      li.append(d);
+    }
+    ol.append(li);
+    bloki.push(li);
+  });
+  cialo.append(ol);
+
+  /* 3. Zapamiętaj — najpierw próba przypomnienia. */
+  if (karta.zapamietaj) {
+    const r = ramka('zapamietaj', 'Zapamiętaj · najpierw spróbuj przypomnieć');
+    r.classList.add('zap-odslon', 'mysli-blok');
+    r.append(el('p', 'info', 'Powiedz sobie w myślach jedną zasadę z tego rozdziału, potem odsłoń.'));
+    const tekst = wstawTekst(el('p', 'zap-tekst'), jakZdanie(karta.zapamietaj));
+    tekst.hidden = true;
+    const nr = bloki.length;
+    const b = el('button', 'drugi', 'Odsłoń');
+    b.type = 'button';
+    b.onclick = () => { tekst.hidden = false; b.remove(); odhacz(nr) };
+    r.append(tekst, b);
+    cialo.append(r);
+    bloki.push(r);
+  }
+
+  /* 4. Sprawdź się — jedno pytanie z banku TEGO tomu (generator zdejmuje
+     wskazanie, gdy pytania nie ma w tym wariancie kursu). Pytanie jedzie
+     w `tom.pytaniaRozdzialow`, nie w `tom.pytania`: nie wraca w quizie
+     i nie liczy się do statusu tomu (decyzja Piotra 02.11.2026, R-1 A). */
+  /* Tylko pytanie jednokrotnego wyboru: jedno dotknięcie = odpowiedź. */
+  const pyt = karta.sprawdz != null ? (tom.pytaniaRozdzialow || []).find((x) => x.id === karta.sprawdz && x.typ !== 'wielokrotny' && !x.ccp) : null;
+  if (pyt) {
+    const blok = el('div', 'sprawdz-sie mysli-blok');
+    const g = el('div', 'ramka-glowa'); g.append(ikona('cwiczenie'), document.createTextNode('Sprawdź się · jedno pytanie'));
+    blok.append(g, wstawTekst(el('p', 'pyt'), pyt.pytanie));
+    const u = ulozPytanie(pyt);
+    const nr = bloki.length;
+    const przyciski = u.opcje.map((o, i) => {
+      const b = el('button', 'opcja', o);
+      b.type = 'button';
+      b.onclick = () => {
+        const dobrze = u.poprawne[0] === i;
+        przyciski.forEach((x, j) => { x.disabled = true; if (u.poprawne.includes(j)) x.classList.add('ok'); else if (x === b) x.classList.add('zle') });
+        const w = el('div', 'wyjasnienie');
+        w.append(el('h4', '', dobrze ? 'Dobrze' : 'Jeszcze nie'));
+        if (pyt.wyjasnienie) w.append(el('p', '', pyt.wyjasnienie));
+        blok.append(w);
+        odhacz(nr);
+      };
+      blok.append(b);
+      return b;
+    });
+    cialo.append(blok);
+    bloki.push(blok);
+  }
+
+  /* Tryb krok po kroku: jeden blok naraz, „Dalej" zalicza krok. */
+  const nav = el('div', 'krok-nav');
+  const wstecz = el('button', 'drugi', 'Wstecz'); wstecz.type = 'button';
+  const dalej = el('button', 'glowny', 'Dalej'); dalej.type = 'button';
+  nav.append(wstecz, dalej);
+  nav.hidden = true;
+  cialo.append(nav);
+  let krok = -1;
+  function pokaz() {
+    bloki.forEach((b, i) => { b.hidden = krok >= 0 && i !== krok });
+    /* Lista myśli schowana w całości, gdy krok jest poza nią — inaczej
+       zostaje sama kreska listy. */
+    ol.hidden = krok >= 0 && !karta.mysli.some((_, j) => bloki[krok] === ol.children[j]);
+    nav.hidden = krok < 0;
+    bCalosc.setAttribute('aria-pressed', String(krok < 0));
+    bKrok.setAttribute('aria-pressed', String(krok >= 0));
+    if (krok >= 0) {
+      wstecz.disabled = krok === 0;
+      dalej.textContent = krok === bloki.length - 1 ? 'Wróć do całości' : `Dalej · ${krok + 2} z ${bloki.length}`;
+    }
+  }
+  bCalosc.onclick = () => { krok = -1; pokaz() };
+  bKrok.onclick = () => { krok = 0; pokaz(); przewinDo(glowa) };
+  dalej.onclick = () => {
+    if (krok < 0) return;
+    if (bloki[krok].tagName === 'LI') odhacz(krok);
+    if (krok === bloki.length - 1) { krok = -1; pokaz(); return }
+    krok++; pokaz(); przewinDo(glowa);
+  };
+  wstecz.onclick = () => { if (krok > 0) { krok--; pokaz(); przewinDo(glowa) } };
+  rysujPasek();
+  pokaz();
+}
 
 function ekranTom() {
   /* `widok.tom` bywa NAZWĄ, nie obiektem: ekran Ścieżki (drabina, mostki,
@@ -34464,6 +35165,9 @@ function ekranTom() {
        „Kontynuuj" skakał na OSTATNI rozdział (red team 16.10.2026, P-1). */
     if (!wszystkie) zwijane.forEach((x) => { if (!x.details.open && /^r\d+$/.test(x.klucz)) pomin.add(x.klucz) });
     zwijane.forEach((x) => { x.details.open = !wszystkie });
+    masowo = true;
+    m.querySelectorAll('details.mysl-rozw').forEach((x) => { x.open = !wszystkie });
+    setTimeout(() => { masowo = false }, 50);
     przelacz.textContent = wszystkie ? 'Rozwiń wszystko' : 'Zwiń wszystko';
     zapiszStan();
   };
@@ -34493,7 +35197,8 @@ function ekranTom() {
     const typ = typRozdzialu(karta);
     const d = zwijany('rozdzial' + (typ ? ' rozdzial-' + typ : ''), 'r' + (i + 1));
     if (karta.id) d.dataset.rozdzial = karta.id;
-    const { punkty, zHali, zapamietaj } = rozdzielPunkty(karta.punkty);
+    const { punkty, zHali } = rozdzielPunkty(karta.punkty);
+    const zapamietaj = zapamietajRozdzialu(karta);
 
     const sum = el('summary', 'rozdzial-glowa');
     sum.append(el('span', 'rozdzial-nr', String(i + 1)));
@@ -34513,6 +35218,14 @@ function ekranTom() {
     d.append(sum);
 
     const cialo = el('div', 'rozdzial-cialo');
+    if (maMysli(karta)) {
+      rysujMysli(cialo, karta, t);
+      ramkaTekstu(cialo, 'alterbake', karta.alterbake);
+      d.append(cialo);
+      m.append(d);
+      rozdzialy.push({ element: d, numer: String(i + 1), etykieta: karta.tytul });
+      return;
+    }
     (karta.tresc || []).forEach((akap, j) => {
       cialo.append(akapit(j === 0 ? 'nauka-tresc lede' : 'nauka-tresc', akap));
       if (j === 0) cialo.append(...grafiki(t.id, karta.tytul, 'tresc'));
@@ -35400,9 +36113,12 @@ function polaTomu(t) {
   (t.pojecia || []).forEach((p) => pola.push({ waga: 8, tekst: p.termin, podglad: `${p.termin} — ${String(p.znaczenie || '').slice(0, 140)}…` }));
   (t.karty || []).forEach((k) => {
     pola.push({ waga: 7, tekst: k.tytul });
-    (k.tresc || []).forEach((a) => pola.push({ waga: 2, tekst: a, podglad: String(a).slice(0, 160) + '…' }));
-    (k.punkty || []).forEach((x) => pola.push({ waga: 3, tekst: x }));
-    if (k.mechanizm) pola.push({ waga: 3, tekst: k.mechanizm, podglad: String(k.mechanizm).slice(0, 160) + '…' });
+    /* Widok płaski: rozdział po redakcji (DEC-203) ma tezy i rozwinięcia
+       zamiast punktów i akapitów — szukajka ma je znaleźć tak samo. */
+    const pl = plaskiRozdzial(k);
+    pl.tresc.forEach((a) => pola.push({ waga: 2, tekst: a, podglad: String(a).slice(0, 160) + '…' }));
+    pl.punkty.forEach((x) => pola.push({ waga: 3, tekst: x }));
+    if (pl.mechanizm) pola.push({ waga: 3, tekst: pl.mechanizm, podglad: String(pl.mechanizm).slice(0, 160) + '…' });
   });
   (t.parametry || []).forEach((x) => pola.push({ waga: 6, tekst: x.nazwa, podglad: `${x.nazwa} — ${x.wartosc}` }));
   (t.bledy || []).forEach((x) => pola.push({ waga: 5, tekst: `${x.objaw} ${x.przyczyna || ''}`, podglad: `${x.objaw} → ${x.korekta}` }));
